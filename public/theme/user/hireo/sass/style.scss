@@ -5,123 +5,122 @@
 * URL: https://themeforest.net/user/vasterad/portfolio/
 */
 
-@import 'variables';
+@import '/theme/user/hireo/sass/variables';
 
 /* -------------------------------------------------------------- */
 /* 01. Layout Components
 ----------------------------------------------------------------- */
-@import 'layout/bootstrap-grid';
-@import 'layout/form-styles';
-@import 'layout/header';
-@import 'layout/header-notifications';
-@import 'layout/user-menu';
-@import 'layout/navigation';
-@import 'layout/mobile-navigation';
-@import 'layout/titlebar';
-@import 'layout/blog';
-@import 'layout/contact-page';
-@import 'layout/footer';
-@import 'layout/sidebar-styles';
-@import 'layout/single-freelancer-page';
-@import 'layout/single-job-page';
-@import 'layout/checkout-page';
-@import 'layout/404-page';
+@import '/theme/user/hireo/sass/layout/bootstrap-grid';
+@import '/theme/user/hireo/sass/layout/form-styles';
+@import '/theme/user/hireo/sass/layout/header';
+@import '/theme/user/hireo/sass/layout/header-notifications';
+@import '/theme/user/hireo/sass/layout/user-menu';
+@import '/theme/user/hireo/sass/layout/navigation';
+@import '/theme/user/hireo/sass/layout/mobile-navigation';
+@import '/theme/user/hireo/sass/layout/titlebar';
+@import '/theme/user/hireo/sass/layout/blog';
+@import '/theme/user/hireo/sass/layout/contact-page';
+@import '/theme/user/hireo/sass/layout/footer';
+@import '/theme/user/hireo/sass/layout/sidebar-styles';
+@import '/theme/user/hireo/sass/layout/single-freelancer-page';
+@import '/theme/user/hireo/sass/layout/single-job-page';
+@import '/theme/user/hireo/sass/layout/checkout-page';
+@import '/theme/user/hireo/sass/layout/404-page';
 
 
 /* -------------------------------------------------------------- */
 /* 02. Listings Styles
 ----------------------------------------------------------------- */
-@import 'listings/full-page-layout';
-@import 'listings/jobs-list-layout';
-@import 'listings/jobs-compact-list-layout';
-@import 'listings/jobs-grid-layout';
-@import 'listings/tasks-list-layout';
-@import 'listings/tasks-grid-layout';
-@import 'listings/freelancers-grid-layout';
-@import 'listings/freelancers-list-layout';
-@import 'listings/companies-list';
+@import '/theme/user/hireo/sass/listings/full-page-layout';
+@import '/theme/user/hireo/sass/listings/jobs-list-layout';
+@import '/theme/user/hireo/sass/listings/jobs-compact-list-layout';
+@import '/theme/user/hireo/sass/listings/jobs-grid-layout';
+@import '/theme/user/hireo/sass/listings/tasks-list-layout';
+@import '/theme/user/hireo/sass/listings/tasks-grid-layout';
+@import '/theme/user/hireo/sass/listings/freelancers-grid-layout';
+@import '/theme/user/hireo/sass/listings/freelancers-list-layout';
+@import '/theme/user/hireo/sass/listings/companies-list';
 
 
 /* -------------------------------------------------------------- */
 /* 03. Graphic User Interface Elements
 ----------------------------------------------------------------- */
-@import 'gui/buttons';
-@import 'gui/lists';
-@import 'gui/marks';
-@import 'gui/notification-boxes';
-@import 'gui/tables';
-@import 'gui/accordion';
-@import 'gui/tabs';
-@import 'gui/copy-to-clipboard';
-@import 'gui/share-buttons';
-@import 'gui/verified-badge';
-@import 'gui/star-rating';
-@import 'gui/leave-rating-stars';
-@import 'gui/ripple-effect';
-@import 'gui/on-off-switch';
-@import 'gui/radio-button';
-@import 'gui/checkbox';
-@import 'gui/custom-upload-button';
-@import 'gui/intro-banner';
-@import 'gui/category-boxes';
-@import 'gui/photo-box';
-@import 'gui/pricing-plans';
-@import 'gui/icon-boxes';
-@import 'gui/testimonials';
-@import 'gui/photo-section';
-@import 'gui/counters';
-@import 'gui/countdown';
-@import 'gui/bidding-widget';
-@import 'gui/boxed-list';
-@import 'gui/category-boxes';
-@import 'gui/clickable-tags';
-@import 'gui/icon-boxes';
-@import 'gui/notify-box';
-@import 'gui/pagination';
-@import 'gui/back-to-top';
+@import '/theme/user/hireo/sass/gui/buttons';
+@import '/theme/user/hireo/sass/gui/lists';
+@import '/theme/user/hireo/sass/gui/marks';
+@import '/theme/user/hireo/sass/gui/notification-boxes';
+@import '/theme/user/hireo/sass/gui/tables';
+@import '/theme/user/hireo/sass/gui/accordion';
+@import '/theme/user/hireo/sass/gui/tabs';
+@import '/theme/user/hireo/sass/gui/copy-to-clipboard';
+@import '/theme/user/hireo/sass/gui/share-buttons';
+@import '/theme/user/hireo/sass/gui/verified-badge';
+@import '/theme/user/hireo/sass/gui/star-rating';
+@import '/theme/user/hireo/sass/gui/leave-rating-stars';
+@import '/theme/user/hireo/sass/gui/ripple-effect';
+@import '/theme/user/hireo/sass/gui/on-off-switch';
+@import '/theme/user/hireo/sass/gui/radio-button';
+@import '/theme/user/hireo/sass/gui/checkbox';
+@import '/theme/user/hireo/sass/gui/custom-upload-button';
+@import '/theme/user/hireo/sass/gui/intro-banner';
+@import '/theme/user/hireo/sass/gui/category-boxes';
+@import '/theme/user/hireo/sass/gui/photo-box';
+@import '/theme/user/hireo/sass/gui/pricing-plans';
+@import '/theme/user/hireo/sass/gui/icon-boxes';
+@import '/theme/user/hireo/sass/gui/testimonials';
+@import '/theme/user/hireo/sass/gui/photo-section';
+@import '/theme/user/hireo/sass/gui/counters';
+@import '/theme/user/hireo/sass/gui/countdown';
+@import '/theme/user/hireo/sass/gui/bidding-widget';
+@import '/theme/user/hireo/sass/gui/boxed-list';
+@import '/theme/user/hireo/sass/gui/category-boxes';
+@import '/theme/user/hireo/sass/gui/clickable-tags';
+@import '/theme/user/hireo/sass/gui/icon-boxes';
+@import '/theme/user/hireo/sass/gui/notify-box';
+@import '/theme/user/hireo/sass/gui/pagination';
+@import '/theme/user/hireo/sass/gui/back-to-top';
 
 
 /* -------------------------------------------------------------- */
 /* 04. Vendor (third party assets styles)
 ----------------------------------------------------------------- */
-@import 'vendor/slick-carousel';
-@import 'vendor/custom-scrollbar';
-@import 'vendor/tooltips';
-@import 'vendor/popups';
-@import 'vendor/bootstrap-range-slider';
-@import 'vendor/bootstrap-select';
-@import 'vendor/snackbar';
-@import 'vendor/google-autocomplete';
-@import 'vendor/maps';
+@import '/theme/user/hireo/sass/vendor/slick-carousel';
+@import '/theme/user/hireo/sass/vendor/custom-scrollbar';
+@import '/theme/user/hireo/sass/vendor/tooltips';
+@import '/theme/user/hireo/sass/vendor/popups';
+@import '/theme/user/hireo/sass/vendor/bootstrap-range-slider';
+@import '/theme/user/hireo/sass/vendor/bootstrap-select';
+@import '/theme/user/hireo/sass/vendor/snackbar';
+@import '/theme/user/hireo/sass/vendor/google-autocomplete';
+@import '/theme/user/hireo/sass/vendor/maps';
 
 
 /* -------------------------------------------------------------- */
 /* 05. Dashboard
 ----------------------------------------------------------------- */
-@import 'dashboard/dashboard-basics';
-@import 'dashboard/dashboard-navigation';
-@import 'dashboard/dashboard-gui-elements';
-@import 'dashboard/dashboard-messages';
+@import '/theme/user/hireo/sass/dashboard/dashboard-basics';
+@import '/theme/user/hireo/sass/dashboard/dashboard-navigation';
+@import '/theme/user/hireo/sass/dashboard/dashboard-gui-elements';
+@import '/theme/user/hireo/sass/dashboard/dashboard-messages';
 
 
 /* -------------------------------------------------------------- */
 /* 06. Layout Basics
 ----------------------------------------------------------------- */
-@import 'layout/common-typography';
-@import 'layout/offsets';
+@import '/theme/user/hireo/sass/layout/common-typography';
+@import '/theme/user/hireo/sass/layout/offsets';
 
 
 /* -------------------------------------------------------------- */
 /* 07. Icon Sets
 ----------------------------------------------------------------- */
-@import 'icons/material-icons';
-@import 'icons/feather-icons';
-@import 'icons/line-awesome-icons';
-@import 'icons/brand-icons';
+@import '/theme/user/hireo/sass/icons/material-icons';
+@import '/theme/user/hireo/sass/icons/feather-icons';
+@import '/theme/user/hireo/sass/icons/line-awesome-icons';
+@import '/theme/user/hireo/sass/icons/brand-icons';
 
 
 /* -------------------------------------------------------------- */
 /* 08. Custom CSS
 ----------------------------------------------------------------- */
-@import 'custom';
-
+@import '/theme/user/hireo/sass/custom';
