@@ -12,6 +12,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :body_style %>
   </head>
 
   <body>
@@ -33,7 +34,7 @@
     <script src="/theme/user/hireo/js/magnific-popup.min.js"></script>
     <script src="/theme/user/hireo/js/slick.min.js"></script>
     <script src="/theme/user/hireo/js/custom.js"></script>
-
+    <%= yield :body_script %>
     <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
     <script>
     // Snackbar for user status switcher
