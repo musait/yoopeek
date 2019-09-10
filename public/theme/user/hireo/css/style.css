@@ -5683,7 +5683,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 									top: 0;
 									padding: 10px 20px;
 									line-height: 24px;
-									color: #fff;
+									color: #fff !important;
 									position: relative;
 									font-size: 16px;
 									font-weight: 500;
@@ -6227,7 +6227,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								.notification.notice p span i { font-weight: 500; }
 								.notification a.button {
 									float: right;
-									color: #fff;
+									color: #fff !important;
 									margin-top: 3px;
 								}
 
