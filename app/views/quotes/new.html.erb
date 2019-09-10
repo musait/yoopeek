@@ -30,18 +30,18 @@
 								<h3><i class="icon-feather-folder-plus"></i> Fomulaire de création</h3>
 							</div>
 
-							<div class="content with-padding padding-bottom-10">
+							<div class="content with-padding">
 								<div class="row">
 
-									<div class="col-xl-8 offset-2">
+									<div class="col-xl-8 offset-xl-2">
 										<div class="submit-field">
 											<h5>Nom de la mission</h5>
 											<input type="text" class="with-border">
 										</div>
 									</div>
-									<div class="col-xl-8 offset-2">
+									<div class="col-xl-8 offset-xl-2" id="form_element">
 										<div class="submit-field">
-											<h5>Détails élement 1</h5>
+											<h5>Détails élement</h5>
 											<textarea type="text" class="with-border"></textarea>
 										</div>
 										<div class="row">
@@ -66,34 +66,112 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-xl-8 offset-2">
 
-										<h5>Ajouter un élement</h5>
-
-									</div>
 
 
 
 								</div>
+								<div class="col-xl-8 offset-2">
+
+									<button onclick="duplicate()"><i class="icon-material-outline-add"></i> Ajouter un élément</button>
+
+								</div>
 							</div>
 						</div>
-					</div>
+						<div class="dashboard-box margin-top-0">
 
-					<div class="col-xl-12">
-						<%= link_to show_path, class:"button ripple-effect big margin-top-30" do %>
-						<i class="icon-feather-plus"></i> Créer votre annonce
-						<%end%>
+							<!-- Headline -->
+							<div class="headline">
+								<h3><i class="icon-feather-folder-plus"></i> Vos coordonnées de facturation</h3>
+							</div>
+
+							<div class="content with-padding">
+								<div class="row">
+
+									<div class="col-xl-8 offset-xl-2">
+
+									</div>
+									<div class="col-xl-8 offset-xl-2" id="form_element">
+
+
+										<p>KAMINI</p>
+
+										<p>shuraval@yahoo.fr</p>
+										<p>Kevin Valfin</p>
+										<p>1 bis av du pavé neuf</p>
+										<p>93160 Noisy le grand</p>
+										<p>France</p>
+
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="dashboard-box margin-top-0">
+
+							<!-- Headline -->
+							<div class="headline">
+								<h3><i class="icon-feather-folder-plus"></i> Vos mentions légales</h3>
+							</div>
+
+							<div class="content with-padding">
+								<div class="row">
+
+									<div class="col-xl-8 offset-xl-2">
+
+									</div>
+									<div class="col-xl-8 offset-xl-2" id="form_element">
+
+
+										<p>Vos mentions légales apparaîtront sur les factures auto-générées par Yoopeek.
+											Vous pourrez les modifier dans votre espace personnel.</p>
+
+											<blockquote>SAS au capital de 500€
+												SIRET 81783623200014 RCS de BOBIGNY - NAF 7311Z
+												Numéro de TVA Intracommunautaire (facultatif) : FR20817836232<br/>
+												La facture est payable sous 7 jours.
+												Tout règlement effectué après expiration du délai donnera lieu, à titre de pénalité de retard, à
+												l'application d'un intérêt égal à celui appliqué par la Banque Centrale Européenne à son opération de
+												refinancement la plus récente, majoré de 10 points de pourcentage, ainsi qu'à une indemnité forfaitaire
+												pour frais de recouvrement d'un montant de 40 Euros.
+												Les pénalités de retard sont exigibles sans qu'un rappel soit nécessaire.
+											</blockquote>
+
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xl-12">
+									<a class="button ripple-effect big margin-top-30" href="/theme/user/hireo/dashboard-messages.html"><i class="icon-feather-plus"></i> Créer votre annonce</a>
+
+								</div>
+
+							</div>
+							<!-- Row / End -->
+
+							<div class="dashboard-footer-spacer"></div>
+						</div>
 					</div>
+					<!-- Dashboard Content / End -->
 
 				</div>
-				<!-- Row / End -->
+				<!-- Dashboard Container / End -->
 
-				<div class="dashboard-footer-spacer"></div>
 			</div>
-		</div>
-		<!-- Dashboard Content / End -->
 
-	</div>
-	<!-- Dashboard Container / End -->
+			<script type="text/javascript">
+				var i = 0;
+				var original = document.getElementById('form_element');
 
-</div>
+				function duplicate() {
+					var clone = original.cloneNode(true); // "deep" clone
+					clone.id = "form_element" + ++i;
+					// or clone.id = ""; if the divs don't need an ID
+					original.parentNode.appendChild(clone);
+				}
+
+			</script>

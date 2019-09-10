@@ -12,6 +12,9 @@ class QuotesController < ApplicationController
   def show
   end
 
+  def show_test
+  end
+
   # GET /quotes/new
   def new
     @quote = Quote.new
