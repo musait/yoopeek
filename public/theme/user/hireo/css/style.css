@@ -316,7 +316,7 @@ header.fullwidth .container {
 
 #header .left-side {
 	float: left;
-	width: 100%;
+	width: auto;
 	display: inline-block;
 	position: relative;
 	flex: 1;
