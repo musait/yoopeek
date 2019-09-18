@@ -3783,7 +3783,6 @@ em.mm-counter+a.mm-fullsubopen+span {
 									width: 100%;
 									z-index: 9;
 									border-radius: 4px;
-									background: linear-gradient(to top, rgba(51,51,51,0.8) 0%, rgba(51,51,51,0.7) 35%, rgba(51,51,51,0.3) 60%, rgba(51,51,51,0.3) 100%);
 									transition: 0.4s;
 								}
 
