@@ -22,6 +22,7 @@
 						<li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li>
 						<li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li>
 						<li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li>
+						<li><%= link_to "Créer une mission", new_job_path, class:"button ripple-effect", style:"color: white"%></li>
 					</ul>
 				</nav>
 				<div class="clearfix"></div>
@@ -204,7 +205,9 @@
 
 							<ul class="user-menu-small-nav">
 								<li><a href="dashboard.html"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+								<li><a href="/theme/user/hireo/pro-subscription.html"><i class="icon-material-outline-settings"></i> Mon abonnement</a></li>
 								<li><a href="/theme/user/hireo/dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>
+
 								<li>
 								<%= link_to root_path do %>
 								<i class="icon-material-outline-power-settings-new"></i> Logout
