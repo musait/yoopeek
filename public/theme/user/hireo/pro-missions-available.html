@@ -4,7 +4,7 @@
 
 	<!-- Basic Page Needs
 	================================================== -->
-	<title>Hireo</title>
+	<title>Yoopeek</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="css/colors/blue.css">
 
 </head>
-<body>
+<body class="gray">
 
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -47,7 +47,7 @@
 									</ul>
 								</li>
 
-								<li><a href="#">Find Work</a>
+								<li><a href="#" class="current">Find Work</a>
 									<ul class="dropdown-nav">
 										<li><a href="#">Browse Jobs</a>
 											<ul class="dropdown-nav">
@@ -115,7 +115,7 @@
 									</ul>
 								</li>
 
-								<li><a href="#" class="current">Pages</a>
+								<li><a href="#">Pages</a>
 									<ul class="dropdown-nav">
 										<li><a href="pages-blog.html">Blog</a></li>
 										<li><a href="pages-pricing-plans.html">Pricing Plans</a></li>
@@ -341,20 +341,9 @@
 		<div class="clearfix"></div>
 		<!-- Header Container / End -->
 
-		<!-- Titlebar
-		================================================== -->
-		<div id="titlebar" class="gradient">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-
-						<h2>Achat de points</h2>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
+		<!-- Spacer -->
+		<div class="margin-top-90"></div>
+		<!-- Spacer / End-->
 
 		<!-- Page Content
 		================================================== -->
@@ -362,153 +351,139 @@
 			<div class="row">
 				<div class="col-xl-12">
 
-					<!-- Freelancers List Container -->
-					<div class="freelancers-container freelancers-list-layout margin-top-35">
+					<h3 class="page-title">Missions qui pourraient vous intéresser</h3>
 
-						<!--Freelancer -->
-						<div class="freelancer">
+					<div class="notify-box margin-top-15">
 
-							<!-- Overview -->
-							<div class="freelancer-overview">
-								<div class="freelancer-overview-inner">
+						<div class="sort-by">
+							<span>Trier par:</span>
+							<select class="selectpicker hide-tick">
+								<option>Statut</option>
+								<option>Plus récent</option>
+								<option>Plus ancien</option>
+							</select>
+						</div>
+					</div>
 
-									<!-- Name -->
-									<div class="freelancer-name">
-										<h1><strong>10 crédits:</strong> 8€</h1>
-										<!-- Rating -->
-									</div>
+					<div class="listings-container margin-top-35">
+
+						<!-- Job Listing -->
+						<a href="single-job-page.html" class="job-listing">
+
+							<!-- Job Listing Details -->
+							<div class="job-listing-details">
+
+								<!-- Details -->
+								<div class="job-listing-description">
+									<!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
+									<h3 class="job-listing-title">Mariage princier en Haute-Savoie</h3>
+									<p class="job-listing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed diam ante, sollicitudin et felis mollis, facilisis ornare neque. Phasellus eget iaculis nunc. Mauris id nisl vitae dui laoreet eleifend a vitae neque. In pretium, justo ut vulputate dignissim, nunc arcu imperdiet mi, eu tempus erat neque at lectus.</p>
+								</div>
+
+							</div>
+
+							<!-- Job Listing Footer -->
+							<div class="job-listing-footer">
+								<ul>
+									<li><i class="icon-material-outline-location-on"></i> <mark class="color" style="background-color: grey">Créée</mark></li>
+									<li><i class="icon-material-outline-account-balance-wallet"></i> 0€ - 1000€</li>
+									<li><i class="icon-material-outline-business-center"></i> Mariage</li>
+									<li><i class="icon-material-outline-local-atm"></i> Mariage hiver</li>
+									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
+									<li><i class="icon-material-outline-location-on"></i> 1 à 2h</li>
+									<li><i class="icon-material-outline-location-on"></i> Haute-Savoie</li>
+									<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
+								</ul>
+							</div>
+						</a>
+
+						<!-- Job Listing -->
+						<a href="single-job-page.html" class="job-listing">
+
+							<!-- Job Listing Details -->
+							<div class="job-listing-details">
+
+								<!-- Details -->
+								<div class="job-listing-description">
+									<!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
+									<h3 class="job-listing-title">Mariage princier en Haute-Savoie</h3>
+									<p class="job-listing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed diam ante, sollicitudin et felis mollis, facilisis ornare neque. Phasellus eget iaculis nunc. Mauris id nisl vitae dui laoreet eleifend a vitae neque. In pretium, justo ut vulputate dignissim, nunc arcu imperdiet mi, eu tempus erat neque at lectus.</p>
+								</div>
+
+							</div>
+
+							<!-- Job Listing Footer -->
+							<div class="job-listing-footer">
+								<ul>
+									<li><i class="icon-material-outline-location-on"></i> <mark class="color" style="background-color: #2a41e8">Terminée</mark></li>
+									<li><i class="icon-material-outline-account-balance-wallet"></i> 0€ - 1000€</li>
+									<li><i class="icon-material-outline-business-center"></i> Mariage</li>
+									<li><i class="icon-material-outline-local-atm"></i> Mariage hiver</li>
+									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
+									<li><i class="icon-material-outline-location-on"></i> 1 à 2h</li>
+									<li><i class="icon-material-outline-location-on"></i> Haute-Savoie</li>
+									<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
+								</ul>
+							</div>
+						</a>
+
+						<!-- Job Listing -->
+						<a href="single-job-page.html" class="job-listing">
+
+							<!-- Job Listing Details -->
+							<div class="job-listing-details">
+
+								<!-- Details -->
+								<div class="job-listing-description">
+									<!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
+									<h3 class="job-listing-title">Mariage princier en Haute-Savoie</h3>
+									<p class="job-listing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed diam ante, sollicitudin et felis mollis, facilisis ornare neque. Phasellus eget iaculis nunc. Mauris id nisl vitae dui laoreet eleifend a vitae neque. In pretium, justo ut vulputate dignissim, nunc arcu imperdiet mi, eu tempus erat neque at lectus.</p>
+								</div>
+
+							</div>
+
+							<!-- Job Listing Footer -->
+							<div class="job-listing-footer">
+								<ul>
+									<li><i class="icon-material-outline-location-on"></i> <mark class="color" style="background-color: #28b661">En cours</mark></li>
+									<li><i class="icon-material-outline-account-balance-wallet"></i> 0€ - 1000€</li>
+									<li><i class="icon-material-outline-business-center"></i> Mariage</li>
+									<li><i class="icon-material-outline-local-atm"></i> Mariage hiver</li>
+									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
+									<li><i class="icon-material-outline-location-on"></i> 1 à 2h</li>
+									<li><i class="icon-material-outline-location-on"></i> Haute-Savoie</li>
+									<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
+								</ul>
+							</div>
+						</a>
+
+						<!-- Pagination -->
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-12">
+								<!-- Pagination -->
+								<div class="pagination-container margin-top-30 margin-bottom-60">
+									<nav class="pagination">
+										<ul>
+											<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+											<li><a href="#">1</a></li>
+											<li><a href="#" class="current-page">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#">4</a></li>
+											<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+										</ul>
+									</nav>
 								</div>
 							</div>
-
-							<!-- Details -->
-							<div class="freelancer-details">
-
-								<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Acheter <i class="icon-material-outline-arrow-right-alt"></i></a>
-							</div>
 						</div>
-						<!-- Freelancer / End -->
-
-						<!--Freelancer -->
-						<div class="freelancer">
-
-							<!-- Overview -->
-							<div class="freelancer-overview">
-								<div class="freelancer-overview-inner">
-
-									<!-- Name -->
-									<div class="freelancer-name">
-										<h1><strong>20 crédits:</strong> 15€ <mark>-5%</mark></h1>
-										<!-- Rating -->
-									</div>
-								</div>
-							</div>
-
-							<!-- Details -->
-							<div class="freelancer-details">
-
-								<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Acheter <i class="icon-material-outline-arrow-right-alt"></i></a>
-							</div>
-						</div>
-						<!-- Freelancer / End -->
-
-						<!--Freelancer -->
-						<div class="freelancer">
-
-							<!-- Overview -->
-							<div class="freelancer-overview">
-								<div class="freelancer-overview-inner">
-
-									<!-- Name -->
-									<div class="freelancer-name">
-										<h1><strong>50 crédits:</strong> 35€ <mark>-12,5%</mark></h1>
-										<!-- Rating -->
-									</div>
-								</div>
-							</div>
-
-							<!-- Details -->
-							<div class="freelancer-details">
-
-								<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Acheter <i class="icon-material-outline-arrow-right-alt"></i></a>
-							</div>
-						</div>
-						<!-- Freelancer / End -->
-
-						<!--Freelancer -->
-						<div class="freelancer">
-
-							<!-- Overview -->
-							<div class="freelancer-overview">
-								<div class="freelancer-overview-inner">
-
-									<!-- Name -->
-									<div class="freelancer-name">
-										<h1><strong>100 crédits:</strong> 65€ <mark>-18%</mark></h1>
-										<!-- Rating -->
-									</div>
-								</div>
-							</div>
-
-							<!-- Details -->
-							<div class="freelancer-details">
-
-								<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Acheter <i class="icon-material-outline-arrow-right-alt"></i></a>
-							</div>
-						</div>
-						<!-- Freelancer / End -->
-
-						<!--Freelancer -->
-						<div class="freelancer">
-
-							<!-- Overview -->
-							<div class="freelancer-overview">
-								<div class="freelancer-overview-inner">
-
-									<!-- Name -->
-									<div class="freelancer-name">
-										<h1><strong>500 crédits:</strong> 300€ <mark>-25%</mark></h1>
-										<!-- Rating -->
-									</div>
-								</div>
-							</div>
-
-							<!-- Details -->
-							<div class="freelancer-details">
-
-								<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Acheter <i class="icon-material-outline-arrow-right-alt"></i></a>
-							</div>
-						</div>
-						<!-- Freelancer / End -->
-
-						<!--Freelancer -->
-						<div class="freelancer">
-
-							<!-- Overview -->
-							<div class="freelancer-overview">
-								<div class="freelancer-overview-inner">
-
-									<!-- Name -->
-									<div class="freelancer-name">
-										<h1><strong>1000 crédits:</strong> 500€ <mark>-37,5%</mark></h1>
-										<!-- Rating -->
-									</div>
-								</div>
-							</div>
-
-							<!-- Details -->
-							<div class="freelancer-details">
-
-								<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Acheter <i class="icon-material-outline-arrow-right-alt"></i></a>
-							</div>
-						</div>
-						<!-- Freelancer / End -->
+						<!-- Pagination / End -->
 
 					</div>
-					<!-- Tasks Container / End -->
 
 				</div>
 			</div>
 		</div>
+
 
 		<!-- Footer
 		================================================== -->
@@ -702,6 +677,23 @@
 		});
 	});
 </script>
+
+<!-- Google Autocomplete -->
+<script>
+function initAutocomplete() {
+	var options = {
+		types: ['(cities)'],
+		// componentRestrictions: {country: "us"}
+	};
+
+	var input = document.getElementById('autocomplete-input');
+	var autocomplete = new google.maps.places.Autocomplete(input, options);
+}
+</script>
+
+<!-- Google API & Maps -->
+<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
 
 </body>
 </html>
