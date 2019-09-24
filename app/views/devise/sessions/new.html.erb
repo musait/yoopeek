@@ -1,0 +1,70 @@
+<!-- Wrapper -->
+<div id="wrapper">
+
+  <!-- Header Container
+  ================================================== -->
+  <div class="clearfix"></div>
+  <!-- Header Container / End -->
+
+  <!-- Titlebar
+  ================================================== -->
+  <div id="titlebar" class="gradient">
+  	<div class="container">
+  		<div class="row">
+  			<div class="col-md-12">
+
+  				<h2>Connexion</h2>
+
+  			</div>
+  		</div>
+  	</div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5 offset-xl-3">
+
+
+        <div class="login-register-page">
+          <!-- Welcome Text -->
+          <div class="welcome-text">
+            <h3>We're glad to see you again!</h3>
+            <span>Don't have an account? <a href="pages-register.html">Sign Up!</a></span>
+          </div>
+
+          <!-- Form -->
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+            <div class="input-with-icon-left">
+              <i class="icon-material-baseline-mail-outline"></i>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input-text with-border" %>
+            </div>
+
+            <div class="input-with-icon-left">
+              <i class="icon-material-outline-lock"></i>
+              <%= f.password_field :password, autocomplete: "current-password", class:"input-text with-border" %>
+            </div>
+            <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+            <% end %>
+            <%= render "devise/shared/links" %>
+
+          <!-- Button -->
+          <%= f.submit "Log in", class:"button full-width button-sliding-icon ripple-effect margin-top-10" %>
+          <% end %>
+
+          <!-- Social Login -->
+          <div class="social-login-separator"><span>or</span></div>
+          <div class="social-login-buttons">
+            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Log In via Facebook</button>
+            <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Log In via Google+</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

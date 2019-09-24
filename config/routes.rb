@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  get 'home/index'
+  get 'home/private'
   root 'home#index'
 
   resources :quotes

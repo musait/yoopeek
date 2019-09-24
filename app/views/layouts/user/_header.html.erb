@@ -36,6 +36,7 @@
 			<!-- Right Side Content / End -->
 			<div class="right-side" style="top: 0">
 
+				<% if user_signed_in? %>
 				<!--  User Notifications -->
 				<div class="header-widget hide-on-mobile">
 
@@ -210,9 +211,9 @@
 								<li><a href="/theme/user/hireo/dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>
 
 								<li>
-								<%= link_to root_path do %>
-								<i class="icon-material-outline-power-settings-new"></i> Logout
-								<% end %>
+									<%= link_to destroy_user_session_path, method: :delete do %>
+									<i class="icon-material-outline-power-settings-new"></i> Logout
+									<% end %>
 								</li>
 							</ul>
 
@@ -221,6 +222,12 @@
 
 				</div>
 				<!-- User Menu / End -->
+
+				<% else %>
+
+								<%= link_to 'Se connecter', new_user_session_path, class:"button ripple-effect margin-top-15" %>
+
+				<% end %>
 
 				<!-- Mobile Navigation Button -->
 				<span class="mmenu-trigger">
@@ -232,6 +239,7 @@
 				</span>
 
 			</div>
+
 			<!-- Right Side Content / End -->
 
 		</div>
