@@ -45,7 +45,16 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+      facebook_register: 'Register via Facebook'
+      google_register: 'Register via Google'
     sessions:
+      new:
+        not_sign_up_yet: "Don't have an account ?"
+        facebook_signin: "Sign In via Facebook"
+        google_signin: "Sign In via Google"
+        sign_in: "Sign In"
+        sign_up: "Sign up"
+        remember_me: "Remember Me"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
