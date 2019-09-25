@@ -39,6 +39,14 @@ fr:
       updated: 'Votre mot de passe a été édité avec succès, vous êtes maintenant connecté'
       updated_not_active: 'Votre mot de passe a été changé avec succès.'
     registrations:
+      new:
+        let_s_create_your_account: "Créons votre compte"
+        sign_up : "Inscription"
+        facebook_register: "S'inscrire via Facebook"
+        google_register: "S'inscrire via Google"
+        or: "ou"
+        already_have_an_account: "Vous avez déjà un compte ?"
+        sign_in: "Connexion"
       sign_in: 'Connexion'
       destroyed: 'Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.'
       signed_up: 'Bienvenue, vous êtes connecté.'
@@ -47,8 +55,7 @@ fr:
       signed_up_but_unconfirmed: 'Un message contenant un lien de confirmation a été envoyé à votre adresse email. Ouvrez ce lien pour activer votre compte.'
       update_needs_confirmation: "Votre compte a bien été mis à jour mais nous devons vérifier votre nouvelle adresse email. Merci de vérifier vos emails et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse."
       updated: 'Votre compte a été modifié avec succès.'
-      facebook_register: "S'inscrire via Facebook"
-      google_register: "S'inscrire via Google"
+
     sessions:
       new:
         welcome_to_yoopeek: "Bienevenue chez Yoopeek"
@@ -75,7 +82,6 @@ fr:
       hello: "Bonjour"
       sign_in: "Se connecter"
       sign_up: "S'enregistrer"
-
       confirmations:
         new:
           resend_confirmation_instructions: "Renvoyer le courriel de confirmation"
@@ -113,7 +119,7 @@ fr:
       unlocks:
         new:
           resend_unlock_instructions: "Renvoyez le mail pour déverrouiller mon compte"
-errors:
+  errors:
    messages:
      already_confirmed: "a déjà été validé(e), veuillez essayer de vous connecter"
      confirmation_period_expired: "à confirmer dans les %{period}, merci de faire une nouvelle demande"

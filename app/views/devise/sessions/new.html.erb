@@ -29,7 +29,7 @@
           <!-- Welcome Text -->
           <div class="welcome-text">
             <h3><%=t('.welcome_to_yoopeek')%></h3>
-            <span><%=t('.not_sign_up_yet')%> <a href="pages-register.html"><%=t('.sign_up')%></a></span>
+            <span><%=t('.not_sign_up_yet')%> <a href="pages-register.html"><%= link_to t(".sign_up"), new_user_registration_path %></a></span>
           </div>
 
           <!-- Form -->

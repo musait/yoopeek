@@ -25,8 +25,8 @@
         <div class="login-register-page">
           <!-- Welcome Text -->
           <div class="welcome-text">
-            <h3 style="font-size: 26px;">Let's create your account!</h3>
-            <span>Already have an account? <a href="pages-login.html">Log In!</a></span>
+            <h3 style="font-size: 26px;"><%=t('.let_s_create_your_account')%></h3>
+            <span><%=t('.already_have_an_account') %> <a href="pages-login.html"><%=t('.sign_in')%></a></span>
           </div>
 
           <!-- Account Type -->
@@ -60,16 +60,13 @@
             <i class="icon-material-outline-lock"></i>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input-text with-border" %>
           </div>
-
-          <%= render "devise/shared/links" %>
-
           <!-- Button -->
-          <%= f.submit t('.sign_up'), class:"button full-width button-sliding-icon ripple-effect margin-top-10" %>
+          <%= f.submit t('.sign_up'), class:"button full-width margin-top-10" %>
 
           <% end %>
 
           <!-- Social Login -->
-          <div class="social-login-separator"><span>or</span></div>
+          <div class="social-login-separator"><span><%=t('.or')%></span></div>
           <div class="social-login-buttons">
             <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i><%=t('.facebook_register')%></button>
             <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> <%=t('.google_register')%></button>
