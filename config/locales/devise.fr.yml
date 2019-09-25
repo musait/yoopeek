@@ -25,6 +25,14 @@ fr:
       failure: "Nous n'avons pas pu vous authentifier via %{kind} : '%{reason}'."
       success: 'Authentifié avec succès via %{kind}.'
     passwords:
+      edit:
+        new_password: "Nouveau mot de passe"
+        confirm_new_password: "Confirmez votre nouveau mot de passe"
+        change_your_password: "Changez votre mot de passe"
+        change_my_password: "Changer mon mot de passe"
+      new:
+        send_me_reset_password_instructions: "Envoyez-moi un mail pour changer mon mot de passe"
+        forgot_your_password: "Mot de passe oublié "
       no_token: "Vous ne pouvez accéder à cette page sans passer par un e-mail de réinitialisation de mot de passe. Si vous êtes passé par un e-mail de ce type, assurez-vous d'utiliser l'URL complète."
       send_instructions: 'Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants'
       send_paranoid_instructions: "Si votre e-mail existe dans notre base de données, vous allez recevoir un lien de réinitialisation par e-mail"
@@ -43,6 +51,7 @@ fr:
       google_register: "S'inscrire via Google"
     sessions:
       new:
+        welcome_to_yoopeek: "Bienevenue chez Yoopeek"
         not_sign_up_yet: "Vous n'êtes pas encore inscrit ?"
         facebook_signin: "Se connecter via Facebook"
         google_signin: "Se connecter via Google"
@@ -61,6 +70,7 @@ fr:
         forgot_your_password: "Mot de passe oublié ?"
         didn_t_receive_confirmation_instructions: "Vous n'avez pas reçu de courriel de confirmation ?"
         didnt_receive_unlock_instructions?: "Vous n'avez pas reçu de courriel de déverrouillage de votre compte ?"
+      minimum_password_length : "%{count} caractères minimum"
     common:
       hello: "Bonjour"
       sign_in: "Se connecter"
@@ -88,12 +98,6 @@ fr:
           # For "Click the link below to unlock your account"
           unlock_account_instruction: "Cliquez sur le lien ci-dessous pour déverrouiller votre compte"
           unlock_my_account: "Déverrouiller mon compte"
-      passwords:
-        edit:
-          change_your_password: "Changez votre mot de passe"
-          change_my_password: "Changer mon mot de passe"
-        new:
-          send_me_reset_password_instructions: "Envoyez-moi un courriel pour changer mon mot de passe"
       registrations:
         edit:
           edit: "Modifier"

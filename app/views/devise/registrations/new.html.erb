@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-md-12">
 
-          <h2>Inscription</h2>
+          <h2><%= t('.sign_up') %></h2>
 
         </div>
       </div>
@@ -64,15 +64,15 @@
           <%= render "devise/shared/links" %>
 
           <!-- Button -->
-          <%= f.submit "S'inscrire", class:"button full-width button-sliding-icon ripple-effect margin-top-10" %>
+          <%= f.submit t('.sign_up'), class:"button full-width button-sliding-icon ripple-effect margin-top-10" %>
 
           <% end %>
 
           <!-- Social Login -->
           <div class="social-login-separator"><span>or</span></div>
           <div class="social-login-buttons">
-            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Register via Facebook</button>
-            <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Register via Google+</button>
+            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i><%=t('.facebook_register')%></button>
+            <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> <%=t('.google_register')%></button>
           </div>
         </div>
 
