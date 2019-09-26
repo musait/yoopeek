@@ -9,15 +9,15 @@
   <!-- Titlebar
   ================================================== -->
   <div id="titlebar" class="gradient">
-  	<div class="container">
-  		<div class="row">
-  			<div class="col-md-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
 
-  				<h2>Connexion</h2>
+          <h2>Connexion</h2>
 
-  			</div>
-  		</div>
-  	</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="container">
@@ -34,23 +34,23 @@
 
           <!-- Form -->
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-            <div class="input-with-icon-left">
-              <i class="icon-material-baseline-mail-outline"></i>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input-text with-border" %>
-            </div>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="input-with-icon-left">
+            <i class="icon-material-baseline-mail-outline"></i>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input-text with-border" %>
+          </div>
 
-            <div class="input-with-icon-left">
-              <i class="icon-material-outline-lock"></i>
-              <%= f.password_field :password, autocomplete: "current-password", class:"input-text with-border" %>
-            </div>
-            <% if devise_mapping.rememberable? %>
-            <div class="checkbox" style="display:block">
-      				<%= f.check_box :remember_me,type:"checkbox", id:"chekcbox1" %>
-      				<label for="chekcbox1"><span class="checkbox-icon"></span>Remember me </label>
-      			</div>
-            <% end %>
-            <%= render "devise/shared/links" %>
+          <div class="input-with-icon-left">
+            <i class="icon-material-outline-lock"></i>
+            <%= f.password_field :password, autocomplete: "current-password", class:"input-text with-border" %>
+          </div>
+          <% if devise_mapping.rememberable? %>
+          <div class="checkbox" style="display:block">
+            <%= f.check_box :remember_me,type:"checkbox", id:"chekcbox1" %>
+            <label for="chekcbox1"><span class="checkbox-icon"></span>Remember me </label>
+          </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
 
           <!-- Button -->
           <%= f.submit "Log in", class:"button full-width button-sliding-icon ripple-effect margin-top-10" %>
@@ -59,7 +59,9 @@
           <!-- Social Login -->
           <div class="social-login-separator"><span>or</span></div>
           <div class="social-login-buttons">
-            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Log In via Facebook</button>
+            <%= link_to user_facebook_omniauth_authorize_path do %>
+            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Se connecter avec Facebook</button>
+            <% end %>
             <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Log In via Google+</button>
           </div>
         </div>
