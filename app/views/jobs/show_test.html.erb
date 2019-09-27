@@ -28,12 +28,12 @@
 
 				<div class="single-page-section">
 
-					<h3 class="margin-bottom-25">Description de la mission</h3>
+					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.job_description') %></h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra. Integer euismod molestie maximus. Pellentesque congue nisi ac fringilla porta. Quisque sagittis lacus ut rhoncus accumsan. Maecenas arcu magna, dictum imperdiet mi ut, dapibus maximus nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque aliquam, lorem a tincidunt pharetra, ligula massa vehicula dui, sit amet ornare urna dolor non nisi. Praesent a ex vitae massa maximus mollis nec a turpis. Phasellus ac risus vel mauris convallis gravida.</p>
 				</div>
 				<div class="single-page-section">
-					<h3 class="margin-bottom-25">Le professionnel que vous avez choisi</h3>
-					<h3 class="margin-bottom-25">Le client</h3>
+					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.pro_choosen') %></h3>
+					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.the_client') %></h3>
 
 					<!-- Listings Container -->
 					<div class="listings-container grid-layout" style="width: 100%">
@@ -118,7 +118,7 @@
 
 						<!-- Headline -->
 						<div class="headline">
-							<h3><i class="icon-material-outline-face"></i> Votre avis / L'avis du client</h3>
+							<h3><i class="icon-material-outline-face"></i> <%= raw I18n.t('.job.show.your_review') %></h3>
 						</div>
 
 						<div class="content">
@@ -128,11 +128,11 @@
 										<!-- Content -->
 										<div class="item-content">
 											<h4>Shooting photo mariage</h4>
-											<span class="company-not-rated margin-bottom-5">Pas encore d'avis</span>
+											<span class="company-not-rated margin-bottom-5"> <%= raw I18n.t('.job.show.no_reviews_yet') %></span>
 										</div>
 									</div>
 
-									<a href="#small-dialog-2" class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"><i class="icon-material-outline-thumb-up"></i> Laisser un avis / Demander un avis</a>
+									<a href="#small-dialog-2" class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"><i class="icon-material-outline-thumb-up"></i> <%= raw I18n.t('.job.show.leave_a_review') %></a>
 								</li>
 								<li>
 									<div class="boxed-list-item">
@@ -148,7 +148,7 @@
 											</div>
 										</div>
 									</div>
-									<a href="#small-dialog-1" class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"><i class="icon-feather-edit"></i> Edit Review</a>
+									<a href="#small-dialog-1" class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"><i class="icon-feather-edit"></i><%= raw I18n.t('.job.show.edit_review') %></a>
 								</li>
 							</ul>
 						</div>
@@ -156,7 +156,7 @@
 
 				</div>
 				<div class="single-page-section">
-					<h3 class="margin-bottom-25">Ces professionnels pourraient vous convenir</h3>
+					<h3 class="margin-bottom-25"> <%= raw I18n.t('.job.show.this_pro_may_be_suitable') %></h3>
 
 					<!-- Listings Container -->
 					<div class="listings-container grid-layout" style="width: 100%">
@@ -337,51 +337,51 @@
 			<div class="col-xl-4 col-lg-4">
 				<div class="sidebar-container">
 					<!-- Button -->
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button">Envoyer un message au client<i class="icon-material-outline-arrow-right-alt"></i></a>
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button">Terminer la mission<i class="icon-material-outline-arrow-right-alt"></i></a>
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50">Annuler la mission<i class="icon-material-outline-arrow-right-alt"></i></a>
+					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= raw I18n.t('.job.show.send_mp_to_client') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= raw I18n.t('.job.show.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= raw I18n.t('.job.show.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 					<!-- Sidebar Widget -->
 					<div class="sidebar-widget">
 						<div class="job-overview">
-							<div class="job-overview-headline">Récapitulatif</div>
+							<div class="job-overview-headline"> <%= raw I18n.t('.job.show.recap') %></div>
 							<div class="job-overview-inner">
 								<ul>
 									<li>
 										<i class="icon-material-outline-local-atm"></i>
-										<span>Votre budget</span>
+										<span> <%= raw I18n.t('.job.show.your_budget') %></span>
 										<h5>0€  - 1000€ </h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-location-on"></i>
-										<span>Statut de la mission</span>
-										<mark class="color" style="background-color: grey">Créée</mark>
-										<mark class="color" style="background-color: #28b661">En cours</mark>
-										<mark class="color" style="background-color: #2a41e8">Terminée</mark>
-										<mark class="color" style="background-color: #e53038">Annulée</mark>
+										<span><%= raw I18n.t('.job.show.job_status') %></span>
+										<mark class="color" style="background-color: grey"><%= raw I18n.t('.job.show.created') %></mark>
+										<mark class="color" style="background-color: #28b661"><%= raw I18n.t('.job.show.in_progress') %></mark>
+										<mark class="color" style="background-color: #2a41e8"><%= raw I18n.t('.job.show.finished') %></mark>
+										<mark class="color" style="background-color: #e53038"><%= raw I18n.t('.job.show.aborted') %></mark>
 									</li>
 									<li>
 										<i class="icon-material-outline-business-center"></i>
-										<span>Catégorie</span>
+										<span><%= raw I18n.t('.job.show.category') %></span>
 										<h5>Mariage</h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-local-atm"></i>
-										<span>Sous Catégorie</span>
+										<span><%= raw I18n.t('.job.show.under_category') %></span>
 										<h5>Mariage hiver</h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-location-on"></i>
-										<span>Format de livraison</span>
+										<span><%= raw I18n.t('.job.show.delivery_format') %></span>
 										<h5>Clé USB</h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-business-center"></i>
-										<span>Temps estimé</span>
+										<span><%= raw I18n.t('.job.show.estimated_time') %></span>
 										<h5>1h à 2h</h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-local-atm"></i>
-										<span>A quelle date ?</span>
+										<span><%= raw I18n.t('.job.show.which_date') %></span>
 										<h5>Lundi 30 Octobre 2019</h5>
 									</li>
 
@@ -392,7 +392,7 @@
 
 				</div>
 				<div style="text-align: center">
-				<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> Imprimer la facture</a>
+				<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= raw I18n.t('.job.show.invoice_print') %></a>
 				</div>
 			</div>
 
@@ -417,15 +417,15 @@
 
 				<!-- Welcome Text -->
 				<div class="welcome-text">
-					<h3>Laissez un avis</h3>
-					<span>Rate <a href="#">Peter Valentín</a> for the project <a href="#">Shooting photo mariage</a> </span>
+					<h3><%= raw I18n.t('.job.show.leave_a_review') %></h3>
+					<span><%= raw I18n.t('.job.show.rate_pro_project', pro:"Peter",job:"Shooting photo mariage") %></span>
 				</div>
 
 				<!-- Form -->
 				<form method="post" id="leave-review-form">
 
 					<div class="feedback-yes-no">
-						<strong>Was this delivered on budget?</strong>
+						<strong><%= raw I18n.t('.job.show.delivered_on_budget') %></strong>
 						<div class="radio">
 							<input id="radio-1" name="radio" type="radio" required>
 							<label for="radio-1"><span class="radio-label"></span> Yes</label>
@@ -438,7 +438,7 @@
 					</div>
 
 					<div class="feedback-yes-no">
-						<strong>Was this delivered on time?</strong>
+						<strong><%= raw I18n.t('.job.show.delivered_on_time') %></strong>
 						<div class="radio">
 							<input id="radio-3" name="radio2" type="radio" required>
 							<label for="radio-3"><span class="radio-label"></span> Yes</label>
@@ -451,7 +451,7 @@
 					</div>
 
 					<div class="feedback-yes-no">
-						<strong>Your Rating</strong>
+						<strong><%= raw I18n.t('.job.show.your_rating') %></strong>
 						<div class="leave-rating">
 							<input type="radio" name="rating" id="rating-radio-1" value="1" required>
 							<label for="rating-radio-1" class="icon-material-outline-star"></label>
@@ -471,7 +471,7 @@
 				</form>
 
 				<!-- Button -->
-				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="leave-review-form">Leave a Review <i class="icon-material-outline-arrow-right-alt"></i></button>
+				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="leave-review-form"><%= raw I18n.t('.job.show.leave_a_review') %><i class="icon-material-outline-arrow-right-alt"></i></button>
 
 			</div>
 
