@@ -53,9 +53,8 @@
           <!-- Social Login -->
           <div class="social-login-separator"><span>or</span></div>
           <div class="social-login-buttons">
-            <%= link_to user_facebook_omniauth_authorize_path do %>
-            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Se connecter avec Facebook</button>
-            <% end %>
+            <button class='facebook-login ripple-effect' ><i class='icon-brand-facebook-f'></i><a href="/users/auth/facebook"> <%=t('.facebook_signin')%></a></button>
+
             <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Log In via Google+</button>
           </div>
         </div>
