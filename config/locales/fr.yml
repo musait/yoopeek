@@ -1,33 +1,52 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 fr:
-  hello: "Bonjour"
+  header:
+  footer:
+  home:
+    index:
+      intro: "Vous avez un projet photographique ? <br> Yoopek est là pour vous ! "
+      what: "Quoi ?"
+      where: "Où ?"
+      search: "Chercher"
+      published_ads: "Annonces publiées"
+      pros: "Professionnels"
+      how_it_works: "Comment ça marche ?"
+      first_bloc_explanation: "<h3>Créer votre compte et déposer une annonce</h3>
+      <p>Mettez en ligne votre demande afin de voir des photographes qui corresponde à votre besoin et aussi en contacter</p>"
+      second_bloc_explanation: "<h3>Comparez les professionnels</h3>
+      <p>Disctuez avec pleins de professionnels autour de vous.</p>"
+      third_bloc_explanation: "<h3>Trouvez la perle rare !</h3><p>Une fois votre professionel trouvé, prenez rendez-vous pour réaliser votre besoin!</p>"
+      best_pros: "Les meilleurs professionels du moment"
+    pros_presentation:
+      localisation: "Localisation"
+      price: "Prix"
+      see_his_profile: "Voir son profil"
+  job:
+    show:
+      job_description: "Description de la mission"
+      pro_choosen: "Le professionel que vous avez choisi"
+      the_client: "Le client"
+      your_review: "Votre avis"
+      leave_a_review: "Laisser un avis"
+      no_reviews_yet: "Pas encore d'avis"
+      edit_review: "Modifier cet avis"
+      this_pro_may_be_suitable: "Ces professionels pourraient vous convenir"
+      send_mp_to_client: "Envoyer une message au client"
+      job_finished: "Marquer la mission comme terminée"
+      abort_job: "Annuler la mission"
+      recap: "Récapitulatif"
+      your_budget: "Votre budget"
+      job_status: "Statut de la mission"
+      created: "Créée"
+      in_progress: "En cours"
+      finished: "Terminée"
+      aborted: "Annulée"
+      category: "Catégorie"
+      under_category: "Sous catégorie"
+      delivery_format: "Format de livraison"
+      estimated_time: "Temps estimé"
+      which_date: "A quelle date ?"
+      invoice_print: "Imprimer la facture"
+      rate_pro_project: Noter %{pro} pour la mission %{job}
+      delivered_on_budget: "Est-ce que ce professionel a respecté votre budget ?"
+      delivered_on_time: "Est-ce que cette mission a été réalisée dans les temps ?"
+      your_rating: "Quelle note lui donneriez-vous ?"
