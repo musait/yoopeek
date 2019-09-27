@@ -1,0 +1,67 @@
+<!-- Wrapper -->
+<div id="wrapper">
+
+  <!-- Header Container
+  ================================================== -->
+  <div class="clearfix"></div>
+  <!-- Header Container / End -->
+
+  <!-- Titlebar
+  ================================================== -->
+  <div id="titlebar" class="gradient">
+  	<div class="container">
+  		<div class="row">
+  			<div class="col-md-12">
+
+  				<h2><%= t('.sign_in') %></h2>
+
+  			</div>
+  		</div>
+  	</div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5 offset-xl-3">
+
+
+        <div class="login-register-page">
+          <!-- Welcome Text -->
+          <div class="welcome-text">
+            <h3><%=t('.welcome_to_yoopeek')%></h3>
+            <span><%=t('.not_sign_up_yet')%> <a href="pages-register.html"><%= link_to t(".sign_up"), new_user_registration_path %></a></span>
+          </div>
+
+          <!-- Form -->
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="input-with-icon-left">
+              <i class="icon-material-baseline-mail-outline"></i>
+              <%= f.email_field :email, autofocus: true, placeholder: "Email", class:"input-text with-border" %>
+            </div>
+
+            <div class="input-with-icon-left">
+              <i class="icon-material-outline-lock"></i>
+              <%= f.password_field :password, placeholder: "Password", class:"input-text with-border" %>
+            </div>
+            <%= render "devise/shared/links" %>
+
+          <!-- Button -->
+          <%=  f.submit t('.sign_in'), class:"button full-width button-sliding-icon ripple-effect margin-top-10" %>
+          <% end %>
+
+          <!-- Social Login -->
+          <div class="social-login-separator"><span>or</span></div>
+          <div class="social-login-buttons">
+            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> <%=t('.facebook_signin')%></button>
+            <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> <%=t('.google_signin')%></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Spacer -->
+  <div class="margin-top-70"></div>
+  <!-- Spacer / End-->
+</div>
