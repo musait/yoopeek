@@ -1,16 +1,52 @@
-<h2><%= t('.resend_confirmation_instructions') %></h2>
+<!-- Wrapper -->
+<div id="wrapper">
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <!-- Header Container
+  ================================================== -->
+  <div class="clearfix"></div>
+  <!-- Header Container / End -->
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+  <!-- Titlebar
+  ================================================== -->
+  <div id="titlebar" class="gradient">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+  				<h2><%= t('.resend_confirmation_instructions') %></h2>
+
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit t('.resend_confirmation_instructions') %>
-  </div>
-<% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5 offset-xl-3">
 
-<%= render "devise/shared/links" %>
+
+        <div class="login-register-page">
+          <!-- Welcome Text -->
+          <div class="welcome-text">
+          </div>
+          <!-- Form -->
+          <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="input-with-icon-left">
+              <i class="icon-material-baseline-mail-outline"></i>
+              <%= f.email_field :email, autofocus: true, placeholder: "Email",class:"input-text with-border", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+
+            </div>
+
+          <!-- Button -->
+          <%=  f.submit t('.resend_confirmation_instructions'), class:"button full-width button-sliding-icon ripple-effect margin-top-10" %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Spacer -->
+  <div class="margin-top-70"></div>
+  <!-- Spacer / End-->
+</div>
