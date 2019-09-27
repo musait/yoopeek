@@ -9,15 +9,15 @@
   <!-- Titlebar
   ================================================== -->
   <div id="titlebar" class="gradient">
-  	<div class="container">
-  		<div class="row">
-  			<div class="col-md-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
 
   				<h2><%= t('.sign_in') %></h2>
 
-  			</div>
-  		</div>
-  	</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="container">
@@ -53,8 +53,10 @@
           <!-- Social Login -->
           <div class="social-login-separator"><span>or</span></div>
           <div class="social-login-buttons">
-            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> <%=t('.facebook_signin')%></button>
-            <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> <%=t('.google_signin')%></button>
+            <%= link_to user_facebook_omniauth_authorize_path do %>
+            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Se connecter avec Facebook</button>
+            <% end %>
+            <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Log In via Google+</button>
           </div>
         </div>
 
