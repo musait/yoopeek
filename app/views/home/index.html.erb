@@ -19,7 +19,7 @@
 				<div class="col-md-12">
 					<div class="banner-headline">
 						<h3>
-							<strong>Vous avez un projet photographique ? <br>Yoopeek est là pour vous! </strong>
+							<strong><%= raw I18n.t('.home.index.intro') %> </strong>
 							<br>
 						</h3>
 					</div>
@@ -33,12 +33,12 @@
 
 						<!-- Search Field -->
 						<div class="intro-search-field">
-							<label for ="intro-keywords" class="field-title ripple-effect">Quoi ?</label>
+							<label for ="intro-keywords" class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
 							<input id="intro-keywords" type="text" placeholder="Par exemple : Photographe mariage, Vidéaste baptème, etc.">
 						</div>
 
 						<div class="intro-search-field with-autocomplete">
-							<label for="autocomplete-input" class="field-title ripple-effect">Où ?</label>
+							<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.where') %></label>
 							<div class="input-with-icon">
 								<input id="autocomplete-input" type="text" placeholder="Paris, Lyon, Nice, etc.">
 								<i class="icon-material-outline-location-on"></i>
@@ -50,7 +50,7 @@
 
 						<!-- Button -->
 						<div class="intro-search-button">
-							<a href="/theme/user/hireo/user-search-results.html" class="button">Chercher</a>
+							<a href="/theme/user/hireo/user-search-results.html" class="button"><%= raw I18n.t('.home.index.search') %></a>
 						</div>
 					</div>
 				</div>
@@ -62,11 +62,11 @@
 					<ul class="intro-stats margin-top-45 hide-under-992px">
 						<li>
 							<strong class="counter">1,586</strong>
-							<span>Annonces publiés</span>
+							<span><%= raw I18n.t('.home.index.published_ads') %></span>
 						</li>
 						<li>
 							<strong class="counter">1,232</strong>
-							<span>Photographes</span>
+							<span><%= raw I18n.t('.home.index.pros') %></span>
 						</li>
 					</ul>
 				</div>
@@ -83,7 +83,7 @@
 				<div class="col-xl-12">
 					<!-- Section Headline -->
 					<div class="section-headline centered margin-top-0 margin-bottom-5">
-						<h3>Comment ça marche ?</h3>
+						<h3><%= raw I18n.t('.home.index.how_it_works') %></h3>
 					</div>
 				</div>
 
@@ -97,8 +97,7 @@
 								<div class="icon-box-check"><i class="icon-material-outline-check"></i></div>
 							</div>
 						</div>
-						<h3>Créer votre compte et déposer une annonce</h3>
-						<p>Mettez en ligne votre demande afin de voir des photographes qui corresponde à votre besoin et aussi en contacter</p>
+						<%= raw I18n.t('.home.index.first_bloc_explanation') %>
 					</div>
 				</div>
 
@@ -112,8 +111,7 @@
 								<div class="icon-box-check"><i class="icon-material-outline-check"></i></div>
 							</div>
 						</div>
-						<h3>Comparez les professionnels</h3>
-						<p>Disctuez avec pleins de professionnels autour de vous.</p>
+						<%= raw I18n.t('.home.index.second_bloc_explanation') %>
 					</div>
 				</div>
 
@@ -127,8 +125,7 @@
 								<div class="icon-box-check"><i class="icon-material-outline-check"></i></div>
 							</div>
 						</div>
-						<h3>Trouvez la perle rare !</h3>
-						<p>Une fois votre professionel trouvé, prenez rendez-vous pour réaliser votre besoin!</p>
+						<%= raw I18n.t('.home.index.third_bloc_explanation') %>
 					</div>
 				</div>
 
@@ -145,7 +142,7 @@
 				<div class="col-xl-12">
 					<!-- Section Headline -->
 					<div class="section-headline margin-top-0 margin-bottom-25">
-						<h3>Les meilleurs photographes du moments! </h3>
+						<h3><%= raw I18n.t('.home.index.best_pros') %> </h3>
 					</div>
 				</div>
 
@@ -184,13 +181,12 @@
 							<!-- Details -->
 							<div class="freelancer-details">
 								<div class="freelancer-details-list">
-									<ul>
-										<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-										<li>Prix <strong>60 € / h</strong></li>
-										<li>Taux de réussite<strong>95%</strong></li>
+									<ul style="display: flex;justify-content: space-around;">
+										<li><%= raw I18n.t('.home.pros_presentation.localisation') %><strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
+										<li><%= raw I18n.t('.home.pros_presentation.price') %> <strong>60 € / h</strong></li>
 									</ul>
 								</div>
-								<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
+								<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect"><%= raw I18n.t('.home.pros_presentation.see_his_profile') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 							</div>
 						</div>
 						<!-- Freelancer / End -->
