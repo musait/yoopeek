@@ -15,7 +15,7 @@
 
 				<!-- Dashboard Headline -->
 				<div class="dashboard-headline">
-					<h3>Créer un devis</h3>
+					<h3><%= raw I18n.t('.quote.new.quote_creation') %></h3>
 				</div>
 
 				<!-- Row -->
@@ -27,7 +27,7 @@
 
 							<!-- Headline -->
 							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i> Fomulaire de création</h3>
+								<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.creation_form') %></h3>
 							</div>
 
 							<div class="content with-padding">
@@ -35,18 +35,18 @@
 
 									<div class="col-xl-8 offset-xl-2">
 										<div class="submit-field">
-											<h5>Nom de la mission</h5>
+											<h5><%= raw I18n.t('.quote.new.title') %></h5>
 											<input type="text" class="with-border">
 										</div>
 									</div>
 									<div class="col-xl-8 offset-xl-2" id="form_element">
 										<div class="submit-field">
-											<h5>Détails élement</h5>
+											<h5><%= raw I18n.t('.quote.new.item_detail') %></h5>
 											<textarea type="text" class="with-border"></textarea>
 										</div>
 										<div class="row">
 											<div class="col-xl-2 submit-field">
-												<h5>Prix unit (HT)</h5>
+												<h5><%= raw I18n.t('.quote.new.unit_price') %></h5>
 												<div class="input-with-icon">
 													<input class="with-border" type="text" placeholder="0">
 													<i class="currency">€</i>
@@ -54,11 +54,11 @@
 											</div>
 
 											<div class="col-xl-2 submit-field">
-												<h5>Quantité</h5>
+												<h5><%= raw I18n.t('.quote.new.quantity') %></h5>
 												<input type="text" class="with-border" placeholder="1">
 											</div>
 											<div class="col-xl-2 submit-field">
-												<h5>Total (HT)</h5>
+												<h5><%= raw I18n.t('.quote.new.total') %></h5>
 												<div class="input-with-icon">
 													<input class="with-border" type="text" placeholder="10">
 													<i class="currency">€</i>
@@ -73,7 +73,7 @@
 								</div>
 								<div class="col-xl-8 offset-2">
 
-									<button onclick="duplicate()"><i class="icon-material-outline-add"></i> Ajouter un élément</button>
+									<button onclick="duplicate()"><i class="icon-material-outline-add"></i><%= raw I18n.t('.quote.new.add_item') %></button>
 
 								</div>
 							</div>
@@ -82,7 +82,7 @@
 
 							<!-- Headline -->
 							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i> Vos coordonnées de facturation</h3>
+								<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.billing_information') %></h3>
 							</div>
 
 							<div class="content with-padding">
@@ -112,7 +112,7 @@
 
 							<!-- Headline -->
 							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i> Vos mentions légales</h3>
+								<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.quote.new.legal_notice') %></h3>
 							</div>
 
 							<div class="content with-padding">
@@ -124,8 +124,7 @@
 									<div class="col-xl-8 offset-xl-2" id="form_element">
 
 
-										<p>Vos mentions légales apparaîtront sur les factures auto-générées par Yoopeek.
-											Vous pourrez les modifier dans votre espace personnel.</p>
+										<p><%= raw I18n.t('.quote.new.legal_notice_information') %></p>
 
 											<blockquote>SAS au capital de 500€
 												SIRET 81783623200014 RCS de BOBIGNY - NAF 7311Z
@@ -146,7 +145,7 @@
 								</div>
 
 								<div class="col-xl-12">
-									<a class="button ripple-effect big margin-top-30" href="/theme/user/hireo/dashboard-messages.html"><i class="icon-feather-plus"></i> Créer votre annonce</a>
+									<a class="button ripple-effect big margin-top-30" href="/theme/user/hireo/dashboard-messages.html"><i class="icon-feather-plus"></i> <%= raw I18n.t('.quote.new.creation_button') %></a>
 
 								</div>
 

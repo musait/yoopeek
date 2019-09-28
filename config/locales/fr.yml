@@ -18,7 +18,7 @@ fr:
       best_pros: "Les meilleurs professionels du moment"
     pros_presentation:
       localisation: "Localisation"
-      price: "Prix"
+      price: "Taux horaire"
       see_his_profile: "Voir son profil"
   job:
     show:
@@ -50,3 +50,99 @@ fr:
       delivered_on_budget: "Est-ce que ce professionel a respecté votre budget ?"
       delivered_on_time: "Est-ce que cette mission a été réalisée dans les temps ?"
       your_rating: "Quelle note lui donneriez-vous ?"
+    new:
+      create_job: "Créer une mission"
+      creation_form: "Formulaire de création"
+      title: "Nom de la mission"
+      category: "Catégorie"
+      under_category: "Sous catégorie"
+      localisation: "Localisation"
+      estimated_budget: "Quel est votre budget ?"
+      additional_services: "Est-ce que vous avez besoin de services supplémentaires ? <span>(optionnel)</span> "
+      estimated_time: "Temps estimé"
+      desired_format: "Sélectionnez le type de format que vous souhaitez"
+      description: "Description de la mission"
+      job_creation: "Créez votre mission"
+  user:
+    pro:
+      show:
+        verified: "Vérifié"
+        about_pro: "A propos de %{pro}"
+        job_history_reviews: "Historique des missions et avis"
+        hour_rate: "Taux horaire"
+        realised_job: "Missions réalisées"
+        send_mp: "Envoyer un message"
+        social_network: "Réseaux sociaux"
+        skills: "Compétences"
+        add_to_favorites: "Ajouter aux favoris"
+      edit:
+        my_account: "Mon compte"
+        firstname: "Nom"
+        lastname: "Prénom"
+        Email: "Email"
+        password: "Votre mot de passe"
+        actual_password: "Mot de passe actuel"
+        new_password: "Nouveau mot de passe"
+        repeat_new_password: "Répétez le nouveau mot de passe"
+        save_modification: "Sauvegarder les changements"
+    pro_profile:
+      edit:
+        your_subscription: "Votre abonnement"
+        your_credits: "Vos points"
+        your_profile: "Mon profil"
+        badge: "Votre badge"
+        fix_your_hour_rate: "Fixez votre taux horaire"
+        skills: "Vos compétences"
+        add_ten_skills: "Ajoutez jusqu'à 10 compétences"
+        nationality: "Nationalité"
+        description: "Description"
+    company:
+      edit:
+        bank_number: "Coordonnées bancaires"
+        bank_name: "Nom de votre Banque"
+        iban: "IBAN"
+        bic: "BIC"
+
+
+  messaging:
+    show:
+      respond_to_mp_cost_ten_credits: "Répondre à ce message vous coûtera 10 crédits"
+      reply: "Répondre"
+      respond_to_mp_need_ten_credits: "Répondre à ce message néccesite 10 crédits"
+      buy_credits: "Racheter des crédits"
+      conversation_with_user: "Discussion avec %{user}"
+      create_a_job: "Créer une mission"
+      job_proposition: "Proposition de mission"
+      decline: "Décliner"
+      send_quote: "Envoyer un devis"
+      send_mp: "Envoyer"
+      your_quotes: "Vos devis"
+  quote:
+    new:
+      quote_creation: "Créer un devis"
+      creation_form: "Formulaire de création"
+      title: "Nom de la mission"
+      item_detail: "Détail de l'élément"
+      unit_price: "Prix unitaire (HT)"
+      quantity: "Quantité"
+      total: "Total (HT)"
+      add_item: "Ajouter un élément"
+      billing_information: "Coordonnées de facturation"
+      legal_notice: "Vos mentions légales"
+      legal_notice_information: "Vos mentions légales apparaîtront sur les factures auto-générées par Yoopeek.
+        Vous pourrez les modifier dans votre espace personnel."
+      creation_button: "Créer votre devis"
+    show:
+      quote_recap: "Récapitulatif du devis N°%{quote_number}"
+      description: "Description"
+      price: "Prix"
+      vat: "TVA"
+      total_with_vat: "Total"
+      global_total: "Total général"
+      decline: "Décliner"
+      accept_quote: "Accepter le devis"
+      send_mp: "Envoyer un message"
+      summary: "Récapitulatif"
+      quote_decline: "Déclinée"
+      quote_in_progress: "En cours"
+      quote_accepted: 'Acceptée'

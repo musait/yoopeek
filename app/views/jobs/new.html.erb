@@ -15,7 +15,7 @@
 
 				<!-- Dashboard Headline -->
 				<div class="dashboard-headline">
-					<h3>Créer une annonce</h3>
+					<h3><%= raw I18n.t('.job.new.create_job') %></h3>
 				</div>
 
 				<!-- Row -->
@@ -27,7 +27,7 @@
 
 							<!-- Headline -->
 							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i> Fomulaire de création</h3>
+								<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.job.new.creation_form') %></h3>
 							</div>
 
 							<div class="content with-padding padding-bottom-10">
@@ -35,14 +35,14 @@
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Titre</h5>
+											<h5><%= raw I18n.t('.job.new.title') %></h5>
 											<input type="text" class="with-border">
 										</div>
 									</div>
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Catégorie</h5>
+											<h5><%= raw I18n.t('.job.new.category') %></h5>
 											<select class="selectpicker with-border" data-size="7" title="Selectionnez une catégorie">
 												<option>Mariage</option>
 												<option>Evenement personnel</option>
@@ -55,7 +55,7 @@
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Sous catégorie</h5>
+											<h5><%= raw I18n.t('.job.new.under_category') %></h5>
 											<select class="selectpicker with-border" data-size="7" title="Selectionnez une sous-catégorie">
 												<option>Mariage</option>
 												<option>Paysage</option>
@@ -66,7 +66,7 @@
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Localisation</h5>
+											<h5><%= raw I18n.t('.job.new.localisation') %></h5>
 											<div class="input-with-icon">
 												<div id="autocomplete-container">
 													<input id="autocomplete-input" class="with-border" type="text" placeholder="ex: Nice, 75002, Suisse">
@@ -78,7 +78,7 @@
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Quel est votre budget ?</h5>
+											<h5><%= raw I18n.t('.job.new.estimated_budget') %></h5>
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="input-with-icon">
@@ -98,7 +98,7 @@
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Est-ce que vous avez besoin de services supplémentaires ? <span>(optionnel)</span> </h5>
+											<h5><%= raw I18n.t('.job.new.additional_services') %></h5>
 											<div class="keywords-container">
 												<div class="keyword-input-container">
 													<input type="text" class="keyword-input with-border" placeholder="ex: Maquillage"/>
@@ -112,7 +112,7 @@
 									</div>
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Estimation de temps</h5>
+											<h5><%= raw I18n.t('.job.new.estimated_time') %></h5>
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="input-with-icon">
@@ -131,7 +131,7 @@
 									</div>
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>Sélectionner le type de format que vous souhaitez</h5>
+											<h5><%= raw I18n.t('.job.new.desired_format') %></h5>
 											<select class="selectpicker with-border" data-size="7" title="Sélectionnez un format">
 												<option>Clé USB</option>
 												<option>Drive</option>
@@ -143,7 +143,7 @@
 
 									<div class="col-xl-12">
 										<div class="submit-field">
-											<h5>Description</h5>
+											<h5><%= raw I18n.t('.job.new.description') %></h5>
 											<textarea cols="30" rows="5" class="with-border"></textarea>
 										</div>
 									</div>
@@ -154,7 +154,7 @@
 
 					<div class="col-xl-12">
 						<%= link_to show_path, class:"button ripple-effect big margin-top-30" do %>
-						<i class="icon-feather-plus"></i> Créer votre annonce
+						<i class="icon-feather-plus"></i><%= raw I18n.t('.job.new.job_creation') %>
 						<%end%>
 					</div>
 

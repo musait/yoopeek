@@ -1,6 +1,4 @@
-<%= content_for :body_style do%>
-<link rel="stylesheet" href="/theme/user/hireo/css/invoice.css">
-<%end%>
+
 <div id="wrapper">
 	<div class="clearfix"></div>
 	<!-- Header Container / End -->
@@ -17,7 +15,7 @@
 
 				<!-- Dashboard Headline -->
 				<div class="dashboard-headline">
-					<h3>Récapitulatif du devis n°0001</h3>
+					<h3><%= raw I18n.t('.quote.show.quote_recap', quote_number:"0001") %></h3>
 				</div>
 
 				<!-- Row -->
@@ -42,10 +40,10 @@
 							        <div class="col-12" >
 							          <table class="margin-top-20" >
 							            <tr>
-							              <th>Description</th>
-							              <th>Price</th>
-							              <th>VAT (20%)</th>
-							              <th>Total</th>
+							              <th><%= raw I18n.t('.quote.show.description') %></th>
+							              <th><%= raw I18n.t('.quote.show.price') %></th>
+							              <th><%= raw I18n.t('.quote.show.vat') %></th>
+							              <th><%= raw I18n.t('.quote.show.total_with_vat') %></th>
 							            </tr>
 
 							            <tr>
@@ -60,7 +58,7 @@
 							        <div class="col-xl-4 col-xl-offset-8">
 							          <table id="totals">
 							            <tr>
-							              <th>Total Due</th>
+							              <th><%= raw I18n.t('.quote.show.global_total') %></th>
 							              <th><span>$58.80</span></th>
 							            </tr>
 							          </table>
@@ -68,8 +66,8 @@
 							      </div>
 										<div class="row margin-top-30">
 											<div class="col-12"style="display: flex;">
-												<a href="#" class="" style="margin-right: 10px;display: flex; align-items: center">Décliner</a>
-												<a href="/theme/user/hireo/pages-checkout-page-user.html" class="button">Accepter le devis</a>
+												<a href="#" class="" style="margin-right: 10px;display: flex; align-items: center"><%= raw I18n.t('.quote.show.decline') %></a>
+												<a href="/theme/user/hireo/pages-checkout-page-user.html" class="button"><%= raw I18n.t('.quote.show.accept_quote') %></a>
 											</div>
 										</div>
 							    </div>
@@ -104,14 +102,14 @@
 												</div>
 
 											</div>
-											<a href="/theme/user/hireo/dashboard-messages.html" class="button margin-bottom-10">Envoyer un message</a>
+											<a href="/theme/user/hireo/dashboard-messages.html" class="button margin-bottom-10"><%= raw I18n.t('.quote.show.send_mp') %></a>
 
 											<!-- Details -->
 
 										</div>
 							      <div class="boxed-widget summary margin-top-0">
 							        <div class="boxed-widget-headline">
-							          <h3>Summary</h3>
+							          <h3><%= raw I18n.t('.quote.show.summary') %></h3>
 							        </div>
 							        <div class="boxed-widget-inner">
 							          <ul>
