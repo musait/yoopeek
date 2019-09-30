@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2019_09_24_102552) do
     t.string "unconfirmed_email"
     t.string "facebook_id"
     t.string "google_id"
+    t.string "firstname"
+    t.string "lastname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
