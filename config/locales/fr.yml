@@ -146,3 +146,12 @@ fr:
       quote_decline: "Déclinée"
       quote_in_progress: "En cours"
       quote_accepted: 'Acceptée'
+  order:
+    show:
+      summary: "Récapitulatif"
+      agreed_terms: "J'accepte les conditions générales de ventes"
+      payment_proceed: "Proceder au paiement"
+    confirmation:
+      thanks_for_your_order: "Merci pour votre commande"
+      message_confirmation: "Votre paiement a bien été reçu. Il sera transmis au professionnel une fois la mission terminée."
+      see_job: "Voir la mission"
