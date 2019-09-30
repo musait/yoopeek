@@ -11,7 +11,7 @@ class User < ApplicationRecord
       # We will need a way to know which animals
       # will subclass the Animal model
       def self.types
-        %w(Worker)
+        %w(Worker User)
       end
 
   def self.from_facebook(auth)
