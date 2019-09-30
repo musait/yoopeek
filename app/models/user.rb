@@ -9,6 +9,8 @@ class User < ApplicationRecord
   def self.from_facebook(auth)
     where(facebook_id: auth.uid).first_or_create do |user|
       user.email = auth.info.email
+      user.firstname = auth.info.name.partition(" ").first
+      user.lastname = auth.info.name.partition(" ").last
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation!
     end
@@ -24,4 +26,7 @@ class User < ApplicationRecord
     end
   end
 
+  def full_name
+    "#{self.firstname} #{self.lastname}"
+  end
 end
