@@ -5,6 +5,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable, :confirmable
 
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
+  has_many :jobs
 
   self.inheritance_column = :type
 
