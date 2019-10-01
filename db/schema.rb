@@ -10,12 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_133755) do
+ActiveRecord::Schema.define(version: 2019_10_01_133758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -30,13 +36,31 @@ ActiveRecord::Schema.define(version: 2019_10_01_133755) do
   end
 
   create_table "jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "localisation"
+    t.text "optional_services", default: [], array: true
+    t.integer "min_price"
+    t.integer "max_price"
+    t.integer "min_time"
+    t.integer "max_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "category_id"
+    t.index ["category_id"], name: "index_jobs_on_category_id"
   end
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "under_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.uuid "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_under_categories_on_category_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -65,4 +89,6 @@ ActiveRecord::Schema.define(version: 2019_10_01_133755) do
   end
 
   add_foreign_key "companies", "users"
+  add_foreign_key "jobs", "categories"
+  add_foreign_key "under_categories", "categories"
 end
