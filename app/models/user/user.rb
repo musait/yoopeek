@@ -6,13 +6,13 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-    self.inheritance_column = :type
+  self.inheritance_column = :type
 
-      # We will need a way to know which animals
-      # will subclass the Animal model
-      def self.types
-        %w(Worker User)
-      end
+  # We will need a way to know which animals
+  # will subclass the Animal model
+  def self.types
+    %w(Worker User)
+  end
 
   def self.from_facebook(auth)
     where(facebook_id: auth.uid).first_or_create do |user|
@@ -36,5 +36,9 @@ class User < ApplicationRecord
 
   def full_name
     "#{self.firstname} #{self.lastname}"
+  end
+
+  def is_worker
+    self.type == "Worker"
   end
 end
