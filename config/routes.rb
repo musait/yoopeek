@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get 'show_quote' => 'quotes#show_test'
 
     resources :reviews
-    resources :under_categories
+    resources :subcategories
     resources :categories do
       member do
         get :get_subcategories, defaults: { format: "js" }

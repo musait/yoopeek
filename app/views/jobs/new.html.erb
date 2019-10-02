@@ -62,7 +62,7 @@
 										<div  class="submit-field">
 											<h5><%= raw I18n.t('.job.new.under_category') %></h5>
 												<div id="subcategories_select">
-													<%= form.collection_select(:category_id,UnderCategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
+													<%= form.collection_select(:category_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
 												</div>
 										</div>
 									</div>
