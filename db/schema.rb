@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_171934) do
+ActiveRecord::Schema.define(version: 2019_10_02_085536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -57,6 +57,19 @@ ActiveRecord::Schema.define(version: 2019_10_01_171934) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "content"
+    t.integer "stars"
+    t.uuid "customer_id"
+    t.uuid "worker_id"
+    t.uuid "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_reviews_on_customer_id"
+    t.index ["job_id"], name: "index_reviews_on_job_id"
+    t.index ["worker_id"], name: "index_reviews_on_worker_id"
+  end
+
   create_table "under_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.uuid "category_id"
@@ -93,5 +106,8 @@ ActiveRecord::Schema.define(version: 2019_10_01_171934) do
   add_foreign_key "companies", "users"
   add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "users"
+  add_foreign_key "reviews", "jobs"
+  add_foreign_key "reviews", "users", column: "customer_id"
+  add_foreign_key "reviews", "users", column: "worker_id"
   add_foreign_key "under_categories", "categories"
 end
