@@ -8,8 +8,7 @@ class User < ApplicationRecord
 
   self.inheritance_column = :type
 
-  # We will need a way to know which animals
-  # will subclass the Animal model
+
   def self.types
     %w(Worker Customer)
   end
