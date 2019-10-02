@@ -5,29 +5,36 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-Category.create([{ name: 'Photographie' }, { name: 'Maquillage' }, { name: 'Vidéographie' }])
-UnderCategory.create([{ name: 'Portrait', category_id: Category.find_by(name: 'Photographie') },
-  { name: 'Évènement', category_id: Category.find_by(name: 'Photographie').id },
-  { name: 'Mariage', category_id: Category.find_by(name: 'Photographie').id },
-  { name: 'Cinéma', category_id: Category.find_by(name: 'Maquillage').id },
-  { name: 'Mariage', category_id: Category.find_by(name: 'Maquillage').id },
-  { name: 'Évènement', category_id: Category.find_by(name: 'Vidéographie').id },
-  { name: 'Mariage', category_id: Category.find_by(name: 'Vidéographie').id },
-  { name: 'Court-métrage', category_id: Category.find_by(name: 'Vidéographie').id },
-  { name: 'Publicité', category_id: Category.find_by(name: 'Vidéographie').id },
-  ])
-User.create([
-  { email: 'a@a.com', firstname: 'John', lastname: 'Doe', type: 'User', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-  { email: 'c@c.com', firstname: 'Friedrich', lastname: 'Nikla', type: 'User', nationality: 'German', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-  { email: 'd@d.com', firstname: 'Patrick', lastname: 'Onatenpa', type: 'User', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-  { email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker', price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-  { email: 'e@e.com', firstname: 'Fabrice', lastname: 'Lagarde', type: 'Worker', price_rate: '60', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-  { email: 'f@f.com', firstname: 'Will', lastname: 'Smoth', type: 'Worker', price_rate: '30', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-  ])
-  Job.create([
-    { name: 'Shooting photo mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: User.first.id },
-    { name: 'Maquillage mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: User.first.id },
-    { name: 'Film saut en parachute', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Bastia', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: User.first.id },
-    { name: 'Film compétition rugby', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Montpellier', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: User.first.id },
+if Category.all.empty?
+  Category.create([{ name: 'Photographie' }, { name: 'Maquillage' }, { name: 'Vidéographie' }])
+end
+if UnderCategory.all.empty?
+  UnderCategory.create([{ name: 'Portrait', category_id: Category.find_by(name: 'Photographie') },
+    { name: 'Évènement', category_id: Category.find_by(name: 'Photographie').id },
+    { name: 'Mariage', category_id: Category.find_by(name: 'Photographie').id },
+    { name: 'Cinéma', category_id: Category.find_by(name: 'Maquillage').id },
+    { name: 'Mariage', category_id: Category.find_by(name: 'Maquillage').id },
+    { name: 'Évènement', category_id: Category.find_by(name: 'Vidéographie').id },
+    { name: 'Mariage', category_id: Category.find_by(name: 'Vidéographie').id },
+    { name: 'Court-métrage', category_id: Category.find_by(name: 'Vidéographie').id },
+    { name: 'Publicité', category_id: Category.find_by(name: 'Vidéographie').id },
     ])
+  end
+if User.all.empty?
+  User.create([
+    { email: 'a@a.com', firstname: 'John', lastname: 'Doe', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'c@c.com', firstname: 'Friedrich', lastname: 'Nikla', type: 'Customer', nationality: 'German', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'd@d.com', firstname: 'Patrick', lastname: 'Onatenpa', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker', price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'e@e.com', firstname: 'Fabrice', lastname: 'Lagarde', type: 'Worker', price_rate: '60', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'f@f.com', firstname: 'Will', lastname: 'Smoth', type: 'Worker', price_rate: '30', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    ])
+end
+if Job.all.empty?
+  Job.create([
+    { name: 'Shooting photo mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
+    { name: 'Maquillage mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
+    { name: 'Film saut en parachute', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Bastia', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
+    { name: 'Film compétition rugby', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Montpellier', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
+    ])
+end

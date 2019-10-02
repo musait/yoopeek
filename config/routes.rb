@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :under_categories
   resources :categories
   resources :companies

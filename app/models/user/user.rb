@@ -5,14 +5,13 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable, :confirmable
 
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
-  has_many :jobs
 
   self.inheritance_column = :type
 
   # We will need a way to know which animals
   # will subclass the Animal model
   def self.types
-    %w(Worker User)
+    %w(Worker Customer)
   end
 
   def self.from_facebook(auth)
@@ -41,5 +40,8 @@ class User < ApplicationRecord
 
   def is_worker
     self.type == "Worker"
+  end
+  def is_customer
+    self.type == "Customer"
   end
 end
