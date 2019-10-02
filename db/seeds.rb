@@ -8,8 +8,8 @@
 if Category.all.empty?
   Category.create([{ name: 'Photographie' }, { name: 'Maquillage' }, { name: 'Vidéographie' }])
 end
-if UnderCategory.all.empty?
-  UnderCategory.create([{ name: 'Portrait', category_id: Category.find_by(name: 'Photographie') },
+if Subcategory.all.empty?
+  Subcategory.create([{ name: 'Portrait', category_id: Category.find_by(name: 'Photographie') },
     { name: 'Évènement', category_id: Category.find_by(name: 'Photographie').id },
     { name: 'Mariage', category_id: Category.find_by(name: 'Photographie').id },
     { name: 'Cinéma', category_id: Category.find_by(name: 'Maquillage').id },
@@ -32,9 +32,9 @@ if User.all.empty?
 end
 if Job.all.empty?
   Job.create([
-    { name: 'Shooting photo mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
-    { name: 'Maquillage mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
-    { name: 'Film saut en parachute', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Bastia', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
-    { name: 'Film compétition rugby', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Montpellier', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, user_id: Customer.first.id },
+    { name: 'Shooting photo mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, customer_id: Customer.first.id },
+    { name: 'Maquillage mariage week-end', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Vannes', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, customer_id: Customer.first.id },
+    { name: 'Film saut en parachute', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Bastia', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, customer_id: Customer.first.id },
+    { name: 'Film compétition rugby', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Montpellier', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.find_by(name: 'Photographie').id, customer_id: Customer.first.id },
     ])
 end
