@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  resources :reviews
-  resources :under_categories
-  resources :categories
-  resources :companies
+
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
@@ -13,6 +10,15 @@ Rails.application.routes.draw do
     resources :jobs
     get 'show' => 'jobs#show_test'
     get 'show_quote' => 'quotes#show_test'
+
+    resources :reviews
+    resources :under_categories
+    resources :categories do
+      member do
+        get :get_subcategories, defaults: { format: "js" }
+      end
+    end
+    resources :companies
 
     namespace :admin do
       get "index" => "home#index"
