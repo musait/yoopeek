@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2019_10_01_171934) do
   end
 
   create_table "jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "localisation"
+    t.text "optional_services", default: [], array: true
+    t.integer "min_price"
+    t.integer "max_price"
+    t.integer "min_time"
+    t.integer "max_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "category_id"
