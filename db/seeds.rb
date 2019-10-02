@@ -19,5 +19,5 @@ UnderCategory.create([{ name: 'Portrait', category_id: Category.find_by(name: 'P
   ])
 User.create([
   { email: 'a@a.com', firstname: 'John', lastname: 'Doe', type: 'User', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.',password:"password"},
-  { email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker', price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.'password:"password"}
+  { email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker', price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.',password:"password"}
   ])

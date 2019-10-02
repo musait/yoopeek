@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_171934) do
     t.datetime "updated_at", null: false
     t.string "type"
     t.string "skill"
-    t.integer "PriceRate"
+    t.integer "price_rate"
     t.string "nationality"
     t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
