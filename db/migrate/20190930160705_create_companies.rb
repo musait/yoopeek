@@ -7,7 +7,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :bic
       t.string :bank_name
       t.string :address
-      t.references :user,type: :uuid, foreign_key: true
+      t.belongs_to :worker, foreign_key: {to_table: :users}, type: :uuid
       t.timestamps
     end
   end

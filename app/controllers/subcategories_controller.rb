@@ -1,30 +1,30 @@
-class UnderCategoriesController < ApplicationController
+class SubcategoriesController < ApplicationController
   before_action :set_under_category, only: [:show, :edit, :update, :destroy]
 
-  # GET /under_categories
-  # GET /under_categories.json
+  # GET /subcategories
+  # GET /subcategories.json
   def index
-    @under_categories = UnderCategory.all
+    @subcategories = Subcategory.all
   end
 
-  # GET /under_categories/1
-  # GET /under_categories/1.json
+  # GET /subcategories/1
+  # GET /subcategories/1.json
   def show
   end
 
-  # GET /under_categories/new
+  # GET /subcategories/new
   def new
-    @under_category = UnderCategory.new
+    @under_category = Subcategory.new
   end
 
-  # GET /under_categories/1/edit
+  # GET /subcategories/1/edit
   def edit
   end
 
-  # POST /under_categories
-  # POST /under_categories.json
+  # POST /subcategories
+  # POST /subcategories.json
   def create
-    @under_category = UnderCategory.new(under_category_params)
+    @under_category = Subcategory.new(under_category_params)
 
     respond_to do |format|
       if @under_category.save
@@ -37,8 +37,8 @@ class UnderCategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /under_categories/1
-  # PATCH/PUT /under_categories/1.json
+  # PATCH/PUT /subcategories/1
+  # PATCH/PUT /subcategories/1.json
   def update
     respond_to do |format|
       if @under_category.update(under_category_params)
@@ -51,8 +51,8 @@ class UnderCategoriesController < ApplicationController
     end
   end
 
-  # DELETE /under_categories/1
-  # DELETE /under_categories/1.json
+  # DELETE /subcategories/1
+  # DELETE /subcategories/1.json
   def destroy
     @under_category.destroy
     respond_to do |format|
@@ -64,7 +64,7 @@ class UnderCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_under_category
-      @under_category = UnderCategory.find(params[:id])
+      @under_category = Subcategory.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

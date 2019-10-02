@@ -9,6 +9,8 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.integer :max_price
       t.integer :min_time
       t.integer :max_time
+      t.belongs_to :customer, foreign_key: {to_table: :users}, type: :uuid
+      t.belongs_to :worker, foreign_key: {to_table: :users}, type: :uuid
       t.timestamps
     end
   end

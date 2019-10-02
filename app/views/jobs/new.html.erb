@@ -29,38 +29,41 @@
 							<div class="headline">
 								<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.job.new.creation_form') %></h3>
 							</div>
-
+							<%= form_with(model: @job, local: true) do |form| %>
+							  <% if @job.errors.any? %>
+									<div class="notification error closeable">
+										<p><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</p>
+										<ul>
+										<% @job.errors.full_messages.each do |message| %>
+											<li><%= message %></li>
+										<% end %>
+										</ul>
+										<a class="close" href="#"></a>
+									</div>
+							  <% end %>
 							<div class="content with-padding padding-bottom-10">
 								<div class="row">
 
 									<div class="col-xl-4">
 										<div class="submit-field">
 											<h5><%= raw I18n.t('.job.new.title') %></h5>
-											<input type="text" class="with-border">
+											<%= form.text_field :name,class:"with-border" %>
 										</div>
 									</div>
 
 									<div class="col-xl-4">
 										<div class="submit-field">
 											<h5><%= raw I18n.t('.job.new.category') %></h5>
-											<select class="selectpicker with-border" data-size="7" title="Selectionnez une catégorie">
-												<option>Mariage</option>
-												<option>Evenement personnel</option>
-												<option>Evenement d'entreprise</option>
-												<option>Personnel (Famille, protrait, couple)</option>
-												<option>Fashion</option>
-											</select>
+											<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {class:"selectpicker",id:"category_id"}) %>
 										</div>
 									</div>
 
 									<div class="col-xl-4">
-										<div class="submit-field">
+										<div  class="submit-field">
 											<h5><%= raw I18n.t('.job.new.under_category') %></h5>
-											<select class="selectpicker with-border" data-size="7" title="Selectionnez une sous-catégorie">
-												<option>Mariage</option>
-												<option>Paysage</option>
-												<option>Portrait</option>
-											</select>
+												<div id="subcategories_select">
+													<%= form.collection_select(:category_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
+												</div>
 										</div>
 									</div>
 
@@ -69,7 +72,7 @@
 											<h5><%= raw I18n.t('.job.new.localisation') %></h5>
 											<div class="input-with-icon">
 												<div id="autocomplete-container">
-													<input id="autocomplete-input" class="with-border" type="text" placeholder="ex: Nice, 75002, Suisse">
+													<%= form.text_field :localisation,class:"with-border",placeholder:"ex: Nice, 75002, Suisse" %>
 												</div>
 												<i class="icon-material-outline-location-on"></i>
 											</div>
@@ -82,13 +85,13 @@
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="input-with-icon">
-														<input class="with-border" type="text" placeholder="Min">
+														<%= form.text_field :min_price,class:"with-border",placeholder:"Min" %>
 														<i class="currency">€</i>
 													</div>
 												</div>
 												<div class="col-xl-6">
 													<div class="input-with-icon">
-														<input class="with-border" type="text" placeholder="Max">
+														<%= form.text_field :max_price,class:"with-border",placeholder:"Max" %>
 														<i class="currency">€</i>
 													</div>
 												</div>
@@ -101,10 +104,8 @@
 											<h5><%= raw I18n.t('.job.new.additional_services') %></h5>
 											<div class="keywords-container">
 												<div class="keyword-input-container">
-													<input type="text" class="keyword-input with-border" placeholder="ex: Maquillage"/>
-													<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+													<%= form.text_field :optional_services,multiple: true,class:"keyword-input with-border",placeholder:"ex: Maquillage" %>
 												</div>
-												<div class="keywords-list"><!-- keywords go here --></div>
 												<div class="clearfix"></div>
 											</div>
 
@@ -116,13 +117,13 @@
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="input-with-icon">
-														<input class="with-border" type="text" placeholder="Min">
+														<%= form.text_field :min_time,class:"with-border",placeholder:"Min" %>
 														<i class="currency">hr</i>
 													</div>
 												</div>
 												<div class="col-xl-6">
 													<div class="input-with-icon">
-														<input class="with-border" type="text" placeholder="Max">
+														<%= form.text_field :max_time,class:"with-border",placeholder:"Max" %>
 														<i class="currency">hr</i>
 													</div>
 												</div>
@@ -144,20 +145,20 @@
 									<div class="col-xl-12">
 										<div class="submit-field">
 											<h5><%= raw I18n.t('.job.new.description') %></h5>
-											<textarea cols="30" rows="5" class="with-border"></textarea>
+											<%= form.text_area :description,col:"30",rows:"5",class:"with-border"%>
 										</div>
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
-
+					<%= form.hidden_field :user_id, :value => current_user.id %>
 					<div class="col-xl-12">
-						<%= link_to show_path, class:"button ripple-effect big margin-top-30" do %>
-						<i class="icon-feather-plus"></i><%= raw I18n.t('.job.new.job_creation') %>
-						<%end%>
-					</div>
+						<%= form.submit I18n.t('.job.new.job_creation'), class:"button ripple-effect big margin-top-30" %>
 
+					</div>
+		<%end%>
 				</div>
 				<!-- Row / End -->
 
@@ -170,3 +171,15 @@
 	<!-- Dashboard Container / End -->
 
 </div>
+<script>
+	$('#category_id').change( function() {
+   var category_id = $(this).val();
+   console.log(category_id);
+   $.ajax({
+     url: "/categories/" + category_id + "/get_subcategories",
+     type: "GET",
+     dataType: "script",
+     data: { "category_id": category_id }
+   });
+ });
+</script>
