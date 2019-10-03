@@ -1,0 +1,27 @@
+<div class="site-menubar">
+  <div class="site-menubar-body">
+    <div>
+      <div>
+        <ul class="site-menu" data-plugin="menu">
+          <li class="site-menu-category"></li>
+          <li class="site-menu-item has-sub">
+            <%= link_to admin_jobs_path do %>
+              <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+              <span class="site-menu-title">Les Missions</span>
+                  <div class="site-menu-badge">
+                      <span class="badge badge-pill badge-success"> <%= @jobs.count %></span>
+                  </div>
+            <% end %>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="site-menubar-footer">
+    <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
+      <span class="icon wb-power" aria-hidden="true"></span>
+    </a>
+  </div>
+</div>
