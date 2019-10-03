@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_094555) do
+ActiveRecord::Schema.define(version: 2019_10_03_090926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -70,8 +70,10 @@ ActiveRecord::Schema.define(version: 2019_10_02_094555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "category_id"
+    t.uuid "subcategory_id"
     t.index ["category_id"], name: "index_jobs_on_category_id"
     t.index ["customer_id"], name: "index_jobs_on_customer_id"
+    t.index ["subcategory_id"], name: "index_jobs_on_subcategory_id"
     t.index ["worker_id"], name: "index_jobs_on_worker_id"
   end
 
@@ -129,6 +131,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_094555) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "companies", "users", column: "worker_id"
   add_foreign_key "jobs", "categories"
+  add_foreign_key "jobs", "subcategories"
   add_foreign_key "jobs", "users", column: "customer_id"
   add_foreign_key "jobs", "users", column: "worker_id"
   add_foreign_key "reviews", "jobs"
