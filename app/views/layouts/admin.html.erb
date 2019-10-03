@@ -25,9 +25,7 @@
     <link rel="stylesheet" href="/theme/admin/classic/global/vendor/intro-js/introjs.css">
     <link rel="stylesheet" href="/theme/admin/classic/global/vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="/theme/admin/classic/global/vendor/flag-icon-css/flag-icon.css">
-        <link rel="stylesheet" href="/theme/admin/classic/global/vendor/chartist/chartist.css">
         <link rel="stylesheet" href="/theme/admin/classic/global/vendor/jvectormap/jquery-jvectormap.css">
-        <link rel="stylesheet" href="/theme/admin/classic/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
         <link rel="stylesheet" href="/theme/admin/classic/base/assets/examples/css/dashboard/v1.css">
 
 
@@ -55,10 +53,11 @@
   </head>
 
   <body>
-
+    <%= render "layouts/admin/header"%>
+    <%= render "layouts/admin/sidebar"%>
 
     <%= yield %>
-
+    <%= render "layouts/admin/footer"%>
     <script src="/theme/admin/classic/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
     <script src="/theme/admin/classic/global/vendor/jquery/jquery.js"></script>
     <script src="/theme/admin/classic/global/vendor/popper-js/umd/popper.min.js"></script>
@@ -75,7 +74,6 @@
     <script src="/theme/admin/classic/global/vendor/screenfull/screenfull.js"></script>
     <script src="/theme/admin/classic/global/vendor/slidepanel/jquery-slidePanel.js"></script>
         <script src="/theme/admin/classic/global/vendor/skycons/skycons.js"></script>
-        <script src="/theme/admin/classic/global/vendor/chartist/chartist.min.js"></script>
         <script src="/theme/admin/classic/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script>
         <script src="/theme/admin/classic/global/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
         <script src="/theme/admin/classic/global/vendor/jvectormap/jquery-jvectormap.min.js"></script>
