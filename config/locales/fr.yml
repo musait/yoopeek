@@ -63,6 +63,8 @@ fr:
       desired_format: "Sélectionnez le type de format que vous souhaitez"
       description: "Description de la mission"
       job_creation: "Créez votre mission"
+    edit:
+      job_edition: "Modifier cette mission"
   user:
     pro:
       show:

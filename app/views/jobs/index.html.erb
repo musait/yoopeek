@@ -1,25 +1,85 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Jobs</h1>
+		<!-- Spacer -->
+		<div class="margin-top-90"></div>
+		<!-- Spacer / End-->
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+		<!-- Page Content
+		================================================== -->
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
 
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+					<h3 class="page-title">Vos missions créées</h3>
 
-<br>
+					<div class="notify-box margin-top-15">
 
-<%= link_to 'New Job', new_job_path %>
+						<div class="sort-by">
+							<span>Trier par:</span>
+							<select class="selectpicker hide-tick">
+								<option>Statut</option>
+								<option>Plus récent</option>
+								<option>Plus ancien</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="listings-container margin-top-35">
+
+						<!-- Job Listing -->
+            <% @jobs.each do |job| %>
+              <%= link_to job_path(id:job.id), class:"job-listing" do%>
+              <div class="job-listing-details">
+
+                <!-- Details -->
+                <div class="job-listing-description">
+                  <!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
+                  <h3 class="job-listing-title"> <%= job.name %></h3>
+                  <p class="job-listing-text"> <%= job.description %></p>
+                </div>
+                <div class="job-listing-footer">
+  								<ul>
+  									<li><i class="icon-material-outline-location-on"></i> <mark class="color" style="background-color: grey">Créée</mark></li>
+  									<li><i class="icon-material-outline-account-balance-wallet"></i> <%= job.price_range %></li>
+  									<li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
+  									<li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
+  									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
+  									<li><i class="icon-material-outline-location-on"></i> <%= job.time_range %></li>
+  									<li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
+  									<li><i class="icon-material-outline-access-time"></i> <%= time_ago_in_words(job.created_at).capitalize %></li>
+  								</ul>
+
+  							</div>
+                <%= link_to "Modifier",edit_job_path(id:job.id) %>
+                <%= link_to "Supprimer",job_path(id:job.id), method: :delete %>
+              </div>
+
+              <% end %>
+            <%end%>
+
+
+						<!-- Pagination -->
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-12">
+								<!-- Pagination -->
+								<div class="pagination-container margin-top-30 margin-bottom-60">
+									<nav class="pagination">
+										<ul>
+											<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+											<li><a href="#">1</a></li>
+											<li><a href="#" class="current-page">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#">4</a></li>
+											<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+										</ul>
+									</nav>
+								</div>
+							</div>
+						</div>
+						<!-- Pagination / End -->
+
+					</div>
+
+				</div>
+			</div>
+		</div>
