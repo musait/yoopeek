@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     root 'home#index'
 
     resources :quotes
-    resources :jobs
+    resources :jobs, param: :slug
     get 'show' => 'jobs#show_test'
     get 'show_quote' => 'quotes#show_test'
 
