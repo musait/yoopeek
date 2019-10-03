@@ -28,17 +28,20 @@
   </head>
 
   <body>
-    <%= render "layouts/user/header"%>
-    <% unless flash.empty? %>
-    	<script type="text/javascript">
-    		<% flash.each do |f| %>
-          <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
-    			toastr['<%= type %>']('<%= f[1] %>');
-    		<% end %>
-    	</script>
-    <% end %>
-    <%= yield %>
+    <div id="wrapper">
+      <%= render "layouts/user/header"%>
+      <% unless flash.empty? %>
+      	<script type="text/javascript">
+      		<% flash.each do |f| %>
+            <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
+      			toastr['<%= type %>']('<%= f[1] %>');
+      		<% end %>
+      	</script>
+      <% end %>
+      <%= yield %>
+    </div>
     <%= render "layouts/user/footer"%>
+
     <script src="/theme/user/hireo/js/jquery-3.3.1.min.js"></script>
     <script src="/theme/user/hireo/js/jquery-migrate-3.0.0.min.js"></script>
     <script src="/theme/user/hireo/js/mmenu.min.js"></script>

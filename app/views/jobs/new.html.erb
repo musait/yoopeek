@@ -62,7 +62,7 @@
 										<div  class="submit-field">
 											<h5><%= raw I18n.t('.job.new.under_category') %></h5>
 												<div id="subcategories_select">
-													<%= form.collection_select(:category_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
+													<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
 												</div>
 										</div>
 									</div>
@@ -153,7 +153,7 @@
 
 						</div>
 					</div>
-					<%= form.hidden_field :user_id, :value => current_user.id %>
+					<%= form.hidden_field :customer_id, :value => current_user.id %>
 					<div class="col-xl-12">
 						<%= form.submit I18n.t('.job.new.job_creation'), class:"button ripple-effect big margin-top-30" %>
 

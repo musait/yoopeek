@@ -1,5 +1,6 @@
 class Job < ApplicationRecord
   belongs_to :category
+  belongs_to :subcategory
   belongs_to :worker, optional: true
   belongs_to :customer
   has_many :reviews
