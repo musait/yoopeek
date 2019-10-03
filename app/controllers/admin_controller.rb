@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   layout'admin'
+  before_action :set_database
   # before_action :require_admin
 
   def index
@@ -12,4 +13,8 @@ class AdminController < ApplicationController
   #     redirect_to root_path
   #   end
   # end
+  def set_database
+    @jobs = Job.all
+    @categories = Category.all
+  end
 end
