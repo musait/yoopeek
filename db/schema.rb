@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_094555) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.uuid "record_id", null: false
+    t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 2019_10_02_094555) do
     t.string "bic"
     t.string "bank_name"
     t.string "address"
-    t.uuid "worker_id"
+    t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["worker_id"], name: "index_companies_on_worker_id"
+    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -65,14 +65,12 @@ ActiveRecord::Schema.define(version: 2019_10_02_094555) do
     t.integer "max_price"
     t.integer "min_time"
     t.integer "max_time"
-    t.uuid "customer_id"
-    t.uuid "worker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "category_id"
+    t.uuid "user_id"
     t.index ["category_id"], name: "index_jobs_on_category_id"
-    t.index ["customer_id"], name: "index_jobs_on_customer_id"
-    t.index ["worker_id"], name: "index_jobs_on_worker_id"
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -93,12 +91,12 @@ ActiveRecord::Schema.define(version: 2019_10_02_094555) do
     t.index ["worker_id"], name: "index_reviews_on_worker_id"
   end
 
-  create_table "subcategories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "under_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.uuid "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_subcategories_on_category_id"
+    t.index ["category_id"], name: "index_under_categories_on_category_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -127,12 +125,11 @@ ActiveRecord::Schema.define(version: 2019_10_02_094555) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "companies", "users", column: "worker_id"
+  add_foreign_key "companies", "users"
   add_foreign_key "jobs", "categories"
-  add_foreign_key "jobs", "users", column: "customer_id"
-  add_foreign_key "jobs", "users", column: "worker_id"
+  add_foreign_key "jobs", "users"
   add_foreign_key "reviews", "jobs"
   add_foreign_key "reviews", "users", column: "customer_id"
   add_foreign_key "reviews", "users", column: "worker_id"
-  add_foreign_key "subcategories", "categories"
+  add_foreign_key "under_categories", "categories"
 end
