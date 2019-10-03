@@ -20,7 +20,6 @@ class User < ApplicationRecord
       user.lastname = auth.info.name.partition(" ").last
       user.password = Devise.friendly_token[0, 20]
       user.type = "Customer"
-      binding.pry
       user.skip_confirmation!
     end
   end
@@ -31,7 +30,7 @@ class User < ApplicationRecord
       user.firstname = auth.info.first_name
       user.lastname = auth.info.last_name
       user.password = Devise.friendly_token[0, 20]
-      user.type = "Customer" 
+      user.type = "Customer"
       user.skip_confirmation!
     end
   end

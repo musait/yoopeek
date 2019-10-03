@@ -141,6 +141,12 @@
 											</select>
 										</div>
 									</div>
+									<div class="col-xl-4">
+										<div class="submit-field">
+											<h5><%= raw I18n.t('.job.new.which_date') %></h5>
+											<%= form.date_field :date_delivery,value: Date.current.strftime('%Y-%m-%d') %>
+										</div>
+									</div>
 
 									<div class="col-xl-12">
 										<div class="submit-field">

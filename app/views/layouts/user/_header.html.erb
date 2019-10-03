@@ -22,8 +22,8 @@
 						<li><a href="/theme/user/hireo/pro-missions-available.html">Pro Missions Disponibles</a></li>
 						<li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li>
 						<% else %>
-							<% if user_signed_in? && !current_user.is_worker %>
-							<li><a href="/theme/user/hireo/user-missions-index.html">Missions</a></li>
+							<% if user_signed_in? && current_user.is_customer %>
+							<li><%= link_to "Mission", jobs_path %></li>
 							<li><a href="#">Messagerie</a></li>
 							<li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li>
 							<% end %>
