@@ -1,8 +1,9 @@
 <%= content_for :body_script do %>
-  <link rel="stylesheet" href="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload.css">
-  <link rel="stylesheet" href="/admin/theme/global/vendor/dropify/dropify.css">
-  <link rel="stylesheet" href="/admin/theme/global/vendor/icheck/icheck.css">
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/blueimp-file-upload/jquery.fileupload.css">
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/dropify/dropify.css">
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/icheck/icheck.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/select2/select2.css">
 <%end%>
   <body class="animsition">
     <div class="page">
@@ -31,76 +32,108 @@
 											<a class="close" href="#"></a>
 										</div>
 									<% end %>
-                  <div class="form-group form-material" data-plugin="formMaterial">
+                  <div class="form-group">
 										<h5><%= raw I18n.t('.job.new.title') %></h5>
 										<%= form.text_field :name,class:"form-control" %>
                   </div>
-									<div class="form-group form-material" data-plugin="formMaterial">
-
+									<div class="form-group">
 										<div class="row">
 											<div class="col-xl-6">
 												<h5><%= raw I18n.t('.job.new.category') %></h5>
-												<div class="input-with-icon">
-													<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {class:"form-control",id:"category_id"}) %>
+												<div class="">
+													<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {"data-plugin" => "select2",class:"form-control",id:"category_id"}) %>
 												</div>
 											</div>
 											<div class="col-xl-6">
 												<h5><%= raw I18n.t('.job.new.under_category') %></h5>
-												<div class="input-with-icon">
+												<div class="">
 													<div id="subcategories_select">
-														<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {class:"form-control"}) %>
+														<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {"data-plugin" => "select2", class:"form-control"}) %>
 													</div>
 												</div>
 											</div>
 										</div>
                   </div>
-                  <div class="form-group form-material" data-plugin="formMaterial">
-                    <h5><%= raw I18n.t('.job.new.localisation') %></h5>
-										<%= form.text_field :localisation,class:"form-control",placeholder:"ex: Nice, 75002, Suisse" %>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-xl-6">
+                        <h5><%= raw I18n.t('.job.new.localisation') %></h5>
+                        <%= form.text_field :localisation,class:"form-control",placeholder:"ex: Nice, 75002, Suisse" %>
+                      </div>
+                    </div>
                   </div>
-									<div class="form-group form-material" data-plugin="formMaterial">
+									<div class="form-group">
 										<h5><%= raw I18n.t('.job.new.estimated_budget') %></h5>
 										<div class="row">
 											<div class="col-xl-6">
-												<div class="input-with-icon">
-													<%= form.text_field :min_price,class:"form-control",placeholder:"Min" %>
-													<i class="currency">€</i>
-												</div>
+                        <div class="form-group">
+                          <div class="input-group input-group-icon">
+                            <%= form.text_field :min_price,class:"form-control",placeholder:"Min" %>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="icon fa-euro" aria-hidden="true"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 											</div>
 											<div class="col-xl-6">
-												<div class="input-with-icon">
-													<%= form.text_field :max_price,class:"form-control",placeholder:"Max" %>
-													<i class="currency">€</i>
-												</div>
+                        <div class="form-group">
+                          <div class="input-group input-group-icon">
+                            <%= form.text_field :max_price,class:"form-control",placeholder:"Max" %>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="icon fa-euro" aria-hidden="true"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 											</div>
 										</div>
                   </div>
-									<div class="form-group form-material" data-plugin="formMaterial">
+									<div class="form-group">
 										<h5><%= raw I18n.t('.job.new.additional_services') %></h5>
 										<%= form.text_field :optional_services,multiple: true,class:"form-control",placeholder:"ex: Maquillage" %>
                   </div>
-									<div class="form-group form-material" data-plugin="formMaterial">
+									<div class="form-group">
 										<h5><%= raw I18n.t('.job.new.estimated_time') %></h5>
 										<div class="row">
 											<div class="col-xl-6">
-												<div class="input-with-icon">
-													<%= form.text_field :min_time,class:"form-control",placeholder:"Min" %>
-													<i class="currency">€</i>
-												</div>
+                        <div class="form-group">
+                          <div class="input-group input-group-icon">
+                            <%= form.text_field :min_time,class:"form-control",placeholder:"Min" %>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="icon fa-euro" aria-hidden="true"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 											</div>
 											<div class="col-xl-6">
-												<div class="input-with-icon">
-													<%= form.text_field :max_time,class:"form-control",placeholder:"Max" %>
-													<i class="currency">€</i>
-												</div>
+                        <div class="form-group">
+                          <div class="input-group input-group-icon">
+                            <%= form.text_field :max_time,class:"form-control",placeholder:"Max" %>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="icon fa-euro" aria-hidden="true"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 											</div>
 										</div>
                   </div>
-									<div class="form-group form-material" data-plugin="formMaterial">
-										<h5><%= raw I18n.t('.job.new.desired_format') %></h5>
-										<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choisissez un format de livraison"}, {class:"form-control"}) %>
+									<div class="form-group">
+                    <div class="row">
+                      <div class="col-xl-6">
+                        <h5><%= raw I18n.t('.job.new.desired_format') %></h5>
+                        <%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choisissez un format de livraison"}, {"data-plugin" => "select2",class:"form-control"}) %>
+
+                      </div>
+                    </div>
                   </div>
-									<div class="form-group form-material" data-plugin="formMaterial">
+									<div class="form-group">
 										<h5><%= raw I18n.t('.job.new.description') %></h5>
 										<%= form.text_area :description,col:"30",rows:"5",class:"form-control"%>
                   </div>
@@ -129,21 +162,11 @@
 			   });
 			 });
 			</script>
-      <script src="/admin/theme/global/js/Plugin/dropify.js"></script>
-      <script src="/admin/theme/global/vendor/jquery-ui/jquery-ui.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-tmpl/tmpl.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-load-image/load-image.all.min.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
-      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
-      <script src="/admin/theme/global/vendor/dropify/dropify.min.js"></script>
-      <script src="/admin/theme/base/assets/examples/js/forms/uploads.js"></script>
-      <script src="/admin/theme/global/js/Plugin/icheck.js"></script>
+        <script src="/theme/admin/classic/global/js/Plugin/select2.js"></script>
+      <script src="/theme/admin/classic/global/vendor/jquery-ui/jquery-ui.js"></script>
+      <script src="/theme/admin/classic/global/vendor/blueimp-tmpl/tmpl.js"></script>
+      <script src="/theme/admin/classic/global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
+      <script src="/theme/admin/classic/global/vendor/blueimp-load-image/load-image.all.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"
       </script>
     <%end%>
