@@ -11,7 +11,9 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group form-material" data-plugin="formMaterial">
+    <h5><%= raw I18n.t('.job.new.title') %></h5>
+    <%= form.text_field :name,class:"form-control" %>
   </div>
+    <%= form.submit t("job.edit.job_edition"), class:"btn btn-primary"%>
 <% end %>
