@@ -12,9 +12,6 @@ class Admin::JobsController <  AdminController
   def show
   end
 
-  def show_test
-  end
-
   # GET /jobs/new
   def new
     @job = Job.new
