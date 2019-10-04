@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Format Deliveries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_format_deliveries.each do |admin_format_delivery| %>
+      <tr>
+        <td><%= admin_format_delivery.name %></td>
+        <td><%= link_to 'Show', admin_format_delivery %></td>
+        <td><%= link_to 'Edit', edit_admin_format_delivery_path(admin_format_delivery) %></td>
+        <td><%= link_to 'Destroy', admin_format_delivery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin Format Delivery', new_admin_format_delivery_path %>
