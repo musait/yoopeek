@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :subcategories
       resources :reviews
       resources :quotes
+      resources :format_deliveries
     end
   end
 

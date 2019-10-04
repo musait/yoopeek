@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_130545) do
+ActiveRecord::Schema.define(version: 2019_10_04_094209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(version: 2019_10_03_130545) do
     t.index ["worker_id"], name: "index_companies_on_worker_id"
   end
 
+  create_table "format_deliveries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -73,8 +79,10 @@ ActiveRecord::Schema.define(version: 2019_10_03_130545) do
     t.uuid "subcategory_id"
     t.date "date_delivery"
     t.string "slug", null: false
+    t.uuid "format_delivery_id"
     t.index ["category_id"], name: "index_jobs_on_category_id"
     t.index ["customer_id"], name: "index_jobs_on_customer_id"
+    t.index ["format_delivery_id"], name: "index_jobs_on_format_delivery_id"
     t.index ["slug"], name: "index_jobs_on_slug", unique: true
     t.index ["subcategory_id"], name: "index_jobs_on_subcategory_id"
     t.index ["worker_id"], name: "index_jobs_on_worker_id"
@@ -134,6 +142,7 @@ ActiveRecord::Schema.define(version: 2019_10_03_130545) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "companies", "users", column: "worker_id"
   add_foreign_key "jobs", "categories"
+  add_foreign_key "jobs", "format_deliveries"
   add_foreign_key "jobs", "subcategories"
   add_foreign_key "jobs", "users", column: "customer_id"
   add_foreign_key "jobs", "users", column: "worker_id"
