@@ -22,7 +22,7 @@
     <!-- Page -->
     <div class="page">
       <div class="page-header">
-        <h1 class="page-title">DataTables</h1>
+        <h1 class="page-title">Les missions</h1>
 
       </div>
 
@@ -31,47 +31,44 @@
         <!-- Panel Table Add Row -->
 				<div class="panel">
           <header class="panel-heading">
-            <h3 class="panel-title">Add Row</h3>
+            <h3 class="panel-title">Voici les missions actuellement en ligne : </h3>
           </header>
           <div class="panel-body">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-15">
-                  <button id="addToTable" class="btn btn-outline btn-primary" type="button">
-                    <i class="icon wb-plus" aria-hidden="true"></i> Add row
-                  </button>
                 </div>
               </div>
             </div>
             <table class="table table-bordered table-hover table-striped" cellspacing="0" id="exampleAddRow">
               <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Actions</th>
-									<th>Actions</th>
-									<th>Actions</th>
-									<th>Actions</th>
+                  <th>Nom</th>
+                  <th>Description</th>
+                  <th>Localisation</th>
+                  <th>Catégorie</th>
+									<th>Sous-Catégorie</th>
+									<th>Client</th>
+									<th>Professionnel</th>
 									<th>Actions</th>
                 </tr>
               </thead>
 							<% @jobs.each do |job| %>
               <tbody>
                 <tr class="gradeA">
-									<td><%= link_to job.name, admin_job_path(slug: job.slug) %></td>
+									<td><%= link_to job.name, job_path(slug: job.slug) %></td>
 									<td><%= truncate(job.description, length: 100) %></td>
 									<td><%= job.localisation %></td>
 									<td><%= job.category.name %></td>
 									<td><%= job.subcategory.name %></td>
 									<td><%= job.customer.full_name %></td>
-									<td><%= job.worker.full_name if job.worker %></td>
+									<td><%= job.worker.present? ? job.worker.full_name : "Non attribué" %></td>
                   <td class="actions">
-                    <%= link_to edit_admin_job_path(slug: job.slug),class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row" do %>
+                    <%= link_to edit_admin_job_path(slug: job.slug),method: :get,class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row" do %>
                       <i class="icon wb-edit" aria-hidden="true"></i>
 										<% end %>
-										<%= link_to admin_job_path(slug: job.slug), method: :delete,class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row" do %>
-                      <i class="icon wb-trash" aria-hidden="true"></i>
+										<%= link_to admin_job_path(slug: job.slug), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row" do%>
+											<i class="icon wb-trash" aria-hidden="true"></i>
 										<% end %>
                   </td>
                 </tr>
