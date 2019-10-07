@@ -1,3 +1,6 @@
+<%= content_for :body_style do %>
+  <link rel="stylesheet" href="/admin/theme/global/vendor/select2/select2.css">
+<%end%>
 <div id="wrapper">
 
 <!-- Header Container
@@ -133,14 +136,12 @@
 									<div class="col-xl-4">
 										<div class="submit-field">
 											<h5><%= raw I18n.t('.job.new.desired_format') %></h5>
-											<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choissisez un format de livraison"}, {class:"selectpicker"}) %>
-
-										</div>
-									</div>
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.which_date') %></h5>
-											<%= form.date_field :date_delivery,value: Date.current.strftime('%Y-%m-%d') %>
+											<select class="selectpicker with-border" data-size="7" title="Sélectionnez un format">
+												<option>Clé USB</option>
+												<option>Drive</option>
+												<option>DVD</option>
+												<option>Papier</option>
+											</select>
 										</div>
 									</div>
 

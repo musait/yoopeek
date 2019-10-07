@@ -1,0 +1,136 @@
+
+<%= content_for :body_style do %>
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css">
+	<link rel="stylesheet" href="/theme/admin/classic/base/assets/examples/css/tables/datatable.css">
+	<!-- Fonts -->
+	<link rel="stylesheet" href="/theme/admin/classic/global/fonts/font-awesome/font-awesome.css">
+  <% end %>
+  <body class="animsition">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Page -->
+    <div class="page">
+      <div class="page-header">
+        <h1 class="page-title">Les formats de livraison</h1>
+
+      </div>
+
+      <div class="page-content">
+
+        <!-- Panel Table Add Row -->
+				<div class="panel">
+          <header class="panel-heading">
+            <h3 class="panel-title">Voici les format de livraison actuellement en ligne : </h3>
+          </header>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-15">
+									<%= link_to 'Ajouter un format de livraison', new_admin_format_delivery_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#addFormatDelivery', class: 'btn btn-primary'}  %>
+
+                </div>
+              </div>
+            </div>
+            <table class="table table-bordered table-hover table-striped" cellspacing="0" id="exampleAddRow">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+							<% @format_deliveries.each do |fd| %>
+              <tbody>
+                <tr class="gradeA">
+									<td><%=fd.name%></td>
+                  <td class="actions">
+                    <%= link_to edit_admin_format_delivery_path(id: fd.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#editFormatDelivery',class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
+                      <i class="icon wb-edit" aria-hidden="true"></i>
+										<% end %>
+										<%= link_to admin_format_delivery_path(id: fd.id), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row" do%>
+											<i class="icon wb-trash" aria-hidden="true"></i>
+										<% end %>
+                  </td>
+                </tr>
+              </tbody>
+							<% end %>
+            </table>
+
+						<div class="modal fade" id="addFormatDelivery" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
+							<div class="modal-dialog modal-simple">
+								<%= form_with(model: @format_delivery,class:"modal-content") do |form| %>
+								  <div class="modal-header">
+								    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								      <span aria-hidden="true">×</span>
+								    </button>
+								    <h4 class="modal-title" id="exampleFormModalLabel">Ajout d'un format de livraison</h4>
+								  </div>
+								  <div class="modal-body">
+								    <div class="row">
+								      <div class="col-xl-12 form-group">
+												<h5>Nom du format</h5>
+								        <%= form.text_field :name,class:"form-control" %>
+								      </div>
+								      <div class="col-md-12 float-right">
+												<%= form.submit "Ajouter un format de livraison", class:"btn btn-primary btn-outline"%>
+								      </div>
+								    </div>
+								  </div>
+								<%end%>
+							</div>
+						</div>
+            <div class="modal fade" id="editFormatDelivery" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
+							<div class="modal-dialog modal-simple">
+								<%= form_with(model:@format_delivery ,class:"modal-content")  do |form| %>
+								  <div class="modal-header">
+								    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								      <span aria-hidden="true">×</span>
+								    </button>
+								    <h4 class="modal-title" id="exampleFormModalLabel">Edition d'un format de livraison</h4>
+								  </div>
+								  <div class="modal-body">
+								    <div class="row">
+								      <div class="col-xl-12 form-group">
+												<h5>Nom du format</h5>
+								        <%= form.text_field :name,class:"form-control" %>
+								      </div>
+								      <div class="col-md-12 float-right">
+												<%= form.submit "Modifier ce format de livraison", class:"btn btn-primary btn-outline"%>
+								      </div>
+								    </div>
+								  </div>
+								<%end%>
+							</div>
+						</div>
+
+          </div>
+        </div>
+        <!-- End Panel Table Add Row -->
+
+
+
+      </div>
+    </div>
+<%= content_for :body_script do %>
+	<script src="/theme/admin/classic/global/vendor/datatables.net/jquery.dataTables.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-rowgroup/dataTables.rowGroup.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-scroller/dataTables.scroller.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-responsive/dataTables.responsive.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-responsive-bs4/responsive.bootstrap4.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-buttons/buttons.html5.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-buttons/buttons.flash.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-buttons/buttons.colVis.js"></script>
+	<script src="/theme/admin/classic/global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.js"></script>
+	<script src="/theme/admin/classic/global/vendor/bootbox/bootbox.js"></script>
+	<script src="/theme/admin/classic/global/js/Plugin/datatables.js"></script>
+	<script src="/theme/admin/classic/base/assets/examples/js/tables/datatable.js"></script>
+<% end %>

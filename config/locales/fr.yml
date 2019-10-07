@@ -44,6 +44,7 @@ fr:
       under_category: "Sous catégorie"
       delivery_format: "Format de livraison"
       estimated_time: "Temps estimé"
+      localisation: "Localisation"
       which_date: "A quelle date ?"
       invoice_print: "Imprimer la facture"
       rate_pro_project: Noter %{pro} pour la mission %{job}
@@ -61,6 +62,7 @@ fr:
       additional_services: "Est-ce que vous avez besoin de services supplémentaires ? <span>(optionnel)</span> "
       estimated_time: "Temps estimé"
       desired_format: "Sélectionnez le type de format que vous souhaitez"
+      which_date: "A quelle date souhaitez vous réaliser cette mission ?"
       description: "Description de la mission"
       job_creation: "Créez votre mission"
     edit:

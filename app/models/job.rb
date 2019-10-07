@@ -3,6 +3,7 @@ class Job < ApplicationRecord
   belongs_to :subcategory
   belongs_to :worker, optional: true
   belongs_to :customer
+  belongs_to :format_delivery
   has_many :reviews
   after_validation :set_slug, only: [:create, :update]
   def price_range

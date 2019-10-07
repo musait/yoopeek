@@ -22,6 +22,13 @@ Rails.application.routes.draw do
 
     namespace :admin do
       get "index" => "home#index"
+      resources :jobs, param: :slug
+      resources :categories
+      resources :subcategories
+      resources :reviews
+      resources :quotes
+      resources :format_deliveries
+      resources :users
     end
   end
 

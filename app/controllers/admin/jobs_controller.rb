@@ -1,12 +1,10 @@
-class JobsController < ApplicationController
+class Admin::JobsController <  AdminController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs
   # GET /jobs.json
   def index
-    if current_user.is_customer
-      @jobs = current_user.jobs
-    end
+    @jobs = Job.all
   end
 
   # GET /jobs/1
@@ -47,7 +45,7 @@ class JobsController < ApplicationController
   def update
     respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
+        format.html { redirect_to admin_jobs_path, notice: 'Job was successfully updated.' }
         format.json { render :show, status: :ok, location: @job }
       else
         format.html { render :edit }
@@ -61,7 +59,7 @@ class JobsController < ApplicationController
   def destroy
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
+      format.html { redirect_to admin_jobs_url, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,7 +67,7 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-        @job = Job.find_by(slug: params[:slug])
+      @job = Job.find_by(slug: params[:slug])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

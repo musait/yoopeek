@@ -1,0 +1,51 @@
+<%= content_for :body_style do %>
+  <link rel="stylesheet" href="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload.css">
+  <link rel="stylesheet" href="/admin/theme/global/vendor/dropify/dropify.css">
+  <link rel="stylesheet" href="/admin/theme/global/vendor/icheck/icheck.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/admin/theme/global/vendor/select2/select2.css">
+<%end%>
+  <body class="animsition">
+    <div class="page">
+      <div class="page-header">
+          <div class="">
+            <h1 class="page-title"><%= raw I18n.t('.job.edit.job_edition') %></h1>
+          </div>
+      </div>
+
+      <div class="page-content container-fluid">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <!-- Panel Static Labels -->
+            <div class="panel">
+
+              <div class="panel-body container-fluid">
+                <%= render 'form', category: @category %>
+              </div>
+            </div>
+            <!-- End Panel Static Labels -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page -->
+
+    <%= content_for :body_script do %>
+      <script src="/admin/theme/global/js/Plugin/dropify.js"></script>
+      <script src="/admin/theme/global/vendor/jquery-ui/jquery-ui.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-tmpl/tmpl.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-load-image/load-image.all.min.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
+      <script src="/admin/theme/global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
+      <script src="/admin/theme/global/vendor/dropify/dropify.min.js"></script>
+      <script src="/admin/theme/base/assets/examples/js/forms/uploads.js"></script>
+      <script src="/admin/theme/global/js/Plugin/icheck.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"
+      </script>
+    <%end%>
