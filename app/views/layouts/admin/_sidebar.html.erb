@@ -9,7 +9,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les Missions</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill badge-success"> <%= @jobs.count %></span>
+                      <span class="badge badge-pill"> <%= @jobs.count %></span>
                   </div>
             <% end %>
           </li>
@@ -18,7 +18,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les Catégories</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill badge-success"> <%= @categories.count %></span>
+                      <span class="badge badge-pill"> <%= @categories.count %></span>
                   </div>
             <% end %>
           </li>
@@ -27,7 +27,16 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les Utilisateurs</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill badge-success"> <%= @users.count %></span>
+                      <span class="badge badge-pill "> <%= @users.count %></span>
+                  </div>
+            <% end %>
+          </li>
+          <li class="site-menu-item has-sub">
+            <%= link_to admin_format_deliveries_path do %>
+              <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+              <span class="site-menu-title">Les Formats de Livraisons</span>
+                  <div class="site-menu-badge">
+                      <span class="badge badge-pill"> <%= FormatDelivery.count %></span>
                   </div>
             <% end %>
           </li>
