@@ -8,6 +8,10 @@
 if Category.all.empty?
   Category.create([{ name: 'Photographie' }, { name: 'Maquillage' }, { name: 'Vidéographie' }])
 end
+if Profession.all.empty?
+  Profession.create([{ name: 'Photographe' }, { name: 'Vidéographe' }])
+end
+
 if Subcategory.all.empty?
   Subcategory.create([{ name: 'Portrait', category_id: Category.find_by(name: 'Photographie') },
     { name: 'Évènement', category_id: Category.find_by(name: 'Photographie').id },
@@ -25,9 +29,9 @@ if User.all.empty?
     { email: 'a@a.com', firstname: 'John', lastname: 'Doe', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
     { email: 'c@c.com', firstname: 'Friedrich', lastname: 'Nikla', type: 'Customer', nationality: 'German', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
     { email: 'd@d.com', firstname: 'Patrick', lastname: 'Onatenpa', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker', price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'e@e.com', firstname: 'Fabrice', lastname: 'Lagarde', type: 'Worker', price_rate: '60', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'f@f.com', firstname: 'Will', lastname: 'Smoth', type: 'Worker', price_rate: '30', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker',profession_id: Profession.first.id,price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'e@e.com', firstname: 'Fabrice', lastname: 'Lagarde', type: 'Worker',profession_id: Profession.second.id, price_rate: '60', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    { email: 'f@f.com', firstname: 'Will', lastname: 'Smoth', type: 'Worker',profession_id: Profession.first.id,price_rate: '30', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
     ])
 end
 if FormatDelivery.all.empty?

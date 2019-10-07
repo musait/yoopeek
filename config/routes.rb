@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
       resources :quotes
       resources :format_deliveries
       resources :users
+      resources :professions
     end
   end
 
