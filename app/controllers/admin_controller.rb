@@ -16,5 +16,6 @@ class AdminController < ApplicationController
   def set_database
     @jobs = Job.all
     @categories = Category.all
+    @users = User.all
   end
 end
