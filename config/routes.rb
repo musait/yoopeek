@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resources :reviews
       resources :quotes
       resources :format_deliveries
+      resources :users
     end
   end
 
