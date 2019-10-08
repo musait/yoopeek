@@ -4,9 +4,9 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    if current_user.is_customer
-      @jobs = current_user.jobs
-    end
+
+      @jobs = Job.all
+
   end
 
   # GET /jobs/1
@@ -30,7 +30,6 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     @job.optional_services = params[:job][:optional_services][0].split(' ')
-    binding.pry
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
@@ -74,6 +73,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:name, :description,:localisation,:min_price,:max_price,:min_time,:user_id,:category_id,:customer_id,:subcategory_id,:max_time,:optional_services => [])
+      params.require(:job).permit(:name, :description,:localisation,:min_price,:max_price,:min_time,:user_id,:category_id,:customer_id,:format_delivery_id, :date_delivery,:subcategory_id,:max_time,:optional_services => [])
     end
 end

@@ -32,9 +32,12 @@
 					<p><%= @job.description %></p>
 				</div>
 				<div class="single-page-section">
+					<% if @job.worker.present? && current_user.is_customer%>
 					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.pro_choosen') %></h3>
+					<% end %>
+					<% if current_user.is_worker %>
 					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.the_client') %></h3>
-
+					<% end %>
 					<!-- Listings Container -->
 					<div class="listings-container grid-layout" style="width: 100%">
 
@@ -42,73 +45,77 @@
 						<div class="freelancers-container freelancers-list-layout margin-top-35">
 
 							<!--Freelancer -->
-							<div class="freelancer">
+						  <%if @job.worker.present? && current_user.is_customer%>
+								<div class="freelancer">
 
-								<!-- Overview -->
-								<div class="freelancer-overview">
-									<div class="freelancer-overview-inner">
+									<!-- Overview -->
+									<div class="freelancer-overview">
+										<div class="freelancer-overview-inner">
 
-										<!-- Bookmark Icon -->
-										<span class="bookmark-icon"></span>
+											<!-- Bookmark Icon -->
+											<span class="bookmark-icon"></span>
 
-										<!-- Avatar -->
-										<div class="freelancer-avatar">
-											<div class="verified-badge"></div>
-											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-										</div>
+											<!-- Avatar -->
+											<div class="freelancer-avatar">
+												<div class="verified-badge"></div>
+												<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+											</div>
 
-										<!-- Name -->
-										<div class="freelancer-name">
-											<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-											<span>Photographe</span>
-											<!-- Rating -->
-											<div class="freelancer-rating">
-												<div class="star-rating" data-rating="4.9"></div>
+											<!-- Name -->
+											<div class="freelancer-name">
+												<h4><%= @job.woker.full_name %></h4>
+												<span>Photographe</span>
+												<!-- Rating -->
+												<div class="freelancer-rating">
+													<div class="star-rating" data-rating="3"></div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 
-								<!-- Details -->
-								<div class="freelancer-details">
-									<div class="freelancer-details-list">
-										<ul>
-											<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-											<li>Taux horaire <strong>100€ / h</strong></li>
-										</ul>
+									<!-- Details -->
+									<div class="freelancer-details">
+										<div class="freelancer-details-list">
+											<ul>
+												<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
+												<li>Taux horaire <strong>100€ / h</strong></li>
+											</ul>
+										</div>
+										<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
 									</div>
-									<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
 								</div>
-							</div>
+							<% end %>
 							<!-- Freelancer / End -->
 							<!--Freelancer -->
-							<div class="freelancer">
+							<% if current_user.is_worker %>
+									<div class="freelancer">
 
-								<!-- Overview -->
-								<div class="freelancer-overview">
-									<div class="freelancer-overview-inner">
+										<!-- Overview -->
+										<div class="freelancer-overview">
+											<div class="freelancer-overview-inner">
 
-										<!-- Bookmark Icon -->
-										<span class="bookmark-icon"></span>
+												<!-- Bookmark Icon -->
+												<span class="bookmark-icon"></span>
 
-										<!-- Avatar -->
-										<div class="freelancer-avatar">
-											<div class="verified-badge"></div>
-											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+												<!-- Avatar -->
+												<div class="freelancer-avatar">
+													<div class="verified-badge"></div>
+													<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+												</div>
+
+												<!-- Name -->
+												<div class="freelancer-name">
+													<h4><%= @job.customer.full_name %></h4>
+												</div>
+											</div>
 										</div>
 
-										<!-- Name -->
-										<div class="freelancer-name">
-											<h4><a href="#">Bob John <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+										<!-- Details -->
+										<div class="freelancer-details" style="display: flex; align-items: center; justify-content: flex-end;">
+											<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Contacter <i class="icon-material-outline-arrow-right-alt"></i></a>
 										</div>
 									</div>
-								</div>
-
-								<!-- Details -->
-								<div class="freelancer-details" style="display: flex; align-items: center; justify-content: flex-end;">
-									<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Contacter <i class="icon-material-outline-arrow-right-alt"></i></a>
-								</div>
-							</div>
+							<% end %>
 							<!-- Freelancer / End -->
 
 						</div>
