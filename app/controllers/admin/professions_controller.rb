@@ -29,7 +29,6 @@ class Admin::ProfessionsController < AdminController
   # POST /professions
   # POST /professions.json
   def create
-    binding.pry
     @profession = Profession.new(profession_params)
 
     respond_to do |format|

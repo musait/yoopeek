@@ -28,7 +28,6 @@ class Admin::JobsController <  AdminController
   def create
     @job = Job.new(job_params)
     @job.optional_services = params[:job][:optional_services][0].split(' ')
-    binding.pry
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }

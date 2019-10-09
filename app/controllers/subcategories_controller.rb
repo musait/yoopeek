@@ -40,7 +40,6 @@ class SubcategoriesController < ApplicationController
   # PATCH/PUT /subcategories/1
   # PATCH/PUT /subcategories/1.json
   def update
-    binding.pry
     respond_to do |format|
       if @subcategory.update(subcategory_params)
         format.html { redirect_to @subcategory, notice: 'Under category was successfully updated.' }
