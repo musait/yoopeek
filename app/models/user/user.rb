@@ -7,7 +7,9 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   self.inheritance_column = :type
-
+  has_many :authored_rooms, class_name: 'Rooms', foreign_key: 'author_id'
+  has_many :received_rooms, class_name: 'Rooms', foreign_key: 'received_id'
+  has_many :room_messages, dependent: :destroy
 
   def self.types
     %w(Worker Customer)
