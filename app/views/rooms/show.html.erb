@@ -31,7 +31,7 @@
                 <!-- Message Content Inner -->
                 <div class="message-content-inner">
 
-                    <% @room_messages.each do |room_message| %>
+                  <% @room_messages.each do |room_message| %>
 
                   <!-- Time Sign -->
                   <div class="message-time-sign">
@@ -98,11 +98,11 @@
                 <!-- Reply Area -->
                 <div class="message-reply">
                   <%= form_for @room_message, remote: true do |form| %>
-                    <%= form.text_area :message, id:"message_area", rows:"1", placeholder:"Your Message" %>
-                    <%= form.submit "Envoyer", class: 'button ripple-effect', id:"message_submit" %>
-                    <%= form.hidden_field :room_id %>
-                    <%= form.hidden_field :author_id, :value => @room.author.id %>
-                    <%= form.hidden_field :receiver_id, :value => @room.receiver.id %>
+                  <%= form.text_area :message, id:"message_area", rows:"1", placeholder:"Your Message" %>
+                  <%= form.submit "Envoyer", class: 'button ripple-effect', id:"message_submit" %>
+                  <%= form.hidden_field :room_id %>
+                  <%= form.hidden_field :author_id, :value => @room.author.id %>
+                  <%= form.hidden_field :receiver_id, :value => @room.receiver.id %>
                   <% end %>
 
                 </div>
@@ -115,14 +115,14 @@
           <div class="col-sm-3" style="padding: 0px; border-left: 1px solid #eaeaea">
             <div class="job-overview">
               <div class="messages-headline">
-                <h4>Dev Site Web</h4>
+                <h4><%= @room.job.name %></h4>
               </div>
               <div class="job-overview-inner" style="background-color: #ffff">
                 <ul>
                   <li>
                     <i class="icon-material-outline-local-atm"></i>
                     <span>Votre budget</span>
-                    <h5>0€  - 1000€ </h5>
+                    <h5><%= @room.job.price_range %></h5>
                   </li>
                   <li>
                     <i class="icon-material-outline-location-on"></i>
@@ -135,27 +135,27 @@
                   <li>
                     <i class="icon-material-outline-business-center"></i>
                     <span>Catégorie</span>
-                    <h5>Mariage</h5>
+                    <h5><%= @room.job.category.name %></h5>
                   </li>
                   <li>
                     <i class="icon-material-outline-local-atm"></i>
                     <span>Sous Catégorie</span>
-                    <h5>Mariage hiver</h5>
+                    <h5><%= @room.job.subcategory.name %></h5>
                   </li>
                   <li>
                     <i class="icon-material-outline-location-on"></i>
                     <span>Format de livraison</span>
-                    <h5>Clé USB</h5>
+                    <h5><%= @room.job.format_delivery.name %></h5>
                   </li>
                   <li>
                     <i class="icon-material-outline-business-center"></i>
                     <span>Temps estimé</span>
-                    <h5>1h à 2h</h5>
+                    <h5><%= @room.job.time_range %></h5>
                   </li>
                   <li>
                     <i class="icon-material-outline-local-atm"></i>
                     <span>A quelle date ?</span>
-                    <h5>Lundi 30 Octobre 2019</h5>
+                    <h5><%= @room.job.date_delivery %></h5>
                   </li>
 
                 </ul>
