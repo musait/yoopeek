@@ -341,7 +341,13 @@
 			<div class="col-xl-4 col-lg-4">
 				<div class="sidebar-container">
 					<!-- Button -->
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= raw I18n.t('.job.show.send_mp_to_client') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+					<%= form_for Room.new do |form| %>
+					  <%= form.hidden_field :author_id, value: @job.customer.id %>
+					  <%= form.hidden_field :receiver_id, value: current_user.id %>
+					  <%= form.hidden_field :job_id, value: @job.id %>
+
+					  <%= form.submit t('.job.show.send_mp_to_client'), class:"apply-now-button" %>
+					<% end %>
 					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= raw I18n.t('.job.show.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= raw I18n.t('.job.show.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 					<!-- Sidebar Widget -->
