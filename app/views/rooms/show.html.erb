@@ -45,12 +45,6 @@
                     </div>
                     <div class="clearfix"></div>
                   </div>
-
-
-
-
-
-
                   <% end %>
                 </div>
                 <!-- Message Content Inner / End -->
@@ -108,7 +102,7 @@
                     <%= form.submit "Envoyer", class: 'button ripple-effect', id:"message_submit" %>
                     <%= form.hidden_field :room_id %>
                     <%= form.hidden_field :author_id, :value => @room.author.id %>
-                    <%= form.hidden_field :receveir_id, :value => @room.receiver.id %>
+                    <%= form.hidden_field :receiver_id, :value => @room.receiver.id %>
                   <% end %>
 
                 </div>

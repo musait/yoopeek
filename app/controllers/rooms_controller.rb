@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
 
   def show
     @room_message = RoomMessage.new room: @room
-    @room_messages = @room.room_messages.includes(:user)
+    @room_messages = @room.room_messages
   end
 
   protected
@@ -48,6 +48,6 @@ class RoomsController < ApplicationController
   end
 
   def permitted_parameters
-    params.require(:room).permit(:name)
+    params.require(:room).permit(:name,:author_id, :receiver_id, :job_id)
   end
 end

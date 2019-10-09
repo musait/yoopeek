@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_131350) do
+ActiveRecord::Schema.define(version: 2019_10_09_074027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -114,12 +114,14 @@ ActiveRecord::Schema.define(version: 2019_10_08_131350) do
 
   create_table "room_messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "room_id"
-    t.uuid "user_id"
+    t.uuid "author_id"
+    t.uuid "receiver_id"
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_room_messages_on_author_id"
+    t.index ["receiver_id"], name: "index_room_messages_on_receiver_id"
     t.index ["room_id"], name: "index_room_messages_on_room_id"
-    t.index ["user_id"], name: "index_room_messages_on_user_id"
   end
 
   create_table "rooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -128,8 +130,10 @@ ActiveRecord::Schema.define(version: 2019_10_08_131350) do
     t.uuid "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "job_id"
     t.index ["author_id", "receiver_id"], name: "index_rooms_on_author_id_and_receiver_id", unique: true
     t.index ["author_id"], name: "index_rooms_on_author_id"
+    t.index ["job_id"], name: "index_rooms_on_job_id"
     t.index ["name"], name: "index_rooms_on_name", unique: true
     t.index ["receiver_id"], name: "index_rooms_on_receiver_id"
   end
@@ -180,7 +184,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_131350) do
   add_foreign_key "reviews", "users", column: "customer_id"
   add_foreign_key "reviews", "users", column: "worker_id"
   add_foreign_key "room_messages", "rooms"
-  add_foreign_key "room_messages", "users"
+  add_foreign_key "rooms", "jobs"
   add_foreign_key "subcategories", "categories"
   add_foreign_key "users", "professions"
 end
