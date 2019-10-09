@@ -28,7 +28,7 @@
   </head>
 
   <body>
-    <div id="wrapper">
+
       <%= render "layouts/user/header"%>
       <% unless flash.empty? %>
       	<script type="text/javascript">
@@ -39,7 +39,7 @@
       	</script>
       <% end %>
       <%= yield %>
-    </div>
+    
     <%= render "layouts/user/footer"%>
 
     <script src="/theme/user/hireo/js/jquery-3.3.1.min.js"></script>
