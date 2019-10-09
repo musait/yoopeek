@@ -1,0 +1,27 @@
+<div class="col-xl-8 offset-xl-2" id="form_element">
+  <div class="submit-field">
+    <h5><%= raw I18n.t('.quote.new.item_detail') %></h5>
+    <%= f.text_area :content,class:"with-border"%>
+  </div>
+  <div class="row">
+    <div class="col-xl-2 submit-field">
+      <h5><%= raw I18n.t('.quote.new.unit_price') %></h5>
+      <div class="input-with-icon">
+        <%= f.text_field :price,placeholder:"0",class:"with-border" %>
+        <i class="currency">€</i>
+      </div>
+    </div>
+
+    <div class="col-xl-2 submit-field">
+      <h5><%= raw I18n.t('.quote.new.quantity') %></h5>
+      <%= f.text_field :quantity,placeholder:"1",class:"with-border" %>
+    </div>
+    <div class="col-xl-2 submit-field">
+      <h5><%= raw I18n.t('.quote.new.total') %></h5>
+      <div class="input-with-icon">
+        <%= f.text_field :total,placeholder:"10",class:"with-border" %>
+        <i class="currency">€</i>
+      </div>
+    </div>
+  </div>
+</div>

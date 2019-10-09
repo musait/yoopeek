@@ -31,49 +31,32 @@
 							</div>
 
 							<div class="content with-padding">
-								<div class="row">
-
-									<div class="col-xl-8 offset-xl-2">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.quote.new.title') %></h5>
-											<input type="text" class="with-border">
+								<%= form_with(model: @quote, local: true) do |form| %>
+									<% if @quote.errors.any? %>
+										<div id="error_explanation">
+											<h2><%= pluralize(@quote.errors.count, "error") %> prohibited this qquote from being saved:</h2>
+											<ul>
+												<% @quote.errors.full_messages.each do |message| %>
+													<li><%= message %></li>
+												<% end %>
+											</ul>
 										</div>
+									<% end %>
+									<div class="row">
+										<div class="col-xl-8 offset-xl-2">
+											<div class="submit-field">
+												<h5><%= raw I18n.t('.quote.new.title') %></h5>
+												<%= form.text_field :name,class:"with-border" %>
+											</div>
+										</div>
+										<%= form.fields_for :quote_element do |f| %>
+											<%= render 'quote_element', f: f  %>
+											<%= link_to_add_fields t('.quote.new.add_item'), f, :quote_element  %>
+										<% end %>
 									</div>
-									<div class="col-xl-8 offset-xl-2" id="form_element">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.quote.new.item_detail') %></h5>
-											<textarea type="text" class="with-border"></textarea>
-										</div>
-										<div class="row">
-											<div class="col-xl-2 submit-field">
-												<h5><%= raw I18n.t('.quote.new.unit_price') %></h5>
-												<div class="input-with-icon">
-													<input class="with-border" type="text" placeholder="0">
-													<i class="currency">€</i>
-												</div>
-											</div>
-
-											<div class="col-xl-2 submit-field">
-												<h5><%= raw I18n.t('.quote.new.quantity') %></h5>
-												<input type="text" class="with-border" placeholder="1">
-											</div>
-											<div class="col-xl-2 submit-field">
-												<h5><%= raw I18n.t('.quote.new.total') %></h5>
-												<div class="input-with-icon">
-													<input class="with-border" type="text" placeholder="10">
-													<i class="currency">€</i>
-												</div>
-											</div>
-										</div>
-									</div>
-
-
-
-
-								</div>
+								<%end%>
 								<div class="col-xl-8 offset-2">
 
-									<button onclick="duplicate()"><i class="icon-material-outline-add"></i><%= raw I18n.t('.quote.new.add_item') %></button>
 
 								</div>
 							</div>
@@ -161,7 +144,20 @@
 				<!-- Dashboard Container / End -->
 
 			</div>
-
+			<script type="text/javascript">
+				$("[data-form-prepend]").click(function(e) {
+				  var obj = $($(this).attr("data-form-prepend"));
+				  obj.find("input, select, textarea").each(function() {
+				    $(this).attr("name", function() {
+				      return $(this)
+				        .attr("name")
+				        .replace("new_record", new Date().getTime());
+				    });
+				  });
+				  obj.insertBefore(this);
+				  return false;
+				});
+			</script>
 			<script type="text/javascript">
 				var i = 0;
 				var original = document.getElementById('form_element');

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :quote_elements
   resources :room_messages
   resources :rooms
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}

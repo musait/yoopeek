@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_074027) do
+ActiveRecord::Schema.define(version: 2019_10_09_113057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -94,9 +94,23 @@ ActiveRecord::Schema.define(version: 2019_10_09_074027) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "quote_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "content"
+    t.string "quantity"
+    t.string "price"
+    t.string "total"
+    t.uuid "quote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["quote_id"], name: "index_quote_elements_on_quote_id"
+  end
+
+  create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "quote_element_id"
+    t.index ["quote_element_id"], name: "index_quotes_on_quote_element_id"
   end
 
   create_table "reviews", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -180,6 +194,8 @@ ActiveRecord::Schema.define(version: 2019_10_09_074027) do
   add_foreign_key "jobs", "subcategories"
   add_foreign_key "jobs", "users", column: "customer_id"
   add_foreign_key "jobs", "users", column: "worker_id"
+  add_foreign_key "quote_elements", "quotes"
+  add_foreign_key "quotes", "quote_elements"
   add_foreign_key "reviews", "jobs"
   add_foreign_key "reviews", "users", column: "customer_id"
   add_foreign_key "reviews", "users", column: "worker_id"

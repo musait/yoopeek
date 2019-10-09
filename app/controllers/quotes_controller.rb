@@ -72,6 +72,6 @@ class QuotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quote_params
-      params.fetch(:quote, {})
+      params.require(:quote).permit(:name,quote_elements_attributes: [ :id, :content,:quantity,:total, :price, :_destroy ])
     end
 end
