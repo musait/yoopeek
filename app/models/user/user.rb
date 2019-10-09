@@ -5,12 +5,15 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable, :confirmable
 
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
-
+  after_create:add_type
   self.inheritance_column = :type
   has_many :authored_rooms, class_name: 'Rooms', foreign_key: 'author_id'
   has_many :received_rooms, class_name: 'Rooms', foreign_key: 'received_id'
   has_many :room_messages, dependent: :destroy
 
+  def add_type
+    self.type == "Customer"
+  end
   def self.types
     %w(Worker Customer)
   end
