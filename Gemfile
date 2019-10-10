@@ -76,3 +76,5 @@ gem 'devise-i18n'
 gem "aws-sdk-s3", require: false
 gem 'redis'
 gem 'sendgrid-ruby'
+gem "switch_user"
+gem 'unread'
