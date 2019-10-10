@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_113057) do
+ActiveRecord::Schema.define(version: 2019_10_10_151354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_113057) do
     t.integer "max_time"
     t.uuid "customer_id"
     t.uuid "worker_id"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "category_id"
@@ -111,6 +112,17 @@ ActiveRecord::Schema.define(version: 2019_10_09_113057) do
     t.datetime "updated_at", null: false
     t.uuid "quote_element_id"
     t.index ["quote_element_id"], name: "index_quotes_on_quote_element_id"
+  end
+
+  create_table "read_marks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "readable_type", null: false
+    t.uuid "readable_id"
+    t.string "reader_type", null: false
+    t.uuid "reader_id"
+    t.datetime "timestamp"
+    t.index ["readable_type", "readable_id"], name: "index_read_marks_on_readable_type_and_readable_id"
+    t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
+    t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id"
   end
 
   create_table "reviews", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
