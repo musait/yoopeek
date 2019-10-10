@@ -11,6 +11,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.integer :max_time
       t.belongs_to :customer, foreign_key: {to_table: :users}, type: :uuid
       t.belongs_to :worker, foreign_key: {to_table: :users}, type: :uuid
+      t.column :status, :integer, default: 0
       t.timestamps
     end
   end
