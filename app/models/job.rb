@@ -7,6 +7,7 @@ class Job < ApplicationRecord
   has_many :rooms
   has_many :reviews
   after_validation :set_slug, only: [:create, :update]
+  enum status: [:created, :in_progress, :completed, :cancelled]
   def price_range
     "#{self.min_price} - #{self.max_price}" # or as an array, or however you want to return it
   end
