@@ -21,7 +21,7 @@
 
 						<li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li>
 						<li><%= link_to "Mission disponibles", jobs_path(locale: :fr) %></li>
-						<li><%= link_to "Messagerie", rooms_path(locale: :fr) %></li>
+						<li><%= link_to "Messagerie", rooms_path(locale: :fr), method: :get %></li>
 						<li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li>
 						<% else %>
 							<% if user_signed_in? && current_user.is_customer %>
