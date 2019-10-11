@@ -342,11 +342,17 @@
 				<div class="sidebar-container">
 
 					<!-- Button -->
-					<%= form_for Room.new do |form| %>
-					  <%= form.hidden_field :author_id, value: @job.customer_id %>
-					  <%= form.hidden_field :receiver_id, value: current_user.id %>
-					  <%= form.hidden_field :job_id, value: @job.id %>
-					  <%= form.submit t('.send_mp_to_client'), class:"apply-now-button" %>
+					<% if current_user.have_one_room_with_user(@job.customer) %>
+						<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"apply-now-button" do %>
+							<%= raw I18n.t('.jobs.show.your_conversation') %> <i class="icon-material-outline-arrow-right-alt"></i>
+						<% end %>
+					<% else %>
+						<%= form_for Room.new do |form| %>
+						  <%= form.hidden_field :author_id, value: @job.customer_id %>
+						  <%= form.hidden_field :receiver_id, value: current_user.id %>
+						  <%= form.hidden_field :job_id, value: @job.id %>
+						  <%= form.submit t('.send_mp_to_client'), class:"apply-now-button" %>
+						<% end %>
 					<% end %>
 					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= raw I18n.t('.jobs.show.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= raw I18n.t('.jobs.show.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
@@ -407,7 +413,7 @@
 
 				</div>
 				<div style="text-align: center">
-				<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= raw I18n.t('.jobs.show.invoice_print') %></a>
+					<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= raw I18n.t('.jobs.show.invoice_print') %></a>
 				</div>
 			</div>
 
