@@ -49,9 +49,9 @@
 												<%= form.text_field :name,class:"with-border" %>
 											</div>
 										</div>
-										<%= form.fields_for :quote_element do |f| %>
+										<%= form.fields_for :quote_elements, @quote.quote_elements.build do |f| %>
 											<%= render 'quote_element', f: f  %>
-											<%= link_to_add_fields t('.quote.new.add_item'), f, :quote_element  %>
+											<%= link_to_add_fields t('.quote.new.add_item'), f, :quote_elements  %>
 										<% end %>
 									</div>
 								<%end%>
