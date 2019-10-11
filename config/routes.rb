@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
   devise_for :users, skip: :omniauth_callbacks
   root 'home#index'
+  mount ActionCable.server, at: '/cable'
 
   resources :quotes
   resources :jobs, param: :slug
