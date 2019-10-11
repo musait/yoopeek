@@ -4,4 +4,8 @@ class Room < ApplicationRecord
   belongs_to :receiver, class_name: 'User'
   belongs_to :job
 
+  scope :with_receiver, -> (user) { where(receiver_id: user.id)}
+  scope :with_author, -> (user) { where(author_id: user.id)}
+
+  
 end
