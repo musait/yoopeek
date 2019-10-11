@@ -24,34 +24,32 @@
 					</div>
 
 					<div class="listings-container margin-top-35">
-
 						<!-- Job Listing -->
             <% @jobs.each do |job| %>
               <%= link_to job_path(slug:job.slug), class:"job-listing" do%>
-              <div class="job-listing-details">
+	              <div class="job-listing-details">
 
-                <!-- Details -->
-                <div class="job-listing-description">
-                  <!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
-                  <h3 class="job-listing-title"> <%= job.name %></h3>
-                  <p class="job-listing-text"> <%= job.description %></p>
-                </div>
-                <div class="job-listing-footer">
-  								<ul>
-  									<li><i class="icon-material-outline-location-on"></i> <mark class="color" style="background-color: grey">Créée</mark></li>
-  									<li><i class="icon-material-outline-account-balance-wallet"></i> <%= job.price_range %></li>
-  									<li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
-  									<li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
-  									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
-  									<li><i class="icon-material-outline-location-on"></i> <%= job.time_range %></li>
-  									<li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
-  									<li><i class="icon-material-outline-access-time"></i> <%= time_ago_in_words(job.created_at).capitalize %></li>
-  								</ul>
+	                <!-- Details -->
+	                <div class="job-listing-description">
+	                  <!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
+	                  <h3 class="job-listing-title"> <%= job.name %></h3>
+	                  <p class="job-listing-text"> <%= job.description %></p>
 
-  							</div>
-                
-              </div>
+	                </div>
+								</div>
+	                <div class="job-listing-footer">
+	  								<ul>
+	  									<li><i class="icon-material-outline-location-on"></i> <mark class="color" style="background-color: grey">Créée</mark></li>
+	  									<li><i class="icon-material-outline-account-balance-wallet"></i> <%= job.price_range %></li>
+	  									<li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
+	  									<li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
+	  									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
+	  									<li><i class="icon-material-outline-location-on"></i> <%= job.time_range %></li>
+	  									<li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
+	  									<li><i class="icon-material-outline-access-time"></i> <%= time_ago_in_words(job.created_at).capitalize %></li>
+	  								</ul>
 
+	  							</div>
               <% end %>
             <%end%>
 
