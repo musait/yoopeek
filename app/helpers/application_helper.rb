@@ -4,6 +4,9 @@ module ApplicationHelper
     options[:locale] ||= I18n.locale
     super(number, options)
   end
+  def have_one_room_with_user(user)
+    authored_rooms.with_receiver(user).first ||received_rooms_with_author(user).first
+  end
   def link_to_add_fields(name = nil, f = nil, association = nil, options = nil, html_options = nil, &block)
   # If a block is provided there is no name attribute and the arguments are
   # shifted with one position to the left. This re-assigns those values.
@@ -21,7 +24,7 @@ module ApplicationHelper
   if options.include? :partial
     partial = options[:partial]
   else
-    partial = association.to_s.singularize 
+    partial = association.to_s.singularize
   end
 
   # Render the form fields from a file with the association name provided
