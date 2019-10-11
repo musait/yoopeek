@@ -28,15 +28,15 @@
 
 				<div class="single-page-section">
 
-					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.job_description') %></h3>
+					<h3 class="margin-bottom-25"><%= raw I18n.t('.jobs.show.job_description') %></h3>
 					<p><%= @job.description %></p>
 				</div>
 				<div class="single-page-section">
 					<% if @job.worker.present? && current_user.is_customer%>
-					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.pro_choosen') %></h3>
+					<h3 class="margin-bottom-25"><%= raw I18n.t('.jobs.show.pro_choosen') %></h3>
 					<% end %>
 					<% if current_user.is_worker %>
-					<h3 class="margin-bottom-25"><%= raw I18n.t('.job.show.the_client') %></h3>
+					<h3 class="margin-bottom-25"><%= raw I18n.t('.jobs.show.the_client') %></h3>
 					<% end %>
 					<!-- Listings Container -->
 					<div class="listings-container grid-layout" style="width: 100%">
@@ -125,7 +125,7 @@
 
 						<!-- Headline -->
 						<div class="headline">
-							<h3><i class="icon-material-outline-face"></i> <%= raw I18n.t('.job.show.your_review') %></h3>
+							<h3><i class="icon-material-outline-face"></i> <%= raw I18n.t('.jobs.show.your_review') %></h3>
 						</div>
 
 						<div class="content">
@@ -136,7 +136,7 @@
 										<div class="item-content">
 											<h4><%= @job.name %></h4>
 											<% if @job.reviews.empty? %>
-											<span class="company-not-rated margin-bottom-5"> <%= raw I18n.t('.job.show.no_reviews_yet') %></span>
+											<span class="company-not-rated margin-bottom-5"> <%= raw I18n.t('.jobs.show.no_reviews_yet') %></span>
 											<% else %>
 											<div class="item-details margin-top-10">
 												<div class="star-rating" data-rating="5.0"></div>
@@ -149,9 +149,9 @@
 										</div>
 									</div>
 									<% if @job.reviews.empty? %>
-									<a href="#small-dialog-2" class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"><i class="icon-material-outline-thumb-up"></i> <%= raw I18n.t('.job.show.leave_a_review') %></a>
+									<a href="#small-dialog-2" class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"><i class="icon-material-outline-thumb-up"></i> <%= raw I18n.t('.jobs.show.leave_a_review') %></a>
 									<% else %>
-									<a href="#small-dialog-1" class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"><i class="icon-feather-edit"></i><%= raw I18n.t('.job.show.edit_review') %></a>
+									<a href="#small-dialog-1" class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"><i class="icon-feather-edit"></i><%= raw I18n.t('.jobs.show.edit_review') %></a>
 									<% end %>
 								</li>
 							</ul>
@@ -160,7 +160,7 @@
 
 				</div>
 				<div class="single-page-section">
-					<h3 class="margin-bottom-25"> <%= raw I18n.t('.job.show.this_pro_may_be_suitable') %></h3>
+					<h3 class="margin-bottom-25"> <%= raw I18n.t('.jobs.show.this_pro_may_be_suitable') %></h3>
 
 					<!-- Listings Container -->
 					<div class="listings-container grid-layout" style="width: 100%">
@@ -340,63 +340,63 @@
 			<!-- Sidebar -->
 			<div class="col-xl-4 col-lg-4">
 				<div class="sidebar-container">
+
 					<!-- Button -->
 					<%= form_for Room.new do |form| %>
-					  <%= form.hidden_field :author_id, value: @job.customer.id %>
+					  <%= form.hidden_field :author_id, value: @job.customer_id %>
 					  <%= form.hidden_field :receiver_id, value: current_user.id %>
 					  <%= form.hidden_field :job_id, value: @job.id %>
-
-					  <%= form.submit t('.job.show.send_mp_to_client'), class:"apply-now-button" %>
+					  <%= form.submit t('.send_mp_to_client'), class:"apply-now-button" %>
 					<% end %>
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= raw I18n.t('.job.show.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= raw I18n.t('.job.show.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= raw I18n.t('.jobs.show.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= raw I18n.t('.jobs.show.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 					<!-- Sidebar Widget -->
 					<div class="sidebar-widget">
 						<div class="job-overview">
-							<div class="job-overview-headline"> <%= raw I18n.t('.job.show.recap') %></div>
+							<div class="job-overview-headline"> <%= raw I18n.t('.jobs.show.recap') %></div>
 							<div class="job-overview-inner">
 								<ul>
 									<li>
 										<i class="icon-material-outline-local-atm"></i>
-										<span> <%= raw I18n.t('.job.show.your_budget') %></span>
-										<h5><%= @job.price_range %></h5>
+										<span> <%= raw I18n.t('.jobs.show.your_budget') %></span>
+										<h5><%= number_to_currency(@job.price_range) %></h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-location-on"></i>
-										<span><%= raw I18n.t('.job.show.job_status') %></span>
-										<mark class="color" style="background-color: grey"><%= raw I18n.t('.job.show.created') %></mark>
-										<mark class="color" style="background-color: #28b661"><%= raw I18n.t('.job.show.in_progress') %></mark>
-										<mark class="color" style="background-color: #2a41e8"><%= raw I18n.t('.job.show.finished') %></mark>
-										<mark class="color" style="background-color: #e53038"><%= raw I18n.t('.job.show.aborted') %></mark>
+										<span><%= raw I18n.t('.jobs.show.job_status') %></span>
+										<mark class="color" style="background-color: grey"><%= raw I18n.t('.jobs.show.created') %></mark>
+										<mark class="color" style="background-color: #28b661"><%= raw I18n.t('.jobs.show.in_progress') %></mark>
+										<mark class="color" style="background-color: #2a41e8"><%= raw I18n.t('.jobs.show.finished') %></mark>
+										<mark class="color" style="background-color: #e53038"><%= raw I18n.t('.jobs.show.aborted') %></mark>
 									</li>
 									<li>
 										<i class="icon-material-outline-business-center"></i>
-										<span><%= raw I18n.t('.job.show.category') %></span>
+										<span><%= raw I18n.t('.jobs.show.category') %></span>
 										<h5> <%= @job.category.name %></h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-local-atm"></i>
-										<span><%= raw I18n.t('.job.show.under_category') %></span>
+										<span><%= raw I18n.t('.jobs.show.under_category') %></span>
 										<h5><%= @job.subcategory.name if @job.subcategory %></h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-location-on"></i>
-										<span><%= raw I18n.t('.job.show.delivery_format') %></span>
+										<span><%= raw I18n.t('.jobs.show.delivery_format') %></span>
 										<h5>Clé USB</h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-business-center"></i>
-										<span><%= raw I18n.t('.job.show.estimated_time') %></span>
+										<span><%= raw I18n.t('.jobs.show.estimated_time') %></span>
 										<h5><%= @job.time_range %></h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-business-center"></i>
-										<span><%= raw I18n.t('.job.show.localisation') %></span>
+										<span><%= raw I18n.t('.jobs.show.localisation') %></span>
 										<h5><%= @job.localisation %></h5>
 									</li>
 									<li>
 										<i class="icon-material-outline-local-atm"></i>
-										<span><%= raw I18n.t('.job.show.which_date') %></span>
+										<span><%= raw I18n.t('.jobs.show.which_date') %></span>
 										<h5><%= @job.date_delivery if @job.date_delivery %></h5>
 									</li>
 
@@ -407,7 +407,7 @@
 
 				</div>
 				<div style="text-align: center">
-				<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= raw I18n.t('.job.show.invoice_print') %></a>
+				<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= raw I18n.t('.jobs.show.invoice_print') %></a>
 				</div>
 			</div>
 
@@ -432,15 +432,15 @@
 
 				<!-- Welcome Text -->
 				<div class="welcome-text">
-					<h3><%= raw I18n.t('.job.show.leave_a_review') %></h3>
-					<span><%= raw I18n.t('.job.show.rate_pro_project', pro:"Peter",job:"Shooting photo mariage") %></span>
+					<h3><%= raw I18n.t('.jobs.show.leave_a_review') %></h3>
+					<span><%= raw I18n.t('.jobs.show.rate_pro_project', pro:"Peter",job:"Shooting photo mariage") %></span>
 				</div>
 
 				<!-- Form -->
 				<form method="post" id="leave-review-form">
 
 					<div class="feedback-yes-no">
-						<strong><%= raw I18n.t('.job.show.delivered_on_budget') %></strong>
+						<strong><%= raw I18n.t('.jobs.show.delivered_on_budget') %></strong>
 						<div class="radio">
 							<input id="radio-1" name="radio" type="radio" required>
 							<label for="radio-1"><span class="radio-label"></span> Yes</label>
@@ -453,7 +453,7 @@
 					</div>
 
 					<div class="feedback-yes-no">
-						<strong><%= raw I18n.t('.job.show.delivered_on_time') %></strong>
+						<strong><%= raw I18n.t('.jobs.show.delivered_on_time') %></strong>
 						<div class="radio">
 							<input id="radio-3" name="radio2" type="radio" required>
 							<label for="radio-3"><span class="radio-label"></span> Yes</label>
@@ -466,7 +466,7 @@
 					</div>
 
 					<div class="feedback-yes-no">
-						<strong><%= raw I18n.t('.job.show.your_rating') %></strong>
+						<strong><%= raw I18n.t('.jobs.show.your_rating') %></strong>
 						<div class="leave-rating">
 							<input type="radio" name="rating" id="rating-radio-1" value="1" required>
 							<label for="rating-radio-1" class="icon-material-outline-star"></label>
@@ -486,7 +486,7 @@
 				</form>
 
 				<!-- Button -->
-				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="leave-review-form"><%= raw I18n.t('.job.show.leave_a_review') %><i class="icon-material-outline-arrow-right-alt"></i></button>
+				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="leave-review-form"><%= raw I18n.t('.jobs.show.leave_a_review') %><i class="icon-material-outline-arrow-right-alt"></i></button>
 
 			</div>
 
