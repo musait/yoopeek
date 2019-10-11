@@ -21,11 +21,11 @@ module ApplicationHelper
   if options.include? :partial
     partial = options[:partial]
   else
-    partial = association.to_s.singularize + '_fields'
+    partial = association.to_s.singularize 
   end
 
   # Render the form fields from a file with the association name provided
-  new_object = f.object.class.reflect_on_association(association).klass.new
+  new_object = association.to_s.classify.safe_constantize.new
   fields = f.fields_for(association, new_object, child_index: 'new_record') do |builder|
     render(partial, locals.merge!( f: builder))
   end
