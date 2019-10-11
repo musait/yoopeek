@@ -1,4 +1,9 @@
 fr:
+  number:
+    currency:
+      format:
+        format: "%n %u"
+        unit: "€"
   header:
   footer:
   home:
@@ -20,7 +25,7 @@ fr:
       localisation: "Localisation"
       price: "Taux horaire"
       see_his_profile: "Voir son profil"
-  job:
+  jobs:
     show:
       job_description: "Description de la mission"
       pro_choosen: "Le professionel que vous avez choisi"
