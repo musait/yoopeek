@@ -114,8 +114,9 @@ fr:
         bic: "BIC"
 
 
-  messaging:
+  rooms:
     show:
+      title: "Message"
       respond_to_mp_cost_ten_credits: "Répondre à ce message vous coûtera 10 crédits"
       reply: "Répondre"
       respond_to_mp_need_ten_credits: "Répondre à ce message néccesite 10 crédits"
@@ -126,6 +127,7 @@ fr:
       decline: "Décliner"
       send_quote: "Envoyer un devis"
       send_mp: "Envoyer"
+      new_quote: "Nouveau devis"
       your_quotes: "Vos devis"
   quote:
     new:
