@@ -8,8 +8,8 @@
 
   <ul>
     <% @rooms.each do |room| %>
-      <li class="active-message">
-        <%= link_to room_path(room), method: :get, class: 'nav-link room-nav-link' do %>
+      <li class="active-message" id="selectRoom">
+        <%= link_to room_path(room), method: :get,remote: true, class: 'nav-link room-nav-link' do %>
           <div class="message-avatar"><i class="status-icon status-online"></i><img src="/theme/user/hireo/images/user-avatar-small-03.jpg" alt="" /></div>
           <div class="message-by">
             <div class="message-by-headline">
