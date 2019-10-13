@@ -6,6 +6,7 @@ class Job < ApplicationRecord
   belongs_to :format_delivery
   has_many :rooms
   has_many :reviews
+  has_many :quotes
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :completed, :cancelled]
   def price_range
