@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_151354) do
+ActiveRecord::Schema.define(version: 2019_10_13_121714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -111,7 +111,12 @@ ActiveRecord::Schema.define(version: 2019_10_10_151354) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "quote_element_id"
+    t.uuid "job_id"
+    t.integer "status", default: 0
+    t.uuid "user_id"
+    t.index ["job_id"], name: "index_quotes_on_job_id"
     t.index ["quote_element_id"], name: "index_quotes_on_quote_element_id"
+    t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
   create_table "read_marks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -207,7 +212,9 @@ ActiveRecord::Schema.define(version: 2019_10_10_151354) do
   add_foreign_key "jobs", "users", column: "customer_id"
   add_foreign_key "jobs", "users", column: "worker_id"
   add_foreign_key "quote_elements", "quotes"
+  add_foreign_key "quotes", "jobs"
   add_foreign_key "quotes", "quote_elements"
+  add_foreign_key "quotes", "users"
   add_foreign_key "reviews", "jobs"
   add_foreign_key "reviews", "users", column: "customer_id"
   add_foreign_key "reviews", "users", column: "worker_id"
