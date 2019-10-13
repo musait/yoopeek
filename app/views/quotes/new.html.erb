@@ -1,10 +1,8 @@
-<div id="wrapper">
 
 	<!-- Header Container
 	================================================== -->
 	<div class="clearfix"></div>
 	<!-- Header Container / End -->
-
 
 	<!-- Dashboard Container -->
 	<div class="dashboard-container">
@@ -23,92 +21,84 @@
 
 					<!-- Dashboard Box -->
 					<div class="col-xl-12">
-						<div class="dashboard-box margin-top-0">
+						<%= form_with(model: @quote, local: true) do |form| %>
+							<div class="dashboard-box margin-top-0">
 
-							<!-- Headline -->
-							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.creation_form') %></h3>
-							</div>
+								<!-- Headline -->
+								<div class="headline">
+									<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.creation_form') %></h3>
+								</div>
 
-							<div class="content with-padding">
-								<%= form_with(model: @quote, local: true) do |form| %>
-									<% if @quote.errors.any? %>
-										<div id="error_explanation">
-											<h2><%= pluralize(@quote.errors.count, "error") %> prohibited this qquote from being saved:</h2>
-											<ul>
+								<div class="content with-padding">
+										<% if @quote.errors.any? %>
+											<div class="notification error closeable">
+												<h2><%= pluralize(@quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
 												<% @quote.errors.full_messages.each do |message| %>
-													<li><%= message %></li>
+													<p><%= message %></p>
 												<% end %>
-											</ul>
-										</div>
-									<% end %>
-									<div class="row">
-										<div class="col-xl-8 offset-xl-2">
-											<div class="submit-field">
-												<h5><%= raw I18n.t('.quote.new.title') %></h5>
-												<%= form.text_field :name,class:"with-border" %>
+												<a class="close" href="#"></a>
 											</div>
-										</div>
-										<%= form.fields_for :quote_elements, @quote.quote_elements.build do |f| %>
-											<%= render 'quote_element', f: f  %>
-											<%= link_to_add_fields t('.quote.new.add_item'), f, :quote_elements  %>
 										<% end %>
-									</div>
-								<%end%>
-								<div class="col-xl-8 offset-2">
+										<div class="row">
+											<div class="col-xl-8 offset-xl-2">
+												<div class="submit-field">
+													<h5><%= raw I18n.t('.quote.new.title') %></h5>
+													<%= form.text_field :name,class:"with-border" %>
+												</div>
+											</div>
+											<div class="col-xl-12">
+												<%= form.fields_for :quote_elements do |f| %>
+													<%= render 'quote_element_fields', f: f  %>
+													<%= link_to_add_fields '<i class="icon-material-outline-add"></i> Ajouter un élément'.html_safe, form, :quote_elements%>
+												<% end %>
+											</div>
 
 
-								</div>
-							</div>
-						</div>
-						<div class="dashboard-box margin-top-0">
-
-							<!-- Headline -->
-							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.billing_information') %></h3>
-							</div>
-
-							<div class="content with-padding">
-								<div class="row">
-
-									<div class="col-xl-8 offset-xl-2">
-
-									</div>
-									<div class="col-xl-8 offset-xl-2" id="form_element">
-
-
-										<p>KAMINI</p>
-
-										<p>shuraval@yahoo.fr</p>
-										<p>Kevin Valfin</p>
-										<p>1 bis av du pavé neuf</p>
-										<p>93160 Noisy le grand</p>
-										<p>France</p>
-
-
-									</div>
+										</div>
 
 								</div>
 							</div>
-						</div>
-						<div class="dashboard-box margin-top-0">
+							<div class="dashboard-box margin-top-0">
 
-							<!-- Headline -->
-							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.quote.new.legal_notice') %></h3>
-							</div>
+								<!-- Headline -->
+								<div class="headline">
+									<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.billing_information') %></h3>
+								</div>
 
-							<div class="content with-padding">
-								<div class="row">
+								<div class="content with-padding">
+									<div class="row">
 
-									<div class="col-xl-8 offset-xl-2">
+										<div class="col-xl-8 offset-xl-2">
+
+										</div>
+										<div class="col-xl-8 offset-xl-2" id="form_element">
+
+
+											<p>KAMINI</p>
+
+											<p>shuraval@yahoo.fr</p>
+											<p>Kevin Valfin</p>
+											<p>1 bis av du pavé neuf</p>
+											<p>93160 Noisy le grand</p>
+											<p>France</p>
+
+
+										</div>
 
 									</div>
-									<div class="col-xl-8 offset-xl-2" id="form_element">
+								</div>
+							</div>
+							<div class="dashboard-box margin-top-0">
 
+								<!-- Headline -->
+								<div class="headline">
+									<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.quote.new.legal_notice') %></h3>
+								</div>
 
-										<p><%= raw I18n.t('.quote.new.legal_notice_information') %></p>
-
+								<div class="content with-padding">
+									<div class="row">
+										<div class="col-xl-8 offset-xl-2" id="form_element">
+											<p><%= raw I18n.t('.quote.new.legal_notice_information') %></p>
 											<blockquote>SAS au capital de 500€
 												SIRET 81783623200014 RCS de BOBIGNY - NAF 7311Z
 												Numéro de TVA Intracommunautaire (facultatif) : FR20817836232<br/>
@@ -119,54 +109,24 @@
 												pour frais de recouvrement d'un montant de 40 Euros.
 												Les pénalités de retard sont exigibles sans qu'un rappel soit nécessaire.
 											</blockquote>
-
-
-											</div>
-
 										</div>
 									</div>
 								</div>
-
-								<div class="col-xl-12">
-									<a class="button ripple-effect big margin-top-30" href="/theme/user/hireo/dashboard-messages.html"><i class="icon-feather-plus"></i> <%= raw I18n.t('.quote.new.creation_button') %></a>
-
-								</div>
-
 							</div>
-							<!-- Row / End -->
 
-							<div class="dashboard-footer-spacer"></div>
-						</div>
+							<%= form.hidden_field :job_id, value: params[:job_id] %>
+							<div class="col-xl-12">
+								<%= form.submit I18n.t('.quote.new.quote_creation'), class:"button ripple-effect big margin-top-30"  %>
+							</div>
+						<%end%>
 					</div>
-					<!-- Dashboard Content / End -->
 
+							<!-- Row / End -->
+					<div class="dashboard-footer-spacer"></div>
 				</div>
-				<!-- Dashboard Container / End -->
-
 			</div>
-			<script type="text/javascript">
-				$("[data-form-prepend]").click(function(e) {
-				  var obj = $($(this).attr("data-form-prepend"));
-				  obj.find("input, select, textarea").each(function() {
-				    $(this).attr("name", function() {
-				      return $(this)
-				        .attr("name")
-				        .replace("new_record", new Date().getTime());
-				    });
-				  });
-				  obj.insertBefore(this);
-				  return false;
-				});
-			</script>
-			<script type="text/javascript">
-				var i = 0;
-				var original = document.getElementById('form_element');
+			<!-- Dashboard Content / End -->
 
-				function duplicate() {
-					var clone = original.cloneNode(true); // "deep" clone
-					clone.id = "form_element" + ++i;
-					// or clone.id = ""; if the divs don't need an ID
-					original.parentNode.appendChild(clone);
-				}
-
-			</script>
+		</div>
+		<!-- Dashboard Container / End -->
+	</div>
