@@ -18,6 +18,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require toastr_rails
+//= require link_to_add_fields
 //= require_tree .
 
 
