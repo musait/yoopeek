@@ -8,7 +8,7 @@
 
       <!-- Dashboard Headline -->
       <div class="dashboard-headline">
-        <h3>Messages</h3>
+        <h3><%= raw I18n.t('.rooms.show.title') %></h3>
       </div>
 
       <div class="messages-container margin-top-0">
@@ -22,13 +22,14 @@
               <!-- Messages / End -->
 
               <!-- Message Content -->
-              <div class="message-content">
+
+              <div class="message-content" id="messageContent">
 
                 <div class="messages-headline">
                   <% if current_user.id == @room.author.id  %>
                     <h4><%= @room.receiver.full_name %></h4>
                   <% else %>
-                    <h4><%= @room.receiver.full_name %></h4>
+                    <h4><%= @room.author.full_name %></h4>
                   <% end %>
                 </div>
 
@@ -65,10 +66,10 @@
                 <div class="notification" style="width: 95%; border: 1px solid #eaeaea; margin: auto; padding: 15px;display: none;">
                   <div class="row">
                     <div class="col-sm-7" style="display: flex; align-items: center">
-                      <i class="icon-feather-zap" style="margin-right: 10px"></i> Répondre à ce message vous coûtera 10 crédits
+                      <i class="icon-feather-zap" style="margin-right: 10px"></i> <%= raw I18n.t('.rooms.show.respond_to_mp_cost_ten_credits') %>
                     </div>
                     <div class="col-sm-5" style="display: flex; justify-content: flex-end">
-                      <a class="button">Répondre</a>
+                      <a class="button"><%= raw I18n.t('.rooms.show.reply') %></a>
                     </div>
                   </div>
                 </div>
@@ -76,10 +77,10 @@
                 <div class="notification" style="width: 95%; border: 1px solid #eaeaea; margin: auto; padding: 15px;display: none;">
                   <div class="row">
                     <div class="col-sm-7" style="display: flex; align-items: center">
-                      <i class="icon-feather-zap" style="margin-right: 10px"></i> Répondre à ce message nécessite 10 crédits
+                      <i class="icon-feather-zap" style="margin-right: 10px"></i> <%= raw I18n.t('.rooms.show.respond_to_mp_need_ten_credits') %>
                     </div>
                     <div class="col-sm-5" style="display: flex; justify-content: flex-end">
-                      <a class="button">Racheter des crédits</a>
+                      <a class="button"><%= raw I18n.t('.rooms.show.buy_credits') %></a>
                     </div>
                   </div>
                 </div>
@@ -87,10 +88,11 @@
                 <div class="notification" style="width: 95%; border: 1px solid #eaeaea; margin: auto; padding: 15px;display: none;">
                   <div class="row">
                     <div class="col-sm-7" style="display: flex; align-items: center">
-                      <i class="icon-feather-zap" style="margin-right: 10px"></i> Discussion avec Sindy Forest
+
+                      <i class="icon-feather-zap" style="margin-right: 10px"></i> <%= raw I18n.t('.rooms.show.conversation_with_user', user: @room.job.customer.full_name) %>
                     </div>
                     <div class="col-sm-5" style="display: flex; justify-content: flex-end">
-                      <a class="button">Créer une mission</a>
+                      <a class="button"><%= raw I18n.t('.rooms.show.create_a_job') %></a>
                     </div>
                   </div>
                 </div>
@@ -98,11 +100,11 @@
                 <div class="notification" style="width: 95%; border: 1px solid #eaeaea; margin: auto; padding: 15px;display: none;">
                   <div class="row">
                     <div class="col-sm-7" style="display: flex; align-items: center">
-                      <i class="icon-feather-zap" style="margin-right: 10px"></i> Proposition de mission Dev Site
+                      <i class="icon-feather-zap" style="margin-right: 10px"></i> <%= @room.job.name %>
                     </div>
                     <div class="col-sm-5" style="display: flex; justify-content: flex-end">
-                      <a class="" style="margin-right: 10px;display: flex; align-items: center">Décliner</a>
-                      <a class="button">Envoyer un devis</a>
+                      <a class="" style="margin-right: 10px;display: flex; align-items: center"><%= raw I18n.t('.rooms.show.decline') %></a>
+                      <a class="button"><%= raw I18n.t('.rooms.show.send_quote') %></a>
                     </div>
                   </div>
 
@@ -139,10 +141,16 @@
                   <li>
                     <i class="icon-material-outline-location-on"></i>
                     <span>Statut</span>
+                    <% case @room.job.status %>
+                    <% when "created" %>
                     <mark class="color" style="background-color: grey">Créée</mark>
+                    <% when "in_progress" %>
                     <mark class="color" style="background-color: orange">En cours</mark>
+                    <% when "completed" %>
                     <mark class="color" style="background-color: #28b661">Terminée</mark>
+                    <% else%>
                     <mark class="color" style="background-color: #e53038">Annulée</mark>
+                    <% end %>
                   </li>
                   <li>
                     <i class="icon-material-outline-business-center"></i>
@@ -184,8 +192,9 @@
                     <i class="icon-material-outline-description"></i> <a href="#">Devis 02</a> <mark class="color" style="background-color: #e53038">Refusé</mark>
                   </li>
                   <li style="display: flex; justify-content: space-between">
-                    <i class="icon-material-outline-add"></i> <a href="/quotes/new">Nouveau devis</a>
-
+                    <%= link_to new_quote_path(:job_id => @room.job.id) do %>
+                      <%= raw I18n.t('.rooms.show.new_quote') %><i class="icon-material-outline-add"></i>
+                    <% end %>
                   </li>
                 </ul>
               </div>
