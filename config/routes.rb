@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :rooms
     resources :room_messages
     resources :quotes
+    get "accept_quote" => 'quotes#accept_quote'
+    get "decline_quote" => 'quotes#decline_quote'
     resources :quote_elements
     resources :jobs, param: :slug
     get 'show' => 'jobs#show_test'
