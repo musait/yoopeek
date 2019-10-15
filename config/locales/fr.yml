@@ -129,7 +129,7 @@ fr:
       send_mp: "Envoyer"
       new_quote: "Nouveau devis"
       your_quotes: "Vos devis"
-  quote:
+  quotes:
     new:
       quote_creation: "Créer un devis"
       creation_form: "Formulaire de création"
@@ -145,12 +145,13 @@ fr:
         Vous pourrez les modifier dans votre espace personnel."
       creation_button: "Créer votre devis"
     show:
-      quote_recap: "Récapitulatif du devis N°%{quote_number}"
+      quote_recap: "Récapitulatif du devis n°%{quote_number}"
       description: "Description"
       price: "Prix"
       vat: "TVA"
+      quantity: Quantité
       total_with_vat: "Total"
-      global_total: "Total général"
+      global_total_without_vat: "Total hors taxes"
       decline: "Décliner"
       accept_quote: "Accepter le devis"
       send_mp: "Envoyer un message"
