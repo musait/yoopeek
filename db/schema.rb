@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_121714) do
+ActiveRecord::Schema.define(version: 2019_10_15_091204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_121714) do
     t.uuid "worker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "subject_to_vat"
     t.index ["worker_id"], name: "index_companies_on_worker_id"
   end
 
@@ -114,6 +115,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_121714) do
     t.uuid "job_id"
     t.integer "status", default: 0
     t.uuid "user_id"
+    t.bigint "quote_number"
     t.index ["job_id"], name: "index_quotes_on_job_id"
     t.index ["quote_element_id"], name: "index_quotes_on_quote_element_id"
     t.index ["user_id"], name: "index_quotes_on_user_id"
