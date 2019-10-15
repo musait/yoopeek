@@ -25,11 +25,22 @@ class QuotesController < ApplicationController
   def edit
   end
 
+  def accept_quote
+    binding.pry
+
+  end
+  def decline_quote
+
+  end
+
   # POST /quotes
   # POST /quotes.json
   def create
     @quote = Quote.new(quote_params)
 
+    binding.pry
+    @quote.increment(:quote_number)
+    creator = User.find(params[:quote][:user_id])
     respond_to do |format|
       if @quote.save
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
@@ -73,6 +84,6 @@ class QuotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quote_params
-      params.require(:quote).permit(:name,:job_id,:quote_elements_attributes => [ :id, :content,:quantity,:total, :price, :_destroy ])
+      params.require(:quote).permit(:name,:job_id,:quote_number,:user_id,:quote_elements_attributes => [ :id, :content,:quantity,:total, :price, :_destroy ])
     end
 end
