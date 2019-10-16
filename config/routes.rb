@@ -2,13 +2,14 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
+  devise_for :users, only: :omniauth_callbacks, controllers: {:registrations => 'registrations',omniauth_callbacks: 'users/omniauth_callbacks'}
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-    devise_for :users, skip: :omniauth_callbacks
+    devise_for :users, skip: :omniauth_callbacks,controllers: {:registrations => 'registrations'}
     root 'home#index'
     mount ActionCable.server, at: '/cable'
-
+    resources :autocompletes
+    resources :addresses
     resources :rooms
     resources :room_messages
     resources :quotes
