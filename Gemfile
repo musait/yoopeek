@@ -79,3 +79,6 @@ gem 'sendgrid-ruby'
 gem "switch_user"
 gem 'unread'
 gem 'link_to_add_fields'
+gem "geocoder"
+gem 'iban-tools'
+gem 'valvat'
