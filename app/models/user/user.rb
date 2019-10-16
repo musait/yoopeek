@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :authored_rooms, class_name: 'Room', foreign_key: 'author_id'
   has_many :received_rooms, class_name: 'Room', foreign_key: 'receiver_id'
   has_many :room_messages
+  belongs_to :address
+  accepts_nested_attributes_for :address
   acts_as_reader
 
   def add_type
