@@ -14,6 +14,7 @@ fr:
       timeout: "Votre session est expirée. Veuillez vous reconnecter pour continuer."
       unauthenticated: "Vous devez vous connecter ou vous inscrire pour continuer."
       unconfirmed: "Vous devez valider votre compte pour continuer."
+      social_login_failure: "Il y a eu un problème lors de votre connexion. Veuillez vous inscrire ou essayer plus tard."
     mailer:
       confirmation_instructions:
         subject: "Instructions de confirmation"
@@ -44,6 +45,8 @@ fr:
         sign_up : "Inscription"
         facebook_register: "S'inscrire via Facebook"
         google_register: "S'inscrire via Google"
+        usual_customer: "Particulier"
+        professional: "Professionel"
         or: "ou"
         already_have_an_account: "Vous avez déjà un compte ?"
         sign_in: "Connexion"

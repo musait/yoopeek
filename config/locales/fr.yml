@@ -5,6 +5,11 @@ fr:
         format: "%n %u"
         unit: "€"
   header:
+    sign_in_register: "Se connecter / S'inscrire"
+    available_jobs: "Missions disponibles"
+    rooms: "Messagerie"
+    create_job: "Créer une mission"
+    your_job: "Vos missions"
   footer:
   home:
     index:
