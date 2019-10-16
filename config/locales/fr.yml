@@ -74,6 +74,19 @@ fr:
     edit:
       job_edition: "Modifier cette mission"
   user:
+    all:
+      edit:
+        my_personal_info: "Vos informations personnelles"
+        my_account: "Mon compte"
+        firstname: "Nom"
+        lastname: "Prénom"
+        email: "Email"
+        password: "Mot de passe"
+        your_password: "Votre mot de passe"
+        actual_password: "Mot de passe actuel"
+        new_password: "Nouveau mot de passe"
+        repeat_new_password: "Répétez le nouveau mot de passe"
+        save_modification: "Sauvegarder les changements"
     pro:
       show:
         verified: "Vérifié"
@@ -85,33 +98,32 @@ fr:
         social_network: "Réseaux sociaux"
         skills: "Compétences"
         add_to_favorites: "Ajouter aux favoris"
-      edit:
-        my_account: "Mon compte"
-        firstname: "Nom"
-        lastname: "Prénom"
-        Email: "Email"
-        password: "Votre mot de passe"
-        actual_password: "Mot de passe actuel"
-        new_password: "Nouveau mot de passe"
-        repeat_new_password: "Répétez le nouveau mot de passe"
-        save_modification: "Sauvegarder les changements"
+
     pro_profile:
       edit:
         your_subscription: "Votre abonnement"
         your_credits: "Vos points"
+        credits_balance: "Votre solde de points : "
+        credits: "points."
+        buy_credits: "Acheter des crédits"
         your_profile: "Mon profil"
-        badge: "Votre badge"
-        fix_your_hour_rate: "Fixez votre taux horaire"
-        skills: "Vos compétences"
+        your_badge: "Votre badge"
+        fix_your_hour_rate: 'Fixez votre <strong>taux horaire minimal</strong>'
+        your_skills: "Vos compétences"
         add_ten_skills: "Ajoutez jusqu'à 10 compétences"
         nationality: "Nationalité"
         description: "Description"
     company:
       edit:
+        name: "Nom ou Raison sociale"
+        your_company_infos: "Entreprise et coordonnées bancaires"
         bank_number: "Coordonnées bancaires"
         bank_name: "Nom de votre Banque"
         iban: "IBAN"
         bic: "BIC"
+        address: "Adresse de votre entreprise"
+        is_your_company_subject_to_vat: "Êtes vous soumis à la TVA ?"
+        vat_number: "Numéro de TVA intracommunautaire"
 
 
   rooms:
