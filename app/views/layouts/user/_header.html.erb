@@ -17,19 +17,18 @@
 				<!-- Main Navigation -->
 				<nav id="navigation">
 					<ul id="responsive">
-						<% if user_signed_in? && current_user.is_worker %>
-
-						<li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li>
-						<li><%= link_to "Mission disponibles", jobs_path(locale: :fr) %></li>
-						<li><%= link_to "Messagerie", rooms_path(locale: :fr), method: :get %></li>
-						<li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li>
-						<% else %>
-							<% if user_signed_in? && current_user.is_customer %>
-							<li><%= link_to "Mission", jobs_path(locale: :fr) %></li>
-							<li><%= link_to "Messagerie", rooms_path(locale: :fr) %></li>
-							<li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li>
+						<% if user_signed_in?%>
+							<% if current_user.is_worker %>
+								<li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li>
+								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path(locale: :fr) %></li>
+								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr), method: :get %></li>
+								<li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li>
+							<% else %>
+								<li><%= link_to I18n.t('.header.create_job'), new_job_path, class:"button ripple-effect", style:"color: white"%></li>
+								<li><%= link_to I18n.t('.header.your_job'), jobs_path(locale: :fr) %></li>
+								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr) %></li>
+								<li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li>
 							<% end %>
-						<li><%= link_to "Créer une mission", new_job_path, class:"button ripple-effect", style:"color: white"%></li>
 						<% end %>
 					</ul>
 				</nav>
@@ -236,7 +235,11 @@
 
 				<% else %>
 
-					<%= link_to 'Se connecter', new_user_session_path, class:"button ripple-effect margin-top-15" %>
+					<div class="header-widget">
+						<%= link_to new_user_session_path,method: :get, class:"popup-with-zoom-anim log-in-button" do %>
+						 	<i class="icon-feather-log-in"></i> <span><%= I18n.t('.header.sign_in_register') %></span>
+						<% end %>
+					</div>
 
 				<% end %>
 
