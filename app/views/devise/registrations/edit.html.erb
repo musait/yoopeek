@@ -1,43 +1,450 @@
-<h2><%= t('.title', resource: resource.model_name.human) %></h2>
+<div class="dashboard-container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <!-- Dashboard Content
+  ================================================== -->
+  <div class="dashboard-content-container" data-simplebar>
+    <div class="dashboard-content-inner" >
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <!-- Dashboard Headline -->
+      <div class="dashboard-headline">
+        <h3><%= I18n.t('.user.all.edit.my_personal_info') %></h3>
+
+      </div>
+
+      <!-- Row -->
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="row">
+
+          <!-- Dashboard Box -->
+          <div class="col-xl-12">
+            <div class="dashboard-box margin-top-0">
+
+              <!-- Headline -->
+              <div class="headline">
+                <h3><i class="icon-material-outline-account-circle"></i> <%= I18n.t('.user.all.edit.my_account') %></h3>
+              </div>
+
+              <div class="content with-padding padding-bottom-0">
+
+                <div class="row">
+
+                  <div class="col-auto">
+                    <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                      <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+                      <div class="upload-button"></div>
+                      <input class="file-upload" type="file" accept="image/*"/>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="row">
+
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <h5><%= I18n.t('.user.all.edit.firstname') %></h5>
+                          <%= f.text_field :firstname, class:"with-border" %>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <h5><%= I18n.t('.user.all.edit.lastname') %></h5>
+                          <%= f.text_field :lastname, class:"with-border" %>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <h5><%= I18n.t('.user.all.edit.email') %></h5>
+                          <%= f.text_field :email, class:"with-border" %>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-12">
+            <div class="dashboard-box">
+              <div class="headline">
+                <h3><i class="icon-material-outline-face"></i> <%= I18n.t('.user.pro_profile.edit.your_subscription') %></h3>
+              </div>
+              <div class="content with-padding">
+                <div class="row margin-top-50">
+                  <div class="col-xl-12">
+                    <!-- Pricing Plans Container -->
+                    <div class="pricing-plans-container">
+
+                      <!-- Plan -->
+                      <div class="pricing-plan">
+                        <h3>Formule Bronze</h3>
+                        <div class="pricing-plan-label billed-monthly-label"><strong>19€</strong>/ mois</div>
+                        <div class="pricing-plan-features">
+                          <strong>Les avantages</strong>
+                          <ul>
+                            <li>50 points par mois</li>
+                          </ul>
+                        </div>
+                        <a href="pages-checkout-page.html" class="button full-width margin-top-20">Downgrader</a>
+                      </div>
+
+                      <!-- Plan -->
+                      <div class="pricing-plan recommended">
+                        <div class="recommended-badge">Votre sélection</div>
+                        <h3>Formule Argent</h3>
+                        <div class="pricing-plan-label billed-monthly-label"><strong>49€</strong>/ mois</div>
+                        <div class="pricing-plan-features">
+                          <strong>Les avantages</strong>
+                          <ul>
+                            <li>100 points par mois</li>
+                          </ul>
+                        </div>
+                        <a href="pages-checkout-page.html" class="button full-width margin-top-20">Acheter plus de points</a>
+                      </div>
+
+                      <!-- Plan -->
+                      <div class="pricing-plan">
+                        <h3>Formule Or</h3>
+                        <div class="pricing-plan-label billed-monthly-label"><strong>99€</strong>/ mois</div>
+                        <div class="pricing-plan-features">
+                          <strong>Les avantages</strong>
+                          <ul>
+                            <li>200 points par mois</li>
+                          </ul>
+                        </div>
+                        <a href="pages-checkout-page.html" class="button full-width margin-top-20">Upgrader</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-12">
+            <div class="dashboard-box">
+              <div class="headline">
+                <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_credits') %></h3>
+              </div>
+              <div class="content">
+                <ul class="fields-ul">
+                  <li>
+                    <div class="row">
+                      <div class="col-xl-12">
+                        <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong>25</strong> <%= I18n.t('.user.pro_profile.edit.credits') %></h3>
+                        <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"><%= I18n.t('.user.pro_profile.edit.buy_credits') %></a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Box -->
+          <div class="col-xl-12">
+            <div class="dashboard-box">
+
+              <!-- Headline -->
+              <div class="headline">
+                <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_profile') %></h3>
+              </div>
+
+              <div class="content">
+                <ul class="fields-ul">
+                  <li>
+                    <div class="row">
+                      <div class="col-xl-8">
+                        <h3><%= I18n.t('.user.pro_profile.edit.your_badge') %></h3>
+                        <!-- Multi step form -->
+                        <div class="progress">
+                          <span class="bar done"></span>
+                          <div class="circle bronze">
+
+                          </div>
+                          <span class="bar done"></span>
+                          <div class="circle argent">
+                          </div>
+                          <span class="bar done"></span>
+
+                          <div class="circle or">
+
+                          </div>
+                          <span class="bar done"></span>
+                        </div>
+                      </div>
+                      <div class="col-xl-4">
+                        <p>Explication des badges à venir</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row">
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <div class="bidding-widget">
+                            <!-- Headline -->
+                            <span class="bidding-detail"><%= raw I18n.t('.user.pro_profile.edit.fix_your_hour_rate') %></span>
+
+                            <!-- Slider -->
+                            <div class="bidding-value margin-bottom-10"><span id="biddingVal"></span>€</div>
+                            <input class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="€" data-slider-min="50" data-slider-max="400" data-slider-value="50" data-slider-step="1" data-slider-tooltip="hide" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <h5><%= raw I18n.t('.user.pro_profile.edit.your_skills') %> <i class="help-icon" data-tippy-placement="right" title="Ajoutez jusqu'à 10 compétences"></i></h5>
+
+                          <!-- Skills List -->
+                          <div class="keywords-container">
+                            <div class="keyword-input-container">
+                              <input type="text" class="keyword-input with-border" placeholder="e.g. Mariage, Baptème"/>
+                              <button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+                            </div>
+                            <div class="keywords-list">
+                              <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
+                              <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
+                              <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
+                              <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
+                              <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
+                            </div>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row">
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <h5>Nationality</h5>
+                          <select class="selectpicker with-border" data-size="7" title="Select Job Type" data-live-search="true">
+                            <option value="AR">Argentina</option>
+                            <option value="AM">Armenia</option>
+                            <option value="AW">Aruba</option>
+                            <option value="AU">Australia</option>
+                            <option value="AT">Austria</option>
+                            <option value="AZ">Azerbaijan</option>
+                            <option value="BS">Bahamas</option>
+                            <option value="BH">Bahrain</option>
+                            <option value="BD">Bangladesh</option>
+                            <option value="BB">Barbados</option>
+                            <option value="BY">Belarus</option>
+                            <option value="BE">Belgium</option>
+                            <option value="BZ">Belize</option>
+                            <option value="BJ">Benin</option>
+                            <option value="BM">Bermuda</option>
+                            <option value="BT">Bhutan</option>
+                            <option value="BG">Bulgaria</option>
+                            <option value="BF">Burkina Faso</option>
+                            <option value="BI">Burundi</option>
+                            <option value="KH">Cambodia</option>
+                            <option value="CM">Cameroon</option>
+                            <option value="CA">Canada</option>
+                            <option value="CV">Cape Verde</option>
+                            <option value="KY">Cayman Islands</option>
+                            <option value="CO">Colombia</option>
+                            <option value="KM">Comoros</option>
+                            <option value="CG">Congo</option>
+                            <option value="CK">Cook Islands</option>
+                            <option value="CR">Costa Rica</option>
+                            <option value="CI">Côte d'Ivoire</option>
+                            <option value="HR">Croatia</option>
+                            <option value="CU">Cuba</option>
+                            <option value="CW">Curaçao</option>
+                            <option value="CY">Cyprus</option>
+                            <option value="CZ">Czech Republic</option>
+                            <option value="DK">Denmark</option>
+                            <option value="DJ">Djibouti</option>
+                            <option value="DM">Dominica</option>
+                            <option value="DO">Dominican Republic</option>
+                            <option value="EC">Ecuador</option>
+                            <option value="EG">Egypt</option>
+                            <option value="GP">Guadeloupe</option>
+                            <option value="GU">Guam</option>
+                            <option value="GT">Guatemala</option>
+                            <option value="GG">Guernsey</option>
+                            <option value="GN">Guinea</option>
+                            <option value="GW">Guinea-Bissau</option>
+                            <option value="GY">Guyana</option>
+                            <option value="HT">Haiti</option>
+                            <option value="HN">Honduras</option>
+                            <option value="HK">Hong Kong</option>
+                            <option value="HU">Hungary</option>
+                            <option value="IS">Iceland</option>
+                            <option value="IN">India</option>
+                            <option value="ID">Indonesia</option>
+                            <option value="NO">Norway</option>
+                            <option value="OM">Oman</option>
+                            <option value="PK">Pakistan</option>
+                            <option value="PW">Palau</option>
+                            <option value="PA">Panama</option>
+                            <option value="PG">Papua New Guinea</option>
+                            <option value="PY">Paraguay</option>
+                            <option value="PE">Peru</option>
+                            <option value="PH">Philippines</option>
+                            <option value="PN">Pitcairn</option>
+                            <option value="PL">Poland</option>
+                            <option value="PT">Portugal</option>
+                            <option value="PR">Puerto Rico</option>
+                            <option value="QA">Qatar</option>
+                            <option value="RE">Réunion</option>
+                            <option value="RO">Romania</option>
+                            <option value="RU">Russian Federation</option>
+                            <option value="RW">Rwanda</option>
+                            <option value="SZ">Swaziland</option>
+                            <option value="SE">Sweden</option>
+                            <option value="CH">Switzerland</option>
+                            <option value="TR">Turkey</option>
+                            <option value="TM">Turkmenistan</option>
+                            <option value="TV">Tuvalu</option>
+                            <option value="UG">Uganda</option>
+                            <option value="UA">Ukraine</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="US" selected>United States</option>
+                            <option value="UY">Uruguay</option>
+                            <option value="UZ">Uzbekistan</option>
+                            <option value="YE">Yemen</option>
+                            <option value="ZM">Zambia</option>
+                            <option value="ZW">Zimbabwe</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-12">
+                        <div class="submit-field">
+                          <h5><%= raw I18n.t('.user.pro_profile.edit.description') %></h5>
+                          <textarea cols="30" rows="5" class="with-border">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</textarea>
+                        </div>
+                      </div>
+
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Box -->
+          <div class="col-xl-12">
+            <div class="dashboard-box">
+
+              <!-- Headline -->
+              <div class="headline">
+                <h3><i class="icon-material-outline-account-circle"></i> <%= I18n.t('.user.company.edit.your_company_infos') %></h3>
+              </div>
+
+              <div class="content with-padding padding-bottom-0">
+                <%= f.fields_for :company do |c| %>
+                  <div class="row">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col-xl-6">
+                          <div class="submit-field">
+                            <h5><%= raw I18n.t('.user.company.edit.name') %></h5>
+                            <%= c.text_field :name, class:"with-border" %>
+                          </div>
+                        </div>
+                        <%= c.fields_for :address do |a| %>
+                          <div class="col-xl-6">
+                            <div class="submit-field">
+                              <h5><%= raw I18n.t('.user.company.edit.address') %></h5>
+                              <%= a.text_field :complete_address, class:"with-border",id: :autocomplete_address %>
+                              <%= a.hidden_field :street, id: :street_id %>
+                              <%= a.hidden_field :city, id: :locality %>
+                              <%= a.hidden_field :zip, id: :postal_code %>
+                              <%= a.hidden_field :country, id: :country %>
+                            </div>
+                          </div>
+                        <% end %>
+                        <div class="col-xl-6">
+                          <div class="submit-field">
+                            <h5><%= raw I18n.t('.user.company.edit.iban') %></h5>
+                            <%= c.text_field :iban, class:"with-border" %>
+                          </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                          <div class="checkbox">
+                            <%= c.check_box :subject_to_vat,id:"checkbox1" %>
+                    				<label for="checkbox1"><span class="checkbox-icon"></span> <%= raw I18n.t('.user.company.edit.is_your_company_subject_to_vat') %></label>
+                    			</div>
+                        </div>
+
+                        <div class="col-xl-6" style="display:none"id="vatNumber">
+                          <div class="submit-field">
+                            <h5><%= raw I18n.t('.user.company.edit.vat_number') %></h5>
+                            <%= c.text_field :vat_number, class:"with-border" %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Box -->
+          <div class="col-xl-12">
+            <div id="test1" class="dashboard-box">
+
+              <!-- Headline -->
+              <div class="headline">
+                <h3><i class="icon-material-outline-lock"></i>  <%= I18n.t('.user.all.edit.password') %></h3>
+              </div>
+
+              <div class="content with-padding">
+                <div class="row">
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.all.edit.new_password') %> <% if @minimum_password_length %>
+                        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+                      <% end %></h5>
+                      <%= f.password_field :password, placeholder:t('.leave_blank_if_you_don_t_want_to_change_it'),autocomplete: "new-password",class:"with-border" %>
+
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.all.edit.repeat_new_password') %></h5>
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"with-border" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="col-xl-12">
+            <%= f.submit I18n.t('.user.all.edit.save_modification'),class:"button ripple-effect big margin-top-30" %>
+          </div>
+
+        </div>
+        <!-- Row / End -->
+      <% end %>
+    </div>
   </div>
+  <!-- Dashboard Content / End -->
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t('.update') %>
-  </div>
-<% end %>
-
-<h3><%= t('.cancel_my_account') %></h3>
-
-<p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-
-<%= link_to t('devise.shared.links.back'), :back %>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#checkbox1').change(function () {
+      if (this.checked)
+        document.getElementById('vatNumber').style.display = "block";
+      else
+        document.getElementById('vatNumber').style.display = "none";
+    });
+});
+</script>
