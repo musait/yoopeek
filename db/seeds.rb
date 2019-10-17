@@ -25,14 +25,17 @@ if Subcategory.all.empty?
     ])
   end
 if User.all.empty?
-  User.create([
-    { email: 'a@a.com', firstname: 'John', lastname: 'Doe', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'c@c.com', firstname: 'Friedrich', lastname: 'Nikla', type: 'Customer', nationality: 'German', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'd@d.com', firstname: 'Patrick', lastname: 'Onatenpa', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker',profession_id: Profession.first.id,price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'e@e.com', firstname: 'Fabrice', lastname: 'Lagarde', type: 'Worker',profession_id: Profession.second.id, price_rate: '60', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    { email: 'f@f.com', firstname: 'Will', lastname: 'Smoth', type: 'Worker',profession_id: Profession.first.id,price_rate: '30', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+
+   User.create!([
+    {  confirmed_at: Time.now.utc, approved: true, email: 'a@a.com', firstname: 'John', lastname: 'Doe', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    {  confirmed_at: Time.now.utc,approved: true,email: 'c@c.com', firstname: 'Friedrich', lastname: 'Nikla', type: 'Customer', nationality: 'German', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    {  confirmed_at: Time.now.utc,approved: true,email: 'd@d.com', firstname: 'Patrick', lastname: 'Onatenpa', type: 'Customer', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    {  confirmed_at: Time.now.utc,approved: true,email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker',profession_id: Profession.first.id,price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    {  confirmed_at: Time.now.utc,approved: true,email: 'e@e.com', firstname: 'Fabrice', lastname: 'Lagarde', type: 'Worker',profession_id: Profession.second.id, price_rate: '60', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    {  confirmed_at: Time.now.utc,approved: true,email: 'f@f.com', firstname: 'Will', lastname: 'Smoth', type: 'Worker',profession_id: Profession.first.id,price_rate: '30', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
+    {  confirmed_at: Time.now.utc,approved: true,firstname:"admin",lastname:"admin",email:"admin@admin.com",password:"password",admin:true}
     ])
+
 end
 if FormatDelivery.all.empty?
   FormatDelivery.create!([
