@@ -43,14 +43,14 @@ toastr.options = ({
       if (element) {
         var autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode'], componentRestrictions: {country: 'fr'} });
         google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-        console.log(autocomplete);
+
         }
  }
 
  function onPlaceChanged() {
       var place = this.getPlace();
 
-      console.log(place);  // Uncomment this line to view the full object returned by Google API.
+      // console.log(place);  // Uncomment this line to view the full object returned by Google API.
       $("#street_id").val(place.address_components[0].long_name + ' ' + place.address_components[1].long_name)
  for (var i in place.address_components) {
   var component = place.address_components[i];
