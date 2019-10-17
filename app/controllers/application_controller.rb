@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery prepend: true, with: :exception
+  before_action :authenticate_user!
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :is_admin?
+  before_action :check_if_approved
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit:sign_up,keys: [:email, :password, :password_confirmation, :firstname, :lastname,:is_worker,:address_attributes => [:id, :complete_address,:street, :city, :zip, :country],:company_attributes => [:id, :name, :iban, :subject_to_vat, :vat_number, :address_attributes =>[:id, :complete_address,:street, :city, :zip, :country]]]
@@ -20,4 +23,19 @@ class ApplicationController < ActionController::Base
   def default_url_options
     { locale: I18n.locale }
   end
+
+  def is_admin?
+    redirect_to admin_index_path if current_user.try(:admin?)
+  end
+
+  def check_if_approved
+    if current_user.present?
+      if !current_user.try(:approved?)
+        binding.pry
+        sign_out current_user
+        redirect_to new_user_session_path, alert: I18n.t('.devise.failure.not_approved')
+      end
+    end
+  end
+
 end
