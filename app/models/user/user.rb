@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :room_messages
   belongs_to :address, optional: true
   accepts_nested_attributes_for :address
+  after_create :send_admin_mail
   acts_as_reader
 
   def add_type
@@ -25,24 +26,38 @@ class User < ApplicationRecord
     authored_rooms.with_receiver(user) || received_rooms.with_author(user)
   end
 
-  def self.from_facebook(auth)
+  def send_admin_mail
+    AdminMailer.new_user_waiting_for_approval(email).deliver
+  end
+
+  def self.from_facebook(auth,params)
     where(facebook_id: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.firstname = auth.info.name.partition(" ").first
       user.lastname = auth.info.name.partition(" ").last
       user.password = Devise.friendly_token[0, 20]
-      user.type = "Customer"
+      if params['isWorker'] == "1"
+        user.type = "Worker"
+
+      else
+        user.type = "Customer"
+      end
       user.skip_confirmation!
     end
   end
 
-  def self.from_google(auth)
+  def self.from_google(auth,params)
     where(google_id: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.firstname = auth.info.first_name
       user.lastname = auth.info.last_name
       user.password = Devise.friendly_token[0, 20]
-      user.type = "Customer"
+
+      if params['isWorker'] == "1"
+        user.type = "Worker"
+      else
+        user.type = "Customer"
+      end
       user.skip_confirmation!
     end
   end
@@ -57,4 +72,8 @@ class User < ApplicationRecord
   def is_customer
     self.type == "Customer"
   end
+  def is_admin
+    self.admin?
+  end
+
 end
