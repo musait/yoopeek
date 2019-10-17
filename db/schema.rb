@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_130859) do
+ActiveRecord::Schema.define(version: 2019_10_17_095229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_130859) do
   end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: " "
     t.string "iban"
     t.string "bic"
     t.string "bank_name"
@@ -216,7 +216,10 @@ ActiveRecord::Schema.define(version: 2019_10_16_130859) do
     t.uuid "profession_id"
     t.uuid "address_id"
     t.boolean "is_worker"
+    t.boolean "approved", default: false, null: false
+    t.boolean "admin", default: false
     t.index ["address_id"], name: "index_users_on_address_id"
+    t.index ["approved"], name: "index_users_on_approved"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profession_id"], name: "index_users_on_profession_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
