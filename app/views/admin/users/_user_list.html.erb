@@ -1,0 +1,23 @@
+<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Professionnel</th>
+      <th>Approuvé</th>
+      <th>Consulter les informations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td> <%= user.full_name %></td>
+        <td> <%= user.email %></td>
+        <td> <%= user.is_worker ? "Oui" : "Non" %></td>
+
+        <td> <% if user.is_worker %><%= check_box_tag 'approved', user.id, user.approved, :class => "user-approved-check"%> <% end %></td>
+        <td><%= link_to "Voir les informations", admin_user_path(user), remote: true %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
