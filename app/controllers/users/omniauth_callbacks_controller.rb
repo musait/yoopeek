@@ -1,10 +1,10 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
-    if request.env['omniauth.params']
-      @user = Worker.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
-    else
+    if request.env['omniauth.params'].empty?
       @user = Customer.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
+    else
+      @user = Worker.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
     end
     if @user.persisted?
       if @user.is_worker && !@user.approved?
@@ -20,12 +20,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def google_oauth2
-    if request.env['omniauth.params']
-      @user = Worker.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
-    else
+    if request.env['omniauth.params'].empty?
       @user = Customer.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
+    else
+      @user = Worker.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
     end
     if @user.persisted?
+
       if @user.is_worker && !@user.approved?
         sign_in(@user)
         redirect_to edit_user_registration_path, notice: 'Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte'
