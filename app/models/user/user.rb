@@ -38,9 +38,10 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       if params['isWorker'] == "1"
         user.type = "Worker"
-
+        user.is_worker = true
       else
         user.type = "Customer"
+        user.is_worker = false
       end
       user.skip_confirmation!
     end
