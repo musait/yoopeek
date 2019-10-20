@@ -1,0 +1,71 @@
+<div class="modal fade" id="user_info_modal" aria-hidden="true" aria-labelledby="exampleModalTabs" role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-simple">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalTabs">Informations </h4>
+      </div>
+
+      <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+        <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleLine1"
+            aria-controls="exampleLine1" role="tab">Information personnelles</a></li>
+        <% if @user.is_worker %>
+        <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleLine2"
+            aria-controls="exampleLine2" role="tab">Informations sur l'entreprise</a></li>
+        <% end %>
+      </ul>
+
+      <div class="modal-body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="exampleLine1" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6">
+                <h4 class="example-title">Nom et Prénom</h4>
+                <p class="form-control-plaintext"> <%= @user.full_name %></p>
+              </div>
+              <div class="col-lg-6">
+                <h4 class="example-title">Email</h4>
+                <p class="form-control-plaintext"><%= @user.email %></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <h4 class="example-title">Adresse</h4>
+                <p class="form-control-plaintext"><%= @user.address.present? ? @user.address : "Pas d'addresse fournie"%></p>
+              </div>
+            </div>
+
+          </div>
+          <% if @user.is_worker %>
+            <div class="tab-pane" id="exampleLine2" role="tabpanel">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4 class="example-title">Nom de l'entreprise</h4>
+                  <p class="form-control-plaintext"><%= @user.company.present? ? @user.company.name : "Pas de nom d'entreprise fourni"%></p>
+                </div>
+                <div class="col-lg-6">
+                  <h4 class="example-title">Adresse</h4>
+                  <p class="form-control-plaintext"><%= @user.company.present? && @user.company.address.present? ? @user.company.address.complete_address : "Pas d'addresse fournie"%></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4 class="example-title">IBAN</h4>
+                  <p class="form-control-plaintext"><%=  @user.company.present? && @user.company.iban.present? ? @user.company.iban : "Pas d'Iban fourni"%></p>
+                </div>
+                <div class="col-lg-6">
+                  <h4 class="example-title">Numéro de TVA</h4>
+                  <p class="form-control-plaintext"><%=  @user.company.present? && @user.company.vat_number.present? ? @user.company.vat_number : "Pas de numéro de TVA fourni"%></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
