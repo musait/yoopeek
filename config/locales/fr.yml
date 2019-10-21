@@ -88,6 +88,7 @@ fr:
         firstname: "Nom"
         lastname: "Prénom"
         email: "Email"
+        phone_number: "Numéro de téléphone"
         password: "Mot de passe"
         your_password: "Votre mot de passe"
         actual_password: "Mot de passe actuel"

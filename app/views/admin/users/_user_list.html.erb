@@ -4,6 +4,7 @@
       <th>Nom</th>
       <th>Email</th>
       <th>Professionnel</th>
+      <th>Profession</th>
       <th>Approuvé</th>
       <th>Consulter les informations</th>
     </tr>
@@ -14,7 +15,7 @@
         <td> <%= user.full_name %></td>
         <td> <%= user.email %></td>
         <td> <%= user.is_worker ? "Oui" : "Non" %></td>
-
+        <td> <% if user.is_worker %><%= user.profession.name if user.profession.present?%> <% end %></td>
         <td> <% if user.is_worker %><%= check_box_tag 'approved', user.id, user.approved, :class => "user-approved-check"%> <% end %></td>
         <td><%= link_to "Voir les informations", admin_user_path(user), remote: true %> </td>
       </tr>

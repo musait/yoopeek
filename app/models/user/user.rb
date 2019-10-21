@@ -15,6 +15,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :address
   after_create :send_admin_mail
   acts_as_reader
+  phony_normalize :phone_number, default_country_code: 'FR'
 
   def add_type
     self.type ="Customer"
