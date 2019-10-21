@@ -54,14 +54,16 @@ class ApplicationController < ActionController::Base
 
   def check_if_approved
     if current_user.present?
-      if current_user.is_worker
-        if !current_user.try(:approved?)
-          if url_who_we_are_from == "registrations/edit"
+      if current_user.is_worker && !!current_user.approved
+        if url_who_we_are_from == "registrations/edit" && action_name != "destroy"
+          if action_name ==  "destroy"
+            sign_out current_user
+          else
             sign_out current_user
             redirect_to new_user_session_path, notice: "Vos informations ont été prise en compte"
-          else
-            redirect_to edit_user_registration_path, notice: 'Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte'
           end
+        else
+          redirect_to edit_user_registration_path, notice: t('.fill_information')
         end
       end
     end
