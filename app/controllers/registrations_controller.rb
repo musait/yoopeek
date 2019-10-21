@@ -9,12 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
       @user.update(type: "Customer")
     end
     if @user.persisted?
-      if @user.is_worker && !@user.approved?
-        sign_in(@user)
-        redirect_to edit_user_registration_path, notice: 'Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte'
-      else
-        sign_in_and_redirect @user, event: :authentification
-      end
+      sign_in_and_redirect @user, event: :authentification
     end
   end
   protected
