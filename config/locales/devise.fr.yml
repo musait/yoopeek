@@ -61,6 +61,8 @@ fr:
       update_needs_confirmation: "Votre compte a bien été mis à jour mais nous devons vérifier votre nouvelle adresse email. Merci de vérifier vos emails et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse."
       updated: "Votre compte a été modifié avec succès."
     sessions:
+      create:
+        fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
       new:
         welcome_to_yoopeek: "Bienevenue chez Yoopeek"
         not_sign_up_yet: "Vous n'êtes pas encore inscrit ?"

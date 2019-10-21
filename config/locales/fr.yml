@@ -1,6 +1,6 @@
 fr:
   notifications:
-    room_message_created: "%{creator} à créer une salle"
+    room_message_created: "%{creator} à créer une conversation"
   number:
     currency:
       format:
@@ -80,6 +80,10 @@ fr:
       job_creation: "Créez votre mission"
     edit:
       job_edition: "Modifier cette mission"
+  users:
+    omniauth_callbacks:
+      facebook:
+          fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
   user:
     all:
       edit:
