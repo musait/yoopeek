@@ -12,6 +12,7 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    Notification.set_seen @notifications, "job", @job.id
   end
 
   # GET /jobs/new

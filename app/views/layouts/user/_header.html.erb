@@ -51,7 +51,7 @@
 
 							<!-- Trigger -->
 							<div class="header-notifications-trigger">
-								<a href="#"><i class="icon-feather-bell"></i><span>4</span></a>
+								<a href="#"><i class="icon-feather-bell"></i><span><%= @notifications_count %></span></a>
 							</div>
 
 							<!-- Dropdown -->
@@ -68,14 +68,17 @@
 									<div class="header-notifications-scroll" data-simplebar>
 										<ul>
 											<!-- Notification -->
-											<li class="notifications-not-read">
-												<a href="dashboard-manage-candidates.html">
-													<span class="notification-icon"><i class="icon-material-outline-group"></i></span>
-													<span class="notification-text">
-														<strong>Michael Shannah</strong> applied for a job <span class="color">Full Stack Software Engineer</span>
-													</span>
-												</a>
-											</li>
+											<% @notifications.each do |notification| %>
+												<li class="notifications-not-read">
+													<%= link_to notification.url do %>
+														<span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+														<span class="notification-text">
+															<%= raw notification.message_translate %>
+														</span>
+													<% end %>
+												</li>
+											<% end %>
+
 
 											<!-- Notification -->
 											<li>
