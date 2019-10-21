@@ -56,8 +56,12 @@ class ApplicationController < ActionController::Base
     if current_user.present?
       if current_user.is_worker
         if !current_user.try(:approved?)
-          sign_out current_user
-          redirect_to new_user_session_path, alert: I18n.t('.devise.failure.not_approved')
+          if url_who_we_are_from == "registrations/edit"
+            sign_out current_user
+            redirect_to new_user_session_path, notice: "Vos informations ont été prise en compte"
+          else
+            redirect_to edit_user_registration_path, notice: 'Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte'
+          end
         end
       end
     end
