@@ -32,9 +32,19 @@
             </div>
 
             <div class="row">
+              <% if @user.is_worker %>
+              <div class="col-lg-6">
+                <h4 class="example-title">Profession</h4>
+                <p class="form-control-plaintext"><%= @user.profession.name if @user.profession.present?%></p>
+              </div>
+              <% end %>
               <div class="col-lg-6">
                 <h4 class="example-title">Adresse</h4>
                 <p class="form-control-plaintext"><%= @user.address.present? ? @user.address : "Pas d'addresse fournie"%></p>
+              </div>
+              <div class="col-lg-6">
+                <h4 class="example-title">Numéro de téléphone</h4>
+                <p class="form-control-plaintext"><%= @user.phone_number.present? ? @user.phone_number.phony_formatted(format: :international, spaces: '-') : "Pas de numéro de téléphone fourni"%></p>
               </div>
             </div>
 
