@@ -82,3 +82,4 @@ gem 'link_to_add_fields'
 gem "geocoder"
 gem 'iban-tools'
 gem 'valvat'
+gem 'phony_rails'
