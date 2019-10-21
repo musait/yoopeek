@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_if_approved
+  before_action :url_who_we_are_from
   before_action :count_notification
 
 
@@ -40,6 +41,14 @@ class ApplicationController < ActionController::Base
       admin_index_path
     else
       root_path
+    end
+  end
+
+  def url_who_we_are_from
+    begin
+      url = Rails.application.routes.recognize_path(request.referrer)
+      last_url = url[:controller] + "/" + url[:action]
+    rescue
     end
   end
 
