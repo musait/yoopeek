@@ -15,6 +15,7 @@ fr:
   footer:
   home:
     index:
+      your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
       intro: "Vous avez un projet photographique ? <br> Yoopek est là pour vous ! "
       what: "Quoi ?"
       where: "Où ?"
