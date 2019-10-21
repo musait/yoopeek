@@ -64,7 +64,7 @@ fr:
       create:
         fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
       new:
-        welcome_to_yoopeek: "Bienevenue chez Yoopeek"
+        welcome_to_yoopeek: "Bienvenue chez Yoopeek"
         not_sign_up_yet: "Vous n'êtes pas encore inscrit ?"
         facebook_signin: "Se connecter via Facebook"
         google_signin: "Se connecter via Google"
