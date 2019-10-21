@@ -54,13 +54,13 @@ class ApplicationController < ActionController::Base
 
   def check_if_approved
     if current_user.present?
-      if current_user.is_worker && !!current_user.approved
-        if url_who_we_are_from == "registrations/edit" && action_name != "destroy"
+      if current_user.is_worker && !current_user.approved
+        if url_who_we_are_from == "registrations/edit"
           if action_name ==  "destroy"
             sign_out current_user
           else
             sign_out current_user
-            redirect_to new_user_session_path, notice: "Vos informations ont été prise en compte"
+            redirect_to new_user_session_path, notice: t('.your_information_are_saved')
           end
         else
           redirect_to edit_user_registration_path, notice: t('.fill_information')
