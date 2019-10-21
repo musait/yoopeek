@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< branch_test
 ActiveRecord::Schema.define(version: 2019_10_21_100114) do
+=======
+ActiveRecord::Schema.define(version: 2019_10_20_112619) do
+>>>>>>> add phone number to users
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -238,7 +242,11 @@ ActiveRecord::Schema.define(version: 2019_10_21_100114) do
     t.boolean "is_worker"
     t.boolean "approved", default: false, null: false
     t.boolean "admin", default: false
+<<<<<<< branch_test
     t.integer "notifications_count"
+=======
+    t.string "phone_number"
+>>>>>>> add phone number to users
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["email"], name: "index_users_on_email", unique: true
