@@ -83,3 +83,4 @@ gem "geocoder"
 gem 'iban-tools'
 gem 'valvat'
 gem 'will_paginate'
+gem 'phony_rails'
