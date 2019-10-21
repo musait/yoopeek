@@ -56,8 +56,9 @@
   </div>
 
   <div class="site-menubar-footer">
-    <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
+    <%= link_to destroy_user_session_path, method: :delete, :data => {:placement => "top", :toggle => "tooltip"} do %>
       <span class="icon wb-power" aria-hidden="true"></span>
-    </a>
+    <% end %>
+
   </div>
 </div>
