@@ -1,4 +1,6 @@
 fr:
+  notifications:
+    room_message_created: "%{creator} à créer une salle"
   number:
     currency:
       format:

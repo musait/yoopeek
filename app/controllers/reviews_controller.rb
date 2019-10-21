@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    Notification.set_seen @notifications, "review", @review.id
   end
 
   # GET /reviews/new

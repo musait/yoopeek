@@ -10,6 +10,7 @@ class QuotesController < ApplicationController
   # GET /quotes/1
   # GET /quotes/1.json
   def show
+    Notification.set_seen @notifications, "quote", @quote.id
   end
 
   def show_test

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_095229) do
+ActiveRecord::Schema.define(version: 2019_10_21_100114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_095229) do
   end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", default: " "
+    t.string "name"
     t.string "iban"
     t.string "bic"
     t.string "bank_name"
@@ -101,6 +101,24 @@ ActiveRecord::Schema.define(version: 2019_10_17_095229) do
     t.index ["slug"], name: "index_jobs_on_slug", unique: true
     t.index ["subcategory_id"], name: "index_jobs_on_subcategory_id"
     t.index ["worker_id"], name: "index_jobs_on_worker_id"
+  end
+
+  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "message"
+    t.string "created_for"
+    t.datetime "viewed_at"
+    t.uuid "quote_id"
+    t.uuid "job_id"
+    t.uuid "user_id"
+    t.uuid "room_message_id"
+    t.uuid "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_notifications_on_job_id"
+    t.index ["quote_id"], name: "index_notifications_on_quote_id"
+    t.index ["review_id"], name: "index_notifications_on_review_id"
+    t.index ["room_message_id"], name: "index_notifications_on_room_message_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "professions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -214,10 +232,13 @@ ActiveRecord::Schema.define(version: 2019_10_17_095229) do
     t.string "nationality"
     t.text "description"
     t.uuid "profession_id"
+    t.string "stripe_account_id"
+    t.string "stripe_person_id"
     t.uuid "address_id"
     t.boolean "is_worker"
     t.boolean "approved", default: false, null: false
     t.boolean "admin", default: false
+    t.integer "notifications_count"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -233,6 +254,11 @@ ActiveRecord::Schema.define(version: 2019_10_17_095229) do
   add_foreign_key "jobs", "subcategories"
   add_foreign_key "jobs", "users", column: "customer_id"
   add_foreign_key "jobs", "users", column: "worker_id"
+  add_foreign_key "notifications", "jobs"
+  add_foreign_key "notifications", "quotes"
+  add_foreign_key "notifications", "reviews"
+  add_foreign_key "notifications", "room_messages"
+  add_foreign_key "notifications", "users"
   add_foreign_key "quote_elements", "quotes"
   add_foreign_key "quotes", "jobs"
   add_foreign_key "quotes", "quote_elements"

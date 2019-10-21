@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_if_approved
+  before_action :count_notification
 
 
   def configure_permitted_parameters
@@ -11,6 +12,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit:account_update,keys: [:email, :password, :password_confirmation, :firstname, :lastname,:is_worker,:address_attributes => [:id, :complete_address,:street, :city, :zip, :country],:company_attributes => [:id, :name, :iban, :subject_to_vat, :vat_number, :address_attributes =>[:id, :complete_address,:street, :city, :zip, :country]]]
   end
 
+  def count_notification
+    if current_user.present?
+      @notifications_count = current_user.notifications.not_seen.size
+      @notifications = current_user.notifications.not_seen.paginate(page: params[:notifications_page], per_page: params[:notifications_per_page])
+    else
+      @notifications_count = 0
+      @notifications = []
+    end
+  end
 
   private
   def set_locale
