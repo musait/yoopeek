@@ -8,7 +8,8 @@ class Job < ApplicationRecord
   has_many :reviews
   has_many :quotes
   has_one :notification
-  
+  paginates_per 10
+
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :completed, :cancelled]
 
@@ -18,10 +19,10 @@ class Job < ApplicationRecord
     Notification.create_for customer, self
   end
   def price_range
-    "#{self.min_price} - #{self.max_price}" # or as an array, or however you want to return it
+    "#{self.min_price} - #{self.max_price}"
   end
   def time_range
-    "#{self.min_time} - #{self.max_time}" # or as an array, or however you want to return it
+    "#{self.min_time} - #{self.max_time}"
   end
   def set_slug
     self.slug = name.to_s.parameterize
