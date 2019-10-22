@@ -4,9 +4,7 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-
-      @jobs = Job.all
-
+    @jobs = Job.paginate(page: params[:page], per_page: 1).where(customer_id:current_user.id)
   end
 
   # GET /jobs/1
@@ -31,6 +29,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     @job.optional_services = params[:job][:optional_services][0].split(' ')
+    @job.status = "created"
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
