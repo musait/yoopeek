@@ -1,19 +1,19 @@
-<%= form_with(model: category, local: true) do |form| %>
-  <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
-      <ul>
-      <% category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group form-material" data-plugin="formMaterial">
-    <h5><%= raw I18n.t('.job.new.title') %></h5>
-    <%= form.text_field :name,class:"form-control" %>
+<%= form_with(model: [:admin,@category], class:"modal-content") do |form| %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title" id="exampleFormModalLabel">Ajout d'une catégorie</h4>
   </div>
-    <%= form.submit t("job.edit.job_edition"), class:"btn btn-primary"%>
-<% end %>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-xl-12 form-group">
+        <h5><%= raw I18n.t('.jobs.new.category') %></h5>
+        <%= form.text_field :name,class:"form-control" %>
+      </div>
+      <div class="col-md-12 float-right">
+        <%= form.submit "Ajouter une catégorie", class:"btn btn-primary btn-outline"%>
+      </div>
+    </div>
+  </div>
+<%end%>
