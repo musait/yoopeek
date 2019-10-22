@@ -1,7 +1,4 @@
 fr:
-  will_paginate:
-    previous_label: "Précédent"
-    next_label: "Suivant"
   notifications:
     room_message_created: "%{creator} à créer une conversation"
   number:
@@ -38,13 +35,17 @@ fr:
       see_his_profile: "Voir son profil"
   jobs:
     index:
+
       your_missions: "Vos missions"
       created: "Créée"
       in_progress: "En cours"
       finished: "Terminée"
       aborted: "Annulée"
       hour: "heure(s)"
+      time_range: "Entre %{min_time} et %{max_time} heure(s)"
       published_at: "Publiée il y a"
+      unsucessful_research: "Nous sommes désolés mais il n'existe pas de missions avec les caractéristiques indiquées"
+      status: "Statut"
     show:
       job_description: "Description de la mission"
       pro_choosen: "Le professionel que vous avez choisi"
@@ -69,6 +70,7 @@ fr:
       under_category: "Sous catégorie"
       delivery_format: "Format de livraison"
       estimated_time: "Temps estimé"
+      time_range: "Entre %{min_time} et %{max_time} heure(s)"
       localisation: "Localisation"
       which_date: "A quelle date ?"
       hour: "heure(s)"
