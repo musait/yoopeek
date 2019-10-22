@@ -1,4 +1,7 @@
 fr:
+  will_paginate:
+    previous_label: "Précédent"
+    next_label: "Suivant"
   notifications:
     room_message_created: "%{creator} à créer une conversation"
   number:
@@ -34,6 +37,14 @@ fr:
       price: "Taux horaire"
       see_his_profile: "Voir son profil"
   jobs:
+    index:
+      your_missions: "Vos missions"
+      created: "Créée"
+      in_progress: "En cours"
+      finished: "Terminée"
+      aborted: "Annulée"
+      hour: "heure(s)"
+      published_at: "Publiée il y a"
     show:
       job_description: "Description de la mission"
       pro_choosen: "Le professionel que vous avez choisi"
@@ -60,6 +71,7 @@ fr:
       estimated_time: "Temps estimé"
       localisation: "Localisation"
       which_date: "A quelle date ?"
+      hour: "heure(s)"
       invoice_print: "Imprimer la facture"
       rate_pro_project: Noter %{pro} pour la mission %{job}
       delivered_on_budget: "Est-ce que ce professionel a respecté votre budget ?"
@@ -137,8 +149,6 @@ fr:
         address: "Adresse de votre entreprise"
         is_your_company_subject_to_vat: "Êtes vous soumis à la TVA ?"
         vat_number: "Numéro de TVA intracommunautaire"
-
-
   rooms:
     show:
       title: "Message"
