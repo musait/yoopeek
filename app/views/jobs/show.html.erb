@@ -367,7 +367,7 @@
 									<li>
 										<i class="icon-material-outline-local-atm"></i>
 										<span> <%= t('.your_budget') %></span>
-									
+
 										<h5><%= number_to_currency(@job.min_price) +"-"+ number_to_currency(@job.max_price)%></h5>
 									</li>
 									<li>
@@ -402,7 +402,8 @@
 									<li>
 										<i class="icon-material-outline-business-center"></i>
 										<span><%= t('.estimated_time') %></span>
-										<h5><%= @job.max_time - @job.min_time %> <%= t('.hour') %></h5>
+										<h5> <%=  t('.time_range', min_time: @job.min_time,max_time: @job.max_time) %></h5>
+
 									</li>
 									<li>
 										<i class="icon-material-outline-business-center"></i>
