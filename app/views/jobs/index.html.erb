@@ -12,49 +12,14 @@
 					<div class="row justify-content-end">
 						<div class="col-xl-3">
 							<span>Trier par:</span>
+							<% grouped_options = grouped_options = [[t('.status'),[[t('.created'),'created'],[t('.in_progress'),'in_progress'],[t('.finished'),'completed'],[t('.aborted'),'aborted']]]] %>
 							<%= form_tag("filter", :remote => true) do %>
-			          <%= select_tag 'filter',options_for_select([[ "Approuvé", "approved"], [ "Non approuvé", "unapproved"],[ "Professionel", "pro"],[ "Client", "cus"]]), prompt: "Select something", class:"custom-select custom-select-lg mb-3" %>
+			          <%= select_tag 'filter',grouped_options_for_select(grouped_options), prompt: "Select something", class:"custom-select", id:"job_filter" %>
 			        <% end %>
 						</div>
 					</div>
-					<div class="listings-container margin-top-35">
-						<!-- Job Listing -->
-            <% @jobs.each do |job| %>
-              <%= link_to job_path(slug:job.slug), class:"job-listing" do%>
-	              <div class="job-listing-details">
-
-	                <!-- Details -->
-	                <div class="job-listing-description">
-	                  <!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
-	                  <h3 class="job-listing-title"> <%= job.name %></h3>
-	                  <p class="job-listing-text"> <%= job.description %></p>
-
-	                </div>
-								</div>
-	                <div class="job-listing-footer">
-	  								<ul>
-											<% case job.status %>
-												<% when 'created' %>
-												<li><mark class="color" style="background-color: grey"><%= t('.created') %></mark></li>
-												<% when "in_progress" %>
-												<mark class="color" style="background-color: #28b661"><%= t('.in_progress') %></mark>
-												<% when "completed" %>
-												<mark class="color" style="background-color: #2a41e8"><%= t('.finished') %></mark>
-												<% when "cancelled" %>
-												<mark class="color" style="background-color: #e53038"><%= t('.aborted') %></mark>
-											<% end %>
-	  									<li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.min_price) +"-"+ number_to_currency(job.max_price)%></li>
-	  									<li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
-	  									<li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
-	  									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
-	  									<li><i class="icon-material-outline-location-on"></i> <%= job.max_time - job.min_time %> <%= t('.hour') %></li>
-	  									<li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
-	  									<li><i class="icon-material-outline-access-time"></i> <%= t('.published_at') %> <%= time_ago_in_words(job.created_at) %></li>
-	  								</ul>
-
-	  							</div>
-              <% end %>
-            <%end%>
+					<div class="listings-container margin-top-35" id="job_list">
+						<%= render "job_list" %>
 					</div>
 				</div>
 			</div>
@@ -70,3 +35,17 @@
 			</div>
 		</div>
 		<!-- Pagination / End -->
+		<%= content_for :body_script do %>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#job_filter").bind('change', function() {
+						$.ajax({
+							url: '/jobs',
+							type: "GET",
+							dataType: "script",
+							data: {"filter": $("#job_filter").val()}
+						});
+					});
+				});
+			</script>
+		<% end %>
