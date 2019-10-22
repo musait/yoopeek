@@ -8,21 +8,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-12">
-
-					<h3 class="page-title">Vos missions créées</h3>
-
-					<div class="notify-box margin-top-15">
-
-						<div class="sort-by">
+					<h3 class="page-title"> <%= t('.your_missions') %> </h3>
+					<div class="row justify-content-end">
+						<div class="col-xl-3">
 							<span>Trier par:</span>
-							<select class="selectpicker hide-tick">
-								<option>Statut</option>
-								<option>Plus récent</option>
-								<option>Plus ancien</option>
-							</select>
+							<%= form_tag("filter", :remote => true) do %>
+			          <%= select_tag 'filter',options_for_select([[ "Approuvé", "approved"], [ "Non approuvé", "unapproved"],[ "Professionel", "pro"],[ "Client", "cus"]]), prompt: "Select something", class:"custom-select custom-select-lg mb-3" %>
+			        <% end %>
 						</div>
 					</div>
-
 					<div class="listings-container margin-top-35">
 						<!-- Job Listing -->
             <% @jobs.each do |job| %>
@@ -39,44 +33,40 @@
 								</div>
 	                <div class="job-listing-footer">
 	  								<ul>
-	  									<li><i class="icon-material-outline-location-on"></i> <mark class="color" style="background-color: grey">Créée</mark></li>
-	  									<li><i class="icon-material-outline-account-balance-wallet"></i> <%= job.price_range %></li>
+											<% case job.status %>
+												<% when 'created' %>
+												<li><mark class="color" style="background-color: grey"><%= t('.created') %></mark></li>
+												<% when "in_progress" %>
+												<mark class="color" style="background-color: #28b661"><%= t('.in_progress') %></mark>
+												<% when "completed" %>
+												<mark class="color" style="background-color: #2a41e8"><%= t('.finished') %></mark>
+												<% when "cancelled" %>
+												<mark class="color" style="background-color: #e53038"><%= t('.aborted') %></mark>
+											<% end %>
+	  									<li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.min_price) +"-"+ number_to_currency(job.max_price)%></li>
 	  									<li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
 	  									<li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
 	  									<li><i class="icon-material-outline-location-on"></i> Clé USB</li>
-	  									<li><i class="icon-material-outline-location-on"></i> <%= job.time_range %></li>
+	  									<li><i class="icon-material-outline-location-on"></i> <%= job.max_time - job.min_time %> <%= t('.hour') %></li>
 	  									<li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
-	  									<li><i class="icon-material-outline-access-time"></i> <%= time_ago_in_words(job.created_at).capitalize %></li>
+	  									<li><i class="icon-material-outline-access-time"></i> <%= t('.published_at') %> <%= time_ago_in_words(job.created_at) %></li>
 	  								</ul>
 
 	  							</div>
               <% end %>
             <%end%>
-
-
-						<!-- Pagination -->
-						<div class="clearfix"></div>
-						<div class="row">
-							<div class="col-md-12">
-								<!-- Pagination -->
-								<div class="pagination-container margin-top-30 margin-bottom-60">
-									<nav class="pagination">
-										<ul>
-											<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
-											<li><a href="#">1</a></li>
-											<li><a href="#" class="current-page">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
-										</ul>
-									</nav>
-								</div>
-							</div>
-						</div>
-						<!-- Pagination / End -->
-
 					</div>
-
 				</div>
 			</div>
 		</div>
+		<!-- Pagination -->
+		<div class="clearfix"></div>
+		<div class="row" style="margin-top:50px">
+			<div class="col-md-12">
+				<!-- Pagination -->
+				<div class="pagination-container margin-top-30 margin-bottom-60">
+					<%= paginate @jobs%>
+				</div>
+			</div>
+		</div>
+		<!-- Pagination / End -->
