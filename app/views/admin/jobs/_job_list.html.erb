@@ -1,0 +1,35 @@
+<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Localisation</th>
+      <th>Catégorie</th>
+      <th>Sous-Catégorie</th>
+      <th>Client</th>
+      <th>Professionnel</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= link_to job.name, job_path(slug: job.slug) %></td>
+        <td><%= truncate(job.description, length: 100) %></td>
+        <td><%= job.localisation %></td>
+        <td><%= job.category.name %></td>
+        <td><%= job.subcategory.name %></td>
+        <td><%= job.customer.full_name %></td>
+        <td><%= job.worker.present? ? job.worker.full_name : "Non attribué" %></td>
+        <td class="actions">
+          <%= link_to edit_admin_job_path(slug: job.slug),method: :get,class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row" do %>
+            <i class="icon wb-edit" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to admin_job_path(slug: job.slug), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row" do%>
+            <i class="icon wb-trash" aria-hidden="true"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
