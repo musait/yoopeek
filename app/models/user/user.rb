@@ -14,6 +14,9 @@ class User < ApplicationRecord
   belongs_to :address, optional: true
   accepts_nested_attributes_for :address
   after_create :send_admin_mail
+  after_save :set_stripe_customer_id, if: Proc.new { stripe_customer_id.blank? }
+  attr_accessor :account_token
+  attr_accessor :person_token
   acts_as_reader
   phony_normalize :phone_number, default_country_code: 'FR'
 
@@ -30,6 +33,10 @@ class User < ApplicationRecord
 
   def send_admin_mail
     AdminMailer.new_user_waiting_for_approval(email).deliver
+  end
+
+  def set_stripe_customer_id
+    StripeCustomer.create self if stripe_customer_id.blank?
   end
 
   def self.from_facebook(auth,params)

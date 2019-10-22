@@ -289,6 +289,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.7.0)
     switch_user (1.5.2)
     thor (0.20.3)
     thread_safe (0.3.6)
@@ -358,6 +359,7 @@ DEPENDENCIES
   sendgrid-ruby
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   switch_user
   toastr_rails
   turbolinks (~> 5)

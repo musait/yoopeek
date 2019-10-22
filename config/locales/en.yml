@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  stripe:
+    agreed: By clicking, you agree to
+    our_terms: our terms
+    and: and the
+    stripe_connect_agreement: Stripe Connected Account Agreement

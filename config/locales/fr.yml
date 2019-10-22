@@ -1,4 +1,9 @@
 fr:
+  stripe:
+    agreed: En cliquant sur ce bouton, vous acceptez
+    our_terms: nos Conditions Générales d'Utilisation
+    and: ainsi que les
+    stripe_connect: Conditions d'Utilisation des Comptes Connectés Stripe
   notifications:
     room_message_created: "%{creator} à créer une conversation"
   number:
