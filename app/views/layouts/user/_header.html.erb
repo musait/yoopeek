@@ -24,9 +24,9 @@
 								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr), method: :get %></li>
 								<li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li>
 							<% else %>
-								<li><%= link_to I18n.t('.header.create_job'), new_job_path, class:"button ripple-effect", style:"color: white"%></li>
-								<li><%= link_to I18n.t('.header.your_job'), jobs_path(locale: :fr) %></li>
-								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr) %></li>
+								<li><%= link_to I18n.t('.header.create_job'), new_job_path,method: :get, class:"button ripple-effect", style:"color: white"%></li>
+								<li><%= link_to I18n.t('.header.your_job'), jobs_path(locale: :fr),method: :get %></li>
+								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr),method: :get %></li>
 								<li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li>
 							<% end %>
 						<% end %>
