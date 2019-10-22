@@ -6,7 +6,7 @@ class Admin::CategoriesController <  AdminController
   def index
     @categories = Category.all
     @subcategories = []
-
+    @category = Category.new
   end
 
   # GET /categories/1
@@ -26,6 +26,11 @@ class Admin::CategoriesController <  AdminController
 
   # GET /categories/1/edit
   def edit
+    @category = Category.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   def get_subcategories
     @subcategories = Subcategory.where(category_id: params[:category_id])
@@ -49,9 +54,10 @@ class Admin::CategoriesController <  AdminController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to admin_categories_path, notice: 'Category was successfully updated.' }
         format.json { render :index, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -78,6 +84,6 @@ class Admin::CategoriesController <  AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.permit(:name)
+      params.require(:category).permit(:id, :name)
     end
 end
