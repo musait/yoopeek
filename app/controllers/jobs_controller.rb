@@ -4,7 +4,11 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.paginate(page: params[:page], per_page: 1).where(customer_id:current_user.id)
+    if params[:filter].present?
+      @jobs = Job.where(customer_id:current_user.id).where(status: params[:filter]).page(params[:page])
+    else
+      @jobs = Job.where(customer_id:current_user.id).page(params[:page])
+    end
   end
 
   # GET /jobs/1
