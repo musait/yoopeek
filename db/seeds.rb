@@ -5,25 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if Subcategory.all.empty?
+  Subcategory.create([
+    { name: 'Portrait' },
+    { name: 'Évènement'},
+    { name: 'Mariage' },
+    { name: 'Cinéma'},
+    { name: 'Court-métrage'},
+    { name: 'Publicité'},
+    ])
+  end
 if Category.all.empty?
   Category.create([{ name: 'Photographie' }, { name: 'Maquillage' }, { name: 'Vidéographie' }])
+  Category.all.each do |cat|
+    3.times do
+      cat.subcategories << Subcategory.order(Arel.sql('random()')).first
+    end
+  end
 end
 if Profession.all.empty?
   Profession.create([{ name: 'Photographe' }, { name: 'Vidéographe' }])
 end
 
-if Subcategory.all.empty?
-  Subcategory.create([{ name: 'Portrait', category_id: Category.find_by(name: 'Photographie') },
-    { name: 'Évènement', category_id: Category.find_by(name: 'Photographie').id },
-    { name: 'Mariage', category_id: Category.find_by(name: 'Photographie').id },
-    { name: 'Cinéma', category_id: Category.find_by(name: 'Maquillage').id },
-    { name: 'Mariage', category_id: Category.find_by(name: 'Maquillage').id },
-    { name: 'Évènement', category_id: Category.find_by(name: 'Vidéographie').id },
-    { name: 'Mariage', category_id: Category.find_by(name: 'Vidéographie').id },
-    { name: 'Court-métrage', category_id: Category.find_by(name: 'Vidéographie').id },
-    { name: 'Publicité', category_id: Category.find_by(name: 'Vidéographie').id },
-    ])
-  end
 if User.all.empty?
 
    User.create!([
