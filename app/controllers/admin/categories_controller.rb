@@ -7,6 +7,7 @@ class Admin::CategoriesController <  AdminController
     @categories = Category.all
     @subcategories = []
     @category = Category.new
+    @subcategories = Subcategory.all
   end
 
   # GET /categories/1
@@ -17,6 +18,7 @@ class Admin::CategoriesController <  AdminController
   # GET /categories/new
   def new
     @category = Category.new
+    @category.subcategories.build
     respond_to do |format|
       format.html
       format.js
@@ -27,6 +29,7 @@ class Admin::CategoriesController <  AdminController
   # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
+    @subcategories = @category.subcategories
     respond_to do |format|
       format.html
       format.js
@@ -84,6 +87,6 @@ class Admin::CategoriesController <  AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:id, :name)
+      params.require(:category).permit(:id, :name, :subcategory_ids => [],:subcategories_attributes => [:id, :name])
     end
 end
