@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_162412) do
+ActiveRecord::Schema.define(version: 2019_10_23_102629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_162412) do
   end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: " "
     t.string "iban"
     t.string "bic"
     t.string "bank_name"
@@ -101,6 +101,15 @@ ActiveRecord::Schema.define(version: 2019_10_22_162412) do
     t.index ["slug"], name: "index_jobs_on_slug", unique: true
     t.index ["subcategory_id"], name: "index_jobs_on_subcategory_id"
     t.index ["worker_id"], name: "index_jobs_on_worker_id"
+  end
+
+  create_table "join_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "category_id"
+    t.uuid "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_join_categories_on_category_id"
+    t.index ["subcategory_id"], name: "index_join_categories_on_subcategory_id"
   end
 
   create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -215,10 +224,8 @@ ActiveRecord::Schema.define(version: 2019_10_22_162412) do
 
   create_table "subcategories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.uuid "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -243,13 +250,12 @@ ActiveRecord::Schema.define(version: 2019_10_22_162412) do
     t.string "nationality"
     t.text "description"
     t.uuid "profession_id"
-    t.string "stripe_person_id"
     t.uuid "address_id"
     t.boolean "is_worker"
     t.boolean "approved", default: false, null: false
     t.boolean "admin", default: false
-    t.integer "notifications_count"
     t.string "phone_number"
+    t.integer "notifications_count"
     t.string "stripe_customer_id"
     t.string "stripe_account_id"
     t.string "last_stripe_payment_method_id"
@@ -287,7 +293,6 @@ ActiveRecord::Schema.define(version: 2019_10_22_162412) do
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "rooms", "jobs"
   add_foreign_key "stripe_subscription_cancels", "users"
-  add_foreign_key "subcategories", "categories"
   add_foreign_key "users", "addresses"
   add_foreign_key "users", "professions"
 end
