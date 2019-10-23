@@ -86,3 +86,4 @@ gem 'will_paginate'
 gem 'phony_rails'
 gem 'kaminari'
 gem 'stripe'
+gem "select2-rails"
