@@ -1,4 +1,5 @@
 class Subcategory < ApplicationRecord
-  belongs_to :category
+  has_many :join_categories
+  has_many :categories, :through => :join_categories
   has_many :jobs
 end
