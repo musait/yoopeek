@@ -1,3 +1,5 @@
+<%= content_for :body_style do  %>
+<% end %>
 <div class="modal fade" id="editCategoryModal" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
   <div class="modal-dialog modal-simple">
     <%= form_with(model: [:admin,@category], class:"modal-content") do |form| %>
@@ -13,6 +15,9 @@
             <h5><%= raw I18n.t('.jobs.new.category') %></h5>
             <%= form.text_field :name,class:"form-control" %>
           </div>
+          <div class="col-xl-12 form-group">
+            <%= form.collection_select :subcategory_ids, Subcategory.all, :id, :name, {include_hidden: false }, {multiple: true} %>
+          </div>
           <div class="col-md-12 float-right">
             <%= form.submit "Modifier cette catégorie", class:"btn btn-primary btn-outline"%>
           </div>
@@ -21,3 +26,10 @@
     <%end%>
   </div>
 </div>
+<%= content_for :body_script do %>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#category_subcategory_ids").select2();
+  });
+</script>
+<% end %>
