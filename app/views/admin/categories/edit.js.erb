@@ -1,3 +1,7 @@
 $("#editCategory").html("<%= j(render partial: 'edit_category_modal') %>");
 $("#editCategoryModal").find(".modal-content");
 $("#editCategoryModal").modal()
+
+$("select").select2({
+  theme: "bootstrap"
+})

@@ -13,6 +13,9 @@
             <h5><%= raw I18n.t('.jobs.new.category') %></h5>
             <%= form.text_field :name,class:"form-control" %>
           </div>
+          <div class="col-xl-12 form-group">
+            <%= form.collection_select :subcategory_ids, Subcategory.all, :id, :name, {include_hidden: true }, {multiple: true} %>
+          </div>
           <div class="col-md-12 float-right">
             <%= form.submit "Modifier cette catégorie", class:"btn btn-primary btn-outline"%>
           </div>

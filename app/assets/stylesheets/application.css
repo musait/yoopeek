@@ -10,5 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *= require toastr_rails
- *
+ *= require select2
+ *= require select2-bootstrap
  */
+ .select2-container--open {
+     z-index: 9999999 !important;
+ }
