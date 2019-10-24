@@ -3,11 +3,10 @@ class Admin::UsersController <  AdminController
   def index
     if params[:filter].present?
       if params[:filter] == "approved"
-        @users = User.where(approved: true).where("id != ?", current_user.id)
+        @users = User.where(approved: true).where(is_worker: true).where("id != ?", current_user.id)
       elsif params[:filter] == "unapproved"
         @users = User.where(approved: false).where("id != ?", current_user.id)
       elsif params[:filter] == "pro"
-        binding.pry
         @users = User.where(is_worker: true).where("id != ?", current_user.id)
       elsif params[:filter] == "cus"
         @users = User.where(is_worker: false).where("id != ?", current_user.id)
@@ -36,13 +35,12 @@ class Admin::UsersController <  AdminController
     elsif params[:approved] == "true"
       @user.update(approved:true)
     end
-    @user.save
+    respond_to do |format|
+      if @user.save
+        format.js { flash.now[:notice] = "L'utilisateur a été mis à jour avec succès" }
+      end
+    end
   end
-
-
-
-
-
 
   private
 
