@@ -21,8 +21,9 @@ class CategoriesController < ApplicationController
   def edit
   end
   def get_subcategories
-    @subcategories = Subcategory.where(category_id: params[:category_id])
-    
+    @category  = Category.find(params[:category_id])
+    @subcategories = @category.subcategories
+
   end
   # POST /categories
   # POST /categories.json
