@@ -46,13 +46,4 @@
     </div>
 <%= content_for :body_script do %>
 <%= render "layouts/admin/script_datatable" %>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#category-datatable').dataTable({
-			"language": {
-				"url": 'http://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
-			}
-		});
-	});
-</script>
 <% end %>
