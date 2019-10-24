@@ -45,7 +45,7 @@ class Admin::CategoriesController <  AdminController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to admin_categories_path, notice: 'Category was successfully created.' }
+        format.html { redirect_to admin_categories_path, notice: 'La catégorie a été créée avec succès' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class Admin::CategoriesController <  AdminController
     @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to admin_categories_path, notice: 'Category was successfully updated.' }
+        format.html { redirect_to admin_categories_path, notice: 'La catégorie a été mise à jour avec succès' }
         format.json { render :index, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class Admin::CategoriesController <  AdminController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to admin_categories_path, notice: 'La catégorie a été supprimée' }
+      format.html { redirect_to admin_categories_path, notice: 'La catégorie a été supprimée avec succès' }
       format.json { head :no_content }
     end
   end
