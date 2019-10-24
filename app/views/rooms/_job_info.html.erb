@@ -1,0 +1,72 @@
+  <div class="job-overview">
+    <div class="messages-headline">
+      <h4><%= @room.job.name %></h4>
+    </div>
+    <div class="job-overview-inner" style="background-color: #ffff">
+      <ul>
+        <li>
+          <i class="icon-material-outline-local-atm"></i>
+          <span><%= t('.budget') %></span>
+          <h5><%= number_to_currency(@room.job.min_price) +"-"+ number_to_currency(@room.job.max_price) %></h5>
+        </li>
+        <li>
+          <i class="icon-material-outline-location-on"></i>
+          <span><%= t('.status') %></span>
+          <% case @room.job.status %>
+          <% when "created" %>
+          <mark class="color" style="background-color: grey">Créée</mark>
+          <% when "in_progress" %>
+          <mark class="color" style="background-color: orange">En cours</mark>
+          <% when "completed" %>
+          <mark class="color" style="background-color: #28b661">Terminée</mark>
+          <% else%>
+          <mark class="color" style="background-color: #e53038">Annulée</mark>
+          <% end %>
+        </li>
+        <li>
+          <i class="icon-material-outline-business-center"></i>
+          <span><%= t('.category') %></span>
+          <h5><%= @room.job.category.name %></h5>
+        </li>
+        <li>
+          <i class="icon-material-outline-local-atm"></i>
+          <span><%= t('.subcategory') %></span>
+          <h5><%= @room.job.subcategory.name %></h5>
+        </li>
+        <li>
+          <i class="icon-material-outline-location-on"></i>
+          <span><%= t('.format_delivery') %></span>
+          <h5><%= @room.job.format_delivery.name %></h5>
+        </li>
+        <li>
+          <i class="icon-material-outline-business-center"></i>
+          <span><%= t('.estimated_time') %></span>
+          <h5><%=  t('jobs.index.time_range', min_time: @room.job.min_time,max_time: @room.job.max_time) %></h5>
+        </li>
+        <li>
+          <i class="icon-material-outline-local-atm"></i>
+          <span><%= t('.date_delivery') %></span>
+          <h5><%= @room.job.date_delivery %></h5>
+        </li>
+
+      </ul>
+    </div>
+    <div class="messages-headline" style="border-top: 1px solid #eaeaea; border-bottom: none">
+      <h4><%= t('.your_quotes') %></h4>
+    </div>
+    <div class="job-overview-inner" style="background-color: #ffff; padding-top: 0; ">
+      <ul>
+        <li style="display: flex; justify-content: space-between">
+          <i class="icon-material-outline-description"></i> <a href="#">Devis 01</a> <mark class="color" style="background-color: #28b661">En cours</mark>
+        </li>
+        <li style="display: flex; justify-content: space-between">
+          <i class="icon-material-outline-description"></i> <a href="#">Devis 02</a> <mark class="color" style="background-color: #e53038">Refusé</mark>
+        </li>
+        <li style="display: flex; justify-content: space-between">
+          <%= link_to new_quote_path(:job_id => @room.job.id) do %>
+            <%= raw I18n.t('.rooms.show.new_quote') %><i class="icon-material-outline-add"></i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
