@@ -24,6 +24,12 @@ class Admin::ProfessionsController < AdminController
 
   # GET /professions/1/edit
   def edit
+    @profession = Profession.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # POST /professions
@@ -33,7 +39,7 @@ class Admin::ProfessionsController < AdminController
 
     respond_to do |format|
       if @profession.save
-        format.html { redirect_to admin_professions_path, notice: 'La profession a été créee avec succés' }
+        format.html { redirect_to admin_professions_path, notice: 'La profession a été créée avec succès' }
         format.json { render :show, status: :created, location: @profession }
       else
         format.html { render admin_professions_path, notice: "Une erreur a été détectée" }
@@ -47,7 +53,7 @@ class Admin::ProfessionsController < AdminController
   def update
     respond_to do |format|
       if @profession.update(profession_params)
-        format.html { redirect_to @profession, notice: 'Profession was successfully updated.' }
+        format.html { redirect_to admin_professions_path, notice: 'La profession a été mise à jour avec succès' }
         format.json { render :show, status: :ok, location: @profession }
       else
         format.html { render :edit }
@@ -61,7 +67,7 @@ class Admin::ProfessionsController < AdminController
   def destroy
     @profession.destroy
     respond_to do |format|
-      format.html { redirect_to professions_url, notice: 'Profession was successfully destroyed.' }
+      format.html { redirect_to admin_professions_path, notice: 'La profession a été supprimée avec succès' }
       format.json { head :no_content }
     end
   end
@@ -74,6 +80,6 @@ class Admin::ProfessionsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profession_params
-      params.require(:profession).permit(:name)
+      params.require(:profession).permit(:id,:name)
     end
 end
