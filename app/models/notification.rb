@@ -37,17 +37,20 @@ class Notification < ApplicationRecord
   end
 
   def url
-    case created_for
-    when "room_message"
-      room_path(locale: I18n.locale, id: room_message.room_id)
-    when "job"
-      job_path(locale: I18n.locale, id: job.slug)
-    when "quote"
-      quote_path(locale: I18n.locale, id: quote.id)
-    when "review"
-      review_path(locale: I18n.locale, id: review.id)
+    begin
+      case created_for
+      when "room_message"
+        room_path(locale: I18n.locale, id: room_message.room_id)
+      when "job"
+        job_path(locale: I18n.locale, id: job.id)
+      when "quote"
+        quote_path(locale: I18n.locale, id: quote.id)
+      when "review"
+        review_path(locale: I18n.locale, id: review.id)
+      end
+    rescue
+      root_path
     end
-
   end
 
   def self.set_seen notifications, set_by, ids
