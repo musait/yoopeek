@@ -4,10 +4,18 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    if params[:filter].present?
-      @jobs = Job.where(customer_id:current_user.id).where(status: params[:filter]).page(params[:page])
+    if current_user.is_worker
+      if params[:filter].present?
+        @jobs = Job.joins(:category).where(categories: {id: params[:filter]}).where(status: "created").page(params[:page])
+      else
+        @jobs = Job.where(status: "created").page(params[:page])
+      end
     else
-      @jobs = Job.where(customer_id:current_user.id).page(params[:page])
+      if params[:filter].present?
+        @jobs = Job.where(customer_id:current_user.id).where(status: params[:filter]).page(params[:page])
+      else
+        @jobs = Job.where(customer_id:current_user.id).page(params[:page])
+      end
     end
   end
 
