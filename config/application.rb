@@ -14,7 +14,7 @@ module Yoopeek
     config.i18n.default_locale = :fr
     config.autoload_paths += %W(#{Rails.root}/app/models/user)
     config.autoload_paths += %W(#{config.root}/lib/modules)
-
+    config.active_storage.service = :amazon
     config.eager_load_paths << "#{Rails.root}/lib/modules"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

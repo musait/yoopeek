@@ -1,4 +1,6 @@
 fr:
+  other:
+    send_mp: Envoyer un message
   stripe:
     agreed: En cliquant sur ce bouton, vous acceptez
     our_terms: nos Conditions Générales d'Utilisation

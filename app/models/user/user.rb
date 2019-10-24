@@ -18,8 +18,26 @@ class User < ApplicationRecord
   attr_accessor :account_token
   attr_accessor :person_token
   acts_as_reader
+  has_one_attached :avatar
   phony_normalize :phone_number, default_country_code: 'FR'
 
+  def avatar_url
+    if avatar.attached?
+      ActiveStorage::Current.host = Rails.application.credentials.dig(Rails.env.to_sym, :host)
+      avatar.service_url
+    else
+      ActionController::Base.helpers.asset_path 'logo.png'
+    end
+  end
+  def worker?
+    is_a? Worker
+  end
+  def customer?
+    is_a? Customer
+  end
+  def admin?
+    is_a? Admin
+  end
   def add_type
     self.type ="Customer"
   end
@@ -45,6 +63,10 @@ class User < ApplicationRecord
       user.firstname = auth.info.name.partition(" ").first
       user.lastname = auth.info.name.partition(" ").last
       user.password = Devise.friendly_token[0, 20]
+      # user.remote_avatar_url = auth.info.image
+      require 'open-uri'
+      downloaded_image = open(auth.info.image)
+      user.avatar.attach(io: downloaded_image, filename: 'avatar.jpg', content_type: downloaded_image.content_type)
       if params['isWorker'] == "1"
         user.type = "Worker"
         user.is_worker = true
@@ -62,7 +84,9 @@ class User < ApplicationRecord
       user.firstname = auth.info.first_name
       user.lastname = auth.info.last_name
       user.password = Devise.friendly_token[0, 20]
-
+      require 'open-uri'
+      downloaded_image = open(auth.info.image)
+      user.avatar.attach(io: downloaded_image, filename: 'avatar.jpg', content_type: downloaded_image.content_type)
       if params['isWorker'] == "1"
         user.type = "Worker"
       else

@@ -1,8 +1,9 @@
 <%= form_for @room do |form| %>
   <%= form.text_field :name %>
   <%= form.hidden_field :author_id, value: current_user.id %>
-  <%= form.hidden_field :receiver_id, value: @job.customer.id %>
-  <%= form.hidden_field :job_id, value: @job.id %>
-
+  <%= form.hidden_field :receiver_id, value: @other_user.id %>
+  <% if @job.present? %>
+    <%= form.hidden_field :job_id, value: @job.id %>
+  <% end %>
   <%= form.submit "Save", class: 'btn btn-success' %>
 <% end %>

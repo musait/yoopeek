@@ -48,7 +48,9 @@
 
 						<!-- Button -->
 						<div class="intro-search-button">
-							<a href="/theme/user/hireo/user-search-results.html" class="button"><%= raw I18n.t('.home.index.search') %></a>
+							<%= link_to search_result_path, class: "button" do %>
+								<%= raw I18n.t('.home.index.search') %>
+							<% end %>
 						</div>
 					</div>
 				</div>
