@@ -22,7 +22,7 @@
 
 					<div class="form-group col-lg-4 offset-col-lg-8">
 		        <%= form_tag("filter", :remote => true) do %>
-		          <%= select_tag 'filter',options_for_select([[ "Approuvé", "approved"], [ "Non approuvé", "unapproved"],[ "Professionel", "pro"],[ "Client", "cus"]]), prompt: "Select something", class:"form-control", id:"select" %>
+		          <%= select_tag 'filter',options_for_select([[ "Approuvé", "approved"], [ "Non approuvé", "unapproved"],[ "Professionel", "pro"],[ "Client", "cus"]]), prompt: "Séléctionnez un filtre", class:"form-control", id:"select" %>
 		        <% end %>
 		      </div>
           <div class="panel-body" id="user_list">
