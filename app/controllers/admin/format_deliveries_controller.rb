@@ -5,6 +5,7 @@ class Admin::FormatDeliveriesController < AdminController
   # GET /admin/format_deliveries.json
   def index
     @format_deliveries = FormatDelivery.all
+    @format_delivery = FormatDelivery.new
   end
 
   # GET /admin/format_deliveries/1
@@ -23,6 +24,7 @@ class Admin::FormatDeliveriesController < AdminController
 
   # GET /admin/format_deliveries/1/edit
   def edit
+    @format_delivery = FormatDelivery.find(params[:id])
     respond_to do |format|
       format.html
       format.js
@@ -36,7 +38,7 @@ class Admin::FormatDeliveriesController < AdminController
 
     respond_to do |format|
       if @format_delivery.save
-        format.html { redirect_to admin_format_deliveries_path, notice: 'Format delivery was successfully created.' }
+        format.html { redirect_to admin_format_deliveries_path, notice: 'Le format de livraison a été crée avec succès' }
         format.json { render :show, status: :created, location: @format_delivery }
       else
         format.html { render :new }
@@ -50,7 +52,7 @@ class Admin::FormatDeliveriesController < AdminController
   def update
     respond_to do |format|
       if @format_delivery.update(format_delivery_params)
-        format.html { redirect_to @format_delivery, notice: 'Format delivery was successfully updated.' }
+        format.html { redirect_to admin_format_deliveries_path, notice: 'Le format de livraison a été mis à jour avec succès' }
         format.json { render :show, status: :ok, location: @format_delivery }
       else
         format.html { render :edit }
@@ -64,7 +66,7 @@ class Admin::FormatDeliveriesController < AdminController
   def destroy
     @format_delivery.destroy
     respond_to do |format|
-      format.html { redirect_to admin_format_deliveries_url, notice: 'Format delivery was successfully destroyed.' }
+      format.html { redirect_to admin_format_deliveries_url, notice: 'Le format de livraison a été supprimé avec succès' }
       format.json { head :no_content }
     end
   end
@@ -77,6 +79,6 @@ class Admin::FormatDeliveriesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def format_delivery_params
-      params.permit(:name)
+      params.require(:format_delivery).permit(:id,:name)
     end
 end
