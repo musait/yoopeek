@@ -1,9 +1,19 @@
-<% if @jobs == [] %>
-  <div class="container">
 
+<% if current_user.is_customer && current_user.jobs == [] %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <section id="not-found" class="center margin-top-50 margin-bottom-25">
+          <h2><i class="icon-line-awesome-frown-o"></i></h2>
+          <p><%= raw t('jobs.index.user_dont_have_job',create_job_link: link_to(t('jobs.index.here'), new_job_path, { target: '_blank' })) %></p>
+        </section>
+      </div>
+    </div>
+  </div>
+<% elsif @jobs == [] %>
+  <div class="container">
   	<div class="row">
   		<div class="col-xl-12">
-
   			<section id="not-found" class="center margin-top-50 margin-bottom-25">
   				<h2><i class="icon-line-awesome-frown-o"></i></h2>
   				<p><%= t('jobs.index.unsucessful_research') %></p>
