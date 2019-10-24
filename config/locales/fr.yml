@@ -18,6 +18,13 @@ fr:
     create_job: "Créer une mission"
     your_job: "Vos missions"
   footer:
+  layouts:
+    user:
+      job:
+        index:
+          worker_view:
+            available_jobs: "Missions disponibles"
+            filter_by: "Filter par :"
   home:
     index:
       your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
@@ -40,7 +47,6 @@ fr:
       see_his_profile: "Voir son profil"
   jobs:
     index:
-
       your_missions: "Vos missions"
       created: "Créée"
       in_progress: "En cours"
@@ -49,6 +55,8 @@ fr:
       hour: "heure(s)"
       time_range: "Entre %{min_time} et %{max_time} heure(s)"
       published_at: "Publiée il y a"
+      user_dont_have_job: "Vous n'avez aucune mission pour l'instant. Vous pouvez en créer une %{create_job_link}"
+      here: "ici"
       unsucessful_research: "Nous sommes désolés mais il n'existe pas de missions avec les caractéristiques indiquées"
       status: "Statut"
     show:
@@ -171,6 +179,16 @@ fr:
       send_mp: "Envoyer"
       new_quote: "Nouveau devis"
       your_quotes: "Vos devis"
+    job_info:
+      budget: "Budget"
+      status: "Statut"
+      category: "Catégorie"
+      subcategory: "Sous-catégorie"
+      format_delivery: "Format de livraison"
+      estimated_time: "Temps estimé"
+      date_delivery: "Date de livraison"
+      your_quotes: "Vos devis"
+      time_range: "Entre %{min_time} et %{max_time} heure(s)"
   quotes:
     new:
       quote_creation: "Créer un devis"
