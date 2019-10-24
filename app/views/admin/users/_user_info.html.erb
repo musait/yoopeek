@@ -54,11 +54,11 @@
               <div class="row">
                 <div class="col-lg-6">
                   <h4 class="example-title">Nom de l'entreprise</h4>
-                  <p class="form-control-plaintext"><%= @user.company.present? ? @user.company.name : "Pas de nom d'entreprise fourni"%></p>
+                  <p class="form-control-plaintext"><%= @user.company.present? && @user.company.name.present? ? @user.company.name : "Pas de nom d'entreprise fourni"%></p>
                 </div>
                 <div class="col-lg-6">
                   <h4 class="example-title">Adresse</h4>
-                  <p class="form-control-plaintext"><%= @user.company.present? && @user.company.address.present? ? @user.company.address.complete_address : "Pas d'addresse fournie"%></p>
+                  <p class="form-control-plaintext"><%= @user.company.present? && @user.company.address.complete_address.present? ? @user.company.address.complete_address : "Pas d'addresse fournie"%></p>
                 </div>
               </div>
 
