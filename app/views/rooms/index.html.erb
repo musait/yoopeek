@@ -1,47 +1,37 @@
-<!-- Dashboard Container -->
-<div class="dashboard-container">
 
-  <!-- Dashboard Content
-  ================================================== -->
-  <div class="dashboard-content-container" data-simplebar>
-    <div class="dashboard-content-inner" >
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+  <h3>Messages</h3>
+</div>
 
-      <!-- Dashboard Headline -->
-      <div class="dashboard-headline">
-        <h3>Messages</h3>
-      </div>
+<div class="messages-container margin-top-0">
+  <div class="row">
+    <div class="col-sm-9" style="padding-right: 0px;">
 
-      <div class="messages-container margin-top-0">
-        <div class="row">
-          <div class="col-sm-9" style="padding-right: 0px;">
+      <div class="messages-container-inner">
 
-            <div class="messages-container-inner">
-
-              <!-- Messages -->
+        <!-- Messages -->
 
 
-              <%= render partial: 'rooms' %>
+        <%= render partial: 'rooms' %>
 
-              <!-- Messages / End -->
+        <!-- Messages / End -->
 
-              <!-- Message Content -->
-              <div class="message-content" id="messageContent">
+        <!-- Message Content -->
+        <div class="message-content" id="messageContent">
 
-              </div>
-              <!-- Message Content -->
-
-            </div>
-          </div>
-          <div class="col-sm-3" style="padding: 0px; border-left: 1px solid #eaeaea" id="jobInfos">
-
-          </div>
         </div>
+        <!-- Message Content -->
+
       </div>
-      <!-- Messages Container / End -->
+    </div>
+    <div class="col-sm-3" style="padding: 0px; border-left: 1px solid #eaeaea" id="jobInfos">
 
     </div>
   </div>
-  <!-- Dashboard Content / End -->
+</div>
+<!-- Messages Container / End -->
+<div style="margin-top:40px">
 
 </div>
 <!-- Dashboard Container / End -->

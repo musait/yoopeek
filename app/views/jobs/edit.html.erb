@@ -1,168 +1,146 @@
-<div id="wrapper">
 
-<!-- Header Container
-================================================== -->
-	<div class="clearfix"></div>
-	<!-- Header Container / End -->
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3><%= raw I18n.t('.job.edit.job_edition') %></h3>
+</div>
 
+<!-- Row -->
+<div class="row">
 
-	<!-- Dashboard Container -->
-	<div class="dashboard-container">
-		<!-- Dashboard Content
-		================================================== -->
-		<div class="dashboard-content-container">
-			<div class="dashboard-content-inner" >
+	<!-- Dashboard Box -->
+	<div class="col-xl-12">
+		<div class="dashboard-box margin-top-0">
 
-				<!-- Dashboard Headline -->
-				<div class="dashboard-headline">
-					<h3><%= raw I18n.t('.job.edit.job_edition') %></h3>
-				</div>
-
-				<!-- Row -->
+			<!-- Headline -->
+			<div class="headline">
+				<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.job.new.creation_form') %></h3>
+			</div>
+			<%= form_with(model: @job, local: true) do |form| %>
+			  <% if @job.errors.any? %>
+					<div class="notification error closeable">
+						<p><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</p>
+						<ul>
+						<% @job.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+						</ul>
+						<a class="close" href="#"></a>
+					</div>
+			  <% end %>
+			<div class="content with-padding padding-bottom-10">
 				<div class="row">
 
-					<!-- Dashboard Box -->
-					<div class="col-xl-12">
-						<div class="dashboard-box margin-top-0">
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.title') %></h5>
+							<%= form.text_field :name,class:"with-border" %>
+						</div>
+					</div>
 
-							<!-- Headline -->
-							<div class="headline">
-								<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.job.new.creation_form') %></h3>
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.category') %></h5>
+							<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {class:"selectpicker",id:"category_id"}) %>
+						</div>
+					</div>
+
+					<div class="col-xl-4">
+						<div  class="submit-field">
+							<h5><%= raw I18n.t('.job.new.under_category') %></h5>
+								<div id="subcategories_select">
+									<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
+								</div>
+						</div>
+					</div>
+
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.localisation') %></h5>
+							<div class="input-with-icon">
+								<div id="autocomplete-container">
+									<%= form.text_field :localisation,class:"with-border",placeholder:"ex: Nice, 75002, Suisse" %>
+								</div>
+								<i class="icon-material-outline-location-on"></i>
 							</div>
-							<%= form_with(model: @job, local: true) do |form| %>
-							  <% if @job.errors.any? %>
-									<div class="notification error closeable">
-										<p><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</p>
-										<ul>
-										<% @job.errors.full_messages.each do |message| %>
-											<li><%= message %></li>
-										<% end %>
-										</ul>
-										<a class="close" href="#"></a>
-									</div>
-							  <% end %>
-							<div class="content with-padding padding-bottom-10">
-								<div class="row">
+						</div>
+					</div>
 
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.title') %></h5>
-											<%= form.text_field :name,class:"with-border" %>
-										</div>
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.estimated_budget') %></h5>
+							<div class="row">
+								<div class="col-xl-6">
+									<div class="input-with-icon">
+										<%= form.text_field :min_price,class:"with-border",placeholder:"Min" %>
+										<i class="currency">€</i>
 									</div>
-
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.category') %></h5>
-											<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {class:"selectpicker",id:"category_id"}) %>
-										</div>
-									</div>
-
-									<div class="col-xl-4">
-										<div  class="submit-field">
-											<h5><%= raw I18n.t('.job.new.under_category') %></h5>
-												<div id="subcategories_select">
-													<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
-												</div>
-										</div>
-									</div>
-
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.localisation') %></h5>
-											<div class="input-with-icon">
-												<div id="autocomplete-container">
-													<%= form.text_field :localisation,class:"with-border",placeholder:"ex: Nice, 75002, Suisse" %>
-												</div>
-												<i class="icon-material-outline-location-on"></i>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.estimated_budget') %></h5>
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="input-with-icon">
-														<%= form.text_field :min_price,class:"with-border",placeholder:"Min" %>
-														<i class="currency">€</i>
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="input-with-icon">
-														<%= form.text_field :max_price,class:"with-border",placeholder:"Max" %>
-														<i class="currency">€</i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.additional_services') %></h5>
-											<div class="keywords-container">
-												<div class="keyword-input-container">
-													<%= form.text_field :optional_services,multiple: true,class:"keyword-input with-border",placeholder:"ex: Maquillage" %>
-												</div>
-												<div class="clearfix"></div>
-											</div>
-
-										</div>
-									</div>
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.estimated_time') %></h5>
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="input-with-icon">
-														<%= form.text_field :min_time,class:"with-border",placeholder:"Min" %>
-														<i class="currency">hr</i>
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="input-with-icon">
-														<%= form.text_field :max_time,class:"with-border",placeholder:"Max" %>
-														<i class="currency">hr</i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.desired_format') %></h5>
-											<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choissisez un format de livraison"}, {class:"selectpicker"}) %>
-										</div>
-									</div>
-
-									<div class="col-xl-12">
-										<div class="submit-field">
-											<h5><%= raw I18n.t('.job.new.description') %></h5>
-											<%= form.text_area :description,col:"30",rows:"5",class:"with-border"%>
-										</div>
+								</div>
+								<div class="col-xl-6">
+									<div class="input-with-icon">
+										<%= form.text_field :max_price,class:"with-border",placeholder:"Max" %>
+										<i class="currency">€</i>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<%= form.hidden_field :customer_id, :value => current_user.id %>
-					<div class="col-xl-12">
-						<%= form.submit I18n.t('.job.edit.job_edition'), class:"button ripple-effect big margin-top-30" %>
+
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.additional_services') %></h5>
+							<div class="keywords-container">
+								<div class="keyword-input-container">
+									<%= form.text_field :optional_services,multiple: true,class:"keyword-input with-border",placeholder:"ex: Maquillage" %>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+						</div>
 					</div>
-		<%end%>
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.estimated_time') %></h5>
+							<div class="row">
+								<div class="col-xl-6">
+									<div class="input-with-icon">
+										<%= form.text_field :min_time,class:"with-border",placeholder:"Min" %>
+										<i class="currency">hr</i>
+									</div>
+								</div>
+								<div class="col-xl-6">
+									<div class="input-with-icon">
+										<%= form.text_field :max_time,class:"with-border",placeholder:"Max" %>
+										<i class="currency">hr</i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.desired_format') %></h5>
+							<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choissisez un format de livraison"}, {class:"selectpicker"}) %>
+						</div>
+					</div>
+
+					<div class="col-xl-12">
+						<div class="submit-field">
+							<h5><%= raw I18n.t('.job.new.description') %></h5>
+							<%= form.text_area :description,col:"30",rows:"5",class:"with-border"%>
+						</div>
+					</div>
 				</div>
-				<!-- Row / End -->
-				<div class="dashboard-footer-spacer"></div>
 			</div>
 		</div>
-		<!-- Dashboard Content / End -->
-
 	</div>
-	<!-- Dashboard Container / End -->
-
+	<%= form.hidden_field :customer_id, :value => current_user.id %>
+	<div class="col-xl-12">
+		<%= form.submit I18n.t('.job.edit.job_edition'), class:"button ripple-effect big margin-top-30" %>
+	</div>
+<%end%>
 </div>
+<!-- Row / End -->
+<div class="dashboard-footer-spacer"></div>
 <script>
 	$('#category_id').change( function() {
    var category_id = $(this).val();

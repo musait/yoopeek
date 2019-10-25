@@ -1,515 +1,490 @@
 
-	<div class="clearfix"></div>
-	<!-- Header Container / End -->
-	<!-- Titlebar
-	================================================== -->
-	<div class="single-page-header" data-background-image="images/single-job.jpg">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="single-page-header-inner">
-						<div class="left-side">
-							<div class="header-details">
-								<h3><%= @job.name %></h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- Page Content
+================================================== -->
+
+<div class="dashboard-headline">
+	<h3><%= @job.name %></h3>
+</div>
+<div class="row">
+	<!-- Content -->
+	<div class="col-xl-8 col-lg-8">
+		<div class="single-page-section">
+			<h3 class="margin-bottom-25"><%= t('.job_description') %></h3>
+			<p><%= @job.description %></p>
 		</div>
-	</div>
-	<!-- Page Content
-	================================================== -->
-	<div class="container">
-		<div class="row">
+		<div class="single-page-section">
+			<% if @job.worker.present? && current_user.is_customer%>
+			<h3 class="margin-bottom-25"><%= t('.pro_choosen') %></h3>
+			<% end %>
+			<% if current_user.is_worker %>
+			<h3 class="margin-bottom-25"><%= t('.the_client') %></h3>
+			<% end %>
+			<!-- Listings Container -->
+			<div class="listings-container grid-layout">
 
-			<!-- Content -->
-			<div class="col-xl-8 col-lg-8 content-right-offset">
+				<!-- Job Listing -->
+				<div class="freelancers-container freelancers-list-layout margin-top-35">
 
-				<div class="single-page-section">
+					<!--Freelancer -->
+				  <%if @job.worker.present? && current_user.is_customer%>
+						<div class="freelancer">
 
-					<h3 class="margin-bottom-25"><%= t('.job_description') %></h3>
-					<p><%= @job.description %></p>
-				</div>
-				<div class="single-page-section">
-					<% if @job.worker.present? && current_user.is_customer%>
-					<h3 class="margin-bottom-25"><%= t('.pro_choosen') %></h3>
+							<!-- Overview -->
+							<div class="freelancer-overview">
+								<div class="freelancer-overview-inner">
+
+									<!-- Bookmark Icon -->
+									<span class="bookmark-icon"></span>
+
+									<!-- Avatar -->
+									<div class="freelancer-avatar">
+										<div class="verified-badge"></div>
+										<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+									</div>
+
+									<!-- Name -->
+									<div class="freelancer-name">
+										<h4><%= @job.worker.full_name %></h4>
+										<span><%= @job.worker.profession.name %></span>
+										<!-- Rating -->
+										<div class="freelancer-rating">
+											<div class="star-rating" data-rating="3"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Details -->
+							<div class="freelancer-details">
+								<div class="freelancer-details-list">
+									<ul>
+										<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
+										<li>Taux horaire <strong>100€ / h</strong></li>
+									</ul>
+								</div>
+								<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
+							</div>
+						</div>
 					<% end %>
+					<!-- Freelancer / End -->
+					<!--Freelancer -->
 					<% if current_user.is_worker %>
-					<h3 class="margin-bottom-25"><%= t('.the_client') %></h3>
+							<div class="freelancer">
+
+								<!-- Overview -->
+								<div class="freelancer-overview">
+									<div class="freelancer-overview-inner">
+
+										<!-- Bookmark Icon -->
+										<span class="bookmark-icon"></span>
+
+										<!-- Avatar -->
+										<div class="freelancer-avatar">
+											<div class="verified-badge"></div>
+											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+										</div>
+
+										<!-- Name -->
+										<div class="freelancer-name">
+											<h4><%= @job.customer.full_name %></h4>
+										</div>
+									</div>
+								</div>
+
+								<!-- Details -->
+								<div class="freelancer-details" style="display: flex; align-items: center; justify-content: flex-end;">
+									<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Contacter <i class="icon-material-outline-arrow-right-alt"></i></a>
+								</div>
+							</div>
 					<% end %>
-					<!-- Listings Container -->
-					<div class="listings-container grid-layout" style="width: 100%">
-
-						<!-- Job Listing -->
-						<div class="freelancers-container freelancers-list-layout margin-top-35">
-
-							<!--Freelancer -->
-						  <%if @job.worker.present? && current_user.is_customer%>
-								<div class="freelancer">
-
-									<!-- Overview -->
-									<div class="freelancer-overview">
-										<div class="freelancer-overview-inner">
-
-											<!-- Bookmark Icon -->
-											<span class="bookmark-icon"></span>
-
-											<!-- Avatar -->
-											<div class="freelancer-avatar">
-												<div class="verified-badge"></div>
-												<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-											</div>
-
-											<!-- Name -->
-											<div class="freelancer-name">
-												<h4><%= @job.worker.full_name %></h4>
-												<span><%= @job.worker.profession.name %></span>
-												<!-- Rating -->
-												<div class="freelancer-rating">
-													<div class="star-rating" data-rating="3"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<!-- Details -->
-									<div class="freelancer-details">
-										<div class="freelancer-details-list">
-											<ul>
-												<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-												<li>Taux horaire <strong>100€ / h</strong></li>
-											</ul>
-										</div>
-										<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
-									</div>
-								</div>
-							<% end %>
-							<!-- Freelancer / End -->
-							<!--Freelancer -->
-							<% if current_user.is_worker %>
-									<div class="freelancer">
-
-										<!-- Overview -->
-										<div class="freelancer-overview">
-											<div class="freelancer-overview-inner">
-
-												<!-- Bookmark Icon -->
-												<span class="bookmark-icon"></span>
-
-												<!-- Avatar -->
-												<div class="freelancer-avatar">
-													<div class="verified-badge"></div>
-													<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-												</div>
-
-												<!-- Name -->
-												<div class="freelancer-name">
-													<h4><%= @job.customer.full_name %></h4>
-												</div>
-											</div>
-										</div>
-
-										<!-- Details -->
-										<div class="freelancer-details" style="display: flex; align-items: center; justify-content: flex-end;">
-											<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Contacter <i class="icon-material-outline-arrow-right-alt"></i></a>
-										</div>
-									</div>
-							<% end %>
-							<!-- Freelancer / End -->
-
-						</div>
-					</div>
-					<!-- Listings Container / End -->
-					<div class="dashboard-box margin-top-0">
-
-						<!-- Headline -->
-						<div class="headline">
-							<h3><i class="icon-material-outline-face"></i> <%= t('.your_review') %></h3>
-						</div>
-
-						<div class="content">
-							<ul class="dashboard-box-list">
-								<li>
-									<div class="boxed-list-item">
-										<!-- Content -->
-										<div class="item-content">
-											<h4><%= @job.name %></h4>
-											<% if @job.reviews.empty? %>
-											<span class="company-not-rated margin-bottom-5"> <%= t('.no_reviews_yet') %></span>
-											<% else %>
-											<div class="item-details margin-top-10">
-												<div class="star-rating" data-rating="5.0"></div>
-												<div class="detail-item"><i class="icon-material-outline-date-range"></i> Août 2019</div>
-											</div>
-											<div class="item-description">
-												<p>Excellent photographe - moment inoubliable.</p>
-											</div>
-											<%end%>
-										</div>
-									</div>
-									<% if @job.reviews.empty? %>
-									<a href="#small-dialog-2" class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"><i class="icon-material-outline-thumb-up"></i> <%= t('.leave_a_review') %></a>
-									<% else %>
-									<a href="#small-dialog-1" class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"><i class="icon-feather-edit"></i><%= t('.edit_review') %></a>
-									<% end %>
-								</li>
-							</ul>
-						</div>
-					</div>
-
+					<!-- Freelancer / End -->
 				</div>
-				<div class="single-page-section">
-					<h3 class="margin-bottom-25"> <%= t('.this_pro_may_be_suitable') %></h3>
+			</div>
+			<!-- Listings Container / End -->
+			<div class="dashboard-box margin-top-0">
 
-					<!-- Listings Container -->
-					<div class="listings-container grid-layout" style="width: 100%">
+				<!-- Headline -->
+				<div class="headline">
+					<h3><i class="icon-material-outline-face"></i> <%= t('.your_review') %></h3>
+				</div>
 
-						<!-- Job Listing -->
-						<div class="freelancers-container freelancers-list-layout margin-top-35">
-
-							<!--Freelancer -->
-							<div class="freelancer">
-
-								<!-- Overview -->
-								<div class="freelancer-overview">
-									<div class="freelancer-overview-inner">
-
-										<!-- Bookmark Icon -->
-										<span class="bookmark-icon"></span>
-
-										<!-- Avatar -->
-										<div class="freelancer-avatar">
-											<div class="verified-badge"></div>
-											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-										</div>
-
-										<!-- Name -->
-										<div class="freelancer-name">
-											<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-											<span>Photographe</span>
-											<!-- Rating -->
-											<div class="freelancer-rating">
-												<div class="star-rating" data-rating="4.9"></div>
-											</div>
-										</div>
+				<div class="content">
+					<ul class="dashboard-box-list">
+						<li>
+							<div class="boxed-list-item">
+								<!-- Content -->
+								<div class="item-content">
+									<h4><%= @job.name %></h4>
+									<% if @job.reviews.empty? %>
+									<span class="company-not-rated margin-bottom-5"> <%= t('.no_reviews_yet') %></span>
+									<% else %>
+									<div class="item-details margin-top-10">
+										<div class="star-rating" data-rating="5.0"></div>
+										<div class="detail-item"><i class="icon-material-outline-date-range"></i> Août 2019</div>
 									</div>
-								</div>
-
-								<!-- Details -->
-								<div class="freelancer-details">
-									<div class="freelancer-details-list">
-										<ul>
-											<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-											<li>Taux horaire <strong>100€ / h</strong></li>
-										</ul>
+									<div class="item-description">
+										<p>Excellent photographe - moment inoubliable.</p>
 									</div>
-									<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
+									<%end%>
 								</div>
 							</div>
-							<!-- Freelancer / End -->
-
-							<!--Freelancer -->
-							<div class="freelancer">
-
-								<!-- Overview -->
-								<div class="freelancer-overview">
-									<div class="freelancer-overview-inner">
-
-										<!-- Bookmark Icon -->
-										<span class="bookmark-icon"></span>
-
-										<!-- Avatar -->
-										<div class="freelancer-avatar">
-											<div class="verified-badge"></div>
-											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-										</div>
-
-										<!-- Name -->
-										<div class="freelancer-name">
-											<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-											<span>Photographe</span>
-											<!-- Rating -->
-											<div class="freelancer-rating">
-												<div class="star-rating" data-rating="4.9"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Details -->
-								<div class="freelancer-details">
-									<div class="freelancer-details-list">
-										<ul>
-											<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-											<li>Taux horaire <strong>100€ / h</strong></li>
-										</ul>
-									</div>
-									<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
-								</div>
-							</div>
-							<!-- Freelancer / End -->
-
-
-							<!--Freelancer -->
-							<div class="freelancer">
-
-								<!-- Overview -->
-								<div class="freelancer-overview">
-									<div class="freelancer-overview-inner">
-										<!-- Bookmark Icon -->
-										<span class="bookmark-icon"></span>
-
-										<!-- Avatar -->
-										<div class="freelancer-avatar">
-											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-placeholder.png" alt=""></a>
-										</div>
-
-										<!-- Name -->
-										<div class="freelancer-name">
-											<h4><a href="#">Marcin Kowalski <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="Poland" data-tippy-placement="top"></a></h4>
-											<span>Photographe</span>
-											<!-- Rating -->
-											<span class="company-not-rated margin-bottom-5">5 votes minimum</span>
-										</div>
-									</div>
-								</div>
-
-								<!-- Details -->
-								<div class="freelancer-details">
-									<div class="freelancer-details-list">
-										<ul>
-											<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-											<li>Taux horaire <strong>100€ / h</strong></li>
-										</ul>
-									</div>
-									<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
-								</div>
-							</div>
-							<!-- Freelancer / End -->
-
-							<!--Freelancer -->
-							<div class="freelancer">
-
-								<!-- Overview -->
-								<div class="freelancer-overview">
-									<div class="freelancer-overview-inner">
-
-										<!-- Bookmark Icon -->
-										<span class="bookmark-icon"></span>
-
-										<!-- Avatar -->
-										<div class="freelancer-avatar">
-											<div class="verified-badge"></div>
-											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-										</div>
-
-										<!-- Name -->
-										<div class="freelancer-name">
-											<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-											<span>Photographe</span>
-											<!-- Rating -->
-											<div class="freelancer-rating">
-												<div class="star-rating" data-rating="4.9"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Details -->
-								<div class="freelancer-details">
-									<div class="freelancer-details-list">
-										<ul>
-											<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-											<li>Taux horaire <strong>100€ / h</strong></li>
-										</ul>
-									</div>
-									<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
-								</div>
-							</div>
-							<!-- Freelancer / End -->
-
-						</div>
-					</div>
-					<!-- Listings Container / End -->
-
+							<% if @job.reviews.empty? %>
+							<a href="#small-dialog-2" class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"><i class="icon-material-outline-thumb-up"></i> <%= t('.leave_a_review') %></a>
+							<% else %>
+							<a href="#small-dialog-1" class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"><i class="icon-feather-edit"></i><%= t('.edit_review') %></a>
+							<% end %>
+						</li>
+					</ul>
 				</div>
 			</div>
 
+		</div>
+		<div class="single-page-section">
+			<h3 class="margin-bottom-25"> <%= t('.this_pro_may_be_suitable') %></h3>
 
-			<!-- Sidebar -->
-			<div class="col-xl-4 col-lg-4">
-				<div class="sidebar-container">
+			<!-- Listings Container -->
+			<div class="listings-container grid-layout" style="width: 100%">
 
-					<!-- Button -->
-					<% if current_user.is_worker %>
-					<% binding.pry %>
-						<% if Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).exists? %>
-							<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"apply-now-button" do %>
-								<%= t('.your_conversation') %> <i class="icon-material-outline-arrow-right-alt"></i>
-							<% end %>
-						<% else %>
-							<%= form_for Room.new do |form| %>
-							  <%= form.hidden_field :author_id, value: @job.customer_id %>
-							  <%= form.hidden_field :receiver_id, value: current_user.id %>
-							  <%= form.hidden_field :job_id, value: @job.id %>
-							  <%= form.submit t('.send_mp_to_client'),class:"apply-now-button" do  %>
-									 <i class="icon-material-outline-arrow-right-alt"></i>
-								<% end %>
-							<% end %>
-						<% end %>
-					<% end %>
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
-					<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= t('.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
-					<!-- Sidebar Widget -->
-					<div class="sidebar-widget">
-						<div class="job-overview">
-							<div class="job-overview-headline"> <%= t('.recap') %></div>
-							<div class="job-overview-inner">
+				<!-- Job Listing -->
+				<div class="freelancers-container freelancers-list-layout margin-top-35">
+
+					<!--Freelancer -->
+					<div class="freelancer">
+
+						<!-- Overview -->
+						<div class="freelancer-overview">
+							<div class="freelancer-overview-inner">
+
+								<!-- Bookmark Icon -->
+								<span class="bookmark-icon"></span>
+
+								<!-- Avatar -->
+								<div class="freelancer-avatar">
+									<div class="verified-badge"></div>
+									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+								</div>
+
+								<!-- Name -->
+								<div class="freelancer-name">
+									<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+									<span>Photographe</span>
+									<!-- Rating -->
+									<div class="freelancer-rating">
+										<div class="star-rating" data-rating="4.9"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Details -->
+						<div class="freelancer-details">
+							<div class="freelancer-details-list">
 								<ul>
-									<li>
-										<i class="icon-material-outline-local-atm"></i>
-										<span> <%= t('.your_budget') %></span>
-
-										<h5><%= number_to_currency(@job.min_price) +"-"+ number_to_currency(@job.max_price)%></h5>
-									</li>
-									<li>
-										<i class="icon-material-outline-location-on"></i>
-										<span><%= t('.job_status') %></span>
-										<% case @job.status %>
-										<% when "created" %>
-										<mark class="color" style="background-color: grey"><%= t('.created') %></mark>
-										<% when "in_progress" %>
-										<mark class="color" style="background-color: #28b661"><%= t('.in_progress') %></mark>
-										<% when "completed" %>
-										<mark class="color" style="background-color: #2a41e8"><%= t('.finished') %></mark>
-										<% when "cancelled" %>
-										<mark class="color" style="background-color: #e53038"><%= t('.aborted') %></mark>
-										<% end %>
-									</li>
-									<li>
-										<i class="icon-material-outline-business-center"></i>
-										<span><%= t('.category') %></span>
-										<h5> <%= @job.category.name %></h5>
-									</li>
-									<li>
-										<i class="icon-material-outline-local-atm"></i>
-										<span><%= t('.under_category') %></span>
-										<h5><%= @job.subcategory.name if @job.subcategory %></h5>
-									</li>
-									<li>
-										<i class="icon-material-outline-location-on"></i>
-										<span><%= t('.delivery_format') %></span>
-										<h5>Clé USB</h5>
-									</li>
-									<li>
-										<i class="icon-material-outline-business-center"></i>
-										<span><%= t('.estimated_time') %></span>
-										<h5> <%=  t('.time_range', min_time: @job.min_time,max_time: @job.max_time) %></h5>
-
-									</li>
-									<li>
-										<i class="icon-material-outline-business-center"></i>
-										<span><%= t('.localisation') %></span>
-										<h5><%= @job.localisation %></h5>
-									</li>
-									<li>
-										<i class="icon-material-outline-local-atm"></i>
-										<span><%= t('.which_date') %></span>
-										<h5><%= @job.date_delivery if @job.date_delivery %></h5>
-									</li>
-
+									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
+									<li>Taux horaire <strong>100€ / h</strong></li>
 								</ul>
 							</div>
+							<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
 						</div>
 					</div>
+					<!-- Freelancer / End -->
+
+					<!--Freelancer -->
+					<div class="freelancer">
+
+						<!-- Overview -->
+						<div class="freelancer-overview">
+							<div class="freelancer-overview-inner">
+
+								<!-- Bookmark Icon -->
+								<span class="bookmark-icon"></span>
+
+								<!-- Avatar -->
+								<div class="freelancer-avatar">
+									<div class="verified-badge"></div>
+									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+								</div>
+
+								<!-- Name -->
+								<div class="freelancer-name">
+									<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+									<span>Photographe</span>
+									<!-- Rating -->
+									<div class="freelancer-rating">
+										<div class="star-rating" data-rating="4.9"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Details -->
+						<div class="freelancer-details">
+							<div class="freelancer-details-list">
+								<ul>
+									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
+									<li>Taux horaire <strong>100€ / h</strong></li>
+								</ul>
+							</div>
+							<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
+						</div>
+					</div>
+					<!-- Freelancer / End -->
+
+
+					<!--Freelancer -->
+					<div class="freelancer">
+
+						<!-- Overview -->
+						<div class="freelancer-overview">
+							<div class="freelancer-overview-inner">
+								<!-- Bookmark Icon -->
+								<span class="bookmark-icon"></span>
+
+								<!-- Avatar -->
+								<div class="freelancer-avatar">
+									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-placeholder.png" alt=""></a>
+								</div>
+
+								<!-- Name -->
+								<div class="freelancer-name">
+									<h4><a href="#">Marcin Kowalski <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="Poland" data-tippy-placement="top"></a></h4>
+									<span>Photographe</span>
+									<!-- Rating -->
+									<span class="company-not-rated margin-bottom-5">5 votes minimum</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Details -->
+						<div class="freelancer-details">
+							<div class="freelancer-details-list">
+								<ul>
+									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
+									<li>Taux horaire <strong>100€ / h</strong></li>
+								</ul>
+							</div>
+							<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
+						</div>
+					</div>
+					<!-- Freelancer / End -->
+
+					<!--Freelancer -->
+					<div class="freelancer">
+
+						<!-- Overview -->
+						<div class="freelancer-overview">
+							<div class="freelancer-overview-inner">
+
+								<!-- Bookmark Icon -->
+								<span class="bookmark-icon"></span>
+
+								<!-- Avatar -->
+								<div class="freelancer-avatar">
+									<div class="verified-badge"></div>
+									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+								</div>
+
+								<!-- Name -->
+								<div class="freelancer-name">
+									<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+									<span>Photographe</span>
+									<!-- Rating -->
+									<div class="freelancer-rating">
+										<div class="star-rating" data-rating="4.9"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Details -->
+						<div class="freelancer-details">
+							<div class="freelancer-details-list">
+								<ul>
+									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
+									<li>Taux horaire <strong>100€ / h</strong></li>
+								</ul>
+							</div>
+							<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
+						</div>
+					</div>
+					<!-- Freelancer / End -->
 
 				</div>
-				<div style="text-align: center">
-					<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= t('.invoice_print') %></a>
+			</div>
+			<!-- Listings Container / End -->
+
+		</div>
+	</div>
+	<!-- Sidebar -->
+	<div class="col-xl-4 col-lg-4">
+		<div class="sidebar-container">
+
+			<!-- Button -->
+			<% if current_user.is_worker %>
+				<% if Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).exists? %>
+					<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"apply-now-button" do %>
+						<%= t('.your_conversation') %> <i class="icon-material-outline-arrow-right-alt"></i>
+					<% end %>
+				<% else %>
+					<%= form_for Room.new do |form| %>
+					  <%= form.hidden_field :author_id, value: current_user.id  %>
+					  <%= form.hidden_field :receiver_id, value: @job.customer_id %>
+					  <%= form.hidden_field :job_id, value: @job.id %>
+					  <%= form.submit t('.send_mp_to_client'),class:"apply-now-button" do  %>
+							 <i class="icon-material-outline-arrow-right-alt"></i>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+			<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+			<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= t('.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+			<!-- Sidebar Widget -->
+			<div class="sidebar-widget">
+				<div class="job-overview">
+					<div class="job-overview-headline"> <%= t('.recap') %></div>
+					<div class="job-overview-inner">
+						<ul>
+							<li>
+								<i class="icon-material-outline-local-atm"></i>
+								<span> <%= t('.your_budget') %></span>
+
+								<h5><%= number_to_currency(@job.min_price) +"-"+ number_to_currency(@job.max_price)%></h5>
+							</li>
+							<li>
+								<i class="icon-material-outline-location-on"></i>
+								<span><%= t('.job_status') %></span>
+								<% case @job.status %>
+								<% when "created" %>
+								<mark class="color" style="background-color: grey"><%= t('.created') %></mark>
+								<% when "in_progress" %>
+								<mark class="color" style="background-color: #28b661"><%= t('.in_progress') %></mark>
+								<% when "completed" %>
+								<mark class="color" style="background-color: #2a41e8"><%= t('.finished') %></mark>
+								<% when "cancelled" %>
+								<mark class="color" style="background-color: #e53038"><%= t('.aborted') %></mark>
+								<% end %>
+							</li>
+							<li>
+								<i class="icon-material-outline-business-center"></i>
+								<span><%= t('.category') %></span>
+								<h5> <%= @job.category.name %></h5>
+							</li>
+							<li>
+								<i class="icon-material-outline-local-atm"></i>
+								<span><%= t('.under_category') %></span>
+								<h5><%= @job.subcategory.name if @job.subcategory %></h5>
+							</li>
+							<li>
+								<i class="icon-material-outline-location-on"></i>
+								<span><%= t('.delivery_format') %></span>
+								<h5>Clé USB</h5>
+							</li>
+							<li>
+								<i class="icon-material-outline-business-center"></i>
+								<span><%= t('.estimated_time') %></span>
+								<h5> <%=  t('.time_range', min_time: @job.min_time,max_time: @job.max_time) %></h5>
+
+							</li>
+							<li>
+								<i class="icon-material-outline-business-center"></i>
+								<span><%= t('.localisation') %></span>
+								<h5><%= @job.localisation %></h5>
+							</li>
+							<li>
+								<i class="icon-material-outline-local-atm"></i>
+								<span><%= t('.which_date') %></span>
+								<h5><%= @job.date_delivery if @job.date_delivery %></h5>
+							</li>
+
+						</ul>
+					</div>
 				</div>
 			</div>
 
 		</div>
-	</div>
-
-
-	<!-- Leave a Review for Freelancer Popup
-	================================================== -->
-	<div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
-
-		<!--Tabs -->
-		<div class="sign-in-form">
-
-			<ul class="popup-tabs-nav">
-			</ul>
-
-			<div class="popup-tabs-container">
-
-				<!-- Tab -->
-				<div class="popup-tab-content" id="tab2">
-
-					<!-- Welcome Text -->
-					<div class="welcome-text">
-						<h3><%= t('.leave_a_review') %></h3>
-						<span><%= t('.rate_pro_project', pro:"Peter",job:"Shooting photo mariage") %></span>
-					</div>
-
-					<!-- Form -->
-					<form method="post" id="leave-review-form">
-
-						<div class="feedback-yes-no">
-							<strong><%= t('.delivered_on_budget') %></strong>
-							<div class="radio">
-								<input id="radio-1" name="radio" type="radio" required>
-								<label for="radio-1"><span class="radio-label"></span> Yes</label>
-							</div>
-
-							<div class="radio">
-								<input id="radio-2" name="radio" type="radio" required>
-								<label for="radio-2"><span class="radio-label"></span> No</label>
-							</div>
-						</div>
-
-						<div class="feedback-yes-no">
-							<strong><%= t('.delivered_on_time') %></strong>
-							<div class="radio">
-								<input id="radio-3" name="radio2" type="radio" required>
-								<label for="radio-3"><span class="radio-label"></span> Yes</label>
-							</div>
-
-							<div class="radio">
-								<input id="radio-4" name="radio2" type="radio" required>
-								<label for="radio-4"><span class="radio-label"></span> No</label>
-							</div>
-						</div>
-
-						<div class="feedback-yes-no">
-							<strong><%= t('.your_rating') %></strong>
-							<div class="leave-rating">
-								<input type="radio" name="rating" id="rating-radio-1" value="1" required>
-								<label for="rating-radio-1" class="icon-material-outline-star"></label>
-								<input type="radio" name="rating" id="rating-radio-2" value="2" required>
-								<label for="rating-radio-2" class="icon-material-outline-star"></label>
-								<input type="radio" name="rating" id="rating-radio-3" value="3" required>
-								<label for="rating-radio-3" class="icon-material-outline-star"></label>
-								<input type="radio" name="rating" id="rating-radio-4" value="4" required>
-								<label for="rating-radio-4" class="icon-material-outline-star"></label>
-								<input type="radio" name="rating" id="rating-radio-5" value="5" required>
-								<label for="rating-radio-5" class="icon-material-outline-star"></label>
-							</div><div class="clearfix"></div>
-						</div>
-
-						<textarea class="with-border" placeholder="Comment" name="message2" id="message2" cols="7" required></textarea>
-
-					</form>
-
-					<!-- Button -->
-					<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="leave-review-form"><%= t('.leave_a_review') %><i class="icon-material-outline-arrow-right-alt"></i></button>
-
-				</div>
-
-			</div>
+		<div style="text-align: center">
+			<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= t('.invoice_print') %></a>
 		</div>
 	</div>
-	<!-- Leave a Review Popup / End -->
+</div>
+
+
+<!-- Leave a Review for Freelancer Popup
+================================================== -->
+<div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+	<!--Tabs -->
+	<div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab2">
+
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3><%= t('.leave_a_review') %></h3>
+					<span><%= t('.rate_pro_project', pro:"Peter",job:"Shooting photo mariage") %></span>
+				</div>
+
+				<!-- Form -->
+				<form method="post" id="leave-review-form">
+
+					<div class="feedback-yes-no">
+						<strong><%= t('.delivered_on_budget') %></strong>
+						<div class="radio">
+							<input id="radio-1" name="radio" type="radio" required>
+							<label for="radio-1"><span class="radio-label"></span> Yes</label>
+						</div>
+
+						<div class="radio">
+							<input id="radio-2" name="radio" type="radio" required>
+							<label for="radio-2"><span class="radio-label"></span> No</label>
+						</div>
+					</div>
+
+					<div class="feedback-yes-no">
+						<strong><%= t('.delivered_on_time') %></strong>
+						<div class="radio">
+							<input id="radio-3" name="radio2" type="radio" required>
+							<label for="radio-3"><span class="radio-label"></span> Yes</label>
+						</div>
+
+						<div class="radio">
+							<input id="radio-4" name="radio2" type="radio" required>
+							<label for="radio-4"><span class="radio-label"></span> No</label>
+						</div>
+					</div>
+
+					<div class="feedback-yes-no">
+						<strong><%= t('.your_rating') %></strong>
+						<div class="leave-rating">
+							<input type="radio" name="rating" id="rating-radio-1" value="1" required>
+							<label for="rating-radio-1" class="icon-material-outline-star"></label>
+							<input type="radio" name="rating" id="rating-radio-2" value="2" required>
+							<label for="rating-radio-2" class="icon-material-outline-star"></label>
+							<input type="radio" name="rating" id="rating-radio-3" value="3" required>
+							<label for="rating-radio-3" class="icon-material-outline-star"></label>
+							<input type="radio" name="rating" id="rating-radio-4" value="4" required>
+							<label for="rating-radio-4" class="icon-material-outline-star"></label>
+							<input type="radio" name="rating" id="rating-radio-5" value="5" required>
+							<label for="rating-radio-5" class="icon-material-outline-star"></label>
+						</div><div class="clearfix"></div>
+					</div>
+
+					<textarea class="with-border" placeholder="Comment" name="message2" id="message2" cols="7" required></textarea>
+
+				</form>
+
+				<!-- Button -->
+				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="leave-review-form"><%= t('.leave_a_review') %><i class="icon-material-outline-arrow-right-alt"></i></button>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- Leave a Review Popup / End -->

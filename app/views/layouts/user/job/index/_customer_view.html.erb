@@ -1,50 +1,41 @@
 
-		<!-- Spacer -->
-		<div class="margin-top-90"></div>
-		<!-- Spacer / End-->
-		<!-- Page Content
-		================================================== -->
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-12">
-					<h3 class="page-title"> <%= t('.your_missions') %> </h3>
-					<div class="row justify-content-end">
-						<div class="col-xl-3">
-							<span>Trier par:</span>
-							<% grouped_options = grouped_options = [[t('.status'),[[t('.created'),'created'],[t('.in_progress'),'in_progress'],[t('.finished'),'completed'],[t('.aborted'),'aborted']]]] %>
-							<%= form_tag("filter", :remote => true) do %>
-			          <%= select_tag 'filter',grouped_options_for_select(grouped_options), prompt: "Select something", class:"custom-select", id:"job_filter" %>
-			        <% end %>
-						</div>
-					</div>
-					<div class="listings-container margin-top-35" id="job_list">
-						<%= render "job_list" %>
-					</div>
-				</div>
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3> <%= t('.your_missions') %> </h3>
+</div>
+<div class="row">
+	<div class="col-xl-12">
+		<div class="row justify-content-end">
+			<div class="col-xl-3">
+				<% grouped_options = grouped_options = [[t('.status'),[[t('.created'),'created'],[t('.in_progress'),'in_progress'],[t('.finished'),'completed'],[t('.aborted'),'aborted']]]] %>
+				<%= form_tag("filter", :remote => true) do %>
+					<%= t('.filter_by') %>
+          <%= select_tag 'filter',grouped_options_for_select(grouped_options), prompt: t('.select_something'), class:"custom-select", id:"job_filter" %>
+        <% end %>
 			</div>
 		</div>
+		<div class="listings-container margin-top-35" id="job_list">
+			<%= render "job_list" %>
+		</div>
+	</div>
+	<div class="col-md-12" id="pagination">
 		<!-- Pagination -->
-		<div class="clearfix"></div>
-		<div class="row" style="margin-top:50px">
-			<div class="col-md-12">
-				<!-- Pagination -->
-				<div class="pagination-container margin-top-30 margin-bottom-60">
-					<%= paginate @jobs%>
-				</div>
-			</div>
+		<div class="pagination-container">
+			<%= paginate @jobs%>
 		</div>
-		<!-- Pagination / End -->
-		<%= content_for :body_script do %>
-			<script type="text/javascript">
-				$(document).ready(function(){
-					$("#job_filter").bind('change', function() {
-						$.ajax({
-							url: '/jobs',
-							type: "GET",
-							dataType: "script",
-							data: {"filter": $("#job_filter").val()}
-						});
-					});
+	</div>
+</div>
+<%= content_for :body_script do %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#job_filter").bind('change', function() {
+				$.ajax({
+					url: '/jobs',
+					type: "GET",
+					dataType: "script",
+					data: {"filter": $("#job_filter").val()}
 				});
-			</script>
-		<% end %>
+			});
+		});
+	</script>
+<% end %>

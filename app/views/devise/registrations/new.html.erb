@@ -1,108 +1,94 @@
-<!-- Wrapper -->
 
-  <!-- Titlebar
-  ================================================== -->
-  <div id="titlebar" class="gradient">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
+<div class="dashboard-headline">
+	<h2><%= t('.sign_up') %></h2>
+</div>
 
-          <h2><%= t('.sign_up') %></h2>
 
-        </div>
+<!-- Page Content
+================================================== -->
+
+<div class="row">
+  <div class="col-xl-4 offset-xl-4">
+
+    <div class="login-register-page">
+      <!-- Welcome Text -->
+      <div class="welcome-text">
+        <h3 style="font-size: 26px;"><%=t('.let_s_create_your_account')%></h3>
+        <span><%=t('.already_have_an_account') %> <%= link_to t('.sign_in'), new_user_session_path  %></span>
       </div>
-    </div>
-  </div>
-
-
-  <!-- Page Content
-  ================================================== -->
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-5 offset-xl-3">
-
-        <div class="login-register-page">
-          <!-- Welcome Text -->
-          <div class="welcome-text">
-            <h3 style="font-size: 26px;"><%=t('.let_s_create_your_account')%></h3>
-            <span><%=t('.already_have_an_account') %> <%= link_to t('.sign_in'), new_user_session_path  %></span>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <!-- Account Type -->
+        <div class="account-type">
+          <div>
+            <%= f.radio_button :is_worker, "0", id:"customer-radio", class:"account-type-radio" %>
+            <label for="customer-radio" id="customer" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i><%=t('.usual_customer')%></label>
           </div>
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-            <!-- Account Type -->
-            <div class="account-type">
-              <div>
-                <%= f.radio_button :is_worker, "0", id:"customer-radio", class:"account-type-radio" %>
-                <label for="customer-radio" id="customer" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i><%=t('.usual_customer')%></label>
-              </div>
 
-              <div>
-                <%= f.radio_button :is_worker, "1", id:"freelancer-radio",class:"account-type-radio" %>
-                <label for="freelancer-radio" id="freelancer"class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i><%=t('.professional')%></label>
-              </div>
-            </div>
-
-            <!-- Form -->
-
-            <div class="input-with-icon-left">
-              <i class="icon-material-baseline-mail-outline"></i>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input-text with-border" %>
-            </div>
-
-            <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
-              <i class="icon-material-outline-lock"></i>
-              <%= f.password_field :password, autocomplete: "new-password", class:"input-text with-border" %>
-            </div>
-
-            <div class="input-with-icon-left">
-              <i class="icon-material-outline-lock"></i>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input-text with-border" %>
-            </div>
-            <!-- Button -->
-            <%= f.submit t('.sign_up'), class:"button full-width margin-top-10" %>
-            <div class="social-login-separator"><span><%=t('.or')%></span></div>
-            <div class="social-login-buttons">
-
-              <button class='facebook-login ripple-effect'  ><i class='icon-brand-facebook-f'></i><a id="linkToFacebook" href="/users/auth/facebook"> <%=t('.facebook_register')%></a></button>
-              <button class='google-login ripple-effect' ><i class='icon-brand-google-plus-g'></i><a id="linkToGoogle" href="/users/auth/google_oauth2"> <%=t('.google_register')%></a></button>
-            </div>
-          <% end %>
-
-          <!-- Social Login -->
-
+          <div>
+            <%= f.radio_button :is_worker, "1", id:"freelancer-radio",class:"account-type-radio" %>
+            <label for="freelancer-radio" id="freelancer"class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i><%=t('.professional')%></label>
+          </div>
         </div>
 
+        <!-- Form -->
 
-      </div>
+        <div class="input-with-icon-left">
+          <i class="icon-material-baseline-mail-outline"></i>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input-text with-border" %>
+        </div>
+
+        <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+          <i class="icon-material-outline-lock"></i>
+          <%= f.password_field :password, autocomplete: "new-password", class:"input-text with-border" %>
+        </div>
+
+        <div class="input-with-icon-left">
+          <i class="icon-material-outline-lock"></i>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input-text with-border" %>
+        </div>
+        <!-- Button -->
+        <%= f.submit t('.sign_up'), class:"button full-width margin-top-10" %>
+        <div class="social-login-separator"><span><%=t('.or')%></span></div>
+        <div class="social-login-buttons">
+
+          <button class='facebook-login ripple-effect'  ><i class='icon-brand-facebook-f'></i><a id="linkToFacebook" href="/users/auth/facebook"> <%=t('.facebook_register')%></a></button>
+          <button class='google-login ripple-effect' ><i class='icon-brand-google-plus-g'></i><a id="linkToGoogle" href="/users/auth/google_oauth2"> <%=t('.google_register')%></a></button>
+        </div>
+      <% end %>
+
+      <!-- Social Login -->
+
     </div>
+
+
   </div>
+</div>
 
-  <!-- Spacer -->
-  <div class="margin-top-70"></div>
-  <!-- Spacer / End-->
-  <script type="text/javascript">
 
-    $('#freelancer-radio').click(function() {
-       if($('#freelancer-radio').is(':checked')) {
-         var isWorker = "1"
-         var linkToFacebook= $('a#linkToFacebook')["0"].href;
-         var linkToGoogle= $('a#linkToGoogle')["0"].href;
-         $('a#linkToFacebook').attr("href", linkToFacebook + '?isWorker'+ '=' +isWorker);
-         $('a#linkToGoogle').attr("href", linkToGoogle + '?isWorker'+ '=' + isWorker);
-       }
-    });
+<script type="text/javascript">
 
-    $('#customer-radio').click(function() {
-      if($('#customer-radio').is(':checked')) {
-        var linkToFacebook= $('a#linkToFacebook')["0"].href;
-        var linkToGoogle= $('a#linkToGoogle')["0"].href;
-        console.log(linkToFacebook)
-        $('a#linkToFacebook').attr("href",linkToFacebook.split('?')[0]);
-        $('a#linkToGoogle').attr("href",linkToGoogle.split('?')[0]);
+  $('#freelancer-radio').click(function() {
+     if($('#freelancer-radio').is(':checked')) {
+       var isWorker = "1"
+       var linkToFacebook= $('a#linkToFacebook')["0"].href;
+       var linkToGoogle= $('a#linkToGoogle')["0"].href;
+       $('a#linkToFacebook').attr("href", linkToFacebook + '?isWorker'+ '=' +isWorker);
+       $('a#linkToGoogle').attr("href", linkToGoogle + '?isWorker'+ '=' + isWorker);
+     }
+  });
 
-      }
-    });
+  $('#customer-radio').click(function() {
+    if($('#customer-radio').is(':checked')) {
+      var linkToFacebook= $('a#linkToFacebook')["0"].href;
+      var linkToGoogle= $('a#linkToGoogle')["0"].href;
+      console.log(linkToFacebook)
+      $('a#linkToFacebook').attr("href",linkToFacebook.split('?')[0]);
+      $('a#linkToGoogle').attr("href",linkToGoogle.split('?')[0]);
 
-    $('a#linkToFacebook').attr("href",linkToFacebook.split('?')[0]);
-    $('a#linkToGoogle').attr("href",linkToGoogle.split('?')[0]);
-  </script>
+    }
+  });
+
+  $('a#linkToFacebook').attr("href",linkToFacebook.split('?')[0]);
+  $('a#linkToGoogle').attr("href",linkToGoogle.split('?')[0]);
+</script>

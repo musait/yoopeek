@@ -1,127 +1,117 @@
-<div class="dashboard-container">
-	<!-- Dashboard Content
-	================================================== -->
-	<div class="dashboard-content-container" data-simplebar>
-		<div class="dashboard-content-inner" >
 
-			<!-- Dashboard Headline -->
-			<div class="dashboard-headline">
-				<h3><%= raw I18n.t('.quotes.show.quote_recap', quote_number: @quote.quote_number) %></h3>
-			</div>
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3><%= raw I18n.t('.quotes.show.quote_recap', quote_number: @quote.quote_number) %></h3>
+</div>
 
-			<!-- Row -->
-			<div class="row">
+<!-- Row -->
+<div class="row">
 
-				<!-- Dashboard Box -->
-				<div class="col-xl-12">
-					<div class="dashboard-box margin-top-0">
+	<!-- Dashboard Box -->
+	<div class="col-xl-12">
+		<div class="dashboard-box margin-top-0">
 
-						<!-- Headline -->
-						<div class="headline">
-              <% case @quote.status %>
-                <% when "created" %>
-							    <h3><i class="icon-feather-folder-plus"></i> Proposition en attente d'acceptation <mark class="color" style="background-color: orange"><%= raw I18n.t('.quotes.show.quote_in_progress') %></mark></h3>
-                <% when "declined" %>
-                  <h3><i class="icon-feather-folder-plus"></i> Proposition declinée <mark class="color" style="background-color: #e53038"><%= raw I18n.t('.quotes.show.quote_decline') %></mark></h3>
-                <% else %>
-                  <h3><i class="icon-feather-folder-plus"></i> Proposition acceptée <mark class="color" style="background-color: #28b661"><%= raw I18n.t('.quotes.show.quote_accepted') %></mark></h3>
-              <% end %>
-            </div>
+			<!-- Headline -->
+			<div class="headline">
+        <% case @quote.status %>
+          <% when "created" %>
+				    <h3><i class="icon-feather-folder-plus"></i> Proposition en attente d'acceptation <mark class="color" style="background-color: orange"><%= raw I18n.t('.quotes.show.quote_in_progress') %></mark></h3>
+          <% when "declined" %>
+            <h3><i class="icon-feather-folder-plus"></i> Proposition declinée <mark class="color" style="background-color: #e53038"><%= raw I18n.t('.quotes.show.quote_decline') %></mark></h3>
+          <% else %>
+            <h3><i class="icon-feather-folder-plus"></i> Proposition acceptée <mark class="color" style="background-color: #28b661"><%= raw I18n.t('.quotes.show.quote_accepted') %></mark></h3>
+        <% end %>
+      </div>
 
-						<div class="content with-padding padding-bottom-10">
-							<div class="row">
-								<div class="col-xl-8" style="background-color: white">
-						      <div class="row">
-						        <div class="col-12" >
-                      <table class="basic-table">
-                				<tr>
-                          <th><%= raw I18n.t('.quotes.show.description') %></th>
-						              <th><%= raw I18n.t('.quotes.show.price') %></th>
-						              <th><%= raw I18n.t('.quotes.show.quantity') %></th>
-						              <th><%= raw I18n.t('.quotes.show.total_with_vat') %></th>
-                				</tr>
-                        <% @quote.quote_elements.each do |qe| %>
-                  				<tr>
-                  					<td data-label="<%= raw I18n.t('.quotes.show.description') %>"> <%= qe.content %></td>
-                  					<td data-label="<%= raw I18n.t('.quotes.show.price') %>"><%= qe.price %></td>
-                  					<td data-label="<%= raw I18n.t('.quotes.show.vat') %>"><%= qe.quantity %></td>
-                            <td data-label="<%= raw I18n.t('.quotes.show.total_with_vat') %>"><%= qe.total %></td>
-                  				</tr>
-                        <% end %>
-                			</table>
-						        </div>
-						      </div>
-						    </div>
+			<div class="content with-padding padding-bottom-10">
+				<div class="row">
+					<div class="col-xl-8" style="background-color: white">
+			      <div class="row">
+			        <div class="col-12" >
+                <table class="basic-table">
+          				<tr>
+                    <th><%= raw I18n.t('.quotes.show.description') %></th>
+			              <th><%= raw I18n.t('.quotes.show.price') %></th>
+			              <th><%= raw I18n.t('.quotes.show.quantity') %></th>
+			              <th><%= raw I18n.t('.quotes.show.total_with_vat') %></th>
+          				</tr>
+                  <% @quote.quote_elements.each do |qe| %>
+            				<tr>
+            					<td data-label="<%= raw I18n.t('.quotes.show.description') %>"> <%= qe.content %></td>
+            					<td data-label="<%= raw I18n.t('.quotes.show.price') %>"><%= qe.price %></td>
+            					<td data-label="<%= raw I18n.t('.quotes.show.vat') %>"><%= qe.quantity %></td>
+                      <td data-label="<%= raw I18n.t('.quotes.show.total_with_vat') %>"><%= qe.total %></td>
+            				</tr>
+                  <% end %>
+          			</table>
+			        </div>
+			      </div>
+			    </div>
 
 
-						    <div class="col-xl-4 col-lg-4 margin-top-0 margin-bottom-60">
-									<div class="">
-										<!-- Overview -->
-										<div class="freelancer-overview">
-											<div class="freelancer-overview-inner d-flex">
-												<!-- Bookmark Icon -->
-												<!-- Avatar -->
-												<div class="freelancer-avatar">
-													<div class="verified-badge"></div>
-													<a href="/theme/user/hireo/single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-												</div>
-
-												<!-- Name -->
-												<div class="freelancer-name">
-													<h4><a href="/theme/user/hireo/single-freelancer-profile.html"> <%= @quote.user.full_name %></a></h4>
-													<span>Photographe</span><br>
-													<span class="star-rating" data-rating="5.0"></span>
-												</div>
-												<!-- Rating -->
-											</div>
-                      <% if current_user.have_one_room_with_user(@quote.job.customer) %>
-            						<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @quote.job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @quote.job.customer.id)).first.id),class:"button margin-bottom-10" do %>
-            							<%= raw I18n.t('.quotes.show.send_mp') %>
-            						<% end %>
-            					<% end %>
-
-										</div>
+			    <div class="col-xl-4 col-lg-4 margin-top-0 margin-bottom-60">
+						<div class="">
+							<!-- Overview -->
+							<div class="freelancer-overview">
+								<div class="freelancer-overview-inner d-flex">
+									<!-- Bookmark Icon -->
+									<!-- Avatar -->
+									<div class="freelancer-avatar">
+										<div class="verified-badge"></div>
+										<a href="/theme/user/hireo/single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
 									</div>
-						      <div class="boxed-widget summary margin-top-0">
-						        <div class="boxed-widget-headline">
-						          <h3><%= raw I18n.t('.quotes.show.summary') %></h3>
-						        </div>
-						        <div class="boxed-widget-inner">
-						          <ul>
-						            <li><%= raw I18n.t('.quotes.show.global_total_without_vat') %> <span>$49.00</span></li>
-						            <li><%= raw I18n.t('.quotes.show.vat') %> <span>$9.80</span></li>
-						            <li class="total-costs"><%= raw I18n.t('.quotes.show.total_with_vat') %> <span>$58.80</span></li>
-						          </ul>
-						        </div>
-						      </div>
-									<div class="row margin-top-30">
-										<div class="col-12"style="display: flex; justify-content:center">
-                      <% case @quote.status %>
-                      <% when "created" %>
-                        <%= link_to t('.decline'), decline_quote_path(quote: @quote),style:"margin-right: 10px;display: flex; align-items: center" %>
-                        <%= link_to t('.accept_quote'), accept_quote_path(quote: @quote),class:"button" %>
-                      <% when "accepted" %>
-                        <p>Vous avez accépter ce devis. Un message a été envoyé au professionel pour l'informer de votre accord. Si au bout de 24-48h <br>
-                        il n'est pas revenu vers vous, contactez-le ! </p>
-                      <% else %>
-                        <p>Vous avez refuser ce devis. Un message a été envoyé au professionel pour l'informer de votre refus. Il reviendras peut-être vers pour
-                        faire une autre proposition.</p>
-                      <% end %>
-                    </div>
-									</div>
-						      <!-- Summary -->
 
-						    </div>
+									<!-- Name -->
+									<div class="freelancer-name">
+										<h4><a href="/theme/user/hireo/single-freelancer-profile.html"> <%= @quote.user.full_name %></a></h4>
+										<span>Photographe</span><br>
+										<span class="star-rating" data-rating="5.0"></span>
+									</div>
+									<!-- Rating -->
+								</div>
+                <% if current_user.have_one_room_with_user(@quote.job.customer) %>
+      						<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @quote.job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @quote.job.customer.id)).first.id),class:"button margin-bottom-10" do %>
+      							<%= raw I18n.t('.quotes.show.send_mp') %>
+      						<% end %>
+      					<% end %>
+
 							</div>
 						</div>
-					</div>
+			      <div class="boxed-widget summary margin-top-0">
+			        <div class="boxed-widget-headline">
+			          <h3><%= raw I18n.t('.quotes.show.summary') %></h3>
+			        </div>
+			        <div class="boxed-widget-inner">
+			          <ul>
+			            <li><%= raw I18n.t('.quotes.show.global_total_without_vat') %> <span>$49.00</span></li>
+			            <li><%= raw I18n.t('.quotes.show.vat') %> <span>$9.80</span></li>
+			            <li class="total-costs"><%= raw I18n.t('.quotes.show.total_with_vat') %> <span>$58.80</span></li>
+			          </ul>
+			        </div>
+			      </div>
+						<div class="row margin-top-30">
+							<div class="col-12"style="display: flex; justify-content:center">
+                <% case @quote.status %>
+                <% when "created" %>
+                  <%= link_to t('.decline'), decline_quote_path(quote: @quote),style:"margin-right: 10px;display: flex; align-items: center" %>
+                  <%= link_to t('.accept_quote'), accept_quote_path(quote: @quote),class:"button" %>
+                <% when "accepted" %>
+                  <p>Vous avez accépter ce devis. Un message a été envoyé au professionel pour l'informer de votre accord. Si au bout de 24-48h <br>
+                  il n'est pas revenu vers vous, contactez-le ! </p>
+                <% else %>
+                  <p>Vous avez refuser ce devis. Un message a été envoyé au professionel pour l'informer de votre refus. Il reviendras peut-être vers pour
+                  faire une autre proposition.</p>
+                <% end %>
+              </div>
+						</div>
+			      <!-- Summary -->
+
+			    </div>
 				</div>
 			</div>
-			<!-- Row / End -->
-
-			<div class="dashboard-footer-spacer"></div>
 		</div>
 	</div>
-	<!-- Dashboard Content / End -->
-
 </div>
+<!-- Row / End -->
+
+<div class="dashboard-footer-spacer"></div>
