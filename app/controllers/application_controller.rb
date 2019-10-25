@@ -18,12 +18,13 @@ class ApplicationController < ActionController::Base
   def count_notification
     if current_user.present?
       @notifications_count = current_user.notifications.not_seen.size
-      @notifications = current_user.notifications.not_seen.order(:created_at => :desc).paginate(page: params[:notifications_page], per_page: params[:notifications_per_page])
+      @notifications = current_user.notifications.not_seen.order(:created_at => :desc).page(params[:notifications_page]).per(params[:notifications_per_page])
     else
       @notifications_count = 0
       @notifications = []
     end
   end
+
 
   private
   def set_locale
