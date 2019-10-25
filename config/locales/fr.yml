@@ -7,7 +7,7 @@ fr:
     and: ainsi que les
     stripe_connect: Conditions d'Utilisation des Comptes Connectés Stripe
   notifications:
-    room_message_created: "%{creator} à créer une conversation"
+    room_message_created: "%{creator} vous à envoyer un message"
   number:
     currency:
       format:

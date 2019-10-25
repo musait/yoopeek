@@ -9,7 +9,7 @@
   <ul>
     <% @rooms.each do |room| %>
       <li class="active-message" id="selectRoom">
-        <%= link_to room_path(room), method: :get,remote: true, class: 'nav-link room-nav-link' do %>
+        <%= link_to room_path(room), method: :get,remote: true, id: "room-#{room.id}", class: 'nav-link room-nav-link', "data-channel-subscribe" => "room", "data-room-id" => room.id, "data-user-id" => current_user.id do %>
           <div class="message-avatar"><i class="status-icon status-online"></i><img src="<%= @other_user.avatar_url %>" alt="" /></div>
           <div class="message-by">
             <div class="message-by-headline">

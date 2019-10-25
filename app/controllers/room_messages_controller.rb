@@ -3,7 +3,7 @@ class RoomMessagesController < ApplicationController
 
   def create
     @room_message = RoomMessage.create(room_message_params)
-    RoomChannel.broadcast_to @room, @room_message
+    RoomChannel.broadcast_to @room, @room_message.attributes.merge!(author_avatar: @room_message.author.avatar_url)
     render json: { status: :true }
   end
 

@@ -40,7 +40,7 @@ class Notification < ApplicationRecord
     begin
       case created_for
       when "room_message"
-        room_path(locale: I18n.locale, id: room_message.room_id)
+        rooms_path(locale: I18n.locale, id: room_message.room_id)
       when "job"
         job_path(locale: I18n.locale, id: job.id)
       when "quote"

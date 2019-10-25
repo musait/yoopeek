@@ -50,3 +50,23 @@
     <div class="clearfix"></div>
   </div>
 </div>
+
+<%= content_for :body_script do %>
+<script type="text/javascript">
+  urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+      return null;
+    }
+    return decodeURI(results[1]) || 0;
+  }
+  $(function () {
+    var room_id = urlParam("id")
+    if(room_id != null) {
+      if ($("#room-" + room_id).length > 0) {
+        $("#room-" + room_id)[0].click()
+      }
+    }
+  })
+</script>
+<% end %>
