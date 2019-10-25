@@ -25,7 +25,7 @@
               <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
                 <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
                 <div class="upload-button"></div>
-                <input class="file-upload" type="file" accept="image/*"/>
+                <%= f.file_field :avatar, class: "file-upload", accept: "image/*" %>
               </div>
             </div>
 
