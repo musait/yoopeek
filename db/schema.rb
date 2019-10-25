@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_102629) do
+ActiveRecord::Schema.define(version: 2019_10_25_081149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_10_23_102629) do
     t.boolean "subject_to_vat"
     t.uuid "address_id"
     t.string "vat_number"
+    t.string "website"
     t.index ["address_id"], name: "index_companies_on_address_id"
     t.index ["worker_id"], name: "index_companies_on_worker_id"
   end
