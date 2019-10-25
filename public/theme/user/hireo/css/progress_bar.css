@@ -52,17 +52,18 @@
 /* Done / Active */
 
 .progress .circle.bronze {
-  background-image: url(../images/bronze.png);
+  /theme/user/hireo/images/argent.png
+  background-image: url(/theme/user/hireo/images/bronze.png);
   background-position: center;
   background-size: 100px
 }
 .progress .circle.argent {
-  background-image: url(../images/argent.png);
+  background-image: url(/theme/user/hireo/images/argent.png);
   background-position: center;
   background-size: 100px
 }
 .progress .circle.or {
-  background-image: url(../images/or.png);
+  background-image: url(/theme/user/hireo/images/or.png);
   background-position: center;
   background-size: 100px
 }
