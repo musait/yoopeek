@@ -8,7 +8,7 @@ class Job < ApplicationRecord
   has_many :reviews
   has_many :quotes
   has_one :notification
-  paginates_per 10
+  paginates_per 3
 
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :completed, :cancelled]
