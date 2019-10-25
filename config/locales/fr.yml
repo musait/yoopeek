@@ -25,8 +25,23 @@ fr:
       job:
         index:
           worker_view:
+            select_something: "Faites un choix"
             available_jobs: "Missions disponibles"
             filter_by: "Filter par :"
+            created: "Créée"
+            in_progress: "En cours"
+            finished: "Terminée"
+            aborted: "Annulée"
+            status: "Statut"
+          customer_view:
+            select_something: "Faites un choix"
+            your_missions: "Vos missions"
+            filter_by: "Filter par :"
+            created: "Créée"
+            in_progress: "En cours"
+            finished: "Terminée"
+            aborted: "Annulée"
+            status: "Statut"
   home:
     index:
       your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
@@ -198,16 +213,18 @@ fr:
       quote_creation: "Créer un devis"
       creation_form: "Formulaire de création"
       title: "Nom de la mission"
-      item_detail: "Détail de l'élément"
-      unit_price: "Prix unitaire (HT)"
-      quantity: "Quantité"
-      total: "Total (HT)"
-      add_item: "Ajouter un élément"
       billing_information: "Coordonnées de facturation"
       legal_notice: "Vos mentions légales"
       legal_notice_information: "Vos mentions légales apparaîtront sur les factures auto-générées par Yoopeek.
         Vous pourrez les modifier dans votre espace personnel."
       creation_button: "Créer votre devis"
+    quote_element_fields:
+      item_detail: "Détail de l'élément"
+      unit_price: "Prix unitaire (HT)"
+      quantity: "Quantité"
+      total: "Total (HT)"
+      add_item: "Ajouter un élément"
+      quote_creation: "Créer un devis"
     show:
       quote_recap: "Récapitulatif du devis n°%{quote_number}"
       description: "Description"
