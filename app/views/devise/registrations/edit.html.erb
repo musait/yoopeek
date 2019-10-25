@@ -69,6 +69,14 @@
                         </div>
                       </div>
 
+                      <% if current_user.is_worker %>
+                        <div class="col-xl-6">
+                          <div class="submit-field">
+                            <h5><%= I18n.t('.user.all.edit.profession') %></h5>
+                            <%= f.collection_select :profession_id, Profession.all,:id,:name, {include_hidden: true }, class:"selectpicker" %>
+                          </div>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
                 </div>
@@ -376,6 +384,12 @@
                           <div class="submit-field">
                             <h5><%= raw I18n.t('.user.company.edit.iban') %></h5>
                             <%= c.text_field :iban, class:"with-border" %>
+                          </div>
+                        </div>
+                        <div class="col-xl-6">
+                          <div class="submit-field">
+                            <h5><%= raw I18n.t('.user.company.edit.website') %></h5>
+                            <%= c.text_field :website, class:"with-border" %>
                           </div>
                         </div>
 
