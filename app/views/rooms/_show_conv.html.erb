@@ -74,10 +74,10 @@
   <%= form_for @room_message, remote: true do |form| %>
     <div class="message-reply">
       <%= form.text_area :message, id:"message_area", rows:"1", placeholder:"Your Message" %>
-      <%= form.submit "Envoyer", class: 'button ripple-effect', id:"message_submit" %>
       <%= form.hidden_field :room_id %>
       <%= form.hidden_field :author_id, :value => current_user.id %>
       <%= form.hidden_field :receiver_id, :value => @room.receiver.id = current_user.id ? @room.receiver.id : @room.author.id %>
+      <%= form.submit "Envoyer", class: 'button ripple-effect', id:"message_submit" %>
     </div>
   <% end %>
 
