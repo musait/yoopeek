@@ -1,5 +1,5 @@
 
-<% if current_user.is_customer && current_user.jobs == [] %>
+<% if current_user.is_customer && current_user.jobs.empty?%>
   <div class="container">
     <div class="row">
       <div class="col-xl-12">
@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-<% elsif @jobs == [] %>
+<% elsif @jobs.empty? %>
   <div class="container">
   	<div class="row">
   		<div class="col-xl-12">
@@ -35,28 +35,28 @@
 
         </div>
       </div>
-        <div class="job-listing-footer">
-          <ul>
-            <% case job.status %>
-              <% when 'created' %>
-              <li><mark class="color" style="background-color: grey"><%= t('jobs.index.created') %></mark></li>
-              <% when "in_progress" %>
-              <mark class="color" style="background-color: #28b661"><%= t('jobs.index.in_progress') %></mark>
-              <% when "completed" %>
-              <mark class="color" style="background-color: #2a41e8"><%= t('jobs.index.finished') %></mark>
-              <% when "cancelled" %>
-              <mark class="color" style="background-color: #e53038"><%= t('jobs.index.aborted') %></mark>
-            <% end %>
-            <li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.min_price) +"-"+ number_to_currency(job.max_price)%></li>
-            <li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
-            <li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
-            <li><i class="icon-material-outline-location-on"></i> Clé USB</li>
-            <li><i class="icon-material-outline-location-on"></i> <%=  t('jobs.index.time_range', min_time: job.min_time,max_time: job.max_time) %></li>
-            <li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
-            <li><i class="icon-material-outline-access-time"></i> <%= t('jobs.index.published_at') %> <%= time_ago_in_words(job.created_at) %></li>
-          </ul>
+      <div class="job-listing-footer">
+        <ul>
+          <% case job.status %>
+            <% when 'created' %>
+            <li><mark class="color" style="background-color: grey"><%= t('jobs.index.created') %></mark></li>
+            <% when "in_progress" %>
+            <mark class="color" style="background-color: #28b661"><%= t('jobs.index.in_progress') %></mark>
+            <% when "completed" %>
+            <mark class="color" style="background-color: #2a41e8"><%= t('jobs.index.finished') %></mark>
+            <% when "cancelled" %>
+            <mark class="color" style="background-color: #e53038"><%= t('jobs.index.aborted') %></mark>
+          <% end %>
+          <li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.min_price) +"-"+ number_to_currency(job.max_price)%></li>
+          <li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
+          <li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
+          <li><i class="icon-material-outline-location-on"></i> Clé USB</li>
+          <li><i class="icon-material-outline-location-on"></i> <%=  t('jobs.index.time_range', min_time: job.min_time,max_time: job.max_time) %></li>
+          <li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
+          <li><i class="icon-material-outline-access-time"></i> <%= t('jobs.index.published_at') %> <%= time_ago_in_words(job.created_at) %></li>
+        </ul>
 
-        </div>
+      </div>
     <% end %>
   <%end%>
 <% end %>
