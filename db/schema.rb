@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_081149) do
+ActiveRecord::Schema.define(version: 2019_10_25_161305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -139,9 +139,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_081149) do
 
   create_table "quote_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "content"
-    t.string "quantity"
-    t.string "price"
-    t.string "total"
+    t.integer "quantity"
+    t.integer "price"
+    t.integer "total"
     t.uuid "quote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,6 +157,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_081149) do
     t.integer "status", default: 0
     t.uuid "user_id"
     t.bigint "quote_number"
+    t.integer "total_without_vat"
+    t.integer "vat"
+    t.integer "total_within_vat"
     t.index ["job_id"], name: "index_quotes_on_job_id"
     t.index ["quote_element_id"], name: "index_quotes_on_quote_element_id"
     t.index ["user_id"], name: "index_quotes_on_user_id"
