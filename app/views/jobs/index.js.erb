@@ -1,1 +1,6 @@
 $("#job_list").html('<%= j render("job_list") %>');
+<% if current_user.jobs.empty? || @jobs.empty? %>
+$("#pagination").hide();
+<%else %>
+$("#pagination").show();
+<%end %>
