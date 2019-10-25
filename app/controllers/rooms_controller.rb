@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new permitted_parameters
 
-    if @room.save
+    if @room.save!
       flash[:success] = "Room #{@room.name} was created successfully"
       redirect_to rooms_path
     else
@@ -46,6 +46,7 @@ class RoomsController < ApplicationController
   def load_entities
     @rooms = Room.all
     @room = Room.find(params[:id]) if params[:id]
+    @other_user = @room.try("other_user(current_user")|| current_user
   end
 
   def permitted_parameters
