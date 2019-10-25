@@ -11,14 +11,13 @@ class Notification < ApplicationRecord
     where viewed_at: nil
   }
 
-  def self.create_for user, object
+  def self.create_for user, object, messsage_action = "created"
     if object.class.superclass.to_s == "ApplicationRecord"
       class_to_s = object.class.to_s.underscore
     else
       class_to_s = object.class.superclass.to_s.underscore
     end
-
-    create! user: user, class_to_s => object, message: "notifications.#{class_to_s}_created", created_for: class_to_s
+    create! user: user, class_to_s => object, message: "notifications.#{class_to_s}_#{message_action}", created_for: class_to_s
   end
 
   def message_translate
