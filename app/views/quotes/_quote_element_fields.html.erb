@@ -1,29 +1,29 @@
-<div class="col-xl-8 offset-xl-2" id="form_element">
+<div class="col-xl-8 offset-xl-2 form_element">
   <div class="submit-field">
-    <h5><%= raw I18n.t('.quote.new.item_detail') %></h5>
+    <h5><%= t('.item_detail') %></h5>
     <%= f.text_area :content,class:"with-border"%>
   </div>
   <div class="row">
     <div class="col-xl-2 submit-field">
-      <h5><%= raw I18n.t('.quote.new.unit_price') %></h5>
+      <h5><%= t('.unit_price') %></h5>
       <div class="input-with-icon">
-        <%= f.text_field :price,placeholder:"0",class:"with-border" %>
+        <%= f.text_field :price,placeholder:"0",class:"with-border",id:"price"%>
         <i class="currency">€</i>
       </div>
     </div>
 
     <div class="col-xl-2 submit-field">
-      <h5><%= raw I18n.t('.quote.new.quantity') %></h5>
-      <%= f.text_field :quantity,placeholder:"1",class:"with-border" %>
+      <h5><%= t('.quantity') %></h5>
+      <%= f.text_field :quantity,placeholder:"1",class:"with-border",id:"quantity" %>
     </div>
     <div class="col-xl-2 submit-field">
-      <h5><%= raw I18n.t('.quote.new.total') %></h5>
+      <h5><%= t('.total') %></h5>
       <div class="input-with-icon">
-        <%= f.text_field :total,placeholder:"10",class:"with-border" %>
+        <%= f.text_field :total,placeholder:"10",class:"with-border",id:"total" %>
         <i class="currency">€</i>
       </div>
     </div>
   </div>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to_remove_fields 'Remove element', '.form_element' %>
 </div>
-<%= f.hidden_field :_destroy %>
-<%= link_to_remove_fields 'Remove element', '.quote_elements_fields' %>
