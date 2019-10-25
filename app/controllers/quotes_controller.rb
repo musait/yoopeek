@@ -20,6 +20,7 @@ class QuotesController < ApplicationController
   def new
     @quote = Quote.new
     @quote.quote_elements.build
+    @job = Job.find(params[:job_id])
   end
 
   # GET /quotes/1/edit
@@ -27,7 +28,6 @@ class QuotesController < ApplicationController
   end
 
   def accept_quote
-    binding.pry
 
   end
   def decline_quote
@@ -38,8 +38,11 @@ class QuotesController < ApplicationController
   # POST /quotes.json
   def create
     @quote = Quote.new(quote_params)
+    @quote.total_without_vat = @quote.quote_elements.map(&:total).sum
+    # Il faut changer la TVA en fonction qu'elle soit française ou suisse
 
-    binding.pry
+    @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)
+    @quote.vat = (@quote.total_within_vat - @quote.total_without_vat)
     @quote.increment(:quote_number)
     creator = User.find(params[:quote][:user_id])
     respond_to do |format|
