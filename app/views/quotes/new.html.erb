@@ -1,7 +1,7 @@
 
 <!-- Dashboard Headline -->
 <div class="dashboard-headline">
-	<h3><%= raw I18n.t('.quote.new.quote_creation') %></h3>
+	<h3><%= t('.quote_creation') %></h3>
 </div>
 
 <!-- Row -->
@@ -9,103 +9,47 @@
 
 	<!-- Dashboard Box -->
 	<div class="col-xl-12">
-		<%= form_with(model: @quote, local: true) do |form| %>
+		<%= form_with(model: @quote, local: true) do |f| %>
 			<div class="dashboard-box margin-top-0">
 
 				<!-- Headline -->
 				<div class="headline">
-					<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.creation_form') %></h3>
+					<h3><i class="icon-feather-folder-plus"></i> <%= t('.creation_form') %></h3>
 				</div>
 
 				<div class="content with-padding">
-						<% if @quote.errors.any? %>
-							<div class="notification error closeable">
-								<h2><%= pluralize(@quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
-								<% @quote.errors.full_messages.each do |message| %>
-									<p><%= message %></p>
-								<% end %>
-								<a class="close" href="#"></a>
-							</div>
-						<% end %>
-						<div class="row">
-							<div class="col-xl-8 offset-xl-2">
-								<div class="submit-field">
-									<h5><%= raw I18n.t('.quote.new.title') %></h5>
-									<%= form.text_field :name,class:"with-border" %>
-								</div>
-							</div>
-							<div class="col-xl-12">
-								<%= form.fields_for :quote_elements do |f| %>
-									<%= render 'quote_element_fields', f: f  %>
-									<%= link_to_add_fields '<i class="icon-material-outline-add"></i> Ajouter un élément'.html_safe, form, :quote_elements%>
-								<% end %>
-							</div>
-
-
+					<% if @quote.errors.any? %>
+						<div class="notification error closeable">
+							<h2><%= pluralize(@quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
+							<% @quote.errors.full_messages.each do |message| %>
+								<p><%= message %></p>
+							<% end %>
+							<a class="close" href="#"></a>
 						</div>
-
-				</div>
-			</div>
-			<div class="dashboard-box margin-top-0">
-
-				<!-- Headline -->
-				<div class="headline">
-					<h3><i class="icon-feather-folder-plus"></i> <%= raw I18n.t('.quote.new.billing_information') %></h3>
-				</div>
-
-				<div class="content with-padding">
+					<% end %>
 					<div class="row">
-
 						<div class="col-xl-8 offset-xl-2">
+							<div class="submit-field">
+								<h5><%= t('.title') %></h5>
+								<%= @job.name %>
+							</div>
 
 						</div>
-						<div class="col-xl-8 offset-xl-2" id="form_element">
+						<div class="col-xl-12">
+							<%= f.fields_for :quote_elements do |ff| %>
+								<%= render partial: 'quote_element_fields', locals: { f: ff }  %>
 
+							<% end %>
+							<%= link_to_add_fields '<i class="icon-material-outline-add"></i> Ajouter un élément'.html_safe, f, :quote_elements%>
 
-							<p>KAMINI</p>
-
-							<p>shuraval@yahoo.fr</p>
-							<p>Kevin Valfin</p>
-							<p>1 bis av du pavé neuf</p>
-							<p>93160 Noisy le grand</p>
-							<p>France</p>
-
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="dashboard-box margin-top-0">
-
-				<!-- Headline -->
-				<div class="headline">
-					<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.quote.new.legal_notice') %></h3>
-				</div>
-
-				<div class="content with-padding">
-					<div class="row">
-						<div class="col-xl-8 offset-xl-2" id="form_element">
-							<p><%= raw I18n.t('.quote.new.legal_notice_information') %></p>
-							<blockquote>SAS au capital de 500€
-								SIRET 81783623200014 RCS de BOBIGNY - NAF 7311Z
-								Numéro de TVA Intracommunautaire (facultatif) : FR20817836232<br/>
-								La facture est payable sous 7 jours.
-								Tout règlement effectué après expiration du délai donnera lieu, à titre de pénalité de retard, à
-								l'application d'un intérêt égal à celui appliqué par la Banque Centrale Européenne à son opération de
-								refinancement la plus récente, majoré de 10 points de pourcentage, ainsi qu'à une indemnité forfaitaire
-								pour frais de recouvrement d'un montant de 40 Euros.
-								Les pénalités de retard sont exigibles sans qu'un rappel soit nécessaire.
-							</blockquote>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<%= form.hidden_field :job_id, value: params[:job_id] %>
-			<%= form.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field :job_id, value: params[:job_id] %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
 			<div class="col-xl-12">
-				<%= form.submit I18n.t('.quote.new.quote_creation'), class:"button ripple-effect big margin-top-30"  %>
+				<%= f.submit t('.quote_creation'), class:"button ripple-effect big margin-top-30"  %>
 			</div>
 		<%end%>
 	</div>
@@ -113,3 +57,20 @@
 			<!-- Row / End -->
 	<div class="dashboard-footer-spacer"></div>
 </div>
+<%= content_for :body_script do %>
+  <script type="text/javascript">
+    $( document ).ready(function() {
+  		$('#quantity').on('blur', function() {
+
+  		  var price = $('#price').val();
+  		  var quantity = $('#quantity').val();
+
+  		  var total = $('#total').val();
+
+  		  var total_calculated = price * quantity;
+
+  			$('#total').val(total_calculated)
+  		});
+  	});
+  </script>
+<%end %>
