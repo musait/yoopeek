@@ -82,7 +82,6 @@ gem 'link_to_add_fields'
 gem "geocoder"
 gem 'iban-tools'
 gem 'valvat'
-gem 'will_paginate'
 gem 'phony_rails'
 gem 'kaminari'
 gem 'stripe'
