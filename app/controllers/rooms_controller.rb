@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
     @room = Room.new permitted_parameters
 
     if @room.save
-      redirect_to rooms_path
+      redirect_to @room
     else
       render :new
     end
