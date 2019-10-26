@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     if current_user.present?
       @notifications_count = current_user.notifications.not_seen.size
       @notifications = current_user.notifications.not_seen.order(:created_at => :desc).page(params[:notifications_page]).per(params[:notifications_per_page])
+      @notification_messages = Notification.joins(:room_message).where("author_id = ? OR receiver_id=?",current_user.id,current_user.id)
     else
       @notifications_count = 0
       @notifications = []
