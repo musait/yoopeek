@@ -151,3 +151,18 @@
 <!-- Row / End -->
 
 <div class="dashboard-footer-spacer"></div>
+<%= content_for :body_script do  %>
+	<script>
+		$('#category_id').change( function() {
+	   var category_id = $(this).val();
+	   console.log(category_id);
+	   $.ajax({
+	     url: "/categories/" + category_id + "/get_subcategories",
+	     type: "GET",
+	     dataType: "script",
+	     data: { "category_id": category_id }
+	   });
+	 });
+	</script>
+
+<% end %>
