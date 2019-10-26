@@ -11,7 +11,7 @@ class Notification < ApplicationRecord
     where viewed_at: nil
   }
 
-  def self.create_for user, object, messsage_action = "created"
+  def self.create_for user, object, message_action = "created"
     if object.class.superclass.to_s == "ApplicationRecord"
       class_to_s = object.class.to_s.underscore
     else
@@ -39,7 +39,7 @@ class Notification < ApplicationRecord
     begin
       case created_for
       when "room_message"
-        rooms_path(locale: I18n.locale, id: room_message.room_id)
+        room_path(locale: I18n.locale, id: room_message.room_id)
       when "job"
         job_path(locale: I18n.locale, id: job.id)
       when "quote"
