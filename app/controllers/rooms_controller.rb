@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
     @room = Room.new permitted_parameters
 
     if @room.save
-      redirect_to @room
+      redirect_to rooms_path
     else
       render :new
     end
@@ -45,7 +45,6 @@ class RoomsController < ApplicationController
   def load_entities
     @rooms = Room.all
     @room = Room.find(params[:id]) if params[:id]
-    @other_user = @room.try(:other_user, current_user)|| current_user
   end
 
   def permitted_parameters
