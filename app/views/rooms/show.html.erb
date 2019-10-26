@@ -61,12 +61,7 @@
     return decodeURI(results[1]) || 0;
   }
   $(function () {
-    var room_id = urlParam("id")
-    if(room_id != null) {
-      if ($("#room-" + room_id).length > 0) {
-        $("#room-" + room_id)[0].click()
-      }
-    }
+    document.getElementById("room-<%= @room.id %>").click()
   })
 </script>
 <% end %>
