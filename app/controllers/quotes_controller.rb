@@ -43,8 +43,8 @@ class QuotesController < ApplicationController
 
     @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)
     @quote.vat = (@quote.total_within_vat - @quote.total_without_vat)
+    @quote.job_id = params[:quote][:job_id]
     @quote.increment(:quote_number)
-    creator = User.find(params[:quote][:user_id])
     respond_to do |format|
       if @quote.save
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
@@ -88,6 +88,6 @@ class QuotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quote_params
-      params.require(:quote).permit(:name,:job_id,:quote_number,:user_id,:quote_elements_attributes => [ :id, :content,:quantity,:total, :price, :_destroy ])
+      params.require(:quote).permit(:name,:job_id,:quote_number,:sender_id, :receiver_id,:quote_elements_attributes => [ :id, :content,:quantity,:total, :price, :_destroy ])
     end
 end
