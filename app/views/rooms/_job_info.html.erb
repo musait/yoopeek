@@ -56,12 +56,21 @@
     </div>
     <div class="job-overview-inner" style="background-color: #ffff; padding-top: 0; ">
       <ul>
-        <li style="display: flex; justify-content: space-between">
-          <i class="icon-material-outline-description"></i> <a href="#">Devis 01</a> <mark class="color" style="background-color: #28b661">En cours</mark>
-        </li>
-        <li style="display: flex; justify-content: space-between">
-          <i class="icon-material-outline-description"></i> <a href="#">Devis 02</a> <mark class="color" style="background-color: #e53038">Refusé</mark>
-        </li>
+        <% @room.job.quotes.each do |quote| %>
+          <li style="display: flex; justify-content: space-between">
+            <%= link_to quote_path(id: quote.id) do %>
+              <i class="icon-material-outline-description"></i> <%= t('.quote',quote_number: quote.quote_number) %>
+              <% case quote.status %>
+                <% when "created" %>
+                  <mark class="color" style="background-color: grey"> <%= t('.quote_in_progress') %></mark>
+                <% when "accepted" %>
+                  <mark class="color" style="background-color: #28b661"><%= t('.quote_accepted') %></mark>
+                <% else %>
+                  <mark class="color" style="background-color: red "><%= t('.quote_declined') %></mark>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
         <li style="display: flex; justify-content: space-between">
           <%= link_to new_quote_path(:job_id => @room.job.id) do %>
             <%= raw I18n.t('.rooms.show.new_quote') %><i class="icon-material-outline-add"></i>
