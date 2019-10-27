@@ -16,7 +16,7 @@ class Job < ApplicationRecord
   after_create :create_notification
 
   def create_notification
-    Notification.create_for customer, self
+    # Notification.create_for customer,worker, self
   end
   def price_range
     "#{self.min_price} - #{self.max_price}"
