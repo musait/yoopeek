@@ -119,16 +119,16 @@ ActiveRecord::Schema.define(version: 2019_10_25_161305) do
     t.datetime "viewed_at"
     t.uuid "quote_id"
     t.uuid "job_id"
-    t.uuid "user_id"
     t.uuid "room_message_id"
     t.uuid "review_id"
+    t.uuid "sender_id"
+    t.uuid "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_notifications_on_job_id"
     t.index ["quote_id"], name: "index_notifications_on_quote_id"
     t.index ["review_id"], name: "index_notifications_on_review_id"
     t.index ["room_message_id"], name: "index_notifications_on_room_message_id"
-    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "professions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -150,6 +150,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_161305) do
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.uuid "sender_id"
+    t.uuid "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "quote_element_id"
@@ -286,7 +288,6 @@ ActiveRecord::Schema.define(version: 2019_10_25_161305) do
   add_foreign_key "notifications", "quotes"
   add_foreign_key "notifications", "reviews"
   add_foreign_key "notifications", "room_messages"
-  add_foreign_key "notifications", "users"
   add_foreign_key "quote_elements", "quotes"
   add_foreign_key "quotes", "jobs"
   add_foreign_key "quotes", "quote_elements"

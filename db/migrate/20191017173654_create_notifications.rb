@@ -6,10 +6,10 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
       t.datetime :viewed_at
       t.belongs_to :quote, type: :uuid, foreign_key: true
       t.belongs_to :job, type: :uuid, foreign_key: true
-      t.belongs_to :user, type: :uuid, foreign_key: true
       t.belongs_to :room_message, type: :uuid, foreign_key: true
       t.belongs_to :review, type: :uuid, foreign_key: true
-
+      t.uuid :sender_id
+      t.uuid :receiver_id
       t.timestamps
     end
   end
