@@ -8,9 +8,7 @@ class Quote < ApplicationRecord
 
   enum status: [:created, :declined, :accepted]
 
-  after_create :create_notification
+  
 
-  def create_notification
-    Notification.create_for sender,receiver, self
-  end
+
 end
