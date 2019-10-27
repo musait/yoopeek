@@ -22,35 +22,36 @@ class Notification < ApplicationRecord
     create! sender: sender, receiver: receiver, class_to_s => object, message: "notifications.#{class_to_s}_#{message_action}", created_for: class_to_s
   end
 
-  def message_translate
-    case created_for
-    when "room_message"
-      creator = room_message.author
-    when "job"
-      creator = job.customer
-    when "quote"
-      creator = quote.user
-    when "review"
-      creator = review.worker
-    end
-    I18n.t message, creator: creator.email
-    # I18n.t message, creator: creator.email, href: link_to(I18n.t("notifications.#{created_for}_created_href"), url)
-  end
+  # def message_translate
+  #   case created_for
+  #   when "room_message"
+  #     creator = room_message.author
+  #   when "job"
+  #     creator = job.customer
+  #   when "quote"
+  #     if quote.nil?
+  #       creator = self.sender
+  #     else
+  #       creator = quote.sender
+  #     end
+  #     job = quote.job.name
+  #   when "review"
+  #     creator = review.worker
+  #   end
+  #   I18n.t message, creator: creator.full_name, job: job
+  #   # I18n.t message, creator: creator.email, href: link_to(I18n.t("notifications.#{created_for}_created_href"), url)
+  # end
 
   def url
-    begin
-      case created_for
-      when "room_message"
-        room_path(locale: I18n.locale, id: room_message.room_id)
-      when "job"
-        job_path(locale: I18n.locale, id: job.id)
-      when "quote"
-        quote_path(locale: I18n.locale, id: quote.id)
-      when "review"
-        review_path(locale: I18n.locale, id: review.id)
-      end
-    rescue
-      root_path
+    case created_for
+    when "room_message"
+      room_path(locale: I18n.locale, id: room_message.room_id)
+    when "job"
+      job_path(locale: I18n.locale, id: job.id)
+    when "quote"
+      quote_path(locale: I18n.locale, id: quote.id)
+    when "review"
+      review_path(locale: I18n.locale, id: review.id)
     end
   end
 
