@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :authored_rooms, class_name: 'Room', foreign_key: 'author_id'
   has_many :received_rooms, class_name: 'Room', foreign_key: 'receiver_id'
   has_many :room_messages
-  has_many :notifications
+  has_many :notif_received, class_name: 'Notification', foreign_key: 'receiver_id'
+  has_many :notif_send, class_name: 'Notification', foreign_key: 'sender_id'
   belongs_to :address, optional: true
   accepts_nested_attributes_for :address
   after_create :send_admin_mail
