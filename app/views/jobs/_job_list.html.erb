@@ -10,6 +10,17 @@
       </div>
     </div>
   </div>
+<% elsif current_user.is_worker && @jobs.empty? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <section id="not-found" class="center margin-top-50 margin-bottom-25">
+          <h2><i class="icon-line-awesome-frown-o"></i></h2>
+          <p><%= t('jobs.index.this_is_no_mission') %></p>
+        </section>
+      </div>
+    </div>
+  </div>
 <% elsif @jobs.empty? %>
   <div class="container">
   	<div class="row">
@@ -20,7 +31,6 @@
   			</section>
   		</div>
   	</div>
-
   </div>
 <% else %>
   <% @jobs.each do |job| %>
