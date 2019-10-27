@@ -28,10 +28,15 @@ class QuotesController < ApplicationController
   end
 
   def accept_quote
-
+    binding.pry
   end
   def decline_quote
-
+    @quote = Quote.find(params[:quote])
+    @quote.update(status:"declined")
+    sender = @quote.receiver
+    receiver = @quote.sender
+    Notification.create!(message: t('.your_quote_has_been_declined',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
+    redirect_to @quote
   end
 
   # POST /quotes
@@ -44,7 +49,9 @@ class QuotesController < ApplicationController
     @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)
     @quote.vat = (@quote.total_within_vat - @quote.total_without_vat)
     @quote.job_id = params[:quote][:job_id]
-    @quote.increment(:quote_number)
+    sender = @quote.sender
+    receiver = @quote.receiver
+    Notification.create!(message: t('.you_have_received_a_quote',pro: @quote.sender.full_name, job: @quote.job.name), quote: @quote,created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
     respond_to do |format|
       if @quote.save
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
