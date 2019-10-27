@@ -8,6 +8,9 @@ fr:
     stripe_connect: Conditions d'Utilisation des Comptes Connectés Stripe
   notifications:
     room_message_created: "%{creator} vous à envoyer un message"
+    you_have_received_a_message: "Vous avez reçu un message de la part de %{creator}"
+    quote_created: "Vous avez reçu un devis de la part de %{creator} pour la mission suivante : %{job}"
+    you_have_received_a_review: "Vous avez reçu un nouvel avis de la part de xxx"
   number:
     currency:
       format:
@@ -76,6 +79,7 @@ fr:
       here: "ici"
       unsucessful_research: "Nous sommes désolés mais il n'existe pas de missions avec les caractéristiques indiquées"
       status: "Statut"
+      this_is_no_mission: "Il n'existe pas de missions disponible pour le moment"
     show:
       job_description: "Description de la mission"
       pro_choosen: "Le professionel que vous avez choisi"
@@ -208,6 +212,10 @@ fr:
       date_delivery: "Date de livraison"
       your_quotes: "Vos devis"
       time_range: "Entre %{min_time} et %{max_time} heure(s)"
+      quote: "Devis n° %{quote_number}"
+      quote_declined: "Décliné"
+      quote_in_progress: "En cours"
+      quote_accepted: 'Acceptée'
   quotes:
     new:
       quote_creation: "Créer un devis"
@@ -240,6 +248,15 @@ fr:
       quote_decline: "Déclinée"
       quote_in_progress: "En cours"
       quote_accepted: 'Acceptée'
+      quote_in_progress_for_customer: "Proposition en attente d'acceptation"
+      quote_accepted_by_customer: "Proposition acceptée"
+      quote_declined_by_customer: "Proposition déclinée"
+      message_for_quote_accepted: "Vous avez accepté ce devis. Un message a été envoyé au professionnel pour l'informer de votre accord. Si au bout de 24-48h, il n'est pas revenu vers vous, contactez-le !"
+      message_for_quote_declined: "Vous avez refusé ce devis. Un message a été envoyé au professionnel pour l'informer de votre refus. Il reviendra peut-être vers pour faire une autre proposition."
+    create:
+      you_have_received_a_quote: "Vous avez reçu un devis de la part de %{pro} pour la mission suivante : %{job}"
+    decline_quote:
+      your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusée"
   order:
     show:
       summary: "Récapitulatif"
