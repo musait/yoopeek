@@ -3,21 +3,23 @@ class Notification < ApplicationRecord
   belongs_to :job, optional: true
   belongs_to :room_message, optional: true
   belongs_to :review, optional: true
-  belongs_to :user, counter_cache: true
+  belongs_to :sender, class_name: 'User', foreign_key: 'sender_id', counter_cache: true
+  belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id', counter_cache: true
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
+  paginates_per 3
 
   scope :not_seen, -> () {
     where viewed_at: nil
   }
 
-  def self.create_for user, object, message_action = "created"
+  def self.create_for sender,receiver, object, message_action = "created"
     if object.class.superclass.to_s == "ApplicationRecord"
       class_to_s = object.class.to_s.underscore
     else
       class_to_s = object.class.superclass.to_s.underscore
     end
-    create! user: user, class_to_s => object, message: "notifications.#{class_to_s}_#{message_action}", created_for: class_to_s
+    create! sender: sender, receiver: receiver, class_to_s => object, message: "notifications.#{class_to_s}_#{message_action}", created_for: class_to_s
   end
 
   def message_translate
