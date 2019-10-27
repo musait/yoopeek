@@ -47,7 +47,8 @@
 				</div>
 			</div>
 			<%= f.hidden_field :job_id, value: params[:job_id] %>
-			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field :sender_id, value: current_user.id %>
+			<%= f.hidden_field :receiver_id, value: @job.customer.id %>
 			<div class="col-xl-12">
 				<%= f.submit t('.quote_creation'), class:"button ripple-effect big margin-top-30"  %>
 			</div>
