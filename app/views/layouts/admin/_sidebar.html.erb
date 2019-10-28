@@ -49,6 +49,15 @@
                   </div>
             <% end %>
           </li>
+          <li class="site-menu-item has-sub">
+            <%= link_to admin_plan_limitations_path do %>
+              <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+              <span class="site-menu-title">Limitation des plans</span>
+                  <div class="site-menu-badge">
+                      <span class="badge badge-pill"> <%= PlanLimitation.count %></span>
+                  </div>
+            <% end %>
+          </li>
         </ul>
 
       </div>

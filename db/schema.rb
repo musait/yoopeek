@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_161305) do
+ActiveRecord::Schema.define(version: 2019_10_28_160518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -131,6 +131,23 @@ ActiveRecord::Schema.define(version: 2019_10_25_161305) do
     t.index ["room_message_id"], name: "index_notifications_on_room_message_id"
   end
 
+  create_table "plan_limitations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "label"
+    t.string "description"
+    t.float "price_per_month", default: 0.0
+    t.float "commission_per_service", default: 19.0
+    t.integer "commission_type", default: 0
+    t.integer "nb_answer", default: 6
+    t.integer "nb_answer_type", default: 0
+    t.integer "limit_portfolio", default: 0
+    t.boolean "have_badge", default: false
+    t.boolean "have_status", default: false
+    t.integer "show_order", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "professions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -139,9 +156,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_161305) do
 
   create_table "quote_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "content"
-    t.integer "quantity"
-    t.integer "price"
-    t.integer "total"
+    t.string "quantity"
+    t.string "price"
+    t.string "total"
     t.uuid "quote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -150,8 +167,6 @@ ActiveRecord::Schema.define(version: 2019_10_25_161305) do
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.uuid "sender_id"
-    t.uuid "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "quote_element_id"

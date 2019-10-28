@@ -1,4 +1,9 @@
 fr:
+  month: Mois
+  year: Année
+  "true": Oui
+  "false": Non
+  unlimited: Illimité
   activerecord:
     errors:
       models:

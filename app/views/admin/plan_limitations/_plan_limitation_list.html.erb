@@ -1,0 +1,37 @@
+<table class="table table-hover dataTable table-striped w-full" id="users-datatable">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Prix par mois</th>
+      <th>Commission par prestation</th>
+      <th>Nombre de réponses aux annonces</th>
+      <th>Limite du portfolio</th>
+      <th>Avec badge</th>
+      <th>Avec status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @plan_limitations.each do |plan_limitation| %>
+      <tr>
+        <td><%= plan_limitation.name %></td>
+        <td><%= truncate(plan_limitation.description, length: 100) %></td>
+        <td><%= plan_limitation.price_per_month %></td>
+        <td><%= plan_limitation.commission_per_service %> <%= plan_limitation.commission_type %></td>
+        <td><%= plan_limitation.nb_answer %> / <%= I18n.t(plan_limitation.nb_answer_type) %></td>
+        <td><%= plan_limitation.limit_portfolio_to_s %></td>
+        <td><%= I18n.t(plan_limitation.have_badge?) %></td>
+        <td><%= I18n.t(plan_limitation.have_status?) %></td>
+        <td class="actions">
+          <%= link_to edit_admin_plan_limitation_path(id: plan_limitation.id),method: :get,class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row" do %>
+            <i class="icon wb-edit" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to admin_plan_limitation_path(id: plan_limitation.id), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row" do%>
+            <i class="icon wb-trash" aria-hidden="true"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
