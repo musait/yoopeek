@@ -29,6 +29,10 @@ class QuotesController < ApplicationController
 
   def accept_quote
     render "/checkout/pages-checkout-page-user.html"
+    sender = @quote.receiver
+    receiver = @quote.sender
+    Notification.create!(message: t('.your_quote_has_been_accepted',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
+    UserMailer.with(user: @quote.sender, quote: @quote).quote_accepted.deliver_later
   end
   def decline_quote
     @quote = Quote.find(params[:quote])
