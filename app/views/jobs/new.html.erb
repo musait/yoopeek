@@ -20,8 +20,8 @@
 					<div class="notification error closeable">
 						<p><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</p>
 						<ul>
-						<% @job.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
+						<% @job.errors.values.each do |message| %>
+							<li><%= message[0] %></li>
 						<% end %>
 						</ul>
 						<a class="close" href="#"></a>
