@@ -55,6 +55,7 @@ class QuotesController < ApplicationController
     Notification.create!(message: t('.you_have_received_a_quote',pro: @quote.sender.full_name, job: @quote.job.name), quote: @quote,created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
     respond_to do |format|
       if @quote.save
+        UserMailer.with(user: @quote.sender, quote: @quote).new_quote.deliver_later
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render :show, status: :created, location: @quote }
       else
