@@ -28,7 +28,7 @@ class QuotesController < ApplicationController
   end
 
   def accept_quote
-    binding.pry
+    render "/checkout/pages-checkout-page-user.html"
   end
   def decline_quote
     @quote = Quote.find(params[:quote])
@@ -36,6 +36,7 @@ class QuotesController < ApplicationController
     sender = @quote.receiver
     receiver = @quote.sender
     Notification.create!(message: t('.your_quote_has_been_declined',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
+    UserMailer.with(user: @quote.sender, quote: @quote).quote_declined.deliver_later
     redirect_to @quote
   end
 
