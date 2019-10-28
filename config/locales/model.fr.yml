@@ -1,0 +1,16 @@
+fr:
+  activerecord:
+    models:
+      plan_limitation: Limitation des plans
+    attributes:
+      plan_limitation:
+        label: Label
+        description: Description
+        price_per_month: Prix par mois
+        commission_type:  Type de commission
+        nb_answer:  Nombre de réponse
+        nb_answer_type: Nombre de réponse par
+        limit_portfolio: Limite du portfolio
+        have_badge: Avec badge?
+        have_status: Avec status
+        show_order: Ordre d'affichage

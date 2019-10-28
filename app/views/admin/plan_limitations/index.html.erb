@@ -1,0 +1,46 @@
+
+<%= content_for :body_style do %>
+  <%= render "layouts/admin/style_datatable" %>
+<% end %>
+  <body class="animsition">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Page -->
+    <div class="page">
+      <div class="page-header">
+        <h1 class="page-title">Limitations des plans</h1>
+
+      </div>
+
+      <div class="page-content">
+
+        <!-- Panel Table Add Row -->
+				<div class="panel">
+          <header class="panel-heading">
+            <h3 class="panel-title">Voici les limitations des plans actuellement en ligne : </h3>
+          </header>
+          <div class="panel-body" id="user_list">
+            <%= render "plan_limitation_list" %>
+          </div>
+        </div>
+        <!-- End Panel Table Add Row -->
+
+
+
+      </div>
+    </div>
+<%= content_for :body_script do %>
+	<%= render "layouts/admin/script_datatable" %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $('#users-datatable').dataTable({
+        "order": [],
+        "language": {
+          "url": 'http://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
+        }
+      });
+		});
+	</script>
+<% end %>
