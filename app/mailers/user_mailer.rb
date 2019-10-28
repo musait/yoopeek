@@ -13,4 +13,10 @@ class UserMailer < Devise::Mailer
       @quote = params[:quote]
       mail(to: @user.email, subject: default_i18n_subject(user: @user.full_name))
     end
+
+    def quote_accepted
+      @user = params[:user]
+      @quote = params[:quote]
+      mail(to: @user.email, subject: default_i18n_subject(user: @user.full_name))
+    end
   end
