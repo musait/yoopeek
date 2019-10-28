@@ -11,6 +11,8 @@ fr:
       subject: "%{user}, vous avez reçu un nouveau devis!"
     quote_declined:
       subject: "%{user}, votre devis a été refusé!"
+    quote_accepted:
+      subject: "Bonne nouvelle %{user}! Votre devis a été accepté!"
   other:
     send_mp: Envoyer un message
   stripe:
@@ -269,6 +271,8 @@ fr:
       you_have_received_a_quote: "Vous avez reçu un devis de la part de %{pro} pour la mission suivante : %{job}"
     decline_quote:
       your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusée"
+    accept_quote:
+      your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été acceptée. Nous vous informerons lorsque le client procèdera au paiement afin de commencer la mission"
   order:
     show:
       summary: "Récapitulatif"
