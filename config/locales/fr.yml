@@ -1,4 +1,9 @@
 fr:
+  user_mailer:
+    new_quote:
+      subject: "%{user}, vous avez reçu un nouveau devis!"
+    quote_declined:
+      subject: "%{user}, votre devis a été refusé!"
   other:
     send_mp: Envoyer un message
   stripe:
