@@ -1,4 +1,11 @@
 fr:
+  activerecord:
+    errors:
+      models:
+        job:
+          attributes:
+            date_delivery:
+              cant_be_in_past: "La date ne peux pas être antérieure à aujourd'hui"
   user_mailer:
     new_quote:
       subject: "%{user}, vous avez reçu un nouveau devis!"
