@@ -111,7 +111,7 @@
 	                <% case @quote.status %>
 	                <% when "created" %>
 	                  <%= link_to t('.decline'), decline_quote_path(quote: @quote),style:"margin-right: 10px;display: flex; align-items: center" %>
-	                  <%= link_to t('.accept_quote'), accept_quote_path(quote: @quote),class:"button" %>
+	                  <%= link_to t('.accept_quote'), accept_quote_path(id: @quote),class:"button", "data-turbolinks" => "false" %>
 	                <% when "accepted" %>
 	                  <p> <%= t('.message_for_quote_accepted') %></p>
 	                <% else %>

@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: [:show, :edit, :update, :destroy]
+  before_action :set_quote, only: [:show, :edit, :update, :destroy, :accept, :decline, :pay]
 
   # GET /quotes
   # GET /quotes.json
@@ -27,14 +27,40 @@ class QuotesController < ApplicationController
   def edit
   end
 
-  def accept_quote
-    render "/checkout/pages-checkout-page-user.html"
-    sender = @quote.receiver
-    receiver = @quote.sender
-    Notification.create!(message: t('.your_quote_has_been_accepted',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
-    UserMailer.with(user: @quote.sender, quote: @quote).quote_accepted.deliver_later
+  def accept
+    @total = @quote.total
+    @intent = Stripe::PaymentIntent.create({
+      amount: @total,
+      currency: 'eur'
+    })
+    session[:payment_intent_id] = @intent.id
   end
-  def decline_quote
+
+  def pay
+    @intent = Stripe::PaymentIntent.retrieve(
+      session[:payment_intent_id],
+    )
+    if @intent.status == "succeeded"
+      sender = @quote.receiver
+      receiver = @quote.sender
+      @quote.update status: :accepted
+      Notification.create!(message: t('.your_quote_has_been_accepted',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
+      UserMailer.with(user: @quote.sender, quote: @quote).quote_accepted.deliver_later
+      session.delete(:payment_intent_id)
+      respond_to do |format|
+        format.any {
+          # Charge à notre code d'implémenter le to_xls
+          render js: ''
+        }
+        format.html {
+          redirect_back fallback_location: root_path, flash: {success: I18n.t("other.payment_done")}, method: :get
+        }
+      end
+    else
+      redirect_back fallback_location: root_path, flash: {success: I18n.t("other.subscription_changed")}
+    end
+  end
+  def decline
     @quote = Quote.find(params[:quote])
     @quote.update(status:"declined")
     sender = @quote.receiver
