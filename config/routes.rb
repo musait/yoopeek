@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :portfolios
   devise_for :users, only: :omniauth_callbacks, controllers: {:registrations => 'registrations',omniauth_callbacks: 'users/omniauth_callbacks'}
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, skip: :omniauth_callbacks,controllers: {:registrations => 'registrations'}
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
       end
     end
     resources :companies
+    get "delete_image_attachment" => "portfolios#delete_image_attachment"
     namespace :admin do
       get "index" => "home#index"
       resources :jobs, param: :slug
