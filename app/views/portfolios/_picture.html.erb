@@ -1,0 +1,13 @@
+<div class="row">
+  <% @portfolio.picture.each do |pp| %>
+    <div class="col-xl-3">
+        <div class="blog-compact-item">
+          <img src=" <%= rails_blob_url(pp) %>" alt="">
+          <div class="blog-compact-item-content">
+            <h3>How to "Woo" a Recruiter and Land Your Dream Job</h3>
+          </div>
+        </div>
+        <%= link_to 'Remove', delete_image_attachment_path(id: pp.id),remote: true, id:"linkToRemove", class:"button margin-top-20" %>
+    </div>
+  <% end %>
+</div>

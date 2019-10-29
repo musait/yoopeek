@@ -1,0 +1,34 @@
+
+<!-- Dashboard Headline -->
+<div class="dashboard-headline" style="display:flex; justify-content:space-between">
+	<h3>Vos portfolio</h3>
+  <%= link_to "Ajouter un portfolio", new_portfolio_path, class:"button" %>
+</div>
+
+<!-- Row -->
+<div class="row">
+
+	<!-- Dashboard Box -->
+	<div class="col-xl-12">
+    <div class="row">
+      <% @portfolios.each do |portfolio| %>
+        <div class="col-xl-3">
+          <%= link_to portfolio_path(id: portfolio.id)do %>
+            <div class="blog-compact-item">
+              <img src=" <%= portfolio.picture_url %>" alt="">
+              <div class="blog-compact-item-content">
+                <h3>How to "Woo" a Recruiter and Land Your Dream Job</h3>
+              </div>
+            </div>
+          <% end %>
+          <%= link_to "Supprimer ce portfolio", portfolio_path(portfolio), method: :delete, class:"button margin-top-20"  %>
+        </div>
+      <% end %>
+
+    </div>
+	</div>
+			<!-- Row / End -->
+	<div class="dashboard-footer-spacer"></div>
+</div>
+<%= content_for :body_script do %>
+<%end %>

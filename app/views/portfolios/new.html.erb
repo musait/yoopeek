@@ -1,0 +1,37 @@
+
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3>Créer un portfolio</h3>
+</div>
+
+<!-- Row -->
+<div class="row">
+
+	<!-- Dashboard Box -->
+
+		<div class="col-xl-12">
+			<%= form_with(model: @portfolio, class:"dropzone",id:"my-awesome-dropzone") do |f| %>
+			<div class="fallback">
+	       <%= file_field_tag "picture[]", multiple: true%>
+			</div>
+			<% end %>
+			<button class="button margin-top-20" id="submit-all">Submit all files</button>
+		</div>
+			<!-- Row / End -->
+</div>
+<%= content_for :body_script do %>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		Dropzone.autoDiscover = false;
+	  var dropzone = new Dropzone ("#my-awesome-dropzone", {
+			paramName: "portfolio[picture]",
+			autoProcessQueue: false,
+      uploadMultiple:true,
+			acceptedFiles: "image/*",
+			parallelUploads: 15,
+	  });
+		$('#submit-all').click(function(){
+	    dropzone.processQueue();
+	  });
+	</script>
+<%end %>

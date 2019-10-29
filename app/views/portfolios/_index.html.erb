@@ -1,0 +1,14 @@
+<% @portfolios.each do |portfolio| %>
+  <div class="col-xl-3">
+    <%= link_to portfolio_path(id: portfolio.id)do %>
+      <div class="blog-compact-item">
+        <img src=" <%= portfolio.picture_url %>" alt="">
+        <div class="blog-compact-item-content">
+          <h3>How to "Woo" a Recruiter and Land Your Dream Job</h3>
+        </div>
+      </div>
+
+    <% end %>
+    <%= link_to "Supprimer ce portfolio", portfolio_path(portfolio), method: :delete, class:"button margin-top-20"  %>
+  </div>
+<% end %>
