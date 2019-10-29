@@ -1,0 +1,147 @@
+<!-- ############ PAGE START-->
+<%= content_for :header_title do %>
+<%= @admin_subscription.name if @admin_subscription.present? %>
+<% end %>
+<% content_for(:body_attributes) do %>
+    data-turbolinks="false"
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xl-8 col-lg-8 content-right-offset">
+
+
+			<!-- Hedaline -->
+      <h2>Montant du paiement <%= currency_formated @admin_subscription.price if @admin_subscription.present? %></h2>
+
+			<!-- Billing Cycle Radios  -->
+
+			<!-- Hedline -->
+			<h3 class="margin-top-50">Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptée et sécurisées</h3>
+
+			<!-- Payment Methods Accordion -->
+
+			<div class="margin-top-30">
+
+        <div class="payment-tab-trigger">
+          <div class="col-md-12 mb-2" id="card-element"></div>
+        </div>
+
+			</div>
+			<!-- <div class="payment margin-top-30">
+
+				<div class="payment-tab payment-tab-active">
+					<div class="payment-tab-trigger">
+            <div class="col-md-12 mb-2" id="card-element"></div>
+					</div>
+				</div>
+
+			</div> -->
+			<!-- Payment Methods Accordion / End -->
+
+      <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65">Valider</button>
+		</div>
+
+
+		<!-- Summary -->
+		<div class="col-xl-4 col-lg-4 margin-top-0 margin-bottom-60">
+
+			<!-- Summary -->
+			<div class="boxed-widget summary margin-top-0">
+				<div class="boxed-widget-headline">
+					<h3><%= t("summary") %></h3>
+				</div>
+				<div class="boxed-widget-inner">
+					<ul>
+						<li><%= @plan_limitation.label %> <span><%= currency_formated (@plan_limitation.price_per_month - @plan_limitation.price_per_month * 0.2) %></span></li>
+						<li>TVA (20%) <span><%= currency_formated (@plan_limitation.price_per_month * 0.2) %></span></li>
+						<li class="total-costs">total <span><%= currency_formated (@plan_limitation.price_per_month) %></span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Summary / End -->
+
+			<!-- Checkbox -->
+			<div class="checkbox margin-top-30">
+				<input type="checkbox" id="two-step">
+				<label for="two-step"><span class="checkbox-icon"></span>  I agree to the <a href="#">Terms and Conditions</a> and the <a href="#">Automatic Renewal Terms</a></label>
+			</div>
+		</div>
+
+	</div>
+</div>
+<%= content_for :body_script do %>
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      var stripe = Stripe('<%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key) %>');
+
+      var elements = stripe.elements();
+      var style = {
+  			base: {
+  				color: '#32325d',
+          padding: "10px",
+  				fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+  				fontSmoothing: 'antialiased',
+  				fontSize: '16px',
+  				'::placeholder': {
+  					color: '#aab7c4'
+  				}
+  			},
+  			invalid: {
+  				color: '#fa755a',
+  				iconColor: '#fa755a'
+  			}
+  		};
+      var cardElement = elements.create('card',
+  			{hidePostalCode: true, style: style}
+  		);
+      cardElement.mount('#card-element');
+
+
+      var cardButton = document.getElementById('card-button');
+      var clientSecret = '<%= @intent.client_secret %>';
+
+      cardButton.addEventListener('click', function(ev) {
+        $("#card-button").prop("disabled", true)
+        $("#card-button").html("Paiement en cours")
+        stripe.handleCardSetup(
+          clientSecret, cardElement, {
+            payment_method_data: {
+              billing_details: {}
+            }
+          }
+        ).then(function(result) {
+          console.log(result);
+          if (result.error) {
+            $("#card-button").prop("disabled", false)
+            $("#card-button").html("Valider")
+            // Display error.message in your UI.
+             toastr['error'](result.error.message);
+          } else {
+
+            $.ajax({
+              url: "<%= subscriptions_path %>",
+              type: 'post',
+              data: {
+                payment_method_id: result.setupIntent.payment_method,
+                authenticity_token: "<%= form_authenticity_token %>"
+              },
+              error: function () {
+                $("#card-button").prop("disabled", false)
+                $("#card-button").html("Valider")
+              },
+              success: function () {
+                toastr['success']("<%= t('other.subscription_changed') %>");
+                $("#card-button").prop("disabled", false)
+                $("#card-button").html("Valider")
+                document.location.href = '<%= subscriptions_path %>'
+              }
+            })
+            // The setup has succeeded. Display a success message.
+          }
+        });
+      });
+    })
+  </script>
+<% end %>

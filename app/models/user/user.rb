@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   self.inheritance_column = :type
+  has_many :subscriptions
   has_many :authored_rooms, class_name: 'Room', foreign_key: 'author_id'
   has_many :received_rooms, class_name: 'Room', foreign_key: 'receiver_id'
   has_many :room_messages
@@ -111,7 +112,12 @@ class User < ApplicationRecord
     self.admin?
   end
 
+  def current_subscription
+    subscriptions.current_actived_subscriptions.first
+  end
+
   def current_plan
-    PlanLimitation.free_limitation
+    plan = current_subscription.try("plan_limitation")
+    plan||PlanLimitation.free_limitation
   end
 end
