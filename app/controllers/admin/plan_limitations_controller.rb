@@ -62,11 +62,11 @@ class Admin::PlanLimitationsController <  AdminController
   # DELETE /plan_limitations/1
   # DELETE /plan_limitations/1.json
   def destroy
-    @plan_limitation.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_plan_limitations_url, notice: 'PlanLimitation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @plan_limitation.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to admin_plan_limitations_url, notice: 'PlanLimitation was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

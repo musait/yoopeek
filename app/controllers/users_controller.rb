@@ -5,7 +5,13 @@ class UsersController < ApplicationController
   end
 
   def my_subscription
-
+    @plan_limitations = PlanLimitation.order(:show_order).all
+    if @plan_limitations.blank?
+      PlanLimitation.free_limitation
+      PlanLimitation.classic_limitation
+      PlanLimitation.premium_limitation
+      @plan_limitations = PlanLimitation.order(:show_order).all
+    end
   end
 
   def private
