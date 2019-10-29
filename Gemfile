@@ -86,3 +86,4 @@ gem 'phony_rails'
 gem 'kaminari'
 gem 'stripe'
 gem "select2-rails"
+gem 'dropzonejs-rails'
