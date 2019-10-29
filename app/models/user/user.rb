@@ -22,6 +22,7 @@ class User < ApplicationRecord
   acts_as_reader
   has_one_attached :avatar
   phony_normalize :phone_number, default_country_code: 'FR'
+  has_many :portfolios
 
   def avatar_url
     if avatar.attached?
