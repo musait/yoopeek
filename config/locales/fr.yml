@@ -1,4 +1,14 @@
 fr:
+  my_subscription:
+    limit_portfolio: Portfolio limité à %{limit} contenu
+    have_badge: avec badge
+    have_no_badge: sans badge
+    have_status: avec statut
+    have_no_status: sans statut
+  responses_to_ads: Réponse aux annonces
+  per_performance: Par prestation
+  your_selection: Votre sélection
+  advantages: Avantages
   month: Mois
   year: Année
   "true": Oui

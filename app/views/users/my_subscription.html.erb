@@ -22,47 +22,44 @@
 
       <!-- Pricing Plans Container -->
       <div class="pricing-plans-container">
-
-        <!-- Plan -->
-        <div class="pricing-plan">
-          <h3>Formule Bronze</h3>
-          <div class="pricing-plan-label billed-monthly-label"><strong>19€</strong>/ mois</div>
-          <div class="pricing-plan-features">
-            <strong>Les avantages</strong>
-            <ul>
-              <li>50 points par mois</li>
-            </ul>
-          </div>
-          <a href="#" class="button full-width margin-top-20">Downgrader</a>
-        </div>
-
-        <!-- Plan -->
-        <div class="pricing-plan recommended">
-          <div class="recommended-badge">Votre sélection</div>
-          <h3>Formule Argent</h3>
-          <div class="pricing-plan-label billed-monthly-label"><strong>49€</strong>/ mois</div>
-          <div class="pricing-plan-features">
-            <strong>Les avantages</strong>
-            <ul>
-              <li>100 points par mois</li>
-            </ul>
-          </div>
-          <a href="#" class="button full-width margin-top-20">Acheter plus de points</a>
-        </div>
-
-        <!-- Plan -->
-        <div class="pricing-plan">
-          <h3>Formule Or</h3>
-          <div class="pricing-plan-label billed-monthly-label"><strong>99€</strong>/ mois</div>
-          <div class="pricing-plan-features">
-            <strong>Les avantages</strong>
-            <ul>
-              <li>200 points par mois</li>
-            </ul>
-          </div>
-          <a href="#" class="button full-width margin-top-20">Upgrader</a>
-          <!-- <a href="pages-checkout-page.html" class="button full-width margin-top-20">Upgrader</a> -->
-        </div>
+        <% @plan_limitations.each do |plan_limitation| %>
+          <% if current_user.current_plan.try("id") == plan_limitation.id %>
+            <!-- Plan -->
+            <div class="pricing-plan recommended">
+              <div class="recommended-badge"><%= t("your_selection") %></div>
+              <h3><%= plan_limitation.label %></h3>
+              <div class="pricing-plan-label billed-monthly-label"><strong><%= currency_formated plan_limitation.price_per_month %></strong>/ mois</div>
+              <div class="pricing-plan-features">
+                <strong><%= t("advantages") %></strong>
+                <ul>
+                  <li><%= plan_limitation.commission_per_service %> <%= plan_limitation.commission_type %> <%= t("per_performance") %></li>
+                  <li><%= plan_limitation.nb_answer %> <%= t("responses_to_ads") %> / <%= t(plan_limitation.nb_answer_type) %></li>
+                  <li><%= t("my_subscription.limit_portfolio", limit: plan_limitation.limit_portfolio) %></li>
+                  <li><%= plan_limitation.have_badge.present? ? t("my_subscription.have_badge") : t("my_subscription.have_no_badge") %></li>
+                  <li><%= plan_limitation.have_status.present? ? t("my_subscription.have_status") : t("my_subscription.have_no_status") %></li>
+                </ul>
+              </div>
+              <a href="#" class="button full-width margin-top-20">Acheter des points</a>
+            </div>
+          <% else %>
+            <!-- Plan -->
+            <div class="pricing-plan">
+              <h3><%= plan_limitation.label %></h3>
+              <div class="pricing-plan-label billed-monthly-label"><strong><%= currency_formated plan_limitation.price_per_month %></strong>/ mois</div>
+              <div class="pricing-plan-features">
+                <strong><%= t("advantages") %></strong>
+                <ul>
+                  <li><%= plan_limitation.commission_per_service %> <%= plan_limitation.commission_type %> <%= t("per_performance") %></li>
+                  <li><%= plan_limitation.nb_answer %> <%= t("responses_to_ads") %> / <%= t(plan_limitation.nb_answer_type) %></li>
+                  <li><%= t("my_subscription.limit_portfolio", limit: plan_limitation.limit_portfolio) %></li>
+                  <li><%= plan_limitation.have_badge.present? ? t("my_subscription.have_badge") : t("my_subscription.have_no_badge") %></li>
+                  <li><%= plan_limitation.have_status.present? ? t("my_subscription.have_status") : t("my_subscription.have_no_status") %></li>
+                </ul>
+              </div>
+              <a href="#" class="button full-width margin-top-20">Upgrader</a>
+            </div>
+          <% end %>
+        <% end %>
       </div>
 
     </div>

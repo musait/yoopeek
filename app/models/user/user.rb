@@ -111,4 +111,7 @@ class User < ApplicationRecord
     self.admin?
   end
 
+  def current_plan
+    PlanLimitation.free_limitation
+  end
 end
