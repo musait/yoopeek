@@ -17,7 +17,12 @@
     <%= yield :body_style %>
   </head>
 
-  <body>
+  <body
+    <% if content_for?(:body_attributes) %>
+      <%= yield(:body_attributes) %>
+    <% end %>
+    >
+
     <div id="wrapper">
       <%= render "layouts/user/header"%>
       <div class="dashboard-container">

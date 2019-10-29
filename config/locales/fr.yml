@@ -1,4 +1,5 @@
 fr:
+  summary: Résumé
   my_subscription:
     limit_portfolio: Portfolio limité à %{limit} contenu
     have_badge: avec badge
@@ -29,7 +30,9 @@ fr:
     quote_accepted:
       subject: "Bonne nouvelle %{user}! Votre devis a été accepté!"
   other:
+    payment_done: "Paiement fini"
     send_mp: Envoyer un message
+    subscription_changed: "Abonnement modifier"
   stripe:
     agreed: En cliquant sur ce bouton, vous acceptez
     our_terms: nos Conditions Générales d'Utilisation

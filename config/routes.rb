@@ -12,14 +12,19 @@ Rails.application.routes.draw do
     resources :addresses
     resources :rooms
     resources :room_messages
-    resources :quotes
+    resources :quotes do
+      member do
+        post :pay
+        get :accept
+        get :decline
+      end
+    end
+    resources :subscriptions
     resources :users, only: [:show] do
       collection do
         get :my_subscription
       end
     end
-    get "accept_quote" => 'quotes#accept_quote'
-    get "decline_quote" => 'quotes#decline_quote'
     resources :quote_elements
     resources :jobs, param: :slug
     get 'show' => 'jobs#show_test'

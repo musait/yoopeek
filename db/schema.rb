@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_160518) do
+ActiveRecord::Schema.define(version: 2019_10_29_163758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_160518) do
     t.integer "show_order", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_plan_id"
   end
 
   create_table "professions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -156,9 +157,9 @@ ActiveRecord::Schema.define(version: 2019_10_28_160518) do
 
   create_table "quote_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "content"
-    t.string "quantity"
-    t.string "price"
-    t.string "total"
+    t.integer "quantity"
+    t.integer "price"
+    t.integer "total"
     t.uuid "quote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -167,6 +168,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_160518) do
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.uuid "sender_id"
+    t.uuid "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "quote_element_id"
@@ -240,6 +243,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_160518) do
     t.string "stripe_plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "subscription_id"
+    t.index ["subscription_id"], name: "index_stripe_subscription_cancels_on_subscription_id"
     t.index ["user_id"], name: "index_stripe_subscription_cancels_on_user_id"
   end
 
@@ -247,6 +252,21 @@ ActiveRecord::Schema.define(version: 2019_10_28_160518) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "plan_limitation_id"
+    t.float "plan_amount"
+    t.string "stripe_plan_id"
+    t.string "stripe_subscription_id"
+    t.datetime "subscription_canceled_at"
+    t.datetime "end_at"
+    t.boolean "is_active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_limitation_id"], name: "index_subscriptions_on_plan_limitation_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -284,6 +304,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_160518) do
     t.string "stripe_subscription_id"
     t.string "stripe_plan_id"
     t.float "current_plan_amount"
+    t.datetime "subscription_end_at"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -312,7 +333,10 @@ ActiveRecord::Schema.define(version: 2019_10_28_160518) do
   add_foreign_key "reviews", "users", column: "worker_id"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "rooms", "jobs"
+  add_foreign_key "stripe_subscription_cancels", "subscriptions"
   add_foreign_key "stripe_subscription_cancels", "users"
+  add_foreign_key "subscriptions", "plan_limitations"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "users", "addresses"
   add_foreign_key "users", "professions"
 end

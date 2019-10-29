@@ -39,7 +39,7 @@
                   <li><%= plan_limitation.have_status.present? ? t("my_subscription.have_status") : t("my_subscription.have_no_status") %></li>
                 </ul>
               </div>
-              <a href="#" class="button full-width margin-top-20">Acheter des points</a>
+              <%= link_to "Upgrader", new_subscription_path(plan_limitation_id: plan_limitation.id), class: "button full-width margin-top-20", "data-turbolinks" => "false" %>
             </div>
           <% else %>
             <!-- Plan -->
@@ -56,7 +56,7 @@
                   <li><%= plan_limitation.have_status.present? ? t("my_subscription.have_status") : t("my_subscription.have_no_status") %></li>
                 </ul>
               </div>
-              <a href="#" class="button full-width margin-top-20">Upgrader</a>
+              <%= link_to "Upgrader", new_subscription_path(plan_limitation_id: plan_limitation.id), class: "button full-width margin-top-20", "data-turbolinks" => "false" %>
             </div>
           <% end %>
         <% end %>

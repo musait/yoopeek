@@ -8,7 +8,9 @@ class Quote < ApplicationRecord
 
   enum status: [:created, :declined, :accepted]
 
-  
 
+  def total
+    quote_elements.sum(:total)
+  end
 
 end
