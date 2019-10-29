@@ -12,6 +12,8 @@
  *= require toastr_rails
  *= require select2
  *= require select2-bootstrap
+ *= require dropzone/basic
+ *= require dropzone/dropzone
  */
  .select2-container--open {
      z-index: 9999999 !important;

@@ -19,6 +19,7 @@
 //= require toastr_rails
 //= require link_to_add_fields
 //= require select2
+//= require dropzone
 //= require_tree .
 
 
