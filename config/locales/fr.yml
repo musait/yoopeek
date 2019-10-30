@@ -1,15 +1,20 @@
 fr:
   summary: Résumé
-  my_subscription:
-    limit_portfolio: Portfolio limité à %{limit} contenu
-    have_badge: avec badge
-    have_no_badge: sans badge
-    have_status: avec statut
-    have_no_status: sans statut
-    unlimited_portfolio: Portfolio illimité
-    no_portfolio: Portfolio
-  responses_to_ads: Réponse aux annonces
-  per_performance: Par prestation
+  subscriptions:
+    index:
+      your_subscription: "Votre abonnement"
+      limit_portfolio: Portfolio limité à %{limit} contenus
+      have_badge: Badge
+      have_no_badge:
+        html: <del>Badge</del>
+      badge: "Badge"
+      have_status: Statut inclus
+      have_no_status:
+        html: <del>Statut</del>
+      unlimited_portfolio: Portfolio illimité
+      no_portfolio: Portfolio
+  responses_to_ads: réponse(s) aux annonces
+  per_performance: par prestation
   your_selection: Votre sélection
   advantages: Avantages
   month: Mois
