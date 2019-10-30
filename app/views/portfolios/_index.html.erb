@@ -6,7 +6,6 @@
           <div class="blog-compact-item">
             <img src=" <%= portfolio.picture_url %>" alt="">
           </div>
-          <h3 style="margin-top:20px"> Nom de la mission: <%= portfolio.job.name %></h3>
         <% end %>
         <%= link_to t('.delete_portfolio'), portfolio_path(portfolio),remote: true,method: :delete, id:"linkToRemovePortfolio", class:"button margin-top-20"  %>
       </div>

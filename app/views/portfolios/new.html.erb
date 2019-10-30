@@ -11,7 +11,6 @@
 		<div class="fallback">
        <%= file_field_tag "picture[]", multiple: true%>
 		</div>
-		<%= f.collection_select(:job_id,  @jobs, :id, :name, placeholder: "Veuillez séléctionner un job") %>
 		<% end %>
 		<button class="button margin-top-20" id="submit-all"> <%= t('.create_portfolio') %></button>
 	</div>

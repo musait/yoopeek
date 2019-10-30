@@ -21,7 +21,6 @@
 		<div class="fallback">
        <%= file_field_tag "picture[]", multiple: true%>
 		</div>
-		<%= f.hidden_field :job_id, value: @portfolio.job.id %>
 		<% end %>
 		<button class="button margin-top-20" id="submit-all" data-remote="true"> <%= t('.update_your_portfolio') %></button>
 	</div>
