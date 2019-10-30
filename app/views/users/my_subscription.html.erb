@@ -34,7 +34,13 @@
                 <ul>
                   <li><%= plan_limitation.commission_per_service %> <%= plan_limitation.commission_type %> <%= t("per_performance") %></li>
                   <li><%= plan_limitation.nb_answer %> <%= t("responses_to_ads") %> / <%= t(plan_limitation.nb_answer_type) %></li>
-                  <li><%= t("my_subscription.limit_portfolio", limit: plan_limitation.limit_portfolio) %></li>
+                  <% if plan_limitation.limit_portfolio.present? &&(plan_limitation.limit_portfolio > 0) %>
+                    <li><%= t("my_subscription.limit_portfolio", limit: plan_limitation.limit_portfolio) %></li>
+                  <% elsif plan_limitation.limit_portfolio.present? &&(plan_limitation.limit_portfolio == 0) %>
+                    <li><del><%= t("my_subscription.no_portfolio") %></del></li>
+                  <% else %>
+                    <li><%= t("my_subscription.unlimited_portfolio") %></li>
+                  <% end %>
                   <li><%= plan_limitation.have_badge.present? ? t("my_subscription.have_badge") : t("my_subscription.have_no_badge") %></li>
                   <li><%= plan_limitation.have_status.present? ? t("my_subscription.have_status") : t("my_subscription.have_no_status") %></li>
                 </ul>
@@ -51,7 +57,13 @@
                 <ul>
                   <li><%= plan_limitation.commission_per_service %> <%= plan_limitation.commission_type %> <%= t("per_performance") %></li>
                   <li><%= plan_limitation.nb_answer %> <%= t("responses_to_ads") %> / <%= t(plan_limitation.nb_answer_type) %></li>
-                  <li><%= t("my_subscription.limit_portfolio", limit: plan_limitation.limit_portfolio) %></li>
+                  <% if plan_limitation.limit_portfolio.present? &&(plan_limitation.limit_portfolio > 0) %>
+                    <li><%= t("my_subscription.limit_portfolio", limit: plan_limitation.limit_portfolio) %></li>
+                  <% elsif plan_limitation.limit_portfolio.present? &&(plan_limitation.limit_portfolio == 0) %>
+                    <li><del><%= t("my_subscription.no_portfolio") %></del></li>
+                  <% else %>
+                    <li><%= t("my_subscription.unlimited_portfolio") %></li>
+                  <% end %>
                   <li><%= plan_limitation.have_badge.present? ? t("my_subscription.have_badge") : t("my_subscription.have_no_badge") %></li>
                   <li><%= plan_limitation.have_status.present? ? t("my_subscription.have_status") : t("my_subscription.have_no_status") %></li>
                 </ul>
