@@ -311,8 +311,7 @@ fr:
       create_portfolio: "Créer un portfolio"
       add_this_pictures: "Ajouter les photos"
       create_with_success: "Votre portfolio a été crée avec succès"
-      create_with_error: "Une erreur a été detectée. Verifiez le format de votre image ou de votre vidéo (seuls ces formats sont acceptés). Verifez également que vous avez specifié une mission avec laquelle
-      ce portfolio sera lié."
+      create_with_error: "Une erreur a été detectée. Verifiez le format de votre image ou de votre vidéo (seuls ces formats sont acceptés)."
     destroy:
       destroyed_with_success: "Votre portfolio a été supprimé avec succès"
     show:
