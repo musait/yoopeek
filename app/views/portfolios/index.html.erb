@@ -1,8 +1,8 @@
 
 <!-- Dashboard Headline -->
 <div class="dashboard-headline" style="display:flex; justify-content:space-between">
-	<h3>Vos portfolio</h3>
-  <%= link_to "Ajouter un portfolio", new_portfolio_path, class:"button" %>
+	<h3><%= t('.your_portfolios') %></h3>
+  <%= link_to t('.add_portfolio'), new_portfolio_path, class:"button" %>
 </div>
 
 <!-- Row -->
@@ -10,25 +10,23 @@
 
 	<!-- Dashboard Box -->
 	<div class="col-xl-12">
-    <div class="row">
-      <% @portfolios.each do |portfolio| %>
-        <div class="col-xl-3">
-          <%= link_to portfolio_path(id: portfolio.id)do %>
-            <div class="blog-compact-item">
-              <img src=" <%= portfolio.picture_url %>" alt="">
-              <div class="blog-compact-item-content">
-                <h3>How to "Woo" a Recruiter and Land Your Dream Job</h3>
-              </div>
-            </div>
-          <% end %>
-          <%= link_to "Supprimer ce portfolio", portfolio_path(portfolio), method: :delete, class:"button margin-top-20"  %>
-        </div>
-      <% end %>
-
+    <div id="index">
+			<%= render "index" %>
     </div>
 	</div>
+	
+
+
 			<!-- Row / End -->
 	<div class="dashboard-footer-spacer"></div>
 </div>
 <%= content_for :body_script do %>
+	<script type="text/javascript">
+		$(".linkToRemovePortfolio").on('click', function(){
+			$.ajax({
+				url: '/portfolios/'+this.value,
+				type: 'DELETE'
+			});
+		});
+	</script>
 <%end %>
