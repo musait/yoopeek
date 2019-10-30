@@ -11,12 +11,12 @@
 
 
 		<!-- Hedaline -->
-    <h2>Montant du paiement <%= currency_formated @admin_subscription.price if @admin_subscription.present? %></h2>
+    <h2>  <%= t('.subscription_payement')  %><%= currency_formated @admin_subscription.price if @admin_subscription.present? %></h2>
 
 		<!-- Billing Cycle Radios  -->
 
 		<!-- Hedline -->
-		<h3 class="margin-top-50">Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptée et sécurisées</h3>
+		<h3 class="margin-top-50">  <%= t('.information_about_security') %></h3>
 
 		<!-- Payment Methods Accordion -->
 
@@ -38,7 +38,7 @@
 		</div> -->
 		<!-- Payment Methods Accordion / End -->
 
-    <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65">Valider</button>
+    <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65"> <%=t('.confirm')%></button>
 	</div>
 
 
@@ -54,7 +54,7 @@
 				<ul>
 					<li><%= @plan_limitation.label %> <span><%= currency_formated (@plan_limitation.price_per_month - @plan_limitation.price_per_month * 0.2) %></span></li>
 					<li>TVA (20%) <span><%= currency_formated (@plan_limitation.price_per_month * 0.2) %></span></li>
-					<li class="total-costs">total <span><%= currency_formated (@plan_limitation.price_per_month) %></span></li>
+					<li class="total-costs"> <%= t('.total') %> <span><%= currency_formated (@plan_limitation.price_per_month) %></span></li>
 				</ul>
 			</div>
 		</div>

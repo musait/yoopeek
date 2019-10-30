@@ -13,6 +13,11 @@ fr:
         html: <del>Statut</del>
       unlimited_portfolio: Portfolio illimité
       no_portfolio: Portfolio
+    form:
+      information_about_security: "Vous êtes sur une page respectant les normes de sécurité bancaires. Toutes vos données personnelles sont cryptées et sécurisées"
+      confirm: "Valider et payer"
+      total: "Total"
+      subscription_payement: "Paiement de votre abonnement"
   responses_to_ads: réponse(s) aux annonces
   per_performance: par prestation
   your_selection: Votre sélection
@@ -39,7 +44,7 @@ fr:
   other:
     payment_done: "Paiement fini"
     send_mp: Envoyer un message
-    subscription_changed: "Abonnement modifier"
+    subscription_changed: "Votre abonnement a été pris en compte et le paiement s'est déroulé avec succès"
   stripe:
     agreed: En cliquant sur ce bouton, vous acceptez
     our_terms: nos Conditions Générales d'Utilisation
