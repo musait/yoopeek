@@ -3,8 +3,7 @@
 <div class="dashboard-headline" style="display:flex;justify-content:space-between">
 	<h3>Votre portfolio</h3>
 	<div class="">
-		<%= link_to "Supprimer ce portfolio", portfolio_path(@portfolio), method: :delete, class:"button margin-top-20"  %>
-		<%= link_to "Supprimer ce portfolio", portfolio_path(@portfolio), method: :delete, class:"button margin-top-20"  %>
+		<%= link_to t('.delete_portfolio'), portfolio_path(@portfolio),remote: true,method: :delete, id:"linkToRemovePortfolio", class:"button margin-top-20"  %>
 	</div>
 
 </div>
@@ -17,17 +16,56 @@
 			<%= render "picture" %>
     </div>
 	</div>
-			<!-- Row / End -->
-	<div class="dashboard-footer-spacer"></div>
-</div>
+	<div class="col-xl-12 margin-top-50">
+		<%= form_with(model: @portfolio, class:"dropzone",id:"dropzone-edit") do |f| %>
+		<div class="fallback">
+       <%= file_field_tag "picture[]", multiple: true%>
+		</div>
+		<%= f.hidden_field :job_id, value: @portfolio.job.id %>
+		<% end %>
+		<button class="button margin-top-20" id="submit-all" data-remote="true"> <%= t('.update_your_portfolio') %></button>
+	</div>
 
+</div>
+<div class="dashboard-footer-spacer"></div>
 <%= content_for :body_script do %>
 	<script type="text/javascript">
-		$(".linkToRemove").on('click', function(){
+		$(".linkToRemovePicture").on('click', function(){
 			$.ajax({
 				url: '/portfolio/delete_image_attachment/'+this.value,
 				type: 'GET'
 			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(".linkToRemovePortfolio").on('click', function(){
+			$.ajax({
+				url: '/portfolios/'+this.value,
+				type: 'DELETE',
+				dataType: 'script',
+        success: window.location = '/portfolios'
+			});
+		});
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		Dropzone.autoDiscover = false;
+		var dropzone = new Dropzone ("#dropzone-edit", {
+			paramName: "portfolio[picture]",
+			autoProcessQueue: false,
+			uploadMultiple:true,
+			acceptedFiles: "image/*, video/*",
+			parallelUploads: 15,
+			addRemoveLinks: true,
+		});
+		dropzone.on("success", (file, response, xhr) => {
+			toastr.success(" <%= t('.update_with_success') %>",{timeOut: 1000});
+		  window.location = window.location
+		});
+		dropzone.on("error", (file, response, xhr) => {
+		});
+		$('#submit-all').click(function(){
+			dropzone.processQueue();
 		});
 	</script>
 <%end %>
