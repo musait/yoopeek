@@ -5,69 +5,68 @@
 <% content_for(:body_attributes) do %>
     data-turbolinks="false"
 <% end %>
-<div class="container">
-	<div class="row">
-		<div class="col-xl-8 col-lg-8 content-right-offset">
+
+<div class="row">
+	<div class="col-xl-8 col-lg-8 content-right-offset">
 
 
-			<!-- Hedaline -->
-      <h2>Montant du paiement <%= currency_formated @admin_subscription.price if @admin_subscription.present? %></h2>
+		<!-- Hedaline -->
+    <h2>Montant du paiement <%= currency_formated @admin_subscription.price if @admin_subscription.present? %></h2>
 
-			<!-- Billing Cycle Radios  -->
+		<!-- Billing Cycle Radios  -->
 
-			<!-- Hedline -->
-			<h3 class="margin-top-50">Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptée et sécurisées</h3>
+		<!-- Hedline -->
+		<h3 class="margin-top-50">Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptée et sécurisées</h3>
 
-			<!-- Payment Methods Accordion -->
+		<!-- Payment Methods Accordion -->
 
-			<div class="margin-top-30">
+		<div class="margin-top-30">
 
-        <div class="payment-tab-trigger">
-          <div class="col-md-12 mb-2" id="card-element"></div>
-        </div>
+      <div class="payment-tab-trigger">
+        <div class="col-md-12 mb-2" id="card-element"></div>
+      </div>
 
-			</div>
-			<!-- <div class="payment margin-top-30">
-
-				<div class="payment-tab payment-tab-active">
-					<div class="payment-tab-trigger">
-            <div class="col-md-12 mb-2" id="card-element"></div>
-					</div>
-				</div>
-
-			</div> -->
-			<!-- Payment Methods Accordion / End -->
-
-      <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65">Valider</button>
 		</div>
+		<!-- <div class="payment margin-top-30">
 
+			<div class="payment-tab payment-tab-active">
+				<div class="payment-tab-trigger">
+          <div class="col-md-12 mb-2" id="card-element"></div>
+				</div>
+			</div>
+
+		</div> -->
+		<!-- Payment Methods Accordion / End -->
+
+    <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65">Valider</button>
+	</div>
+
+
+	<!-- Summary -->
+	<div class="col-xl-4 col-lg-4 margin-top-0 margin-bottom-60">
 
 		<!-- Summary -->
-		<div class="col-xl-4 col-lg-4 margin-top-0 margin-bottom-60">
-
-			<!-- Summary -->
-			<div class="boxed-widget summary margin-top-0">
-				<div class="boxed-widget-headline">
-					<h3><%= t("summary") %></h3>
-				</div>
-				<div class="boxed-widget-inner">
-					<ul>
-						<li><%= @plan_limitation.label %> <span><%= currency_formated (@plan_limitation.price_per_month - @plan_limitation.price_per_month * 0.2) %></span></li>
-						<li>TVA (20%) <span><%= currency_formated (@plan_limitation.price_per_month * 0.2) %></span></li>
-						<li class="total-costs">total <span><%= currency_formated (@plan_limitation.price_per_month) %></span></li>
-					</ul>
-				</div>
+		<div class="boxed-widget summary margin-top-0">
+			<div class="boxed-widget-headline">
+				<h3><%= t("summary") %></h3>
 			</div>
-			<!-- Summary / End -->
-
-			<!-- Checkbox -->
-			<div class="checkbox margin-top-30">
-				<input type="checkbox" id="two-step">
-				<label for="two-step"><span class="checkbox-icon"></span>  I agree to the <a href="#">Terms and Conditions</a> and the <a href="#">Automatic Renewal Terms</a></label>
+			<div class="boxed-widget-inner">
+				<ul>
+					<li><%= @plan_limitation.label %> <span><%= currency_formated (@plan_limitation.price_per_month - @plan_limitation.price_per_month * 0.2) %></span></li>
+					<li>TVA (20%) <span><%= currency_formated (@plan_limitation.price_per_month * 0.2) %></span></li>
+					<li class="total-costs">total <span><%= currency_formated (@plan_limitation.price_per_month) %></span></li>
+				</ul>
 			</div>
 		</div>
+		<!-- Summary / End -->
 
+		<!-- Checkbox -->
+		<div class="checkbox margin-top-30">
+			<input type="checkbox" id="two-step">
+			<label for="two-step"><span class="checkbox-icon"></span>  I agree to the <a href="#">Terms and Conditions</a> and the <a href="#">Automatic Renewal Terms</a></label>
+		</div>
 	</div>
+
 </div>
 <%= content_for :body_script do %>
   <script src="https://js.stripe.com/v3/"></script>
