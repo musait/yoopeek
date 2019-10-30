@@ -6,17 +6,15 @@
 
 <!-- Row -->
 <div class="row">
-
-	<!-- Dashboard Box -->
-
-		<div class="col-xl-12">
-			<%= form_with(model: @portfolio, class:"dropzone",id:"my-awesome-dropzone") do |f| %>
-			<div class="fallback">
-	       <%= file_field_tag "picture[]", multiple: true%>
-			</div>
-			<% end %>
-			<button class="button margin-top-20" id="submit-all">Submit all files</button>
+	<div class="col-xl-12">
+		<%= form_with(model: @portfolio, class:"dropzone",id:"my-awesome-dropzone") do |f| %>
+		<div class="fallback">
+       <%= file_field_tag "picture[]", multiple: true%>
 		</div>
+		<%= f.collection_select(:job_id,  @jobs, :id, :name, placeholder: "Veuillez séléctionner un job") %>
+		<% end %>
+		<button class="button margin-top-20" id="submit-all"> <%= t('.create_portfolio') %></button>
+	</div>
 			<!-- Row / End -->
 </div>
 <%= content_for :body_script do %>
@@ -27,9 +25,19 @@
 			paramName: "portfolio[picture]",
 			autoProcessQueue: false,
       uploadMultiple:true,
-			acceptedFiles: "image/*",
+			acceptedFiles: "image/*, video/*",
 			parallelUploads: 15,
+			addRemoveLinks: true
 	  });
+
+		dropzone.on("success", (file, response, xhr) => {
+			toastr.success(" <%= t('.create_with_success') %>",{timeOut: 1000})
+		  window.location = '/portfolios/'+ response.portfolioId
+		});
+		dropzone.on("error", (file, response, xhr) => {
+			toastr.error(" <%= t('.create_with_error') %>",{timeOut: 1000000})
+
+		});
 		$('#submit-all').click(function(){
 	    dropzone.processQueue();
 	  });
