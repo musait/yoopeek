@@ -6,6 +6,8 @@ fr:
     have_no_badge: sans badge
     have_status: avec statut
     have_no_status: sans statut
+    unlimited_portfolio: Portfolio illimité
+    no_portfolio: Portfolio
   responses_to_ads: Réponse aux annonces
   per_performance: Par prestation
   your_selection: Votre sélection
