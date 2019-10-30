@@ -16,6 +16,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/new
   def new
     @portfolio = Portfolio.new
+    @jobs = Job.where(worker_id: current_user.id)
   end
 
   # GET /portfolios/1/edit
@@ -37,15 +38,14 @@ class PortfoliosController < ApplicationController
   # PATCH/PUT /portfolios/1
   # PATCH/PUT /portfolios/1.json
   def update
-    respond_to do |format|
-      if @portfolio.update(portfolio_params)
-        format.html { redirect_to @portfolio, notice: 'Portfolio was successfully updated.' }
-        format.json { render :show, status: :ok, location: @portfolio }
-      else
-        format.html { render :edit }
-        format.json { render json: @portfolio.errors, status: :unprocessable_entity }
-      end
+
+    if @portfolio.update(portfolio_params)
+      save_pictures
+      render json: { message: "success", portfolioId: @portfolio.id }, status: 200
+    else
+      render json: { error: @portfolio.errors.values.join(",")}, status: 400
     end
+
   end
   def delete_image_attachment
     @portfolio_image = ActiveStorage::Attachment.find(params[:id])
@@ -57,8 +57,7 @@ class PortfoliosController < ApplicationController
   def destroy
     @portfolio.destroy
     respond_to do |format|
-      format.html { redirect_to portfolios_url, notice: 'Portfolio was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js { flash[:notice] = t('.destroyed_with_success')}
     end
   end
 
@@ -78,6 +77,6 @@ class PortfoliosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
-        params.require(:portfolio).permit(:id)
+        params.require(:portfolio).permit(:id, :job_id)
     end
 end
