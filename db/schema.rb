@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_163758) do
-ActiveRecord::Schema.define(version: 2019_10_28_151917) do
+ActiveRecord::Schema.define(version: 2019_10_30_142348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -154,6 +153,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_151917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_id"
+    t.uuid "job_id"
+    t.index ["job_id"], name: "index_portfolios_on_job_id"
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
@@ -312,8 +313,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_151917) do
     t.string "stripe_subscription_id"
     t.string "stripe_plan_id"
     t.float "current_plan_amount"
-    t.datetime "subscription_end_at"
     t.uuid "portfolio_id"
+    t.datetime "subscription_end_at"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -334,6 +335,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_151917) do
   add_foreign_key "notifications", "quotes"
   add_foreign_key "notifications", "reviews"
   add_foreign_key "notifications", "room_messages"
+  add_foreign_key "portfolios", "jobs"
   add_foreign_key "portfolios", "users"
   add_foreign_key "quote_elements", "quotes"
   add_foreign_key "quotes", "jobs"
