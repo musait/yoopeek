@@ -4,12 +4,13 @@ class Job < ApplicationRecord
   belongs_to :worker, optional: true
   belongs_to :customer
   belongs_to :format_delivery
+  has_one :portfolio
   has_many :rooms
   has_many :reviews
   has_many :quotes
   has_one :notification
   paginates_per 3
-  validates :date_delivery, not_in_past: true
+  validates :date_delivery, not_in_past: true,:allow_blank => true
 
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :completed, :cancelled]

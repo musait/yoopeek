@@ -1,5 +1,6 @@
 class Portfolio < ApplicationRecord
   belongs_to :user
+  belongs_to :job
   has_many_attached :picture
 
   def picture_url
