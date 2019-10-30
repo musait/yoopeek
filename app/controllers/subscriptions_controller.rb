@@ -7,7 +7,6 @@ class SubscriptionsController < UsersController
       PlanLimitation.premium_limitation
       @plan_limitations = PlanLimitation.order(:show_order).all
     end
-    render "users/my_subscription"
   end
   def new
     @intent = Stripe::SetupIntent.create({
