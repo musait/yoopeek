@@ -87,3 +87,4 @@ gem 'kaminari'
 gem 'stripe'
 gem "select2-rails"
 gem 'dropzonejs-rails'
+gem 'currency_select'
