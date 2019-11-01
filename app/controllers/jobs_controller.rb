@@ -23,6 +23,7 @@ class JobsController < ApplicationController
   # GET /jobs/1.json
   def show
     Notification.set_seen @notifications, "job", @job.id
+    @workers = Worker.includes(:category).where(categories: {name: @job.category.name})
   end
 
   # GET /jobs/new
