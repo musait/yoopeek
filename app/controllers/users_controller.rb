@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
   def show
     @user = User.find(params[:id])
+    @jobs = @user.jobs
   end
 
   def my_subscription
@@ -14,6 +15,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_tags
+    @category = Category.find(params[:category_id]) if params[:category_id].present?
+    @tags = @category.tags if @category
+    if !@category.present?
+      render json: { error: 'Reply could not be sent.' }, status: 400
+    end
+  end
   def private
   end
 end
