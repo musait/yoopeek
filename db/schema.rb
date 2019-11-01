@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_31_234029) do
+ActiveRecord::Schema.define(version: 2019_11_01_101623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -111,6 +111,15 @@ ActiveRecord::Schema.define(version: 2019_10_31_234029) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_join_categories_on_category_id"
     t.index ["subcategory_id"], name: "index_join_categories_on_subcategory_id"
+  end
+
+  create_table "join_tag_workers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "tag_id"
+    t.uuid "worker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_join_tag_workers_on_tag_id"
+    t.index ["worker_id"], name: "index_join_tag_workers_on_worker_id"
   end
 
   create_table "join_tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
