@@ -17,7 +17,11 @@
           </div>
           <div class="col-xl-12 form-group">
             <h5>Sous catégories</h5>
-            <%= form.collection_select :subcategory_ids, Subcategory.all, :id, :name, {include_hidden: true }, {multiple: true} %>
+            <%= form.collection_select :subcategory_ids, Subcategory.all, :id, :name, {include_hidden: true }, {multiple: true,id:"subcategory_select"} %>
+          </div>
+          <div class="col-xl-12 form-group">
+            <h5>Tags</h5>
+            <%= form.collection_select :tag_ids, Tag.all, :id, :name, {include_hidden: true }, {multiple: true,class:"tag_select"} %>
           </div>
           <div class="col-md-12 float-right">
             <%= form.submit "Modifier cette catégorie", class:"btn btn-primary btn-outline"%>
