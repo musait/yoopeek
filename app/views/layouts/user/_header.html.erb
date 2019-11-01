@@ -25,6 +25,7 @@
 								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr), method: :get %></li>
 								<li><a href="#">Pro Paiements</a></li>
 								<li> <%= link_to "Portfolio", portfolios_path(local: :fr), method: :get %></li>
+								<li> <%= link_to "Mon profil public", user_path(current_user.id), method: :get %></li>
 								<!-- <li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li> -->
 							<% else %>
 								<li><%= link_to I18n.t('.header.create_job'), new_job_path,method: :get, class:"button ripple-effect", style:"color: white"%></li>
