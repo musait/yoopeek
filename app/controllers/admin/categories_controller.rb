@@ -1,5 +1,4 @@
 class Admin::CategoriesController <  AdminController
-  before_action :set_category, only: [:show,:edit,:destroy]
 
   # GET /categories
   # GET /categories.json
@@ -54,9 +53,16 @@ class Admin::CategoriesController <  AdminController
     end
   end
 
+  def new_tag
+   tag = Tag.find_by(name:params[:tag])
+   @new_tag = Tag.create(name:params[:tag]) if !tag
+   render :json => @new_tag
+  end
+
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    binding.pry
     @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update(category_params)
@@ -84,9 +90,8 @@ class Admin::CategoriesController <  AdminController
     def set_category
       @category = Category.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:id, :name, :subcategory_ids => [],:subcategories_attributes => [:id, :name])
+      params.require(:category).permit(:id, :name,:tag_ids => [], :subcategory_ids => [],:subcategories_attributes => [:id, :name])
     end
 end
