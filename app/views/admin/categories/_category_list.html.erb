@@ -3,6 +3,7 @@
     <tr>
       <th>Nom</th>
       <th>Sous-categories attachés</th>
+      <th>Tags attachés</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
         <td><%=category.name%></td>
 
         <td><%= category.subcategories.collect(&:name).join(" , ") %></td>
+        <td><%= category.tags.collect(&:name).join(" , ") %></td>
         <td class="actions">
           <%= link_to edit_admin_category_path(id: category.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#editCategory', class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
             <i class="icon wb-edit" aria-hidden="true"></i>
