@@ -70,14 +70,14 @@
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= I18n.t('.user.all.edit.profession') %></h5>
-                      <%= f.collection_select :profession_id, Profession.all,:id,:name, {prompt: true,include_hidden: true }%>
+                      <%= f.collection_select :profession_id, Profession.all,:id,:name,{}, {class:"form-control",prompt: true,include_hidden: true}%>
                     </div>
                   </div>
 
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= I18n.t('.user.all.edit.category') %></h5>
-                      <%= f.collection_select :category_id, Category.all,:id,:name,{prompt: true,include_hidden: true },{id:"category_id"}%>
+                      <%= f.collection_select :category_id, Category.all,:id,:name,{class:"form-control",prompt: true,include_hidden: true,class:"form-control" },{id:"category_id"}%>
                     </div>
                   </div>
 
@@ -180,117 +180,23 @@
                       <div class="bidding-widget">
                         <!-- Headline -->
                         <span class="bidding-detail"><%= raw I18n.t('.user.pro_profile.edit.fix_your_hour_rate') %></span>
-
                         <!-- Slider -->
                         <div class="bidding-value margin-bottom-10"><span id="biddingVal"></span>€</div>
-                        <input class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="€" data-slider-min="50" data-slider-max="400" data-slider-value="50" data-slider-step="1" data-slider-tooltip="hide" />
+                        <input id="slider"class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="€" data-slider-min="0" data-slider-max="1000" data-slider-value=" <%=current_user.price_rate%>" data-slider-step="1" data-slider-tooltip="hide" />
+                        <%= f.hidden_field :price_rate, id:"price_rate" %>
                       </div>
                     </div>
                   </div>
                   <div class="col-xl-6">
-                    <h5>Tags</h5>
-                    <%= f.collection_select :tag_ids, Tag.all, :id, :name, {include_hidden: true }, {multiple: true,id:"tag_select"} %>
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.pro_profile.edit.your_skills') %></h5>
+                      <%= f.collection_select :tag_ids, Tag.all, :id, :name, {include_hidden: true }, {class:"form-control",multiple: true,id:"tag_select"} %>
+                    </div>
                   </div>
                 </div>
               </li>
               <li>
                 <div class="row">
-                  <div class="col-xl-6">
-                    <div class="submit-field">
-                      <h5>Nationality</h5>
-                      <select class="selectpicker with-border" data-size="7" title="Select Job Type" data-live-search="true">
-                        <option value="AR">Argentina</option>
-                        <option value="AM">Armenia</option>
-                        <option value="AW">Aruba</option>
-                        <option value="AU">Australia</option>
-                        <option value="AT">Austria</option>
-                        <option value="AZ">Azerbaijan</option>
-                        <option value="BS">Bahamas</option>
-                        <option value="BH">Bahrain</option>
-                        <option value="BD">Bangladesh</option>
-                        <option value="BB">Barbados</option>
-                        <option value="BY">Belarus</option>
-                        <option value="BE">Belgium</option>
-                        <option value="BZ">Belize</option>
-                        <option value="BJ">Benin</option>
-                        <option value="BM">Bermuda</option>
-                        <option value="BT">Bhutan</option>
-                        <option value="BG">Bulgaria</option>
-                        <option value="BF">Burkina Faso</option>
-                        <option value="BI">Burundi</option>
-                        <option value="KH">Cambodia</option>
-                        <option value="CM">Cameroon</option>
-                        <option value="CA">Canada</option>
-                        <option value="CV">Cape Verde</option>
-                        <option value="KY">Cayman Islands</option>
-                        <option value="CO">Colombia</option>
-                        <option value="KM">Comoros</option>
-                        <option value="CG">Congo</option>
-                        <option value="CK">Cook Islands</option>
-                        <option value="CR">Costa Rica</option>
-                        <option value="CI">Côte d'Ivoire</option>
-                        <option value="HR">Croatia</option>
-                        <option value="CU">Cuba</option>
-                        <option value="CW">Curaçao</option>
-                        <option value="CY">Cyprus</option>
-                        <option value="CZ">Czech Republic</option>
-                        <option value="DK">Denmark</option>
-                        <option value="DJ">Djibouti</option>
-                        <option value="DM">Dominica</option>
-                        <option value="DO">Dominican Republic</option>
-                        <option value="EC">Ecuador</option>
-                        <option value="EG">Egypt</option>
-                        <option value="GP">Guadeloupe</option>
-                        <option value="GU">Guam</option>
-                        <option value="GT">Guatemala</option>
-                        <option value="GG">Guernsey</option>
-                        <option value="GN">Guinea</option>
-                        <option value="GW">Guinea-Bissau</option>
-                        <option value="GY">Guyana</option>
-                        <option value="HT">Haiti</option>
-                        <option value="HN">Honduras</option>
-                        <option value="HK">Hong Kong</option>
-                        <option value="HU">Hungary</option>
-                        <option value="IS">Iceland</option>
-                        <option value="IN">India</option>
-                        <option value="ID">Indonesia</option>
-                        <option value="NO">Norway</option>
-                        <option value="OM">Oman</option>
-                        <option value="PK">Pakistan</option>
-                        <option value="PW">Palau</option>
-                        <option value="PA">Panama</option>
-                        <option value="PG">Papua New Guinea</option>
-                        <option value="PY">Paraguay</option>
-                        <option value="PE">Peru</option>
-                        <option value="PH">Philippines</option>
-                        <option value="PN">Pitcairn</option>
-                        <option value="PL">Poland</option>
-                        <option value="PT">Portugal</option>
-                        <option value="PR">Puerto Rico</option>
-                        <option value="QA">Qatar</option>
-                        <option value="RE">Réunion</option>
-                        <option value="RO">Romania</option>
-                        <option value="RU">Russian Federation</option>
-                        <option value="RW">Rwanda</option>
-                        <option value="SZ">Swaziland</option>
-                        <option value="SE">Sweden</option>
-                        <option value="CH">Switzerland</option>
-                        <option value="TR">Turkey</option>
-                        <option value="TM">Turkmenistan</option>
-                        <option value="TV">Tuvalu</option>
-                        <option value="UG">Uganda</option>
-                        <option value="UA">Ukraine</option>
-                        <option value="GB">United Kingdom</option>
-                        <option value="US" selected>United States</option>
-                        <option value="UY">Uruguay</option>
-                        <option value="UZ">Uzbekistan</option>
-                        <option value="YE">Yemen</option>
-                        <option value="ZM">Zambia</option>
-                        <option value="ZW">Zimbabwe</option>
-                      </select>
-                    </div>
-                  </div>
-
                   <div class="col-xl-12">
                     <div class="submit-field">
                       <h5><%= raw I18n.t('.user.pro_profile.edit.description') %></h5>
@@ -348,6 +254,13 @@
                       <div class="submit-field">
                         <h5><%= raw I18n.t('.user.company.edit.website') %></h5>
                         <%= c.text_field :website, class:"with-border" %>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5><%= raw I18n.t('.user.company.edit.currency') %></h5>
+                        <%= c.currency_select(:currency, ["EUR", "CHF"], {}, {prompt: true,class: "form-control"}) -%>
+
                       </div>
                     </div>
 
@@ -424,14 +337,13 @@
   });
   </script>
   <script type="text/javascript">
-    var j$ = jQuery.noConflict();
-    j$(document).ready(function () {
-      j$("#tag_select").select2({
+    $(document).ready(function () {
+      $("#tag_select").select2({
         theme: "bootstrap",
         multiple: true
       })
     });
-    j$('#category_id').change( function() {
+    $('#category_id').change( function() {
 	   var category_id = this.value;
   	   $.ajax({
   	     url: "/users/get_tags",
@@ -440,4 +352,9 @@
   	     data: { "category_id": category_id }
   	   });
   	 });
+     $(document).ready(function(){
+        $("#slider").change(function(){
+          $('#price_rate').val($(this).val())
+        });
+      });
   </script>
