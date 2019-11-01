@@ -5,4 +5,6 @@ class Worker < User
   has_many :reviews, dependent: :destroy
   has_many :jobs
   belongs_to :profession, optional: true
+  belongs_to :category, optional: true
+  has_many :tags, through: :category
 end
