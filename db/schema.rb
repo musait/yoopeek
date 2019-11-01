@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_142348) do
+ActiveRecord::Schema.define(version: 2019_10_31_234029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -113,6 +113,15 @@ ActiveRecord::Schema.define(version: 2019_10_30_142348) do
     t.index ["subcategory_id"], name: "index_join_categories_on_subcategory_id"
   end
 
+  create_table "join_tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "category_id"
+    t.uuid "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_join_tags_on_category_id"
+    t.index ["tag_id"], name: "index_join_tags_on_tag_id"
+  end
+
   create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "message"
     t.string "created_for"
@@ -153,8 +162,6 @@ ActiveRecord::Schema.define(version: 2019_10_30_142348) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_id"
-    t.uuid "job_id"
-    t.index ["job_id"], name: "index_portfolios_on_job_id"
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
@@ -278,6 +285,14 @@ ActiveRecord::Schema.define(version: 2019_10_30_142348) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
+  create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "category_id"
+    t.index ["category_id"], name: "index_tags_on_category_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -315,8 +330,14 @@ ActiveRecord::Schema.define(version: 2019_10_30_142348) do
     t.float "current_plan_amount"
     t.uuid "portfolio_id"
     t.datetime "subscription_end_at"
+    t.uuid "category_id"
+    t.string "facebook_profile"
+    t.string "instagram_profile"
+    t.string "pinterest_profile"
+    t.string "twitter_profile"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
+    t.index ["category_id"], name: "index_users_on_category_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["portfolio_id"], name: "index_users_on_portfolio_id"
     t.index ["profession_id"], name: "index_users_on_profession_id"
@@ -335,7 +356,6 @@ ActiveRecord::Schema.define(version: 2019_10_30_142348) do
   add_foreign_key "notifications", "quotes"
   add_foreign_key "notifications", "reviews"
   add_foreign_key "notifications", "room_messages"
-  add_foreign_key "portfolios", "jobs"
   add_foreign_key "portfolios", "users"
   add_foreign_key "quote_elements", "quotes"
   add_foreign_key "quotes", "jobs"
@@ -350,7 +370,9 @@ ActiveRecord::Schema.define(version: 2019_10_30_142348) do
   add_foreign_key "stripe_subscription_cancels", "users"
   add_foreign_key "subscriptions", "plan_limitations"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "tags", "categories"
   add_foreign_key "users", "addresses"
+  add_foreign_key "users", "categories"
   add_foreign_key "users", "portfolios"
   add_foreign_key "users", "professions"
 end
