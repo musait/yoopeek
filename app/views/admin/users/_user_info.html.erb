@@ -46,6 +46,10 @@
                 <h4 class="example-title">Numéro de téléphone</h4>
                 <p class="form-control-plaintext"><%= @user.phone_number.present? ? @user.phone_number.phony_formatted(format: :international, spaces: '-') : "Pas de numéro de téléphone fourni"%></p>
               </div>
+              <div class="col-lg-6">
+                <h4 class="example-title">Compétences</h4>
+                <p class="form-control-plaintext"><%= @user.tags.present? ? @user.tags.collect(&:name).join(" , ") : "Pas de compétences fournies"%></p>
+              </div>
             </div>
 
           </div>
@@ -70,6 +74,16 @@
                 <div class="col-lg-6">
                   <h4 class="example-title">Numéro de TVA</h4>
                   <p class="form-control-plaintext"><%=  @user.company.present? && @user.company.vat_number.present? ? @user.company.vat_number : "Pas de numéro de TVA fourni"%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4 class="example-title">Site internet</h4>
+                  <p class="form-control-plaintext"><%=  @user.company.present? && @user.company.website.present? ? @user.company.website : "Pas de site internet renseigné"%></p>
+                </div>
+                <div class="col-lg-6">
+                  <h4 class="example-title">Monnaie</h4>
+                  <p class="form-control-plaintext"><%=  @user.company.present? && @user.company.currency.present? ? @user.company.currency : "Pas de monnaie fourni"%></p>
                 </div>
               </div>
             </div>
