@@ -2,6 +2,25 @@ $("#editCategory").html("<%= j(render partial: 'edit_category_modal') %>");
 $("#editCategoryModal").find(".modal-content");
 $("#editCategoryModal").modal()
 
-$("select").select2({
-  theme: "bootstrap"
+$(".tag_select").select2({
+  theme: "bootstrap",
+  tags: true,
+  tokenSeparators: [",", " "]
+    }).on("change", function (e) {
+      var isNew = $(this).find('[data-select2-tag="true"]');
+      if (isNew.length) {
+          $.ajax({
+              type: "POST",
+              url: "/admin/new_tag",
+              data: {tag: isNew.val()},
+              success: function(data){ // success est toujours en place, bien sûr !
+                isNew.val(data.id)
+              },
+          });
+      }
+})
+
+$("#subcategory_select").select2({
+  theme: "bootstrap",
+  multiple: true
 })
