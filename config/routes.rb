@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
       collection do
         get :my_subscription
+        get :get_tags, defaults: { format: "js" }
       end
     end
     resources :quote_elements
