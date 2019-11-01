@@ -11,7 +11,7 @@
         <% if current_user.current_plan.try("id") == plan_limitation.id %>
           <!-- Plan -->
           <div class="pricing-plan recommended">
-            <div class="recommended-badge"><%= t("your_selection") %></div>
+            <div class="recommended-badge"><%= t("your_actual_subscription") %></div>
             <h3><%= plan_limitation.label %></h3>
             <div class="pricing-plan-label billed-monthly-label"><strong><%= currency_formated plan_limitation.price_per_month %></strong>/ mois</div>
             <div class="pricing-plan-features">
@@ -30,7 +30,6 @@
                 <li><%= plan_limitation.have_status.present? ? t(".have_status") : t(".have_no_status.html") %></li>
               </ul>
             </div>
-            <%= link_to "Upgrader", new_subscription_path(plan_limitation_id: plan_limitation.id), class: "button full-width margin-top-20", "data-turbolinks" => "false" %>
           </div>
         <% else %>
           <!-- Plan -->
