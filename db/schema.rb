@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_01_101623) do
+ActiveRecord::Schema.define(version: 2019_11_01_142314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_11_01_101623) do
     t.uuid "address_id"
     t.string "vat_number"
     t.string "website"
+    t.string "currency"
     t.index ["address_id"], name: "index_companies_on_address_id"
     t.index ["worker_id"], name: "index_companies_on_worker_id"
   end
