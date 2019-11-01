@@ -93,7 +93,20 @@
 
 								<!-- Details -->
 								<div class="freelancer-details" style="display: flex; align-items: center; justify-content: flex-end;">
-									<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Contacter <i class="icon-material-outline-arrow-right-alt"></i></a>
+									<% if Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).exists? %>
+										<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"button button-sliding-icon ripple-effect" do %>
+											<%= t('.your_conversation') %> <i class="icon-material-outline-arrow-right-alt"></i>
+										<% end %>
+									<% else %>
+										<%= form_for Room.new do |form| %>
+										  <%= form.hidden_field :author_id, value: current_user.id  %>
+										  <%= form.hidden_field :receiver_id, value: @job.customer_id %>
+										  <%= form.hidden_field :job_id, value: @job.id %>
+										  <%= form.submit t('.send_mp_to_client'),class:"button button-sliding-icon ripple-effect" do  %>
+												 <i class="icon-material-outline-arrow-right-alt"></i>
+											<% end %>
+										<% end %>
+									<% end %>
 								</div>
 							</div>
 					<% end %>
@@ -101,6 +114,7 @@
 				</div>
 			</div>
 			<!-- Listings Container / End -->
+			
 			<div class="dashboard-box margin-top-0">
 
 				<!-- Headline -->
@@ -149,6 +163,7 @@
 				<div class="freelancers-container freelancers-list-layout margin-top-35">
 
 					<!--Freelancer -->
+					<% @workers.each do |worker| %>
 					<div class="freelancer">
 
 						<!-- Overview -->
@@ -161,17 +176,21 @@
 								<!-- Avatar -->
 								<div class="freelancer-avatar">
 									<div class="verified-badge"></div>
-									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+									<a href="single-freelancer-profile.html"><img src="<%= worker.avatar_url %>" alt=""></a>
 								</div>
 
 								<!-- Name -->
 								<div class="freelancer-name">
-									<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-									<span>Photographe</span>
+									<h4><%= worker.full_name %></h4>
+									<span><%= worker.profession.name %></span>
 									<!-- Rating -->
-									<div class="freelancer-rating">
-										<div class="star-rating" data-rating="4.9"></div>
-									</div>
+									<% if worker.reviews.exists? %>
+										<div class="freelancer-rating">
+											<div class="star-rating" data-rating="4.9"></div>
+										</div>
+									<% else %>
+										<span class="company-not-rated margin-bottom-5">5 votes minimum</span>
+									<% end %>
 								</div>
 							</div>
 						</div>
@@ -180,135 +199,19 @@
 						<div class="freelancer-details">
 							<div class="freelancer-details-list">
 								<ul>
-									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-									<li>Taux horaire <strong>100€ / h</strong></li>
+									<% binding.pry %>
+									<li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i> <%= worker.company.address.city %></strong></li>
+									<li> <%= t('.price_rate') %> <strong> <%= number_to_currency(worker.price_rate,strip_insignificant_zeros: true)%></strong></li>
 								</ul>
 							</div>
-							<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
+
+							<%= link_to user_path(id: worker.id), class:"button button-sliding-icon ripple-effect" do %>
+							<%= t('.see_pro_profile') %> <i class="icon-material-outline-arrow-right-alt"></i>
+							<% end %>
 						</div>
 					</div>
 					<!-- Freelancer / End -->
-
-					<!--Freelancer -->
-					<div class="freelancer">
-
-						<!-- Overview -->
-						<div class="freelancer-overview">
-							<div class="freelancer-overview-inner">
-
-								<!-- Bookmark Icon -->
-								<span class="bookmark-icon"></span>
-
-								<!-- Avatar -->
-								<div class="freelancer-avatar">
-									<div class="verified-badge"></div>
-									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-								</div>
-
-								<!-- Name -->
-								<div class="freelancer-name">
-									<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-									<span>Photographe</span>
-									<!-- Rating -->
-									<div class="freelancer-rating">
-										<div class="star-rating" data-rating="4.9"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Details -->
-						<div class="freelancer-details">
-							<div class="freelancer-details-list">
-								<ul>
-									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-									<li>Taux horaire <strong>100€ / h</strong></li>
-								</ul>
-							</div>
-							<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
-						</div>
-					</div>
-					<!-- Freelancer / End -->
-
-
-					<!--Freelancer -->
-					<div class="freelancer">
-
-						<!-- Overview -->
-						<div class="freelancer-overview">
-							<div class="freelancer-overview-inner">
-								<!-- Bookmark Icon -->
-								<span class="bookmark-icon"></span>
-
-								<!-- Avatar -->
-								<div class="freelancer-avatar">
-									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-placeholder.png" alt=""></a>
-								</div>
-
-								<!-- Name -->
-								<div class="freelancer-name">
-									<h4><a href="#">Marcin Kowalski <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="Poland" data-tippy-placement="top"></a></h4>
-									<span>Photographe</span>
-									<!-- Rating -->
-									<span class="company-not-rated margin-bottom-5">5 votes minimum</span>
-								</div>
-							</div>
-						</div>
-
-						<!-- Details -->
-						<div class="freelancer-details">
-							<div class="freelancer-details-list">
-								<ul>
-									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-									<li>Taux horaire <strong>100€ / h</strong></li>
-								</ul>
-							</div>
-							<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
-						</div>
-					</div>
-					<!-- Freelancer / End -->
-
-					<!--Freelancer -->
-					<div class="freelancer">
-
-						<!-- Overview -->
-						<div class="freelancer-overview">
-							<div class="freelancer-overview-inner">
-
-								<!-- Bookmark Icon -->
-								<span class="bookmark-icon"></span>
-
-								<!-- Avatar -->
-								<div class="freelancer-avatar">
-									<div class="verified-badge"></div>
-									<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
-								</div>
-
-								<!-- Name -->
-								<div class="freelancer-name">
-									<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-									<span>Photographe</span>
-									<!-- Rating -->
-									<div class="freelancer-rating">
-										<div class="star-rating" data-rating="4.9"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Details -->
-						<div class="freelancer-details">
-							<div class="freelancer-details-list">
-								<ul>
-									<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-									<li>Taux horaire <strong>100€ / h</strong></li>
-								</ul>
-							</div>
-							<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
-						</div>
-					</div>
-					<!-- Freelancer / End -->
-
+					<% end %>
 				</div>
 			</div>
 			<!-- Listings Container / End -->
@@ -348,7 +251,7 @@
 								<i class="icon-material-outline-local-atm"></i>
 								<span> <%= t('.your_budget') %></span>
 
-								<h5><%= number_to_currency(@job.min_price) +"-"+ number_to_currency(@job.max_price)%></h5>
+								<h5><%= number_to_currency(@job.min_price,strip_insignificant_zeros: true) +" "+"-"+" "+ number_to_currency(@job.max_price,strip_insignificant_zeros: true)%></h5>
 							</li>
 							<li>
 								<i class="icon-material-outline-location-on"></i>
