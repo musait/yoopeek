@@ -70,7 +70,42 @@
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= I18n.t('.user.all.edit.profession') %></h5>
-                      <%= f.collection_select :profession_id, Profession.all,:id,:name, {include_hidden: true }, class:"selectpicker" %>
+                      <%= f.collection_select :profession_id, Profession.all,:id,:name, {prompt: true,include_hidden: true }%>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= I18n.t('.user.all.edit.category') %></h5>
+                      <%= f.collection_select :category_id, Category.all,:id,:name,{prompt: true,include_hidden: true },{id:"category_id"}%>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= I18n.t('.user.all.edit.facebook') %></h5>
+                      <%= f.text_field :facebook_profile, class:"with-border" %>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= I18n.t('.user.all.edit.instagram') %></h5>
+                      <%= f.text_field :instagram_profile, class:"with-border" %>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= I18n.t('.user.all.edit.pinterest') %></h5>
+                      <%= f.text_field :pinterest_profile, class:"with-border" %>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= I18n.t('.user.all.edit.twitter') %></h5>
+                      <%= f.text_field :twitter_profile, class:"with-border" %>
                     </div>
                   </div>
                 <% end %>
@@ -81,63 +116,6 @@
       </div>
     </div>
     <% if current_user.is_worker %>
-      <div class="col-xl-12">
-        <div class="dashboard-box">
-          <div class="headline">
-            <h3><i class="icon-material-outline-face"></i> <%= I18n.t('.user.pro_profile.edit.your_subscription') %></h3>
-          </div>
-          <div class="content with-padding">
-            <div class="row margin-top-50">
-              <div class="col-xl-12">
-                <!-- Pricing Plans Container -->
-                <div class="pricing-plans-container">
-
-                  <!-- Plan -->
-                  <div class="pricing-plan">
-                    <h3>Formule Bronze</h3>
-                    <div class="pricing-plan-label billed-monthly-label"><strong>19€</strong>/ mois</div>
-                    <div class="pricing-plan-features">
-                      <strong>Les avantages</strong>
-                      <ul>
-                        <li>50 points par mois</li>
-                      </ul>
-                    </div>
-                    <a href="pages-checkout-page.html" class="button full-width margin-top-20">Downgrader</a>
-                  </div>
-
-                  <!-- Plan -->
-                  <div class="pricing-plan recommended">
-                    <div class="recommended-badge">Votre sélection</div>
-                    <h3>Formule Argent</h3>
-                    <div class="pricing-plan-label billed-monthly-label"><strong>49€</strong>/ mois</div>
-                    <div class="pricing-plan-features">
-                      <strong>Les avantages</strong>
-                      <ul>
-                        <li>100 points par mois</li>
-                      </ul>
-                    </div>
-                    <a href="pages-checkout-page.html" class="button full-width margin-top-20">Acheter plus de points</a>
-                  </div>
-
-                  <!-- Plan -->
-                  <div class="pricing-plan">
-                    <h3>Formule Or</h3>
-                    <div class="pricing-plan-label billed-monthly-label"><strong>99€</strong>/ mois</div>
-                    <div class="pricing-plan-features">
-                      <strong>Les avantages</strong>
-                      <ul>
-                        <li>200 points par mois</li>
-                      </ul>
-                    </div>
-                    <a href="pages-checkout-page.html" class="button full-width margin-top-20">Upgrader</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="col-xl-12">
         <div class="dashboard-box">
           <div class="headline">
@@ -209,27 +187,9 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="col-xl-6">
-                    <div class="submit-field">
-                      <h5><%= raw I18n.t('.user.pro_profile.edit.your_skills') %> <i class="help-icon" data-tippy-placement="right" title="Ajoutez jusqu'à 10 compétences"></i></h5>
-
-                      <!-- Skills List -->
-                      <div class="keywords-container">
-                        <div class="keyword-input-container">
-                          <input type="text" class="keyword-input with-border" placeholder="e.g. Mariage, Baptème"/>
-                          <button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
-                        </div>
-                        <div class="keywords-list">
-                          <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
-                          <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
-                          <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
-                          <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
-                          <span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">Lorem ipsum</span></span>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                    </div>
+                    <h5>Tags</h5>
+                    <%= f.collection_select :tag_ids, Tag.all, :id, :name, {include_hidden: true }, {multiple: true,id:"tag_select"} %>
                   </div>
                 </div>
               </li>
@@ -453,13 +413,31 @@
 <!-- Row / End -->
 
 
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#checkbox1').change(function () {
-      if (this.checked)
-        document.getElementById('vatNumber').style.display = "block";
-      else
-        document.getElementById('vatNumber').style.display = "none";
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#checkbox1').change(function () {
+        if (this.checked)
+          document.getElementById('vatNumber').style.display = "block";
+        else
+          document.getElementById('vatNumber').style.display = "none";
+      });
+  });
+  </script>
+  <script type="text/javascript">
+    var j$ = jQuery.noConflict();
+    j$(document).ready(function () {
+      j$("#tag_select").select2({
+        theme: "bootstrap",
+        multiple: true
+      })
     });
-});
-</script>
+    j$('#category_id').change( function() {
+	   var category_id = this.value;
+  	   $.ajax({
+  	     url: "/users/get_tags",
+  	     type: "GET",
+  	     dataType: "script",
+  	     data: { "category_id": category_id }
+  	   });
+  	 });
+  </script>
