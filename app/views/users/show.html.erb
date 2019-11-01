@@ -6,14 +6,14 @@
 		<div class="col-xl-8 col-lg-8 content-right-offset">
 			<!-- Page Content -->
 			<div class="single-page-section">
-				<h3 class="margin-bottom-25"> <%= t(".about", pro: current_user.full_name) %></h3>
-				<p> <%= current_user.description %></p>
+				<h3 class="margin-bottom-25"> <%= t(".about", pro: @user.full_name) %></h3>
+				<p> <%= @user.description %></p>
 			</div>
 			<div class="col-xl-12">
 				<div class="blog-carousel">
-					<% current_user.portfolios.each do |portfolio| %>
+					<% @user.portfolios.each do |portfolio| %>
 						<%= link_to portfolio_path(id: portfolio.id), class:"blog-compact-item-container" do %>
-							<img src=" <%= rails_blob_url(portfolio.picture.first)%>" style="width:300px;height:auto" alt="">
+							<img src=" <%= rails_blob_url(portfolio.picture.first)%>" style="width:auto;height:200px" alt="">
 						<% end %>
 					<% end %>
 				</div>
@@ -103,8 +103,8 @@
 
 				<!-- Profile Overview -->
 				<div class="profile-overview">
-					<div class="overview-item"><strong>100€</strong><span>	<%= t('.hour_rate') %></span></div>
-					<div class="overview-item"><strong>10</strong><span>	<%= t('.job_realized') %></span></div>
+					<div class="overview-item"><strong> <%= number_to_currency(@user.price_rate, strip_insignificant_zeros: true) %></strong><span>	<%= t('.hour_rate') %></span></div>
+					<div class="overview-item"><strong> <%= @user.jobs.count %></strong><span>	<%= t('.job_realized') %></span></div>
 				</div>
 
 				<a href="#" class="apply-now-button margin-bottom-50"> <%= t('.send_mp') %><i class="icon-material-outline-arrow-right-alt"></i></a>
@@ -117,10 +117,10 @@
 					<h3> <%= t('.social_medias') %></h3>
 					<div class="freelancer-socials margin-top-25">
 						<ul>
-							<li><a href="<%= current_user.facebook_profile if current_user.facebook_profile %>" title="Facebook" data-tippy-placement="top"><i class="icon-brand-facebook"></i></a></li>
-							<li><a href="<%= current_user.twitter_profile if current_user.twitter_profile %>" title="Twitter" data-tippy-placement="top"><i class="icon-brand-twitter"></i></a></li>
-							<li><a href="<%= current_user.instagram_profile if current_user.instagram_profile %>" title="Instagram" data-tippy-placement="top"><i class="icon-brand-instagram"></i></a></li>
-							<li><a href="<%= current_user.pinterest_profile if current_user.pinterest_profile %>" title="Pinterest " data-tippy-placement="top"><i class="icon-brand-pinterest"></i></a></li>
+							<li><a href="<%= @user.facebook_profile if @user.facebook_profile %>" title="Facebook" data-tippy-placement="top"><i class="icon-brand-facebook"></i></a></li>
+							<li><a href="<%= @user.twitter_profile if @user.twitter_profile %>" title="Twitter" data-tippy-placement="top"><i class="icon-brand-twitter"></i></a></li>
+							<li><a href="<%= @user.instagram_profile if @user.instagram_profile %>" title="Instagram" data-tippy-placement="top"><i class="icon-brand-instagram"></i></a></li>
+							<li><a href="<%= @user.pinterest_profile if @user.pinterest_profile %>" title="Pinterest " data-tippy-placement="top"><i class="icon-brand-pinterest"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -129,9 +129,9 @@
 				<div class="sidebar-widget">
 					<h3> <%= t('.skills') %></h3>
 					<div class="task-tags">
-						<span>Photographie</span>
-						<span>Portrait</span>
-						<span>Marriage</span>
+						<% @user.tags.each do |tag| %>
+						<span> <%= tag.name %></span>
+						<% end %>
 					</div>
 				</div>
 
