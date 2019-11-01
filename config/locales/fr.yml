@@ -20,7 +20,7 @@ fr:
       subscription_payement: "Paiement de votre abonnement"
   responses_to_ads: réponse(s) aux annonces
   per_performance: par prestation
-  your_selection: Votre sélection
+  your_actual_subscription: Votre abonnement actuel
   advantages: Avantages
   month: Mois
   year: Année
@@ -177,6 +177,15 @@ fr:
     omniauth_callbacks:
       facebook:
           fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
+    show:
+      about: "A propos de %{pro}"
+      history_and_reviews: "Historique des missions et avis"
+      hour_rate: "Taux horaire"
+      job_realized: "Missions réalisées"
+      send_mp: "Envoyer un message "
+      social_medias: "Résaux sociaux"
+      skills: "Compétences"
+      add_to_favorites: "Ajouter aux favoris"
   user:
     all:
       edit:
@@ -187,24 +196,17 @@ fr:
         email: "Email"
         phone_number: "Numéro de téléphone"
         profession: "Profession"
+        category: "Catégorie"
         password: "Mot de passe"
         your_password: "Votre mot de passe"
         actual_password: "Mot de passe actuel"
         new_password: "Nouveau mot de passe"
         repeat_new_password: "Répétez le nouveau mot de passe"
         save_modification: "Sauvegarder les changements"
-    pro:
-      show:
-        verified: "Vérifié"
-        about_pro: "A propos de %{pro}"
-        job_history_reviews: "Historique des missions et avis"
-        hour_rate: "Taux horaire"
-        realised_job: "Missions réalisées"
-        send_mp: "Envoyer un message"
-        social_network: "Réseaux sociaux"
-        skills: "Compétences"
-        add_to_favorites: "Ajouter aux favoris"
-
+        facebook: "Facebook"
+        instagram: "Instagram"
+        pinterest: "Pinterest"
+        twitter: "Twitter"
     pro_profile:
       edit:
         your_subscription: "Votre abonnement"
