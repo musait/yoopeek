@@ -36,9 +36,11 @@ if User.all.empty?
     {  confirmed_at: Time.now.utc,approved: true,email: 'b@b.com', firstname: 'Will', lastname: 'Pioneer', type: 'Worker',profession_id: Profession.first.id,price_rate: '40', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
     {  confirmed_at: Time.now.utc,approved: true,email: 'e@e.com', firstname: 'Fabrice', lastname: 'Lagarde', type: 'Worker',profession_id: Profession.second.id, price_rate: '60', nationality: 'French', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
     {  confirmed_at: Time.now.utc,approved: true,email: 'f@f.com', firstname: 'Will', lastname: 'Smoth', type: 'Worker',profession_id: Profession.first.id,price_rate: '30', nationality: 'English', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', password:"password"},
-    {  confirmed_at: Time.now.utc,approved: true,firstname:"admin",lastname:"admin",email:"admin@admin.com",password:"password",admin:true}
     ])
 
+end
+if Admin.all.empty?
+  Admin.create!({  confirmed_at: Time.now.utc,approved: true,firstname:"admin",lastname:"admin",email:"admin@admin.com",password:"password"})
 end
 if FormatDelivery.all.empty?
   FormatDelivery.create!([
