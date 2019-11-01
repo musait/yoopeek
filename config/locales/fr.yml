@@ -128,6 +128,7 @@ fr:
       job_description: "Description de la mission"
       pro_choosen: "Le professionel que vous avez choisi"
       the_client: "Le client"
+      see_pro_profile: "Voir le profil"
       your_review: "Votre avis"
       leave_a_review: "Laisser un avis"
       no_reviews_yet: "Pas encore d'avis"
@@ -157,6 +158,7 @@ fr:
       delivered_on_budget: "Est-ce que ce professionel a respecté votre budget ?"
       delivered_on_time: "Est-ce que cette mission a été réalisée dans les temps ?"
       your_rating: "Quelle note lui donneriez-vous ?"
+      price_rate: "Taux horaire"
     new:
       create_job: "Créer une mission"
       creation_form: "Formulaire de création"
@@ -203,10 +205,10 @@ fr:
         new_password: "Nouveau mot de passe"
         repeat_new_password: "Répétez le nouveau mot de passe"
         save_modification: "Sauvegarder les changements"
-        facebook: "Facebook"
-        instagram: "Instagram"
-        pinterest: "Pinterest"
-        twitter: "Twitter"
+        facebook: "Lien vers votre profil Facebook"
+        instagram: "Lien vers votre profil Instagram"
+        pinterest: "Lien vers votre profil Pinterest"
+        twitter: "Lien vers votre profil Twitter"
     pro_profile:
       edit:
         your_subscription: "Votre abonnement"
@@ -230,6 +232,7 @@ fr:
         iban: "IBAN"
         bic: "BIC"
         website: "Site internet"
+        currency: "Monnaie dans laquelle seront éditées vos devis et vos factures"
         address: "Adresse de votre entreprise"
         is_your_company_subject_to_vat: "Êtes vous soumis à la TVA ?"
         vat_number: "Numéro de TVA intracommunautaire"
