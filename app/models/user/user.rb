@@ -121,4 +121,21 @@ class User < ApplicationRecord
     plan = current_subscription.try("plan_limitation")
     plan||PlanLimitation.free_limitation
   end
+
+  def add_credits credits
+    update total_credits: (total_credits + credits), current_credits: (current_credits + credits)
+  end
+
+  def remove_credits credits
+    update current_credits: (current_credits - credits)
+  end
+
+  def pay_with_credits credits
+    if current_credits > credits
+      remove_credits credits
+      true
+    else
+      false
+    end
+  end
 end

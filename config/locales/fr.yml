@@ -1,4 +1,8 @@
 fr:
+  not_enougth_credits: Vous n'avez pas assez de crédit
+  credits_for:
+    html: <strong>%{credits} crédits:</strong> %{for}
+  buy: Acheter
   summary: Résumé
   subscriptions:
     index:
@@ -42,6 +46,8 @@ fr:
     quote_accepted:
       subject: "Bonne nouvelle %{user}! Votre devis a été accepté!"
   other:
+    credits_added: Crédits ajouté
+    subscription_have_no_plan: Cette abonnement n'a pas de plan stripe
     payment_done: "Paiement fini"
     send_mp: Envoyer un message
     subscription_changed: "Votre abonnement a été pris en compte et le paiement s'est déroulé avec succès"
