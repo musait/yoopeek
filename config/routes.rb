@@ -39,6 +39,9 @@ Rails.application.routes.draw do
         get :get_subcategories, defaults: { format: "js" }
       end
     end
+    get "buy_credits" => 'home#buy_credits'
+    get "checkout_credit" => 'home#checkout_credit'
+    post "add_credits" => 'home#add_credits'
     resources :companies
     resources :portfolios
     get "delete_image_attachment" => "portfolios#delete_image_attachment"

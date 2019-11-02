@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_01_142314) do
+ActiveRecord::Schema.define(version: 2019_11_02_104548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -70,6 +70,17 @@ ActiveRecord::Schema.define(version: 2019_11_01_142314) do
     t.string "currency"
     t.index ["address_id"], name: "index_companies_on_address_id"
     t.index ["worker_id"], name: "index_companies_on_worker_id"
+  end
+
+  create_table "credits_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.float "credits_add"
+    t.float "amount"
+    t.string "stripe_intent_id"
+    t.string "stripe_payment_method_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credits_payments_on_user_id"
   end
 
   create_table "format_deliveries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -338,13 +349,15 @@ ActiveRecord::Schema.define(version: 2019_11_01_142314) do
     t.string "stripe_subscription_id"
     t.string "stripe_plan_id"
     t.float "current_plan_amount"
-    t.uuid "portfolio_id"
     t.datetime "subscription_end_at"
+    t.uuid "portfolio_id"
     t.uuid "category_id"
     t.string "facebook_profile"
     t.string "instagram_profile"
     t.string "pinterest_profile"
     t.string "twitter_profile"
+    t.float "current_credits", default: 0.0
+    t.float "total_credits", default: 0.0
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["category_id"], name: "index_users_on_category_id"
@@ -357,6 +370,7 @@ ActiveRecord::Schema.define(version: 2019_11_01_142314) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "companies", "addresses"
   add_foreign_key "companies", "users", column: "worker_id"
+  add_foreign_key "credits_payments", "users"
   add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "format_deliveries"
   add_foreign_key "jobs", "subcategories"

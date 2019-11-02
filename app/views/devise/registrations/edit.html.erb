@@ -126,8 +126,11 @@
               <li>
                 <div class="row">
                   <div class="col-xl-12">
-                    <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong>25</strong> <%= I18n.t('.user.pro_profile.edit.credits') %></h3>
-                    <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"><%= I18n.t('.user.pro_profile.edit.buy_credits') %></a>
+                    <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong><%= current_user.current_credits.to_i %></strong> <%= I18n.t('.user.pro_profile.edit.credits') %></h3>
+                    <%= link_to buy_credits_path, class: "button", style: "margin-top: 20px;" do %>
+                      <%= I18n.t('.user.pro_profile.edit.buy_credits') %>
+                    <% end %>
+                    <!-- <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"></a> -->
                   </div>
                 </div>
               </li>

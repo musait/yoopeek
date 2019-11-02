@@ -9,19 +9,23 @@ class SubscriptionsController < UsersController
     end
   end
   def new
-    @intent = Stripe::SetupIntent.create({
-      usage: 'on_session', # The default usage is off_session
-    })
-    if current_user.stripe_customer_id.present?
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    else
-      customer = Stripe::Customer.create(
-        :email => current_user.email
-      )
-      current_user.update stripe_customer_id: customer.id
-    end
     @plan_limitation = PlanLimitation.find(params[:plan_limitation_id])
-    session[:plan_limitation_id] = @plan_limitation.id
+    if @plan_limitation.stripe_plan_id.present?
+      @intent = Stripe::SetupIntent.create({
+        usage: 'on_session', # The default usage is off_session
+      })
+      if current_user.stripe_customer_id.present?
+        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      else
+        customer = Stripe::Customer.create(
+          :email => current_user.email
+        )
+        current_user.update stripe_customer_id: customer.id
+      end
+      session[:plan_limitation_id] = @plan_limitation.id
+    else
+      redirect_back fallback_location: root_path, flash: {info: I18n.t("other.subscription_have_no_plan")}
+    end
   end
   def free_plan
     plan_limitation = PlanLimitation.find(params[:id])
