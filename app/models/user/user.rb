@@ -129,4 +129,13 @@ class User < ApplicationRecord
   def remove_credits credits
     update current_credits: (current_credits - credits)
   end
+
+  def pay_with_credits credits
+    if current_credits > credits
+      remove_credits credits
+      true
+    else
+      false
+    end
+  end
 end

@@ -14,11 +14,14 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new permitted_parameters
-
-    if @room.save
-      redirect_to @room
+    if ((current_user.worker? &&current_user.pay_with_credits(Rails.application.credentials.dig(:message_price).to_f)) ||!current_user.worker?)
+      if @room.save
+        redirect_to @room
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_back fallback_location: root_path, flash: {error: I18n.t("not_enougth_credits")}
     end
   end
 

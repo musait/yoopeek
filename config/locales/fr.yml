@@ -1,4 +1,5 @@
 fr:
+  not_enougth_credits: Vous n'avez pas assez de crédit
   credits_for:
     html: <strong>%{credits} crédits:</strong> %{for}
   buy: Acheter
