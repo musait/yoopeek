@@ -11,6 +11,9 @@ module ApplicationHelper
       number_to_currency number, strip_insignificant_zeros: true
     end
   end
+  def float_formated number
+    number_with_precision number, strip_insignificant_zeros: true
+  end
   def have_one_room_with_user(user)
     authored_rooms.with_receiver(user).first ||received_rooms_with_author(user).first
   end

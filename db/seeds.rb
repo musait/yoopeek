@@ -58,3 +58,13 @@ if Job.all.empty?
     { name: 'Film compétition rugby', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ex, ornare accumsan enim in, ultricies venenatis risus. Vivamus sagittis est consectetur molestie molestie.', localisation: 'Montpellier', min_price: '2000', max_price: '6000', min_time: '10', max_time: '15', category_id: Category.first.id,subcategory_id: Category.first.subcategories.first.id, format_delivery_id: FormatDelivery.last.id,customer_id: Customer.first.id },
     ])
 end
+if CreditsOffer.all.blank?
+    CreditsOffer.create([
+      {credits: 10, price: 8, reduction: nil},
+      {credits: 20, price: 15, reduction: 5},
+      {credits: 50, price: 35, reduction: 12.5},
+      {credits: 100, price: 65, reduction: 18},
+      {credits: 500, price: 300, reduction: 25},
+      {credits: 1000, price: 500, reduction: 37.5},
+    ])
+end

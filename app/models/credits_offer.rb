@@ -1,0 +1,2 @@
+class CreditsOffer < ApplicationRecord
+end
