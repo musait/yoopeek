@@ -10,7 +10,7 @@ d<% end %>
 
 
 		<!-- Hedaline -->
-    <h2>  <%= raw t('credits_for.html', credits: @credits, for: (currency_formated @amount))  %></h2>
+    <h2>  <%= raw t('credits_for.html', credits: float_formated(@credits_offer.credits), for: (currency_formated @credits_offer.price))  %></h2>
 
 		<!-- Billing Cycle Radios  -->
 
@@ -51,9 +51,9 @@ d<% end %>
 			</div>
 			<div class="boxed-widget-inner">
 				<ul>
-					<li><%= @credits %> <span><%= currency_formated (@amount - @amount * 0.2) %></span></li>
-					<li>TVA (20%) <span><%= currency_formated (@amount * 0.2) %></span></li>
-					<li class="total-costs"> <%= t('subscriptions.form.total') %> <span><%= currency_formated (@amount) %></span></li>
+					<li><%= float_formated @credits_offer.credits %> <%= t("credit").pluralize %> <span><%= currency_formated (@credits_offer.price - @credits_offer.price * 0.2) %></span></li>
+					<li>TVA (20%) <span><%= currency_formated (@credits_offer.price * 0.2) %></span></li>
+					<li class="total-costs"> <%= t('subscriptions.form.total') %> <span><%= currency_formated (@credits_offer.price) %></span></li>
 				</ul>
 			</div>
 		</div>

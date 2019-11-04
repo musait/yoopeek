@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       resources :subcategories
       resources :reviews
       resources :plan_limitations
+      resources :credits_offers
       resources :quotes
       resources :format_deliveries
       resources :users

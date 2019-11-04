@@ -1,0 +1,67 @@
+<%= content_for :body_script do %>
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/blueimp-file-upload/jquery.fileupload.css">
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/dropify/dropify.css">
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/icheck/icheck.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/theme/admin/classic/global/vendor/select2/select2.css">
+<%end%>
+  <body class="animsition">
+    <div class="page">
+      <div class="page-header">
+          <div class="">
+            <h1 class="page-title"></h1>
+          </div>
+      </div>
+
+      <div class="page-content container-fluid">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <!-- Panel Static Labels -->
+            <div class="panel">
+
+              <div class="panel-body container-fluid">
+                <%= form_with model: @credits_offer, url: {action: "update"}, local: true do |form| %>
+									<% if @credits_offer.errors.any? %>
+										<div class="notification error closeable">
+											<p><%= pluralize(@credits_offer.errors.count, "error") %> prohibited this credits_offer from being saved:</p>
+											<ul>
+											<% @credits_offer.errors.full_messages.each do |message| %>
+												<li><%= message %></li>
+											<% end %>
+											</ul>
+											<a class="close" href="#"></a>
+										</div>
+									<% end %>
+                  <div class="form-group">
+										<h5><%= form.label :price %></h5>
+										<%= form.number_field :price, class:"form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <h5><%= form.label :credits %></h5>
+										<%= form.number_field :credits, class:"form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <h5><%= form.label :reduction %></h5>
+										<%= form.number_field :reduction, class:"form-control" %>
+                  </div>
+                  <%= form.submit class:"btn btn-primary"%>
+                <%end%>
+              </div>
+            </div>
+            <!-- End Panel Static Labels -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page -->
+
+    <%= content_for :body_script do %>
+
+        <script src="/theme/admin/classic/global/js/Plugin/select2.js"></script>
+      <script src="/theme/admin/classic/global/vendor/jquery-ui/jquery-ui.js"></script>
+      <script src="/theme/admin/classic/global/vendor/blueimp-tmpl/tmpl.js"></script>
+      <script src="/theme/admin/classic/global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
+      <script src="/theme/admin/classic/global/vendor/blueimp-load-image/load-image.all.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"
+      </script>
+    <%end%>

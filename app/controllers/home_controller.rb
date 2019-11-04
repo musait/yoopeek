@@ -11,28 +11,9 @@ class HomeController < ApplicationController
 
   end
   def checkout_credit
-    case params[:id].to_s
-    when "1"
-      @amount = 15
-      @credits = 20
-    when "2"
-      @amount = 35
-      @credits = 50
-    when "3"
-      @amount = 65
-      @credits = 100
-    when "4"
-      @amount = 300
-      @credits = 500
-    when "5"
-      @amount = 500
-      @credits = 1000
-    else
-      @amount = 8
-      @credits = 10
-    end
+    @credits_offer = CreditsOffer.find(params[:id])
     @intent = Stripe::PaymentIntent.create({
-      amount: @amount * 100,
+      amount: (@credits_offer.price * 100).to_i,
       currency: 'eur',
       customer: current_user.stripe_customer_id,
     })
@@ -44,14 +25,17 @@ class HomeController < ApplicationController
       )
       current_user.update stripe_customer_id: customer.id
     end
-    session[:credits] = @credits
-    session[:amount] = @amount
+    session[:credits_offer_id] = params[:id]
+  end
+
+  def buy_credits
+    @credits_offers = CreditsOffer.order(:price, reduction: :desc).all
   end
 
   def add_credits
-    CreditsPayment.create user: current_user, credits_add: session[:credits].to_i, amount: session[:amount], stripe_intent_id: params[:payment_intent_id], stripe_payment_method_id: params[:payment_method_id]
-    session.delete(:credits)
-    session.delete(:amount)
+    credits_offer = CreditsOffer.find(session[:credits_offer_id])
+    CreditsPayment.create user: current_user, credits_add: credits_offer.credits, amount: credits_offer.price, stripe_intent_id: params[:payment_intent_id], stripe_payment_method_id: params[:payment_method_id]
+    session.delete(:credits_offer_id)
     respond_to do |format|
       format.any {
         # Charge à notre code d'implémenter le to_xls
