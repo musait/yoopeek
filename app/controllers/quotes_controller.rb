@@ -1,6 +1,7 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: [:show, :edit, :update, :destroy, :accept, :decline, :pay]
 
+
   # GET /quotes
   # GET /quotes.json
   def index
@@ -28,9 +29,9 @@ class QuotesController < ApplicationController
   end
 
   def accept
-    @total = @quote.total
+    @total = @quote.total_within_vat
     @intent = Stripe::PaymentIntent.create({
-      amount: @total,
+      amount: @total.to_i * 100,
       currency: 'eur'
     })
     session[:payment_intent_id] = @intent.id
@@ -67,6 +68,7 @@ class QuotesController < ApplicationController
     receiver = @quote.sender
     Notification.create!(message: t('.your_quote_has_been_declined',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
     UserMailer.with(user: @quote.sender, quote: @quote).quote_declined.deliver_later
+    binding.pry
     redirect_to @quote
   end
 
@@ -74,19 +76,23 @@ class QuotesController < ApplicationController
   # POST /quotes.json
   def create
     @quote = Quote.new(quote_params)
-    @quote.total_without_vat = @quote.quote_elements.map(&:total).sum
-    # Il faut changer la TVA en fonction qu'elle soit française ou suisse
-
-    @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)
-    @quote.vat = (@quote.total_within_vat - @quote.total_without_vat)
-    @quote.job_id = params[:quote][:job_id]
     sender = @quote.sender
     receiver = @quote.receiver
+    @quote.total_without_vat = @quote.quote_elements.map(&:total).sum
+    if sender.company.is_subject_to_vat?
+      # Il faut changer la TVA en fonction qu'elle soit française ou suisse
+      @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)
+      @quote.vat = (@quote.total_within_vat - @quote.total_without_vat)
+    else
+      @quote.total_within_vat = @quote.total_without_vat
+      @quote.vat = 0
+    end
+    @quote.job_id = params[:quote][:job_id]
     Notification.create!(message: t('.you_have_received_a_quote',pro: @quote.sender.full_name, job: @quote.job.name), quote: @quote,created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
     respond_to do |format|
       if @quote.save
         UserMailer.with(user: @quote.sender, quote: @quote).new_quote.deliver_later
-        format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
+        format.html { redirect_to @quote, notice: t('.quote_created') }
         format.json { render :show, status: :created, location: @quote }
       else
         format.html { render :new }
@@ -120,6 +126,7 @@ class QuotesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_quote
       @quote = Quote.find(params[:id])
