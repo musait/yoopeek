@@ -8,9 +8,9 @@
 
   <ul>
     <% @rooms.each do |room| %>
-    <% @other_user = room.job.customer.eql?(current_user) ? current_user : room.job.customer %>
+    <% @other_user = room.author.eql?(current_user) ? room.receiver : room.author %>
 
-      <li class="active-message" id="selectRoom">
+      <li id="selectRoom">
         <%= link_to room_path(room), method: :get,remote: true, id: "room-#{room.id}", class: 'nav-link room-nav-link', "data-channel-subscribe" => "room", "data-room-id" => room.id, "data-user-id" => current_user.id do %>
           <div class="message-avatar"><i class="status-icon status-online"></i><img src="<%= @other_user.avatar_url %>" alt="" /></div>
           <div class="message-by">
@@ -18,7 +18,7 @@
               <h5>
                 <h4><%=  @other_user.full_name%></h4>
               </h5>
-              <span>4 hours ago</span>
+              <span> <%= time_ago_in_words(@room.created_at) %></span>
             </div>
             <p><%= room.room_messages.last.message if room.room_messages.present? %></p>
           </div>
