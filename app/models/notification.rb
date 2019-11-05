@@ -12,6 +12,9 @@ class Notification < ApplicationRecord
   scope :not_seen, -> () {
     where viewed_at: nil
   }
+  scope :seen, -> () {
+    where viewed_at: "IS NOT NULL"
+  }
 
   def self.create_for sender,receiver, object, message_action = "created"
     if object.class.superclass.to_s == "ApplicationRecord"
