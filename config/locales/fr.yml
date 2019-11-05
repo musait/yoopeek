@@ -59,7 +59,6 @@ fr:
     stripe_connect: Conditions d'Utilisation des Comptes Connectés Stripe
   notifications:
     room_message_created: "%{creator} vous à envoyer un message"
-    you_have_received_a_message: "Vous avez reçu un message de la part de %{creator}"
     quote_created: "Vous avez reçu un devis de la part de %{creator} pour la mission suivante : %{job}"
     you_have_received_a_review: "Vous avez reçu un nouvel avis de la part de xxx"
   number:
@@ -156,7 +155,7 @@ fr:
       job_finished: "Marquer la mission comme terminée"
       abort_job: "Annuler la mission"
       recap: "Récapitulatif"
-      your_budget: "Votre budget"
+      your_budget: "Budget"
       job_status: "Statut de la mission"
       created: "Créée"
       in_progress: "En cours"
@@ -282,6 +281,9 @@ fr:
       quote_declined: "Décliné"
       quote_in_progress: "En cours"
       quote_accepted: 'Acceptée'
+  room_messages:
+    create:
+      you_have_received_a_message: "Vous avez reçu un message de la part de %{creator}"
   quotes:
     new:
       quote_creation: "Créer un devis"
@@ -292,6 +294,8 @@ fr:
       legal_notice_information: "Vos mentions légales apparaîtront sur les factures auto-générées par Yoopeek.
         Vous pourrez les modifier dans votre espace personnel."
       creation_button: "Créer votre devis"
+    create:
+      quote_created: "Votre devis a été crée avec succès"
     quote_element_fields:
       item_detail: "Détail de l'élément"
       unit_price: "Prix unitaire (HT)"
@@ -299,6 +303,7 @@ fr:
       total: "Total (HT)"
       add_item: "Ajouter un élément"
       quote_creation: "Créer un devis"
+      delete_element: "Supprimer cet élement"
     show:
       quote_recap: "Récapitulatif du devis n°%{quote_number}"
       description: "Description"
@@ -318,11 +323,11 @@ fr:
       quote_accepted_by_customer: "Proposition acceptée"
       quote_declined_by_customer: "Proposition déclinée"
       message_for_quote_accepted: "Vous avez accepté ce devis. Un message a été envoyé au professionnel pour l'informer de votre accord. Si au bout de 24-48h, il n'est pas revenu vers vous, contactez-le !"
-      message_for_quote_declined: "Vous avez refusé ce devis. Un message a été envoyé au professionnel pour l'informer de votre refus. Il reviendra peut-être vers pour faire une autre proposition."
+      message_for_quote_declined: "Vous avez refusé ce devis. Un message a été envoyé au professionnel pour l'informer de votre refus. Il reviendra peut-être vers vous pour faire une autre proposition."
     create:
       you_have_received_a_quote: "Vous avez reçu un devis de la part de %{pro} pour la mission suivante : %{job}"
-    decline_quote:
-      your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusée"
+    decline:
+      your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusé"
     accept_quote:
       your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été acceptée. Nous vous informerons lorsque le client procèdera au paiement afin de commencer la mission"
   order:
