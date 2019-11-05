@@ -7,10 +7,14 @@ class Quote < ApplicationRecord
   has_many :notifications
 
   enum status: [:created, :declined, :accepted]
+  before_create :increment_quote
 
 
   def total
     quote_elements.sum(:total)
   end
 
+  def increment_quote
+    self.quote_number = Quote.where(job_id: self.job.id).count + 1
+  end
 end
