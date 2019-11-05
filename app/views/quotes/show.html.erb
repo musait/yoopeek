@@ -65,14 +65,13 @@
 										<!-- Avatar -->
 										<div class="freelancer-avatar">
 											<div class="verified-badge"></div>
-											<a href="/theme/user/hireo/single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+											<a href="/theme/user/hireo/single-freelancer-profile.html"><img src=" <%= @quote.sender.avatar_url %>" alt=""></a>
 										</div>
 
 										<!-- Name -->
 										<div class="freelancer-name">
 											<h4><a href="/theme/user/hireo/single-freelancer-profile.html"> <%= @quote.sender.full_name %></a></h4>
-											<span>Photographe</span><br>
-											<span class="star-rating" data-rating="5.0"></span>
+											<span> <%= @quote.sender.profession.name %></span><br>
 										</div>
 										<!-- Rating -->
 									</div>
