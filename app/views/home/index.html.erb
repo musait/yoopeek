@@ -1,4 +1,5 @@
-
+<%= content_for :body_style do  %>
+<% end %>
 	<!-- Header Container
 	================================================== -->
 	<div class="clearfix"></div>
@@ -8,7 +9,6 @@
 
 <!-- Intro Banner
 ================================================== -->
-	<!-- add class "disable-gradient" to enable consistent background overlay -->
 	<div class="intro-banner" data-background-image="/theme/user/hireo/images/home-background.jpg">
 		<div class="container">
 
@@ -27,32 +27,24 @@
 			<!-- Search Bar -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="intro-banner-search-form margin-top-95">
-
-						<!-- Search Field -->
-						<div class="intro-search-field">
-							<label for ="intro-keywords" class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
-							<input id="intro-keywords" type="text" placeholder="Par exemple : Photographe mariage, Vidéaste baptème, etc.">
-						</div>
-
-						<div class="intro-search-field with-autocomplete">
-							<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.where') %></label>
-							<div class="input-with-icon">
-								<input id="autocomplete-input" type="text" placeholder="Paris, Lyon, Nice, etc.">
-								<i class="icon-material-outline-location-on"></i>
+					<%= form_tag(search_result_path) do  %>
+						<div class="intro-banner-search-form margin-top-95">
+							<div class="intro-search-field">
+								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
+								<%= select_tag 'category', options_for_select(Category.all.collect{ |u| [u.name, u.id] }), id:"category_select",:include_blank => 'Sélectionnez une catégorie' %>
+							</div>
+							<div class="intro-search-field with-autocomplete">
+								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.where') %></label>
+								<div class="input-with-icon">
+									<%= text_field_tag 'city',nil, {placeholder: 'Entrez une ville',id: 'autocomplete_address'} %>
+								</div>
+							</div>
+							<!-- Button -->
+							<div class="intro-search-button">
+								<%= submit_tag t('.search'), class:"button"%>
 							</div>
 						</div>
-
-						<!-- Search Field -->
-
-
-						<!-- Button -->
-						<div class="intro-search-button">
-							<%= link_to search_result_path, class: "button" do %>
-								<%= raw I18n.t('.home.index.search') %>
-							<% end %>
-						</div>
-					</div>
+					<% end %>
 				</div>
 			</div>
 
@@ -412,3 +404,8 @@
 			</div>
 		</div>
 	</div>
+	<%= content_for :body_script do  %>
+	<script type="text/javascript">
+		$('#category_select').selectpicker();
+	</script>
+	<% end %>
