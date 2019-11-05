@@ -11,8 +11,4 @@ class RoomMessage < ApplicationRecord
     worker = author.worker? ? author : receiver
     errors.add "credits", I18n.t("not_enougth_credits") if room.room_messages.where(author_id: worker.id).count == 0 &&!CreditChangement.exists?(room_id: room_id, user_id: worker.id)
   end
-
-  def create_notification
-    Notification.create_for receiver, author, self
-  end
 end
