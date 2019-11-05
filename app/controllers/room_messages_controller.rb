@@ -24,6 +24,9 @@ class RoomMessagesController < ApplicationController
   def create_message
     @room_message = RoomMessage.create(room_message_params)
     RoomChannel.broadcast_to @room, @room_message.attributes.merge!(author_avatar: @room_message.author.avatar_url)
+    receiver =  @room.author.eql?(current_user) ? @room.receiver : @room.author
+    sender =  @room.author.eql?(current_user) ? @room.author : @room.receiver
+    Notification.create!(message: t('.you_have_received_a_message'), room_message: @room_message, created_for: @room_message.class.to_s.underscore, sender: sender, receiver: receiver)
     render json: { status: :true }
   end
   def load_entities
