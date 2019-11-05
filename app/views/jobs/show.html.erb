@@ -1,7 +1,3 @@
-
-<!-- Page Content
-================================================== -->
-
 <div class="dashboard-headline">
 	<h3><%= @job.name %></h3>
 </div>
@@ -21,7 +17,6 @@
 			<% end %>
 			<!-- Listings Container -->
 			<div class="listings-container">
-
 				<!-- Job Listing -->
 				<div class="freelancers-container freelancers-list-layout margin-top-35">
 
@@ -58,8 +53,8 @@
 							<div class="freelancer-details">
 								<div class="freelancer-details-list">
 									<ul>
-										<li>Localisation <strong><i class="icon-material-outline-location-on"></i>Paris</strong></li>
-										<li>Taux horaire <strong>100€ / h</strong></li>
+										<li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i><%= @job.worker.company.address.city %></strong></li>
+										<li><%= t('.price_rate') %> <strong><%= number_to_currency(@job.worker.price_rate,strip_insignificant_zeros: true)%></strong></li>
 									</ul>
 								</div>
 								<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
@@ -114,24 +109,23 @@
 				</div>
 			</div>
 			<!-- Listings Container / End -->
-			
+
 			<div class="dashboard-box margin-top-0">
-
 				<!-- Headline -->
-				<div class="headline">
+				<!-- <div class="headline">
 					<h3><i class="icon-material-outline-face"></i> <%= t('.your_review') %></h3>
-				</div>
+				</div> -->
 
-				<div class="content">
+				<!-- <div class="content">
 					<ul class="dashboard-box-list">
 						<li>
 							<div class="boxed-list-item">
-								<!-- Content -->
+
 								<div class="item-content">
 									<h4><%= @job.name %></h4>
-									<% if @job.reviews.empty? %>
+									<%# <% if @job.reviews.empty? %> %>
 									<span class="company-not-rated margin-bottom-5"> <%= t('.no_reviews_yet') %></span>
-									<% else %>
+									<%# <% else %> %>
 									<div class="item-details margin-top-10">
 										<div class="star-rating" data-rating="5.0"></div>
 										<div class="detail-item"><i class="icon-material-outline-date-range"></i> Août 2019</div>
@@ -139,17 +133,17 @@
 									<div class="item-description">
 										<p>Excellent photographe - moment inoubliable.</p>
 									</div>
-									<%end%>
+									<%# <%end%> %>
 								</div>
 							</div>
-							<% if @job.reviews.empty? %>
+							<%# <% if @job.reviews.empty? %> %>
 							<a href="#small-dialog-2" class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"><i class="icon-material-outline-thumb-up"></i> <%= t('.leave_a_review') %></a>
-							<% else %>
+							<%# <% else %> %>
 							<a href="#small-dialog-1" class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"><i class="icon-feather-edit"></i><%= t('.edit_review') %></a>
-							<% end %>
+							<%# <% end %> %>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 
 		</div>
@@ -199,7 +193,6 @@
 						<div class="freelancer-details">
 							<div class="freelancer-details-list">
 								<ul>
-									<% binding.pry %>
 									<li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i> <%= worker.company.address.city %></strong></li>
 									<li> <%= t('.price_rate') %> <strong> <%= number_to_currency(worker.price_rate,strip_insignificant_zeros: true)%></strong></li>
 								</ul>
@@ -224,8 +217,8 @@
 
 			<!-- Button -->
 			<% if current_user.is_worker %>
-				<% if Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).exists? %>
-					<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"apply-now-button" do %>
+				<% if Room.where(author_id:current_user.id,receiver_id: @job.customer.id,job_id: @job.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id,job_id: @job.id)).exists? %>
+					<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id,job_id: @job.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id,job_id: @job.id)).ids),class:"apply-now-button" do %>
 						<%= t('.your_conversation') %> <i class="icon-material-outline-arrow-right-alt"></i>
 					<% end %>
 				<% else %>
@@ -233,8 +226,8 @@
 					  <%= form.hidden_field :author_id, value: current_user.id  %>
 					  <%= form.hidden_field :receiver_id, value: @job.customer_id %>
 					  <%= form.hidden_field :job_id, value: @job.id %>
-					  <%= form.submit t('.send_mp_to_client'),class:"apply-now-button" do  %>
-							 <i class="icon-material-outline-arrow-right-alt"></i>
+						<%= link_to "",:onclick => "$('#new_room').submit()",class:"apply-now-button" do %>
+							 <%= t('.send_mp_to_client')   %><i class="icon-material-outline-arrow-right-alt"></i>
 						<% end %>
 					<% end %>
 				<% end %>
@@ -310,8 +303,6 @@
 		</div>
 	</div>
 </div>
-
-
 <!-- Leave a Review for Freelancer Popup
 ================================================== -->
 <div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
