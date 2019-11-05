@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_100518) do
+ActiveRecord::Schema.define(version: 2019_11_04_135245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -70,6 +70,22 @@ ActiveRecord::Schema.define(version: 2019_11_04_100518) do
     t.string "currency"
     t.index ["address_id"], name: "index_companies_on_address_id"
     t.index ["worker_id"], name: "index_companies_on_worker_id"
+  end
+
+  create_table "credit_changements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.boolean "is_for_add", default: false
+    t.float "quantity", default: 0.0
+    t.uuid "credits_payment_id"
+    t.uuid "subscription_id"
+    t.uuid "room_id"
+    t.integer "create_for", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["credits_payment_id"], name: "index_credit_changements_on_credits_payment_id"
+    t.index ["room_id"], name: "index_credit_changements_on_room_id"
+    t.index ["subscription_id"], name: "index_credit_changements_on_subscription_id"
+    t.index ["user_id"], name: "index_credit_changements_on_user_id"
   end
 
   create_table "credits_offers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -273,7 +289,6 @@ ActiveRecord::Schema.define(version: 2019_11_04_100518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "job_id"
-    t.index ["author_id", "receiver_id"], name: "index_rooms_on_author_id_and_receiver_id", unique: true
     t.index ["author_id"], name: "index_rooms_on_author_id"
     t.index ["job_id"], name: "index_rooms_on_job_id"
     t.index ["name"], name: "index_rooms_on_name", unique: true
@@ -378,6 +393,10 @@ ActiveRecord::Schema.define(version: 2019_11_04_100518) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "companies", "addresses"
   add_foreign_key "companies", "users", column: "worker_id"
+  add_foreign_key "credit_changements", "credits_payments"
+  add_foreign_key "credit_changements", "rooms"
+  add_foreign_key "credit_changements", "subscriptions"
+  add_foreign_key "credit_changements", "users"
   add_foreign_key "credits_payments", "users"
   add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "format_deliveries"
