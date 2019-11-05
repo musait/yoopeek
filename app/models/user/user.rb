@@ -122,20 +122,34 @@ class User < ApplicationRecord
     plan||PlanLimitation.free_limitation
   end
 
-  def add_credits credits
+  def add_credits credits, create_for = nil, element = nil
     update total_credits: (total_credits + credits), current_credits: (current_credits + credits)
+    if create_for.present? &&element.present?
+      CreditChangement.create user: self, is_for_add: true, quantity: credits, create_for: create_for.to_sym, "#{create_for}_id" => element.id
+    else
+      CreditChangement.create user: self, is_for_add: true, quantity: credits, create_for: create_for.to_sym
+    end
   end
 
-  def remove_credits credits
+  def remove_credits credits, create_for = nil, element = nil
     update current_credits: (current_credits - credits)
+    if create_for.present? &&element.present?
+      CreditChangement.create user: self, is_for_add: false, quantity: credits, create_for: create_for.to_sym, "#{create_for}_id" => element.id
+    else
+      CreditChangement.create user: self, is_for_add: false, quantity: credits, create_for: create_for.to_sym
+    end
   end
 
-  def pay_with_credits credits
+  def pay_with_credits credits, create_for = nil, element = nil
     if current_credits > credits
-      remove_credits credits
+      remove_credits credits, create_for, element
       true
     else
       false
     end
+  end
+
+  def refund_credits credits
+    update current_credits: (current_credits + credits)
   end
 end

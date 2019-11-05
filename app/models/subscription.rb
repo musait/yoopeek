@@ -10,6 +10,7 @@ class Subscription < ApplicationRecord
   }
 
   after_create do
-    user.add_credits (plan_limitation.nb_answer * Rails.application.credentials.dig(:message_price).to_f)
+    credits = (plan_limitation.nb_answer * Rails.application.credentials.dig(:message_price).to_f)
+    user.add_credits credits, "subscription", self
   end
 end
