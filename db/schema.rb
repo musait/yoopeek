@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_135245) do
+ActiveRecord::Schema.define(version: 2019_11_05_114601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_135245) do
 
   create_table "quote_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "content"
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.integer "price"
     t.integer "total"
     t.uuid "quote_id"
@@ -237,7 +237,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_135245) do
     t.uuid "job_id"
     t.integer "status", default: 0
     t.uuid "user_id"
-    t.bigint "quote_number"
+    t.bigint "quote_number", default: 0
     t.integer "total_without_vat"
     t.integer "vat"
     t.integer "total_within_vat"
@@ -372,8 +372,8 @@ ActiveRecord::Schema.define(version: 2019_11_04_135245) do
     t.string "stripe_subscription_id"
     t.string "stripe_plan_id"
     t.float "current_plan_amount"
-    t.datetime "subscription_end_at"
     t.uuid "portfolio_id"
+    t.datetime "subscription_end_at"
     t.uuid "category_id"
     t.string "facebook_profile"
     t.string "instagram_profile"
