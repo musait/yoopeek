@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :search_result]
+  skip_before_action :authenticate_user!, only: [:index, :search_result, :stripe_subscription_webhook]
+  skip_before_action :verify_authenticity_token, only: [:stripe_subscription_webhook]
+
   def index
   end
   def search_result
@@ -35,6 +37,29 @@ class HomeController < ApplicationController
 
   def buy_credits
     @credits_offers = CreditsOffer.order(:price, reduction: :desc).all
+  end
+  def stripe_subscription_webhook
+    object = params["data"]["object"]
+    user = User.find_by stripe_customer_id: object["customer"]
+    if user.present?
+      case params["type"]
+      when 'invoice.payment_succeeded'
+        plan_id = object["lines"]["data"][0]["plan"]["id"]
+        subscription_id = object["lines"]["data"][0]["id"]
+        subscription_object = object["lines"]["data"][0]
+        subscription_end = subscription_object["period"]["end"]
+        # subscription = Stripe::Subscription.retrieve(subscription_id)
+        plan_limitation = PlanLimitation.find_by(stripe_plan_id: plan_id)
+        amount = (object["amount_due"].to_i / 100.0)
+        Subscription.create user: user, plan_limitation: plan_limitation, plan_amount: amount, stripe_plan_id: plan_id, end_at: Time.at(subscription_end), stripe_subscription_id: subscription_id
+        user.update stripe_subscription_id: subscription_id, current_plan_amount: amount, stripe_plan_id: plan_id, subscription_end_at: Time.at(subscription_end)
+      when 'customer.subscription.deleted'
+        subscription = Subscription.find_by stripe_subscription_id: object["id"]
+        StripeSubscription.cancel_subscription(subscription.user)
+      end
+    end
+
+    render json: {},    status: 200
   end
 
   def add_credits

@@ -15,8 +15,8 @@ module StripeSubscription
           },
         ]
       })
-      user.update stripe_subscription_id: subscription.id, current_plan_amount: amount, stripe_plan_id: plan_id, subscription_end_at: Time.at(subscription['current_period_end'])
-      Subscription.create user: user, plan_limitation: plan_limitation, plan_amount: amount, stripe_plan_id: plan_id, end_at: Time.at(subscription['current_period_end']), stripe_subscription_id: subscription.id
+      # user.update stripe_subscription_id: subscription.id, current_plan_amount: amount, stripe_plan_id: plan_id, subscription_end_at: Time.at(subscription['current_period_end'])
+      # Subscription.create user: user, plan_limitation: plan_limitation, plan_amount: amount, stripe_plan_id: plan_id, end_at: Time.at(subscription['current_period_end']), stripe_subscription_id: subscription.id
     end
 
     def cancel_subscription user
@@ -24,12 +24,12 @@ module StripeSubscription
         if user.stripe_subscription_id.present?
           subscription = Stripe::Subscription.retrieve(user.stripe_subscription_id)
           subscription.delete
-          StripeSubscriptionCancel.create user: user, subscription_end_at: Time.at(subscription['current_period_end']), plan_amount: user.current_plan_amount, stripe_subscription_id: user.stripe_subscription_id, stripe_plan_id: user.stripe_plan_id, subscription: user.current_subscription
+          StripeSubscriptionCancel.create! user: user, subscription_end_at: Time.at(subscription['current_period_end']), plan_amount: user.current_plan_amount, stripe_subscription_id: user.stripe_subscription_id, stripe_plan_id: user.stripe_plan_id, subscription: user.current_subscription
+          user.update subscription_end_at: Time.at(subscription['current_period_end']), current_plan_amount: nil, stripe_subscription_id: nil, stripe_plan_id: nil
         end
       rescue => e
         p "error", e
       end
-      user.update subscription_end_at: Time.at(subscription['current_period_end']), current_plan_amount: nil, stripe_subscription_id: nil, stripe_plan_id: nil
     end
   end
 end
