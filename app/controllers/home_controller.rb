@@ -3,12 +3,17 @@ class HomeController < ApplicationController
   def index
   end
   def search_result
-    if params[:search].present?
-      @workers = Worker.joins(:categories).where(categories: {name: params[:name]})
+    @workers = []
+    if params[:category].present?
+      @category = Category.find(params[:category])
+      @workers = Worker.joins(:category).where(categories: {name: @category.name}).page(params[:page])
     else
-      @workers = Worker.paginate(page: params[:page], per_page: params[:per_page])
+      @workers = Worker.all
     end
+    if params[:city].present?
+      @workers = @workers.joins(:company => [:address]).where(addresses: {city: params[:city].split(',')[0]}).page(params[:page])
 
+    end
   end
   def checkout_credit
     @credits_offer = CreditsOffer.find(params[:id])
@@ -38,7 +43,6 @@ class HomeController < ApplicationController
     session.delete(:credits_offer_id)
     respond_to do |format|
       format.any {
-        # Charge à notre code d'implémenter le to_xls
         render js: ''
       }
       format.html {
