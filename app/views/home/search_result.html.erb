@@ -1,23 +1,35 @@
-<div class="container">
-	<div class="row">
 
-		<div class="col-xl-12">
+<div class="row">
 
-			<h3 class="page-title">Profils qui correspondent à votre recherche</h3>
+	<div class="col-xl-12">
 
-			<div class="notify-box margin-top-15">
+		<h3 class="page-title"> <%= t('.profile_who_match') %></h3>
 
-				<div class="sort-by">
-					<span>Trier par:</span>
-					<select class="selectpicker hide-tick">
-						<option>Note</option>
-						<option>Plus récent</option>
-					</select>
-				</div>
+		<div class="notify-box margin-top-15">
+
+			<div class="sort-by">
+				<span>Trier par:</span>
+				<select class="selectpicker hide-tick">
+					<option>Note</option>
+					<option>Plus récent</option>
+				</select>
 			</div>
+		</div>
 
-			<!-- Freelancers List Container -->
-			<div class="freelancers-container freelancers-list-layout margin-top-35">
+		<!-- Freelancers List Container -->
+		<div class="freelancers-container freelancers-list-layout margin-top-35">
+			<% if @workers.empty? %>
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+							<section id="not-found" class="center margin-top-50 margin-bottom-25">
+								<h2><i class="icon-line-awesome-frown-o"></i></h2>
+								<p><%= raw t('.search_result_nil') %></p>
+							</section>
+						</div>
+					</div>
+				</div>
+			<% else %>
         <% @workers.each do |worker| %>
           <!--Freelancer -->
           <div class="freelancer">
@@ -55,43 +67,33 @@
             <div class="freelancer-details">
               <div class="freelancer-details-list">
                 <ul>
-                  <li>Location <strong><i class="icon-material-outline-location-on"></i> Londres</strong></li>
-                  <li>Taux horaire<strong>100€ / h</strong></li>
+                  <li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i> <%= worker.company.address.city %></strong></li>
+                  <li> <%= t('.price_rate') %><strong> <%= number_to_currency(worker.price_rate , strip_insignificant_zeros: true) %></strong></li>
                 </ul>
               </div>
               <%= link_to user_path(id: worker.id), class: "button button-sliding-icon ripple-effect" do %>
-                Voir son profil <i class="icon-material-outline-arrow-right-alt"></i>
+                <%= t('.see_his_profile') %> <i class="icon-material-outline-arrow-right-alt"></i>
               <% end %>
             </div>
           </div>
           <!-- Freelancer / End -->
         <% end %>
+			<% end %>
+		</div>
+		<!-- Tasks Container / End -->
 
-			</div>
-			<!-- Tasks Container / End -->
 
-
-			<!-- Pagination -->
-			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-12">
-					<!-- Pagination -->
-					<div class="pagination-container margin-top-40 margin-bottom-60">
-						<nav class="pagination">
-							<ul>
-								<li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
-								<li><a href="#" class="ripple-effect">1</a></li>
-								<li><a href="#" class="current-page ripple-effect">2</a></li>
-								<li><a href="#" class="ripple-effect">3</a></li>
-								<li><a href="#" class="ripple-effect">4</a></li>
-								<li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
-							</ul>
-						</nav>
-					</div>
+		<!-- Pagination -->
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Pagination -->
+				<div class="pagination-container">
+					<%= paginate @workers%>
 				</div>
 			</div>
-			<!-- Pagination / End -->
-
 		</div>
+		<!-- Pagination / End -->
+
 	</div>
 </div>
