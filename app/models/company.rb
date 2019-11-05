@@ -10,4 +10,8 @@ class Company < ApplicationRecord
     self.build_address
     self.save
   end
+
+  def is_subject_to_vat?
+    self.subject_to_vat == true
+  end
 end
