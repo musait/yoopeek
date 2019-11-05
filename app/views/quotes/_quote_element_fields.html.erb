@@ -25,5 +25,18 @@
     </div>
   </div>
   <%= f.hidden_field :_destroy %>
-  <%= link_to_remove_fields 'Remove element', '.form_element' %>
+  <%= link_to_remove_fields t('.delete_element'), '.form_element' %>
 </div>
+
+  <script type="text/javascript">
+    $( document ).ready(function() {
+  		$('#price').on('change', function() {
+
+  		  var price = $('#price').val();
+  		  var quantity = $('#quantity').val();
+  		  var total_calculated = price * quantity;
+        debugger
+  			$('#total').val(total_calculated)
+  		});
+  	});
+  </script>
