@@ -9,7 +9,7 @@
 
 				<!-- Logo -->
 				<div id="logo">
-					<%= link_to root_path(locale: :fr) do %>
+					<%= link_to root_path,data: { turbolinks: false } do %>
 					<%= image_tag "logo.svg" %>
 					<%end%>
 				</div>
@@ -21,17 +21,15 @@
 							<% if current_user.is_worker %>
 								<li><a href="#">Pro Missions</a></li>
 								<!-- <li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li> -->
-								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path(locale: :fr) %></li>
-								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr), method: :get %></li>
+								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path %></li>
+
+								<li><%= link_to I18n.t('.header.rooms'), room_path(id:Room.last.id), method: :get %></li>
 								<li><a href="#">Pro Paiements</a></li>
-								<li> <%= link_to "Portfolio", portfolios_path(local: :fr), method: :get %></li>
-								<li> <%= link_to "Mon profil public", user_path(current_user.id), method: :get %></li>
-								<!-- <li><a href="/theme/user/hireo/pro-paiements-index.html">Pro Paiements</a></li> -->
+								<li> <%= link_to t('.header.portfolio'), portfolios_path, method: :get %></li>
 							<% else %>
 								<li><%= link_to I18n.t('.header.create_job'), new_job_path,method: :get, class:"button ripple-effect", style:"color: white"%></li>
-								<li><%= link_to I18n.t('.header.your_job'), jobs_path(locale: :fr),method: :get %></li>
-								<li><%= link_to I18n.t('.header.rooms'), rooms_path(locale: :fr),method: :get %></li>
-								<li><a href="#">Favoris</a></li>
+								<li><%= link_to I18n.t('.header.your_job'), jobs_path,method: :get %></li>
+								<li><%= link_to I18n.t('.header.rooms'), rooms_path,method: :get %></li>
 								<!-- <li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li> -->
 							<% end %>
 						<% end %>
@@ -84,7 +82,7 @@
 															<a href="#">
 															<!-- <a href="dashboard-messages.html"> -->
 																<div class="notification-text">
-																	<strong>Vous n'avez pas de notifications non lues</strong>
+																	<strong> <%= t('.notification_not_seen') %></strong>
 																</div>
 															</a>
 														</li>
@@ -135,7 +133,7 @@
 													<a href="#">
 													<!-- <a href="dashboard-messages.html"> -->
 														<div class="notification-text">
-															<strong>Vous n'avez pas de nouveaux messages</strong>
+															<strong> <%= t('.message_not_seen') %></strong>
 														</div>
 													</a>
 												</li>
