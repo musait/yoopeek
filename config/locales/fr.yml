@@ -73,6 +73,7 @@ fr:
     rooms: "Messagerie"
     create_job: "Créer une mission"
     your_job: "Vos missions"
+    portfolio: "Portfolios"
   footer:
   layouts:
     user:
@@ -96,6 +97,9 @@ fr:
             finished: "Terminée"
             aborted: "Annulée"
             status: "Statut"
+      header:
+        notification_not_seen: "Vous n'avez pas de notifications non lues"
+        message_not_seen: "Vous n'avez pas de messages non lus"
   home:
     index:
       your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
@@ -116,6 +120,12 @@ fr:
       localisation: "Localisation"
       price: "Taux horaire"
       see_his_profile: "Voir son profil"
+    search_result:
+      search_result_nil: "Votre recherche n'a donné aucun résultat. Essayez avec une autre ville ou une autre catégorie"
+      price_rate: "Taux horaire"
+      localisation: "Localisation"
+      see_his_profile: "Voir son profil"
+      profile_who_match: "Profils qui correspondent à votre recherche"
   jobs:
     index:
       your_missions: "Vos missions"
