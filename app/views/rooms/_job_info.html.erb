@@ -58,7 +58,7 @@
       <ul>
         <% @room.job.quotes.each do |quote| %>
           <li style="display: flex; justify-content: space-between">
-            <%= link_to quote_path(id: quote.id) do %>
+            <%= link_to quote_path(id: quote.id), method: :get do %>
               <i class="icon-material-outline-description"></i> <%= t('.quote',quote_number: quote.quote_number) %>
               <% case quote.status %>
                 <% when "created" %>
