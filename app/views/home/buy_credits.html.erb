@@ -13,7 +13,7 @@
 
                 <!-- Name -->
                 <div class="freelancer-name">
-                  <h1>  <%= raw t('credits_for.html', credits: credits_offer.credits, for: (currency_formated credits_offer.price))  %> <%= raw("<mark>-#{credits_offer.reduction}%</mark>") if credits_offer.reduction.present? %></h1>
+                  <h1>  <%= raw t('credits_for.html', credits: float_formated(credits_offer.credits), for: (currency_formated credits_offer.price))  %> <%= raw("<mark>-#{credits_offer.reduction}%</mark>") if credits_offer.reduction.present? %></h1>
                   <!-- Rating -->
                 </div>
               </div>
