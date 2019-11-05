@@ -5,7 +5,6 @@ class Job < ApplicationRecord
   belongs_to :customer
   belongs_to :format_delivery
   has_many :rooms
-  has_many :reviews
   has_many :quotes
   has_one :notification
   paginates_per 3
@@ -29,6 +28,6 @@ class Job < ApplicationRecord
     self.slug = name.to_s.parameterize
   end
   def to_param
-  "#{slug}"
-end
+    "#{slug}"
+  end
 end
