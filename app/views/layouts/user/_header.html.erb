@@ -29,7 +29,7 @@
 							<% else %>
 								<li><%= link_to I18n.t('.header.create_job'), new_job_path,method: :get, class:"button ripple-effect", style:"color: white"%></li>
 								<li><%= link_to I18n.t('.header.your_job'), jobs_path,method: :get %></li>
-								<li><%= link_to I18n.t('.header.rooms'), rooms_path,method: :get %></li>
+								<li><%= link_to I18n.t('.header.rooms'), room_path((Room.order("created_at").where("receiver_id = ? OR author_id =?",current_user.id,current_user.id)).first.id),method: :get %></li>
 								<!-- <li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li> -->
 							<% end %>
 						<% end %>
@@ -92,7 +92,7 @@
 											<%else%>
 												<% @notifications.each do |notification| %>
 													<li class="notifications-not-read">
-														<%= link_to notification.url do %>
+														<%= link_to notification.url, method: :get do %>
 															<span class="notification-icon"><i class="icon-material-outline-group"></i></span>
 															<span class="notification-text">
 																<%= raw notification.message %>
@@ -147,13 +147,13 @@
 												<ul>
 													<!-- Notification -->
 													<li class="notifications-not-read">
-														<%= link_to nm.url do  %>
+														<%= link_to nm.url, method: :get do  %>
 														<!-- <a href="dashboard-messages.html"> -->
 															<span class="notification-avatar status-online"><img src= "<%= nm.sender.avatar_url %>" alt=""></span>
 															<div class="notification-text">
 																<strong><%= nm.sender.full_name %></strong>
 																<p class="notification-msg-text"> <%= nm.room_message.message %></p>
-																<span class="color"> <%= nm.created_at %></span>
+																<span class="color"> <%= time_ago_in_words(nm.created_at) %></span>
 															</div>
 														<% end %>
 													</li>
