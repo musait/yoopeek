@@ -36,6 +36,7 @@ class RoomsController < ApplicationController
     @room_message = RoomMessage.new room: @room
     @room = Room.includes(:room_messages => [:author => :avatar_attachment]).find(params[:id]) if params[:id]
     @room_messages = @room.room_messages
+    @notifications = Notification.not_seen.where(receiver_id: current_user.id)
     Notification.set_seen @notifications, "room_message", @room_messages.ids
   end
 
