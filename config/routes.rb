@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-
-
-
-
-
   devise_for :users, only: :omniauth_callbacks, controllers: {:registrations => 'registrations',omniauth_callbacks: 'users/omniauth_callbacks'}
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, skip: :omniauth_callbacks,controllers: {:registrations => 'registrations'}
@@ -32,6 +27,7 @@ Rails.application.routes.draw do
     get 'show' => 'jobs#show_test'
     get 'show_quote' => 'quotes#show_test'
     get 'search_result' => 'home#search_result'
+    post  'search_result' => 'home#search_result'
     resources :reviews
     resources :subcategories
     resources :categories do
