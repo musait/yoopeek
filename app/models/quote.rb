@@ -8,9 +8,7 @@ class Quote < ApplicationRecord
 
   enum status: [:created, :declined, :accepted]
   before_create :increment_quote
-  after_create :send_notification
-  after_create :send_email_after_quote_creation
-
+  after_save :send_notification_and_email, if :status_changed?
 
   def total
     quote_elements.sum(:total)
@@ -27,11 +25,19 @@ class Quote < ApplicationRecord
     self.quote_number = Quote.where(job_id: self.job.id).count + 1
   end
 
-  def send_notification
-    Notification.create!(message: I18n.t('.quotes.create.you_have_received_a_quote',pro: self.sender.full_name, job: self.job.name), quote: self,created_for: self.class.to_s.underscore, sender: self.sender, receiver: self.receiver)
+  def send_notification_and_email
+    case self.status
+      when "created"
+        Notification.create!(message: I18n.t('.quotes.create.you_have_received_a_quote',pro: self.sender.full_name, job: self.job.name), quote: self,created_for: self.class.to_s.underscore, sender: self.sender, receiver: self.receiver)
+        UserMailer.with(user: self.receiver, quote: self).new_quote.deliver_now
+      when "accepted"
+        Notification.create!(message: I18n.t('.quotes.create.your_quote_has_been_accepted',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.receiver, receiver: self.sender)
+        UserMailer.with(user: self.sender, quote: self).quote_accepted.deliver_now
+      when "declined"
+        Notification.create!(message: I18n.t('.your_quote_has_been_declined',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.sender, receiver: self.receiver)
+        UserMailer.with(user: self.sender, quote: self).quote_declined.deliver_now
+      end
+    end
   end
 
-  def send_email_after_quote_creation
-    UserMailer.with(user: self.sender, quote: self).new_quote.deliver_later
-  end
 end
