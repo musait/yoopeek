@@ -52,7 +52,6 @@
 /* Done / Active */
 
 .progress .circle.bronze {
-  /theme/user/hireo/images/argent.png
   background-image: url(/theme/user/hireo/images/bronze.png);
   background-position: center;
   background-size: 100px
