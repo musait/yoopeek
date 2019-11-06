@@ -68,7 +68,6 @@ class QuotesController < ApplicationController
     receiver = @quote.sender
     Notification.create!(message: t('.your_quote_has_been_declined',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
     UserMailer.with(user: @quote.sender, quote: @quote).quote_declined.deliver_later
-    binding.pry
     redirect_to @quote
   end
 
@@ -88,14 +87,14 @@ class QuotesController < ApplicationController
       @quote.vat = 0
     end
     @quote.job_id = params[:quote][:job_id]
-    Notification.create!(message: t('.you_have_received_a_quote',pro: @quote.sender.full_name, job: @quote.job.name), quote: @quote,created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
     respond_to do |format|
       if @quote.save
-        UserMailer.with(user: @quote.sender, quote: @quote).new_quote.deliver_later
         format.html { redirect_to @quote, notice: t('.quote_created') }
         format.json { render :show, status: :created, location: @quote }
       else
-        format.html { render :new }
+        @job = @quote.job
+        
+        format.html { render :new  }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
       end
     end
