@@ -31,7 +31,7 @@
 						<div class="intro-banner-search-form margin-top-95">
 							<div class="intro-search-field">
 								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
-								<%= select_tag 'category', options_for_select(Category.all.collect{ |u| [u.name, u.id] }), id:"category_select",:include_blank => 'Sélectionnez une catégorie' %>
+								<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name), id:"category_select",:include_blank => 'Sélectionnez une catégorie' %>
 							</div>
 							<div class="intro-search-field with-autocomplete">
 								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.where') %></label>
@@ -53,11 +53,11 @@
 				<div class="col-md-12">
 					<ul class="intro-stats margin-top-45 hide-under-992px">
 						<li>
-							<strong class="counter">1,586</strong>
+							<strong class="counter"> <%= Job.count %></strong>
 							<span><%= raw I18n.t('.home.index.published_ads') %></span>
 						</li>
 						<li>
-							<strong class="counter">1,232</strong>
+							<strong class="counter"> <%= Worker.count %></strong>
 							<span><%= raw I18n.t('.home.index.pros') %></span>
 						</li>
 					</ul>
@@ -81,7 +81,7 @@
 
 				<div class="col-xl-4 col-md-4">
 					<!-- Icon Box -->
-					<div class="icon-box with-line">
+					<div class="icon-box">
 						<!-- Icon -->
 						<div class="icon-box-circle">
 							<div class="icon-box-circle-inner">
@@ -95,7 +95,7 @@
 
 				<div class="col-xl-4 col-md-4">
 					<!-- Icon Box -->
-					<div class="icon-box with-line">
+					<div class="icon-box">
 						<!-- Icon -->
 						<div class="icon-box-circle">
 							<div class="icon-box-circle-inner">
