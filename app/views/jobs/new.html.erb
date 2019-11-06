@@ -50,8 +50,8 @@
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5 class="required"><%= raw I18n.t('.jobs.new.category') %></h5>
-							<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {id:"category_id"}) %>
+							<h5 class="required"><%= t('.category') %></h5>
+							<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: t('.pick_category')}, {id:"category_id"}) %>
 						</div>
 					</div>
 
@@ -59,7 +59,7 @@
 						<div  class="submit-field">
 							<h5 class="required"><%= raw I18n.t('.jobs.new.under_category') %></h5>
 								<div id="subcategories_select">
-									<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true}) %>
+									<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: t('.pick_subcategory')}, {disabled: true}) %>
 								</div>
 						</div>
 					</div>
@@ -110,7 +110,7 @@
 					</div>
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.jobs.new.estimated_time') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.estimated_time') %></h5>
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="input-with-icon">
@@ -130,8 +130,7 @@
 					<div class="col-xl-4">
 						<div class="submit-field">
 							<h5 class="required"><%= raw I18n.t('.jobs.new.desired_format') %></h5>
-							<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choissisez un format de livraison"}) %>
-
+							<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: t('.pick_format_delivery')}) %>
 						</div>
 					</div>
 					<div class="col-xl-4">
