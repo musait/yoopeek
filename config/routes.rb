@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :rooms
     resources :room_messages
+    get "worker_jobs" => "jobs#worker_jobs"
     resources :quotes do
       member do
         post :pay
@@ -24,8 +25,6 @@ Rails.application.routes.draw do
     end
     resources :quote_elements
     resources :jobs, param: :slug
-    get 'show' => 'jobs#show_test'
-    get 'show_quote' => 'quotes#show_test'
     get 'search_result' => 'home#search_result'
     post  'search_result' => 'home#search_result'
     resources :reviews
