@@ -9,6 +9,10 @@ class Job < ApplicationRecord
   has_one :notification
   paginates_per 3
   validates :date_delivery, not_in_past: true,:allow_blank => true
+  validates :max_price, numericality: { only_integer: true }, allow_blank: true
+  validates :min_price, numericality: { only_integer: true }, allow_blank: true
+  validates :min_time, numericality: { only_integer: true }, allow_blank: true
+  validates :max_time, numericality: { only_integer: true }, allow_blank: true
 
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :completed, :cancelled]
