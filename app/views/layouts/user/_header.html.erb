@@ -19,7 +19,7 @@
 					<ul id="responsive">
 						<% if user_signed_in?%>
 							<% if current_user.is_worker %>
-								<li><a href="#">Pro Missions</a></li>
+								<li> <%= link_to t('.worker_jobs'), worker_jobs_path %></li>
 								<!-- <li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li> -->
 								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path %></li>
 
@@ -200,18 +200,20 @@
 										<label class="user-invisible"><%= User.types[1] %></label>
 										<!-- Status Indicator -->
 										<span class="status-indicator" aria-hidden="true"></span>
-										<%= switch_user_select %>
+
 									</div>
 								</div>
 
 								<ul class="user-menu-small-nav">
-									<li><a href="#"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-									<!-- <li><a href="dashboard.html"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li> -->
-									<li>
-										<%= link_to subscriptions_path do %>
-											<i class="icon-material-outline-settings"></i> Mon abonnement
-										<% end %>
-									</li>
+									<%= switch_user_select %>
+									<% if current_user.is_worker %>
+										<li><a href="#"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+										<li>
+											<%= link_to subscriptions_path do %>
+												<i class="icon-material-outline-settings"></i> Mon abonnement
+											<% end %>
+										</li>
+									<% end %>
 									<li><%= link_to edit_user_registration_path, method: :get  do %>
 									<i class="icon-material-outline-settings"></i> Settings
 									<% end %></li>
