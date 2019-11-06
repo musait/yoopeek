@@ -60,7 +60,7 @@
           <li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.min_price) +"-"+ number_to_currency(job.max_price)%></li>
           <li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
           <li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
-          <li><i class="icon-material-outline-location-on"></i> Clé USB</li>
+          <li><i class="icon-material-outline-location-on"></i> <%= job.format_delivery.name %></li>
           <li><i class="icon-material-outline-location-on"></i> <%=  t('jobs.index.time_range', min_time: job.min_time,max_time: job.max_time) %></li>
           <li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
           <li><i class="icon-material-outline-access-time"></i> <%= t('jobs.index.published_at') %> <%= time_ago_in_words(job.created_at) %></li>
