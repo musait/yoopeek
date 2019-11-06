@@ -25,9 +25,11 @@
 
     <div id="wrapper">
       <%= render "layouts/user/header"%>
+      <% unless controller_name == "home" && action_name == "index" %>
       <div class="dashboard-container">
     		<div class="dashboard-content-container">
     			<div class="dashboard-content-inner" >
+      <% end %>
             <% unless flash.empty? %>
             	<script type="text/javascript">
             		<% flash.each do |f| %>
@@ -39,9 +41,11 @@
             <%= yield %>
           </div>
           <%= render "layouts/user/footer"%>
+          <% unless controller_name == "home" && action_name == "index" %>
         </div>
       </div>
     </div>
+    <% end %>
     <script src="/theme/user/hireo/js/jquery-migrate-3.0.0.min.js"></script>
     <script src="/theme/user/hireo/js/mmenu.min.js"></script>
     <script src="/theme/user/hireo/js/tippy.all.min.js"></script>
