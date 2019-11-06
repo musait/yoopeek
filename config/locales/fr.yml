@@ -4,6 +4,14 @@ fr:
       template:
         header: "Ce/Cette %{model} n'a pas pu être sauvegardé(e) pour la/les raison(s) suivante(s) :"
       models:
+        quote_element:
+          attributes:
+            price:
+              is_not_a_number: "Le prix doit être un nombre et doit être présent"
+            total:
+              is_not_a_number: "Le total doit être un nombre et doit être présent"
+            content:
+              must_be_present: "Veuillez renseigner les détails de vos/votre élément(s)"
         job:
           attributes:
             max_price:
@@ -11,9 +19,9 @@ fr:
             min_price:
               is_not_a_number: "Votre budget minimal doit être un nombre et doit être présent"
             max_time:
-              is_not_a_number: "Le temps estimé minimal doit être un nombre"
+              is_not_a_number: "Le temps estimé minimal doit être un nombre et doit être présent"
             min_price:
-              is_not_a_number: "Le temps estimé maximal doit être un nombre"
+              is_not_a_number: "Le temps estimé maximal doit être un nombre et doit être présent"
             category:
               required: "Vous devez indiquer une catégorie"
             subcategory:
@@ -206,6 +214,9 @@ fr:
       which_date: "A quelle date souhaitez vous réaliser cette mission ?"
       description: "Description de la mission"
       job_creation: "Créez votre mission"
+      pick_category: "Choissisez une catégorie"
+      pick_subcategory: "Choissisez une sous-catégorie"
+      pick_format_delivery: "Choissisez un format de livraison"
     edit:
       job_edition: "Modifier cette mission"
     worker_jobs:
@@ -303,6 +314,10 @@ fr:
       quote_declined: "Décliné"
       quote_in_progress: "En cours"
       quote_accepted: 'Acceptée'
+      job_created: "Crée"
+      job_in_progress: "En cours"
+      job_completed: "Terminé"
+      job_canceled: "Annulé"
   room_messages:
     create:
       you_have_received_a_message: "Vous avez reçu un message de la part de %{creator}"
@@ -316,8 +331,6 @@ fr:
       legal_notice_information: "Vos mentions légales apparaîtront sur les factures auto-générées par Yoopeek.
         Vous pourrez les modifier dans votre espace personnel."
       creation_button: "Créer votre devis"
-    create:
-      quote_created: "Votre devis a été crée avec succès"
     quote_element_fields:
       item_detail: "Détail de l'élément"
       unit_price: "Prix unitaire (HT)"
@@ -347,6 +360,7 @@ fr:
       message_for_quote_accepted: "Vous avez accepté ce devis. Un message a été envoyé au professionnel pour l'informer de votre accord. Si au bout de 24-48h, il n'est pas revenu vers vous, contactez-le !"
       message_for_quote_declined: "Vous avez refusé ce devis. Un message a été envoyé au professionnel pour l'informer de votre refus. Il reviendra peut-être vers vous pour faire une autre proposition."
     create:
+      quote_created: "Votre devis a été crée avec succès"
       you_have_received_a_quote: "Vous avez reçu un devis de la part de %{pro} pour la mission suivante : %{job}"
     decline:
       your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusé"
