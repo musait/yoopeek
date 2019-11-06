@@ -7,20 +7,20 @@
         <li>
           <i class="icon-material-outline-local-atm"></i>
           <span><%= t('.budget') %></span>
-          <h5><%= number_to_currency(@room.job.min_price) +"-"+ number_to_currency(@room.job.max_price) %></h5>
+          <h5><%= number_to_currency(@room.job.min_price,strip_insignificant_zeros: true) +"-"+ number_to_currency(@room.job.max_price,strip_insignificant_zeros: true) %></h5>
         </li>
         <li>
           <i class="icon-material-outline-location-on"></i>
           <span><%= t('.status') %></span>
           <% case @room.job.status %>
           <% when "created" %>
-          <mark class="color" style="background-color: grey">Créée</mark>
+          <mark class="color" style="background-color: grey"> <%= t('.job_created') %></mark>
           <% when "in_progress" %>
-          <mark class="color" style="background-color: orange">En cours</mark>
+          <mark class="color" style="background-color: orange"><%= t('.job_in_progress') %></mark>
           <% when "completed" %>
-          <mark class="color" style="background-color: #28b661">Terminée</mark>
+          <mark class="color" style="background-color: #28b661"><%= t('.job_completed') %></mark>
           <% else%>
-          <mark class="color" style="background-color: #e53038">Annulée</mark>
+          <mark class="color" style="background-color: #e53038"><%= t('.job_canceled') %></mark>
           <% end %>
         </li>
         <li>
