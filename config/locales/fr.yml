@@ -30,6 +30,10 @@ fr:
               required: "Vous devez indiquer un format de livraison"
             date_delivery:
               cant_be_in_past: "La date ne peux pas être antérieure à aujourd'hui"
+  job_without_invoice: "Cette mission n'a pas de facture"
+  mission_finished: Missison terminé
+  action_not_enable: Action non disponible
+  no_quote_created: Aucun devis a été créé
   credit: Crédit
   not_enougth_credits: Vous n'avez pas assez de crédit
   credits_for:
@@ -166,6 +170,7 @@ fr:
       status: "Statut"
       this_is_no_mission: "Il n'existe pas de missions disponible pour le moment"
     show:
+      mission_finished: Mission terminée
       job_description: "Description de la mission"
       pro_choosen: "Le professionel que vous avez choisi"
       the_client: "Le client"
@@ -240,6 +245,7 @@ fr:
   user:
     all:
       edit:
+        birthdate: Date de naissance
         my_personal_info: "Vos informations personnelles"
         my_account: "Mon compte"
         firstname: "Nom"

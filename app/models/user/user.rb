@@ -24,6 +24,53 @@ class User < ApplicationRecord
   phony_normalize :phone_number, default_country_code: 'FR'
   has_many :portfolios
 
+  before_save :set_stripe_account
+  def set_stripe_account
+    if account_token.present?
+      begin
+        if self.stripe_account_id.blank?
+          account = Stripe::Account.create({
+            country: "FR",
+            type: "custom",
+            account_token: account_token
+          })
+          self.stripe_account_id = account.id
+        else
+          account = Stripe::Account.update(
+            self.stripe_account_id,
+            account_token: account_token
+          )
+        end
+      rescue Stripe::InvalidRequestError => e
+        p e
+        account = nil
+      end
+      account_id = account.try("id") ||stripe_account_id
+      if (account_id.present?) &&person_token.present?
+        begin
+          if self.stripe_person_id.blank?
+            person = Stripe::Account.create_person( account_id,
+              {
+                person_token: person_token
+              }
+            )
+            self.stripe_person_id = person.id
+          else
+            person = Stripe::Account.update_person(
+              account_id,
+              self.stripe_person_id,
+              {
+                person_token: person_token
+              }
+            )
+          end
+        rescue Stripe::InvalidRequestError => e
+          p e
+          account = nil
+        end
+      end
+    end
+  end
   def avatar_url
     if avatar.attached?
       ActiveStorage::Current.host = Rails.application.credentials.dig(Rails.env.to_sym, :host)

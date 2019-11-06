@@ -88,3 +88,5 @@ gem 'stripe'
 gem "select2-rails"
 gem 'dropzonejs-rails'
 gem 'currency_select'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

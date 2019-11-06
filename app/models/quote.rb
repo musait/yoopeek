@@ -16,6 +16,13 @@ class Quote < ApplicationRecord
     quote_elements.sum(:total)
   end
 
+  def create_invoice
+    invoice = Invoice.create attributes.except!("id", "quote_element_id", "status", "quote_number", "user_id").merge!(quote_id: id)
+    quote_elements.each do |quote_element|
+      InvoiceElement.create quote_element.attributes.except!("quote_id").merge!(invoice_id: invoice.id)
+    end
+  end
+
   def increment_quote
     self.quote_number = Quote.where(job_id: self.job.id).count + 1
   end

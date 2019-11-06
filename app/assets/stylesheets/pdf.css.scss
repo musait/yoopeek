@@ -1,0 +1,135 @@
+// @font-face {
+//   font-family: 'Roboto';
+//   font-style: normal;
+//   font-weight: 700;
+//   src: local('Roboto Bold'), local('Roboto-Bold'), url(700.woff) format('woff');
+// }
+
+.page-break {
+  display:block;
+  clear:both;
+  page-break-before:always;
+}
+// body {
+//   height: 270mm;
+//   // width: 230mm;
+//   // font-family: "Roboto";
+//   padding: 10mm;
+//   margin: 0;
+//   font-family: 'Robot', sans-serif;
+//   font-size: 1em;
+// }
+// .small_header {
+//   font-size: small;
+//   font-weight: normal;
+// }
+// .full_width {
+//   width: 190mm;
+// }
+// .container {
+//   display:flex;
+//   margin-bottom: 20mm;
+// }
+//
+// .part_1 {
+//   float: left;
+//   width: 90mm;
+// }
+// .part_2 {
+//   float: right;
+//   width: 95mm;
+// }
+// .mt-t40 {
+//   margin-top: 40mm;
+// }
+// .table {
+//   margin-bottom: 10mm;
+// }
+// .text-center {
+//   text-align: center
+// }
+// table {
+//   border-collapse: collapse;
+// }
+//
+// th {
+//   height: 50px;
+// }
+// table, th, td {
+//   border-bottom: 1px solid black;
+// }
+// th, td {
+//   padding: 15px;
+//   text-align: left;
+// }
+// tr:nth-child(even) {background-color: #f2f2f2;}
+// .text-bottom {
+//   background-color: rgb(210, 235, 255);
+//   position: absolute;
+//   bottom: 10mm;
+//   left: 10mm;
+//   padding: 2mm;
+//   width: 188mm;
+// }
+
+
+
+//
+// .header_pdf {
+//   padding-top: 30mm;
+//   padding-left: 10.4mm;
+//   padding-bottom: 10.4mm;
+//   background-color: white;
+// }
+// .section_pdf {
+//   background-color: rgb(192, 186, 181);
+//   // width: 210mm;
+//   text-align: center;
+//   height: 194mm;
+//
+// }
+// .red_block_pdf {
+//   background-color: rgb(227, 28, 29);
+//   width: 157.5mm;
+//   position: relative;
+//   top: 0;
+//   height: 8mm;
+//   margin-bottom: 20.8mm
+// }
+//
+// .content_pdf {
+//   display: block;
+//   font-size: 1.2em;
+//   margin-top: 0.83em;
+//   margin-bottom: 0.83em;
+//   margin-left: 0;
+//   margin-right: 0;
+//   /* font-weight: bold; */
+// }
+// .content_date_pdf {
+//   margin-top: 20.8mm;
+// }
+// .little_margin_pdf {
+//   margin-bottom: 10.4mm;
+//
+// }
+// .footer_pdf {
+//   background-color: black;
+//   position: fixed;
+//   bottom: 0;
+//   right: 0;
+//   width: 210mm;
+//   height: 29.9mm;
+// }
+//
+// .image_pdf {
+//   position: absolute;
+//   bottom: 0;
+//   right: 0;
+//   height: 40mm;
+//   width: auto;
+// }
+
+.row {
+  margin-top: 10px
+}
