@@ -9,10 +9,10 @@ class Job < ApplicationRecord
   has_one :notification
   paginates_per 3
   validates :date_delivery, not_in_past: true,:allow_blank => true
-  validates :max_price, numericality: { only_integer: true }, allow_blank: true
-  validates :min_price, numericality: { only_integer: true }, allow_blank: true
-  validates :min_time, numericality: { only_integer: true }, allow_blank: true
-  validates :max_time, numericality: { only_integer: true }, allow_blank: true
+  validates_numericality_of :max_price, presence: true, :message => :is_not_a_number
+  validates_numericality_of :min_price, allow_blank: true, :message => :is_not_a_number
+  validates_numericality_of :min_time, allow_blank: true, :message => :is_not_a_number
+  validates_numericality_of :max_time, allow_blank: true, :message => :is_not_a_number
 
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :completed, :cancelled]
