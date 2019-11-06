@@ -24,66 +24,23 @@
 					<h3><i class="icon-material-outline-thumb-up"></i> <%= t('.history_and_reviews') %></h3>
 				</div>
 				<ul class="boxed-list-ul">
-					<li>
-						<div class="boxed-list-item">
-							<!-- Content -->
-							<div class="item-content">
-								<h4>Photographie Bar mitsvah</h4>
-								<div class="item-details margin-top-10">
-									<div class="star-rating" data-rating="4.0"></div>
-									<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
+					<% @jobs.each do |job| %>
+							<li>
+								<div class="boxed-list-item">
+									<!-- Content -->
+									<div class="item-content">
+										<h4>	<% job.name %></h4>
+										<div class="item-details margin-top-10">
+											<div class="star-rating" data-rating="4.0"></div>
+											<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
+										</div>
+										<div class="item-description">
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
+										</div>
+									</div>
 								</div>
-								<div class="item-description">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="boxed-list-item">
-							<!-- Content -->
-							<div class="item-content">
-								<h4>Photographie Entreprise</h4>
-								<div class="item-details margin-top-10">
-									<div class="star-rating" data-rating="5.0"></div>
-									<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
-								</div>
-								<div class="item-description">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="boxed-list-item">
-							<!-- Content -->
-							<div class="item-content">
-								<h4>Photographie Marriage</h4>
-								<div class="item-details margin-top-10">
-									<div class="star-rating" data-rating="2.5"></div>
-									<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
-								</div>
-								<div class="item-description">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="boxed-list-item">
-							<!-- Content -->
-							<div class="item-content">
-								<h4>Photographie Baptème</h4>
-								<div class="item-details margin-top-10">
-									<div class="star-rating" data-rating="0"></div>
-									<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
-								</div>
-								<div class="item-description">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
-								</div>
-							</div>
-						</div>
-					</li>
+							</li>
+					<% end %>
 				</ul>
 
 				<!-- Pagination -->
