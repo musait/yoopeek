@@ -12,6 +12,7 @@ class QuotesController < ApplicationController
   # GET /quotes/1.json
   def show
     Notification.set_seen @notifications, "quote", @quote.id
+    count_notification
   end
 
   def show_test
@@ -42,15 +43,9 @@ class QuotesController < ApplicationController
       session[:payment_intent_id],
     )
     if @intent.status == "succeeded"
-      sender = @quote.receiver
-      receiver = @quote.sender
-      @quote.update status: :accepted
-      Notification.create!(message: t('.your_quote_has_been_accepted',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
-      UserMailer.with(user: @quote.sender, quote: @quote).quote_accepted.deliver_later
       session.delete(:payment_intent_id)
       respond_to do |format|
         format.any {
-          # Charge à notre code d'implémenter le to_xls
           render js: ''
         }
         format.html {
@@ -93,7 +88,7 @@ class QuotesController < ApplicationController
         format.json { render :show, status: :created, location: @quote }
       else
         @job = @quote.job
-        
+
         format.html { render :new  }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
       end
