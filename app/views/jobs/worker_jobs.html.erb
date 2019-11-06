@@ -1,0 +1,90 @@
+
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3> <%= t('.your_missions') %> </h3>
+</div>
+<div class="row">
+	<div class="col-xl-12">
+		<div class="row justify-content-end">
+			<div class="col-xl-3">
+				<%= form_tag("filter", :remote => true) do %>
+          <%= t('.filter_by') %>
+          <%= select_tag 'filter',options_from_collection_for_select(Category.all, 'id', 'name'), prompt: t('.select_something'), class:"custom-select", id:"category_filter" %>
+        <% end %>
+			</div>
+		</div>
+		<div class="listings-container margin-top-35">
+      <% if @jobs.empty? %>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <section id="not-found" class="center margin-top-50 margin-bottom-25">
+                <h2><i class="icon-line-awesome-frown-o"></i></h2>
+                <p><%= t('.you_havent_realised_any_job') %></p>
+              </section>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <% @jobs.each do |job| %>
+          <%= link_to job_path(slug:job.slug), class:"job-listing" do%>
+            <div class="job-listing-details">
+
+              <!-- Details -->
+              <div class="job-listing-description">
+                <!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
+                <h3 class="job-listing-title"> <%= job.name %></h3>
+                <p class="job-listing-text"> <%= job.description %></p>
+
+              </div>
+            </div>
+            <div class="job-listing-footer">
+              <ul>
+                <% case job.status %>
+                  <% when 'created' %>
+                  <li><mark class="color" style="background-color: grey"><%= t('jobs.index.created') %></mark></li>
+                  <% when "in_progress" %>
+                  <mark class="color" style="background-color: #28b661"><%= t('jobs.index.in_progress') %></mark>
+                  <% when "completed" %>
+                  <mark class="color" style="background-color: #2a41e8"><%= t('jobs.index.finished') %></mark>
+                  <% when "cancelled" %>
+                  <mark class="color" style="background-color: #e53038"><%= t('jobs.index.aborted') %></mark>
+                <% end %>
+                <li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.sold_at)%></li>
+                <li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
+                <li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
+                <li><i class="icon-material-outline-location-on"></i>  <%= job.format_delivery.name %></li>
+                <li><i class="icon-material-outline-location-on"></i> <%=  t('jobs.index.time_range', min_time: job.min_time,max_time: job.max_time) %></li>
+                <li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
+                <li><i class="icon-material-outline-access-time"></i> <%= t('jobs.index.published_at') %> <%= time_ago_in_words(job.created_at) %></li>
+              </ul>
+
+            </div>
+          <% end %>
+        <%end%>
+      <% end %>
+		</div>
+	</div>
+  <% unless @jobs.empty? %>
+  	<div class="col-md-12" id="pagination">
+  		<!-- Pagination -->
+  		<div class="pagination-container">
+  			<%= paginate @jobs%>
+  		</div>
+  	</div>
+  <% end %>
+</div>
+<%= content_for :body_script do %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#category_filter").bind('change', function() {
+				$.ajax({
+					url: '/jobs',
+					type: "GET",
+					dataType: "script",
+					data: {"filter": $("#category_filter").val()}
+				});
+			});
+		});
+	</script>
+<% end %>
