@@ -20,9 +20,10 @@
 				<div class="content with-padding">
 					<% if @quote.errors.any? %>
 						<div class="notification error closeable">
-							<h2><%= pluralize(@quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
-							<% @quote.errors.full_messages.each do |message| %>
-								<p><%= message %></p>
+							<h3><%= t('activerecord.errors.template.header',:model => @quote.model_name.human.downcase) %></h3>
+							<% @quote.errors.values.each do |message| %>
+
+								<p><%= message[0] %></p>
 							<% end %>
 							<a class="close" href="#"></a>
 						</div>
@@ -46,7 +47,7 @@
 					</div>
 				</div>
 			</div>
-			<%= f.hidden_field :job_id, value: params[:job_id] %>
+			<%= f.hidden_field :job_id, value: params[:job_id] ||= @job.id %>
 			<%= f.hidden_field :sender_id, value: current_user.id %>
 			<%= f.hidden_field :receiver_id, value: @job.customer.id %>
 			<div class="col-xl-12">
