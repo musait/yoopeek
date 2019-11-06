@@ -35,7 +35,9 @@ class JobsController < ApplicationController
   def edit
   end
 
-
+  def worker_jobs
+    @jobs = Job.where(worker_id: current_user.id).page(params[:page]).per(5)
+  end
 
   # POST /jobs
   # POST /jobs.json
