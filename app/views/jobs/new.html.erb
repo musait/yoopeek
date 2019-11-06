@@ -1,4 +1,15 @@
-
+<%= content_for :body_style do  %>
+	<style media="screen">
+		.submit-field > .date-time {
+		  width: 30%;
+		  text-indent: 15px;
+		}
+		.required:after {
+	    content: " *";
+	    color: red;
+		}
+	</style>
+<% end %>
 <!-- Dashboard Headline -->
 <div class="dashboard-headline">
 	<h3><%= raw I18n.t('.jobs.new.create_job') %></h3>
@@ -18,10 +29,10 @@
 			<%= form_with(model: @job, local: true) do |form| %>
 			  <% if @job.errors.any? %>
 					<div class="notification error closeable">
-						<p><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</p>
+						<p><%= t('activerecord.errors.template.header',:model => @job.model_name.human.downcase) %></p>
 						<ul>
 						<% @job.errors.values.each do |message| %>
-							<li><%= message[0] %></li>
+							<li><%= message[0]%></li>
 						<% end %>
 						</ul>
 						<a class="close" href="#"></a>
@@ -32,23 +43,23 @@
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.jobs.new.title') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.title') %></h5>
 							<%= form.text_field :name,class:"with-border" %>
 						</div>
 					</div>
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.jobs.new.category') %></h5>
-							<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {class:"selectpicker",id:"category_id"}) %>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.category') %></h5>
+							<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {id:"category_id"}) %>
 						</div>
 					</div>
 
 					<div class="col-xl-4">
 						<div  class="submit-field">
-							<h5><%= raw I18n.t('.jobs.new.under_category') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.under_category') %></h5>
 								<div id="subcategories_select">
-									<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
+									<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true}) %>
 								</div>
 						</div>
 					</div>
@@ -58,7 +69,7 @@
 							<h5><%= raw I18n.t('.jobs.new.localisation') %></h5>
 							<div class="input-with-icon">
 								<div id="autocomplete-container">
-									<%= form.text_field :localisation,class:"with-border",placeholder:"ex: Nice, 75002, Suisse" %>
+									<%= form.text_field :localisation,class:"with-border",placeholder:"ex: Nice, 75002, Suisse", id: "autocomplete_address" %>
 								</div>
 								<i class="icon-material-outline-location-on"></i>
 							</div>
@@ -67,7 +78,7 @@
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.jobs.new.estimated_budget') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.estimated_budget') %></h5>
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="input-with-icon">
@@ -118,15 +129,17 @@
 					</div>
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.jobs.new.desired_format') %></h5>
-							<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choissisez un format de livraison"}, {class:"selectpicker"}) %>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.desired_format') %></h5>
+							<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choissisez un format de livraison"}) %>
 
 						</div>
 					</div>
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.jobs.new.which_date') %></h5>
-							<%= form.date_field :date_delivery, id: "datepicker"%>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.which_date') %></h5>
+							<div class="" style="display:flex">
+								<%= form.date_select :date_delivery,order: [:day, :month, :year], class:"date-time"%>
+							</div>
 						</div>
 					</div>
 
