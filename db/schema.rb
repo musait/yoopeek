@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_164659) do
+ActiveRecord::Schema.define(version: 2019_11_06_103743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -111,6 +111,35 @@ ActiveRecord::Schema.define(version: 2019_11_05_164659) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invoice_elements", force: :cascade do |t|
+    t.string "content"
+    t.integer "quantity"
+    t.float "price"
+    t.float "total"
+    t.uuid "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_invoice_elements_on_invoice_id"
+  end
+
+  create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.uuid "sender_id"
+    t.uuid "receiver_id"
+    t.uuid "job_id"
+    t.uuid "quote_id"
+    t.integer "invoice_number"
+    t.integer "vat"
+    t.integer "total_within_vat"
+    t.integer "total_without_vat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_invoices_on_job_id"
+    t.index ["quote_id"], name: "index_invoices_on_quote_id"
+    t.index ["receiver_id"], name: "index_invoices_on_receiver_id"
+    t.index ["sender_id"], name: "index_invoices_on_sender_id"
   end
 
   create_table "jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -373,8 +402,8 @@ ActiveRecord::Schema.define(version: 2019_11_05_164659) do
     t.string "stripe_subscription_id"
     t.string "stripe_plan_id"
     t.float "current_plan_amount"
-    t.uuid "portfolio_id"
     t.datetime "subscription_end_at"
+    t.uuid "portfolio_id"
     t.uuid "category_id"
     t.string "facebook_profile"
     t.string "instagram_profile"
@@ -382,6 +411,8 @@ ActiveRecord::Schema.define(version: 2019_11_05_164659) do
     t.string "twitter_profile"
     t.float "current_credits", default: 0.0
     t.float "total_credits", default: 0.0
+    t.datetime "birthdate"
+    t.string "stripe_person_id"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["category_id"], name: "index_users_on_category_id"
@@ -399,6 +430,11 @@ ActiveRecord::Schema.define(version: 2019_11_05_164659) do
   add_foreign_key "credit_changements", "subscriptions"
   add_foreign_key "credit_changements", "users"
   add_foreign_key "credits_payments", "users"
+  add_foreign_key "invoice_elements", "invoices"
+  add_foreign_key "invoices", "jobs"
+  add_foreign_key "invoices", "quotes"
+  add_foreign_key "invoices", "users", column: "receiver_id"
+  add_foreign_key "invoices", "users", column: "sender_id"
   add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "format_deliveries"
   add_foreign_key "jobs", "subcategories"

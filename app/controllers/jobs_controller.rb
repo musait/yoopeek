@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :finished, :invoice]
 
   # GET /jobs
   # GET /jobs.json
@@ -16,6 +16,49 @@ class JobsController < ApplicationController
       else
         @jobs = Job.where(customer_id:current_user.id).page(params[:page])
       end
+    end
+  end
+  def invoice
+    @invoice = @job.invoice
+    if @invoice.present?
+      respond_to do |format|
+        format.pdf do
+          @invoice_elements = @invoice.invoice_elements
+          @customer = @job.customer
+          @worker = @invoice.sender
+          @worker_company = @worker.company
+          @total = @invoice.total
+          @amount_without_taxes = @total / 1.2
+          @taxes = @amount_without_taxes * 20 / 100
+          render pdf: "invoice",
+            encoding: "UTF-8",
+            margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
+            layout: 'pdf.html',
+            # show_as_html: false
+
+            # header: { :content => render_to_string({:template => "/layouts/pdf_header.html.erb", layout: false })},
+            disposition: 'attachment'
+        end
+      end
+    else
+      redirect_back fallback_location: root_path, flash:{error: I18n.t('job_without_invoice')}
+    end
+  end
+  def finished
+    quote = @job.current_quote
+    if quote.present?
+      if current_user.worker? &&!@job.completed_by_worker?
+        @job.completed_by_worker!
+        redirect_back fallback_location: root_path, flash: {success: I18n.t("mission_finished")}
+      elsif current_user.customer? &&!@job.completed_by_customer?
+        @job.completed_by_customer!
+        quote.create_invoice
+        redirect_back fallback_location: root_path, flash: {success: I18n.t("mission_finished")}
+      else
+        redirect_back fallback_location: root_path, flash: {error: I18n.t("action_not_enable")}
+      end
+    else
+      redirect_back fallback_location: root_path, flash: {error: I18n.t("no_quote_created")}
     end
   end
 

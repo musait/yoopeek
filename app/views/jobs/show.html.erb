@@ -234,7 +234,15 @@
 					<% end %>
 				<% end %>
 			<% end %>
-			<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button"> <%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+			<% if (current_user.worker? &&!@job.completed_by_worker?)||(current_user.customer? &&!@job.completed_by_customer?) %>
+				<%= link_to finished_job_path(slug: @job.slug), class: "apply-now-button" do %>
+					<%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i>
+				<% end %>
+			<% elsif current_user.worker? &&@job.completed_by_worker? %>
+				<span class="apply-now-button"> <%= t(".mission_finished") %></span>
+			<% elsif current_user.customer? &&@job.completed_by_customer? %>
+				<span class="apply-now-button"> <%= t(".mission_finished") %></span>
+			<% end %>
 			<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= t('.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 			<!-- Sidebar Widget -->
 			<div class="sidebar-widget">
@@ -300,9 +308,13 @@
 			</div>
 
 		</div>
-		<div style="text-align: center">
-			<a href="/theme/user/hireo/single-freelancer-profile.html" class="button ripple-effect" style="margin: auto"><i class="icon-feather-download"></i> <%= t('.invoice_print') %></a>
-		</div>
+		<% if @job.invoice.present? %>
+			<div style="text-align: center">
+				<%= link_to invoice_job_path(locale: I18n.locale, slug: @job.slug, format: :pdf), class: "button ripple-effect", style: "margin: auto" do %>
+					<i class="icon-feather-download"></i> <%= t('.invoice_print') %>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 </div>
 <!-- Leave a Review for Freelancer Popup

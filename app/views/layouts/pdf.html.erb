@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PDF</title>
+  <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  <%= wicked_pdf_stylesheet_link_tag "bootstrap-grid.css" -%>
+  <%= wicked_pdf_stylesheet_link_tag "invoice.css" -%>
+
+
+</head>
+<body style="background-color: white; margin: 0; padding: 0">
+    <%= yield %>
+</body>
+</html>

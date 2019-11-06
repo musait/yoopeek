@@ -7,6 +7,8 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <input type="hidden" name="user[account_token]" id="token-account">
+  <input type="hidden" name="user[person_token]" id="token-person">
   <%= render "devise/shared/error_messages", resource: resource %>
   <!-- Row -->
   <div class="row">
@@ -57,6 +59,13 @@
                   <div class="submit-field">
                     <h5><%= I18n.t('.user.all.edit.email') %></h5>
                     <%= f.text_field :email, class:"with-border" %>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><%= I18n.t('.user.all.edit.birthdate') %></h5>
+                    <%= f.date_field :birthdate, class:"with-border", required: true %>
                   </div>
                 </div>
 
@@ -327,8 +336,7 @@
   </div>
 <% end %>
 <!-- Row / End -->
-
-
+<%= content_for :body_script do %>
   <script type="text/javascript">
     $(document).ready(function () {
       $('#checkbox1').change(function () {
@@ -347,17 +355,115 @@
       })
     });
     $('#category_id').change( function() {
-	   var category_id = this.value;
-  	   $.ajax({
-  	     url: "/users/get_tags",
-  	     type: "GET",
-  	     dataType: "script",
-  	     data: { "category_id": category_id }
-  	   });
-  	 });
+     var category_id = this.value;
+       $.ajax({
+         url: "/users/get_tags",
+         type: "GET",
+         dataType: "script",
+         data: { "category_id": category_id }
+       });
+     });
      $(document).ready(function(){
         $("#slider").change(function(){
           $('#price_rate').val($(this).val())
         });
       });
   </script>
+  <% if current_user.is_worker %>
+    <script src="https://js.stripe.com/v3/" data-no-turbolink></script>
+    <script type="text/javascript">
+      const stripe = Stripe('<%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key)  %>');
+      const myForm = document.querySelector('#edit_user');
+      myForm.addEventListener('submit', handleForm);
+
+      async function handleForm(event) {
+      event.preventDefault();
+      <% if current_user.stripe_account_id.present? %>
+        const accountResult = await stripe.createToken('account', {
+          // business_type: 'individual',
+          business_type: 'company',
+          company: {
+            name: document.querySelector('#user_company_attributes_name').value,
+            address: {
+              line1: document.querySelector('#street_id').value,
+              city: document.querySelector('#locality').value,
+              state: document.querySelector('#country').value,
+              postal_code: document.querySelector('#postal_code').value,
+            },
+
+          },
+        });
+      <% else %>
+        const accountResult = await stripe.createToken('account', {
+          // business_type: 'individual',
+          business_type: 'company',
+          company: {
+            name: document.querySelector('#user_company_attributes_name').value,
+            address: {
+              line1: document.querySelector('#street_id').value,
+              city: document.querySelector('#locality').value,
+              state: document.querySelector('#country').value,
+              postal_code: document.querySelector('#postal_code').value,
+            },
+
+          },
+          tos_shown_and_accepted: true,
+
+        });
+      <% end %>
+      var dob = $("#user_birthdate").val().split("-")
+      <% if current_user.stripe_person_id.present? %>
+        const personResult = await stripe.createToken('person', {
+          person: {
+            first_name: document.querySelector('#user_firstname').value,
+            last_name: document.querySelector('#user_lastname').value,
+            email: document.querySelector('#user_email').value,
+            dob: {
+              day: dob[2],
+              month: dob[1],
+              year: dob[0]
+            },
+            address: {
+              line1: document.querySelector('#street_id').value,
+              city: document.querySelector('#locality').value,
+              state: document.querySelector('#country').value,
+              postal_code: document.querySelector('#postal_code').value,
+            }
+          },
+        });
+      <% else %>
+        const personResult = await stripe.createToken('person', {
+          person: {
+            first_name: document.querySelector('#user_firstname').value,
+            last_name: document.querySelector('#user_lastname').value,
+            email: document.querySelector('#user_email').value,
+            dob: {
+              day: dob[2],
+              month: dob[1],
+              year: dob[0]
+            },
+            address: {
+              line1: document.querySelector('#street_id').value,
+              city: document.querySelector('#locality').value,
+              state: document.querySelector('#country').value,
+              postal_code: document.querySelector('#postal_code').value,
+            },
+            relationship: {
+              representative: true,
+              owner: true,
+              director: true
+            }
+          },
+        });
+      <% end %>
+
+
+      if (accountResult.token && personResult.token) {
+        document.querySelector('#token-account').value = accountResult.token.id;
+        document.querySelector('#token-person').value = personResult.token.id;
+        myForm.submit();
+      }
+    }
+    </script>
+  <% end %>
+<% end %>

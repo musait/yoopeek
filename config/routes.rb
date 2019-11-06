@@ -24,7 +24,14 @@ Rails.application.routes.draw do
       end
     end
     resources :quote_elements
-    resources :jobs, param: :slug
+    resources :jobs, param: :slug do
+      member do
+        get :finished
+        get :invoice
+      end
+    end
+    get 'show' => 'jobs#show_test'
+    get 'show_quote' => 'quotes#show_test'
     get 'search_result' => 'home#search_result'
     post  'search_result' => 'home#search_result'
     resources :reviews
