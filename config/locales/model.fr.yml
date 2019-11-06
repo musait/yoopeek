@@ -1,6 +1,22 @@
 fr:
   activerecord:
     models:
+      address: Adresse
+      category: Categorie
+      company: Entreprise
+      format_delivery: Format de livraison
+      job: Mission
+      notification: Notification
+      portfolio: Portfolio
+      profession: Profession
+      quote_element: Elément du devis
+      quote: Devis
+      review: Avis
+      room_message: Message
+      room: Conversation
+      subcategory: Sous-catégorie
+      subscription: Abonnement
+      tag: Tag
       plan_limitation: Limitation des plans
     attributes:
       plan_limitation:
@@ -8,9 +24,9 @@ fr:
         description: Description
         price_per_month: Prix par mois
         commission_type:  Type de commission
-        nb_answer:  Nombre de réponse
-        nb_answer_type: Nombre de réponse par
+        nb_answer:  Nombre de réponses
+        nb_answer_type: Nombre de réponses par
         limit_portfolio: Limite du portfolio
         have_badge: Avec badge?
-        have_status: Avec status
+        have_status: Avec statut
         show_order: Ordre d'affichage
