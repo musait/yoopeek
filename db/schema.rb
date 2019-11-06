@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_114601) do
+ActiveRecord::Schema.define(version: 2019_11_05_164659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_114601) do
     t.date "date_delivery"
     t.string "slug", null: false
     t.uuid "format_delivery_id"
+    t.integer "sold_at", default: 0
     t.index ["category_id"], name: "index_jobs_on_category_id"
     t.index ["customer_id"], name: "index_jobs_on_customer_id"
     t.index ["format_delivery_id"], name: "index_jobs_on_format_delivery_id"
