@@ -291,7 +291,7 @@
 							<li>
 								<i class="icon-material-outline-local-atm"></i>
 								<span><%= t('.which_date') %></span>
-								<h5><%= @job.date_delivery if @job.date_delivery %></h5>
+								<h5><%= @job.date_delivery.strftime("%d/%m/%Y") if @job.date_delivery %></h5>
 							</li>
 
 						</ul>
