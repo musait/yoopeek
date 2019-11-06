@@ -1,4 +1,27 @@
 fr:
+  activerecord:
+    errors:
+      template:
+        header: "Ce/Cette %{model} n'a pas pu être sauvegardé(e) pour la/les raison(s) suivante(s) :"
+      models:
+        job:
+          attributes:
+            max_price:
+              is_not_a_number: "Votre budget maximal doit être un nombre et doit être présent"
+            min_price:
+              is_not_a_number: "Votre budget minimal doit être un nombre et doit être présent"
+            max_time:
+              is_not_a_number: "Le temps estimé minimal doit être un nombre"
+            min_price:
+              is_not_a_number: "Le temps estimé maximal doit être un nombre"
+            category:
+              required: "Vous devez indiquer une catégorie"
+            subcategory:
+              required: "Vous devez indiquer une sous-catégorie"
+            format_delivery:
+              required: "Vous devez indiquer un format de livraison"
+            date_delivery:
+              cant_be_in_past: "La date ne peux pas être antérieure à aujourd'hui"
   credit: Crédit
   not_enougth_credits: Vous n'avez pas assez de crédit
   credits_for:
@@ -32,13 +55,6 @@ fr:
   "true": Oui
   "false": Non
   unlimited: Illimité
-  activerecord:
-    errors:
-      models:
-        job:
-          attributes:
-            date_delivery:
-              cant_be_in_past: "La date ne peux pas être antérieure à aujourd'hui"
   user_mailer:
     new_quote:
       subject: "%{user}, vous avez reçu un nouveau devis!"
@@ -99,6 +115,7 @@ fr:
       header:
         notification_not_seen: "Vous n'avez pas de notifications non lues"
         message_not_seen: "Vous n'avez pas de messages non lus"
+        worker_jobs: "Missions réalisées"
   home:
     index:
       your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
@@ -191,6 +208,11 @@ fr:
       job_creation: "Créez votre mission"
     edit:
       job_edition: "Modifier cette mission"
+    worker_jobs:
+      your_missions: "Vos missions réalisées"
+      select_something: "Séléctionnez un filtre"
+      filter_by: "Filtrer par"
+      you_havent_realised_any_job: "Vous n'avez pas encore de missions réalisées"
   users:
     omniauth_callbacks:
       facebook:
