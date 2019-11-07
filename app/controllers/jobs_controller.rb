@@ -47,13 +47,15 @@ class JobsController < ApplicationController
   def finished
     quote = @job.current_quote
     if quote.present?
-      if current_user.worker? &&!@job.completed_by_worker?
+      if current_user.worker? && !@job.completed_by_worker?
         @job.completed_by_worker!
-        redirect_back fallback_location: root_path, flash: {success: I18n.t("mission_finished")}
-      elsif current_user.customer? &&!@job.completed_by_customer?
+        @job.update(status: "completed_by_worker")
+        redirect_back fallback_location: @job, flash: {success: I18n.t("mission_finished")}
+      elsif current_user.customer? && !@job.completed_by_customer?
         @job.completed_by_customer!
+        @job.update(status: "completed_by_customer")
         quote.create_invoice
-        redirect_back fallback_location: root_path, flash: {success: I18n.t("mission_finished")}
+        redirect_back fallback_location: @job, flash: {success: I18n.t("mission_finished")}
       else
         redirect_back fallback_location: root_path, flash: {error: I18n.t("action_not_enable")}
       end
