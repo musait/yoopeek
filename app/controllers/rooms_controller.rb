@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
-    @rooms = Room.all
+    @rooms = Room.where("receiver_id = ? OR author_id = ?", current_user.id,current_user.id)
   end
 
   def new
@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
   protected
 
   def load_entities
-    @rooms = Room.all
+    @rooms = Room.where("receiver_id = ? OR author_id = ?", current_user.id,current_user.id)
     @room = Room.find(params[:id]) if params[:id]
   end
 
