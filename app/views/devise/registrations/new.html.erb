@@ -32,20 +32,27 @@
         </div>
 
         <!-- Form -->
-
+				<div class="input-with-icon-left">
+          <i class="icon-material-baseline-mail-outline"></i>
+          <%= f.text_field :firstname, autofocus: true, placeholder: "Nom", class:"input-text with-border" %>
+        </div>
+				<div class="input-with-icon-left">
+          <i class="icon-material-baseline-mail-outline"></i>
+          <%= f.text_field :lastname, autofocus: true, placeholder: "Prénom", class:"input-text with-border" %>
+        </div>
         <div class="input-with-icon-left">
           <i class="icon-material-baseline-mail-outline"></i>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input-text with-border" %>
+          <%= f.email_field :email, autofocus: true, placeholder: "Email", class:"input-text with-border" %>
         </div>
 
         <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
           <i class="icon-material-outline-lock"></i>
-          <%= f.password_field :password, autocomplete: "new-password", class:"input-text with-border" %>
+          <%= f.password_field :password, placeholder: "Password", class:"input-text with-border" %>
         </div>
 
         <div class="input-with-icon-left">
           <i class="icon-material-outline-lock"></i>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input-text with-border" %>
+          <%= f.password_field :password_confirmation, placeholder: "Repeat password", class:"input-text with-border" %>
         </div>
         <!-- Button -->
         <%= f.submit t('.sign_up'), class:"button full-width margin-top-10" %>
