@@ -5,7 +5,7 @@ class RoomMessage < ApplicationRecord
   acts_as_readable on: :created_at
   has_one :notification, dependent: :destroy
   after_create :create_notification
-  validate :check_author_credits
+  validate :check_author_credits,unless: -> {author.email == "yoopeek@yoopeek.com"}
 
   def check_author_credits
     worker = author.worker? ? author : receiver
