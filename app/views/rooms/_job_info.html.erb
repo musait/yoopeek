@@ -1,81 +1,86 @@
   <div class="job-overview">
-    <div class="messages-headline">
-      <h4><%= @room.job.name %></h4>
-    </div>
-    <div class="job-overview-inner" style="background-color: #ffff">
-      <ul>
-        <li>
-          <i class="icon-material-outline-local-atm"></i>
-          <span><%= t('.budget') %></span>
-          <h5><%= number_to_currency(@room.job.min_price,strip_insignificant_zeros: true) +"-"+ number_to_currency(@room.job.max_price,strip_insignificant_zeros: true) %></h5>
-        </li>
-        <li>
-          <i class="icon-material-outline-location-on"></i>
-          <span><%= t('.status') %></span>
-          <% case @room.job.status %>
-          <% when "created" %>
-          <mark class="color" style="background-color: grey"> <%= t('.job_created') %></mark>
-          <% when "in_progress" %>
-          <mark class="color" style="background-color: orange"><%= t('.job_in_progress') %></mark>
-          <% when "completed" %>
-          <mark class="color" style="background-color: #28b661"><%= t('.job_completed') %></mark>
-          <% else%>
-          <mark class="color" style="background-color: #e53038"><%= t('.job_canceled') %></mark>
-          <% end %>
-        </li>
-        <li>
-          <i class="icon-material-outline-business-center"></i>
-          <span><%= t('.category') %></span>
-          <h5><%= @room.job.category.name %></h5>
-        </li>
-        <li>
-          <i class="icon-material-outline-local-atm"></i>
-          <span><%= t('.subcategory') %></span>
-          <h5><%= @room.job.subcategory.name %></h5>
-        </li>
-        <li>
-          <i class="icon-material-outline-location-on"></i>
-          <span><%= t('.format_delivery') %></span>
-          <h5><%= @room.job.format_delivery.name %></h5>
-        </li>
-        <li>
-          <i class="icon-material-outline-business-center"></i>
-          <span><%= t('.estimated_time') %></span>
-          <h5><%=  t('jobs.index.time_range', min_time: @room.job.min_time,max_time: @room.job.max_time) %></h5>
-        </li>
-        <li>
-          <i class="icon-material-outline-local-atm"></i>
-          <span><%= t('.date_delivery') %></span>
-          <h5><%= @room.job.date_delivery %></h5>
-        </li>
-
-      </ul>
-    </div>
-    <div class="messages-headline" style="border-top: 1px solid #eaeaea; border-bottom: none">
-      <h4><%= t('.your_quotes') %></h4>
-    </div>
-    <div class="job-overview-inner" style="background-color: #ffff; padding-top: 0; ">
-      <ul>
-        <% @room.job.quotes.each do |quote| %>
-          <li style="display: flex; justify-content: space-between">
-            <%= link_to quote_path(id: quote.id), method: :get do %>
-              <i class="icon-material-outline-description"></i> <%= t('.quote',quote_number: quote.quote_number) %>
-              <% case quote.status %>
-                <% when "created" %>
-                  <mark class="color" style="background-color: grey"> <%= t('.quote_in_progress') %></mark>
-                <% when "accepted" %>
-                  <mark class="color" style="background-color: #28b661"><%= t('.quote_accepted') %></mark>
-                <% else %>
-                  <mark class="color" style="background-color: red "><%= t('.quote_declined') %></mark>
-              <% end %>
+    <% if @room.job.present? %>
+      <div class="messages-headline">
+        <h4><%= @room.job.name %></h4>
+      </div>
+      <div class="job-overview-inner" style="background-color: #ffff">
+        <ul>
+          <li>
+            <i class="icon-material-outline-local-atm"></i>
+            <span><%= t('.budget') %></span>
+            <h5><%= number_to_currency(@room.job.min_price,strip_insignificant_zeros: true) +"-"+ number_to_currency(@room.job.max_price,strip_insignificant_zeros: true) %></h5>
+          </li>
+          <li>
+            <i class="icon-material-outline-location-on"></i>
+            <span><%= t('.status') %></span>
+            <% case @room.job.status %>
+            <% when "created" %>
+            <mark class="color" style="background-color: grey"> <%= t('.job_created') %></mark>
+            <% when "in_progress" %>
+            <mark class="color" style="background-color: orange"><%= t('.job_in_progress') %></mark>
+            <% when "completed" %>
+            <mark class="color" style="background-color: #28b661"><%= t('.job_completed') %></mark>
+            <% else%>
+            <mark class="color" style="background-color: #e53038"><%= t('.job_canceled') %></mark>
             <% end %>
           </li>
-        <% end %>
-        <li style="display: flex; justify-content: space-between">
-          <%= link_to new_quote_path(:job_id => @room.job.id) do %>
-            <%= raw I18n.t('.rooms.show.new_quote') %><i class="icon-material-outline-add"></i>
+          <li>
+            <i class="icon-material-outline-business-center"></i>
+            <span><%= t('.category') %></span>
+            <h5><%= @room.job.category.name %></h5>
+          </li>
+          <li>
+            <i class="icon-material-outline-local-atm"></i>
+            <span><%= t('.subcategory') %></span>
+            <h5><%= @room.job.subcategory.name %></h5>
+          </li>
+          <li>
+            <i class="icon-material-outline-location-on"></i>
+            <span><%= t('.format_delivery') %></span>
+            <h5><%= @room.job.format_delivery.name %></h5>
+          </li>
+          <li>
+            <i class="icon-material-outline-business-center"></i>
+            <span><%= t('.estimated_time') %></span>
+            <h5><%=  t('jobs.index.time_range', min_time: @room.job.min_time,max_time: @room.job.max_time) %></h5>
+          </li>
+          <li>
+            <i class="icon-material-outline-local-atm"></i>
+            <span><%= t('.date_delivery') %></span>
+            <h5><%= @room.job.date_delivery %></h5>
+          </li>
+
+        </ul>
+      </div>
+      <div class="messages-headline" style="border-top: 1px solid #eaeaea; border-bottom: none">
+        <h4><%= t('.your_quotes') %></h4>
+      </div>
+      <div class="job-overview-inner" style="background-color: #ffff; padding-top: 0; ">
+        <ul>
+          <% @room.job.quotes.each do |quote| %>
+            <li style="display: flex; justify-content: space-between">
+              <%= link_to quote_path(id: quote.id), method: :get do %>
+                <i class="icon-material-outline-description"></i> <%= t('.quote',quote_number: quote.quote_number) %>
+                <% case quote.status %>
+                  <% when "created" %>
+                    <mark class="color" style="background-color: grey"> <%= t('.quote_in_progress') %></mark>
+                  <% when "accepted" %>
+                    <mark class="color" style="background-color: #28b661"><%= t('.quote_accepted') %></mark>
+                  <% when "accepted" %>
+                    <mark class="color" style="background-color: #28b661"><%= t('.quote_accepted') %></mark>
+
+                  <% else %>
+                    <mark class="color" style="background-color: red "><%= t('.quote_declined') %></mark>
+                <% end %>
+              <% end %>
+            </li>
           <% end %>
-        </li>
-      </ul>
-    </div>
+          <li style="display: flex; justify-content: space-between">
+            <%= link_to new_quote_path(:job_id => @room.job.id) do %>
+              <%= raw I18n.t('.rooms.show.new_quote') %><i class="icon-material-outline-add"></i>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
   </div>
