@@ -30,13 +30,31 @@ class QuotesController < ApplicationController
   end
 
   def accept
+    if @quote.sender.stripe_account_id.present?
     @quote.update(status:"accepted")
-    @total = @quote.total_within_vat
-    @intent = Stripe::PaymentIntent.create({
-      amount: @total.to_i * 100,
-      currency: 'eur'
-    })
-    session[:payment_intent_id] = @intent.id
+      @total = @quote.total_within_vat
+      worker = @quote.sender
+      stripe_total = @total.to_i * 100
+      worker_plan = worker.current_plan
+      if worker_plan.commission_type == "%"
+        commission_collected = (@total * worker_plan.commission_per_service / 100)
+      else
+        commission_collected = (worker_plan.commission_per_service)
+      end
+      @intent = Stripe::PaymentIntent.create({
+        amount: stripe_total,
+        currency: 'eur',
+        on_behalf_of: worker.stripe_account_id,
+        transfer_data: {
+          destination: worker.stripe_account_id,
+          amount: stripe_total - (commission_collected * 100).to_i,
+        }
+      })
+      session[:payment_intent_id] = @intent.id
+      session[:commission_collected] = commission_collected
+    else
+      redirect_back fallback_location: root_path, flash: {error: I18n.t("no_stripe_account")}
+    end
   end
 
   def pay
@@ -44,9 +62,10 @@ class QuotesController < ApplicationController
       session[:payment_intent_id],
     )
     if @intent.status == "succeeded"
-      @quote.update(status:"paid")
+      @quote.update(status:"paid", commission_collected: session[:commission_collected])
       @quote.job.update(worker_id: @quote.sender.id,status:"in_progress",sold_at: @intent.amount/100)
       session.delete(:payment_intent_id)
+      session.delete(:commission_collected)
       respond_to do |format|
         format.any {
           render js: ''
