@@ -75,8 +75,7 @@
 
 										<!-- Avatar -->
 										<div class="freelancer-avatar">
-											<div class="verified-badge"></div>
-											<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+											<img src=" <%= @job.customer.avatar_url %>" alt="">
 										</div>
 
 										<!-- Name -->
@@ -97,9 +96,7 @@
 										  <%= form.hidden_field :author_id, value: current_user.id  %>
 										  <%= form.hidden_field :receiver_id, value: @job.customer_id %>
 										  <%= form.hidden_field :job_id, value: @job.id %>
-										  <%= form.submit t('.send_mp_to_client'),class:"button button-sliding-icon ripple-effect" do  %>
-												 <i class="icon-material-outline-arrow-right-alt"></i>
-											<% end %>
+										  <%= form.submit t('.send_mp_to_client'),class:"button ripple-effect" %>
 										<% end %>
 									<% end %>
 								</div>
@@ -234,14 +231,16 @@
 					<% end %>
 				<% end %>
 			<% end %>
-			<% if (current_user.worker? &&!@job.completed_by_worker?)||(current_user.customer? &&!@job.completed_by_customer?) %>
-				<%= link_to finished_job_path(slug: @job.slug), class: "apply-now-button" do %>
-					<%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i>
+			<% unless (@job.worker == current_user || @job.worker.nil?) %>
+				<% if (current_user.worker? && !@job.completed_by_worker?)||(current_user.customer? && !@job.completed_by_customer?) %>
+					<%= link_to finished_job_path(slug: @job.slug), class: "apply-now-button" do %>
+						<%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i>
+					<% end %>
+				<% elsif current_user.worker? &&@job.completed_by_worker? %>
+					<span class="apply-now-button"> <%= t(".mission_finished") %></span>
+				<% elsif current_user.customer? &&@job.completed_by_customer? %>
+					<span class="apply-now-button"> <%= t(".mission_finished") %></span>
 				<% end %>
-			<% elsif current_user.worker? &&@job.completed_by_worker? %>
-				<span class="apply-now-button"> <%= t(".mission_finished") %></span>
-			<% elsif current_user.customer? &&@job.completed_by_customer? %>
-				<span class="apply-now-button"> <%= t(".mission_finished") %></span>
 			<% end %>
 			<a href="/theme/user/hireo/dashboard-messages.html" class="apply-now-button margin-bottom-50"> <%= t('.abort_job') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 			<!-- Sidebar Widget -->
@@ -261,13 +260,13 @@
 								<span><%= t('.job_status') %></span>
 								<% case @job.status %>
 								<% when "created" %>
-								<mark class="color" style="background-color: grey"><%= t('.created') %></mark>
+									<mark class="color" style="background-color: grey"><%= t('.created') %></mark>
 								<% when "in_progress" %>
-								<mark class="color" style="background-color: #28b661"><%= t('.in_progress') %></mark>
-								<% when "completed" %>
-								<mark class="color" style="background-color: #2a41e8"><%= t('.finished') %></mark>
+									<mark class="color" style="background-color: #28b661"><%= t('.in_progress') %></mark>
+								<% when "completed_by_worker" || "completed_by_customer" %>
+									<mark class="color" style="background-color: #2a41e8"><%= t('.finished') %></mark>
 								<% when "cancelled" %>
-								<mark class="color" style="background-color: #e53038"><%= t('.aborted') %></mark>
+									<mark class="color" style="background-color: #e53038"><%= t('.aborted') %></mark>
 								<% end %>
 							</li>
 							<li>
