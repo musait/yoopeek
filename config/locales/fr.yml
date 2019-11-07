@@ -76,13 +76,37 @@ fr:
   "true": Oui
   "false": Non
   unlimited: Illimité
+  admin_mailer:
+    new_user_waiting_for_approval:
+      hello: "Bonjour ! "
+      new_user: "Un nouveau professionel vient de s'inscrire sur votre site."
+      you_can_approve_it: "Vous pouvez consulter ses informations et l'approuver dans l'onglet Utilisateurs de votre back-office"
   user_mailer:
     new_quote:
+      new_quote: "Nouveau devis !"
+      for_job: "Mission concernée : %{job_title}"
+      you_received_new_quote: "Vous avez reçu un devis de la part de %{worker_fullname}. Vous pouvez aller le consulter grâce au lien ci-dessous et l'accepter ou le refuser"
       subject: "%{user}, vous avez reçu un nouveau devis!"
+      link_to_quote: "Lien vers le devis"
     quote_declined:
       subject: "%{user}, votre devis a été refusé!"
-    quote_accepted:
+      for_job: "Mission concernée : %{job_title}"
+      quote_declined: "Votre devis a été refusé"
+      your_quote_has_been_declined: "Votre devis a été refusé par le client. Vous pouvez maintenant vous rendre sur le devis en question et lui en envoyer un autre."
+      link_to_quote: "Lien vers le devis"
+    quote_paid:
+      quote_accepted: "Votre devis a été accepté et payé"
+      your_quote_has_been_paid: "Votre devis a été accepté et payé. Veuillez maintenant prendre contact avec votre client pour déterminé la date exacte de réalisation de la mission ."
+      for_job: "Mission concernée : %{job_title}"
+      link_to_quote: "Lien vers le devis"
       subject: "Bonne nouvelle %{user}! Votre devis a été accepté!"
+    new_invoice:
+      new_invoice: "Nouvelle facture"
+      you_received_new_invoice: "Vous avez reçu une nouvelle facture d'un montant de 20 €. Vous pouvez la télécharger ci-dessus ou la consulter dans votre compte Yoopeek, onglet 'Factures' ."
+      link_to_upload_invoice: "Télécharger la facture"
+      subject: "Vous avez reçu une nouvelle facture de la part de Yoopeek"
+    subscription_expiration:
+      your_sub_gonna_expire: "Votre abonnement va expirer !"
   other:
     credits_added: Crédits ajouté
     subscription_have_no_plan: Cette abonnement n'a pas de plan stripe
@@ -328,7 +352,8 @@ fr:
       quote: "Devis n° %{quote_number}"
       quote_declined: "Décliné"
       quote_in_progress: "En cours"
-      quote_accepted: 'Acceptée'
+      quote_accepted: 'Accepté'
+      quote_paid: 'Payé'
       job_created: "Crée"
       job_in_progress: "En cours"
       job_completed: "Terminé"
@@ -368,19 +393,21 @@ fr:
       summary: "Récapitulatif"
       quote_decline: "Déclinée"
       quote_in_progress: "En cours"
-      quote_accepted: 'Acceptée'
+      quote_accepted: 'Accepté'
+      quote_paid: "Payé"
       quote_in_progress_for_customer: "Proposition en attente d'acceptation"
       quote_accepted_by_customer: "Proposition acceptée"
+      quote_paid_by_customer: "Proposition payée"
       quote_declined_by_customer: "Proposition déclinée"
-      message_for_quote_accepted: "Vous avez accepté ce devis. Un message a été envoyé au professionnel pour l'informer de votre accord. Si au bout de 24-48h, il n'est pas revenu vers vous, contactez-le !"
+      message_for_quote_accepted: "Vous avez accepté et payé   ce devis. Un message a été envoyé au professionnel pour l'informer de votre accord. Si au bout de 24-48h, il n'est pas revenu vers vous, contactez-le !"
       message_for_quote_declined: "Vous avez refusé ce devis. Un message a été envoyé au professionnel pour l'informer de votre refus. Il reviendra peut-être vers vous pour faire une autre proposition."
     create:
       quote_created: "Votre devis a été crée avec succès"
       you_have_received_a_quote: "Vous avez reçu un devis de la part de %{pro} pour la mission suivante : %{job}"
     decline:
       your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusé"
-    accept_quote:
-      your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été acceptée. Nous vous informerons lorsque le client procèdera au paiement afin de commencer la mission"
+    accept:
+      your_quote_has_been_paid: "Votre devis conçernant la mission suivante : %{job} a été acceptée et payée. Vous pouvez contacter votre client pour commencer la mission"
   order:
     show:
       summary: "Récapitulatif"
