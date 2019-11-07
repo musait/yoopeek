@@ -8,7 +8,7 @@
 
   <ul>
     <% @rooms.each do |room| %>
-    <% @other_user = room.author.eql?(current_user) ? room.receiver : room.author %>
+      <% @other_user = room.author.eql?(current_user) ? room.receiver : room.author %>
 
       <li id="selectRoom">
         <%= link_to room_path(room), method: :get,remote: true, id: "room-#{room.id}", class: 'nav-link room-nav-link', "data-channel-subscribe" => "room", "data-room-id" => room.id, "data-user-id" => current_user.id do %>
