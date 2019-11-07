@@ -20,6 +20,16 @@ class UserMailer < Devise::Mailer
       mail(to: @user.email, subject: default_i18n_subject(user: @user.full_name))
     end
 
+    def customer_declare_job_finished
+      @user = params[:user]
+      @job = params[:job]
+      mail(to:@user.email,subject: default_i18n_subject(user: @user.full_name))
+    end
+    def worker_declare_job_finished
+      @user = params[:user]
+      @job = params[:job]
+      mail(to:@user.email,subject: default_i18n_subject(user: @user.full_name))
+    end
     def new_invoice
       mail(to:Worker.first,subject: default_i18n_subject(user: Worker.first.full_name))
     end
