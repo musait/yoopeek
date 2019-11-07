@@ -12,12 +12,12 @@
 
 
 			<!-- Hedaline -->
-      <h2>Montant du paiement :  <%= currency_formated @quote.total_within_vat %></h2>
+      <h2>  <%= t('.paiement_amout') %>  <%= currency_formated @quote.total_within_vat %></h2>
 
 			<!-- Billing Cycle Radios  -->
 
 			<!-- Hedline -->
-			<h3 class="margin-top-50">Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptée et sécurisées</h3>
+			<h3 class="margin-top-50"> <%= t('.security_message') %></h3>
 
 			<!-- Payment Methods Accordion -->
 
@@ -28,18 +28,9 @@
         </div>
 
 			</div>
-			<!-- <div class="payment margin-top-30">
 
-				<div class="payment-tab payment-tab-active">
-					<div class="payment-tab-trigger">
-            <div class="col-md-12 mb-2" id="card-element"></div>
-					</div>
-				</div>
 
-			</div> -->
-			<!-- Payment Methods Accordion / End -->
-
-      <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65">Valider</button>
+      <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65"> <%= t('.payment_proceed') %></button>
 		</div>
 
 
@@ -53,9 +44,9 @@
 				</div>
 				<div class="boxed-widget-inner">
 					<ul>
-						<li><%= @quote.name || "Devis"%> <span><%= currency_formated (@total - @total * 0.2) %></span></li>
+						<li><%= t('.quote',number:@quote.quote_number)%> <span><%= currency_formated (@total - @total * 0.2) %></span></li>
 						<li>TVA (20%) <span><%= currency_formated (@total * 0.2) %></span></li>
-						<li class="total-costs">total <span><%= currency_formated (@total) %></span></li>
+						<li class="total-costs"> <%= t('.total') %> <span><%= currency_formated (@total) %></span></li>
 					</ul>
 				</div>
 			</div>
@@ -64,7 +55,7 @@
 			<!-- Checkbox -->
 			<div class="checkbox margin-top-30">
 				<input type="checkbox" id="two-step">
-				<label for="two-step"><span class="checkbox-icon"></span>  I agree to the <a href="#">Terms and Conditions</a> and the <a href="#">Automatic Renewal Terms</a></label>
+				<label for="two-step"><span class="checkbox-icon"></span> <%= t('.terms_agreements') %></label>
 			</div>
 		</div>
 
