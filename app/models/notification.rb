@@ -50,7 +50,7 @@ class Notification < ApplicationRecord
     when "room_message"
       room_path(locale: I18n.locale, id: room_message.room_id)
     when "job"
-      job_path(locale: I18n.locale, id: job.id)
+      job_path(locale: I18n.locale, id: job.slug)
     when "quote"
       quote_path(locale: I18n.locale, id: quote.id)
     when "review"
