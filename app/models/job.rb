@@ -17,16 +17,25 @@ class Job < ApplicationRecord
 
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :cancelled, :completed_by_worker, :completed_by_customer]
+  after_save :send_notification_and_email, if :status_changed?
 
-  after_create :create_notification
+
+  def send_notification_and_email
+    case self.status
+      when "completed_by_worker"
+        Notification.create!(message: I18n.t('.jobs.finished.worker_declare_job_finished',pro: self.worker.full_name, job_name: self.name), job: self,created_for: self.class.to_s.underscore, sender: self.worker, receiver: self.customer)
+        UserMailer.with(user: self.customer, job: self).worker_declare_job_finished.deliver_now
+      when "completed_by_customer"
+        Notification.create!(message: I18n.t('.jobs.finished.customer_declare_job_finished',customer: self.customer.full_name,job_name: self.name), job: self, created_for: self.class.to_s.underscore, sender: self.customer, receiver: self.worker)
+        UserMailer.with(user: self.worker, job: self).customer_declare_job_finished.deliver_now
+      end
+    end
+  end
 
   def current_quote
     quotes.order(:created_at).last
   end
 
-  def create_notification
-    # Notification.create_for customer,worker, self
-  end
   def price_range
     "#{self.min_price} - #{self.max_price}"
   end
