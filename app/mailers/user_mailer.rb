@@ -14,9 +14,17 @@ class UserMailer < Devise::Mailer
       mail(to: @user.email, subject: default_i18n_subject(user: @user.full_name))
     end
 
-    def quote_accepted
+    def quote_paid
       @user = params[:user]
       @quote = params[:quote]
       mail(to: @user.email, subject: default_i18n_subject(user: @user.full_name))
+    end
+
+    def new_invoice
+      mail(to:Worker.first,subject: default_i18n_subject(user: Worker.first.full_name))
+    end
+
+    def subscription_expiration
+      mail(to:Worker.first, subject: default_i18n_subject(user: Worker.first.full_name))
     end
   end
