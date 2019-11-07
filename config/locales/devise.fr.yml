@@ -19,7 +19,10 @@ fr:
     mailer:
       confirmation_instructions:
         subject: "Instructions de confirmation"
+        welcome_to_yoopeek: "Bienvenue sur Yoopeek"
+        account_confirmation: "Confirmation de votre inscription"
       reset_password_instructions:
+        password_reset: "Reinitialisation de votre mot de passe"
         subject: "Instructions pour changer le mot de passe"
       unlock_instructions:
         subject: "Instructions pour déverrouiller le compte"
