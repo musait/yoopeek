@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_many :portfolios
 
   before_save :set_stripe_account
+  after_create :set_conv_with_yoopeek
   def set_stripe_account
     if account_token.present?
       begin
@@ -100,8 +101,15 @@ class User < ApplicationRecord
     authored_rooms.with_receiver(user) || received_rooms.with_author(user)
   end
 
+  def set_conv_with_yoopeek
+    unless self.email == "yoopeek@yoopeek.com"
+      @room = Room.create(author_id: User.find_by(email:"yoopeek@yoopeek.com").id,receiver_id: self.id )
+
+      RoomMessage.create(room: @room,author:User.find_by(email:"yoopeek@yoopeek.com"),receiver:self, message:"Bienvenue sur Yoopeek")
+    end
+  end
   def send_admin_mail
-    AdminMailer.new_user_waiting_for_approval(email).deliver
+    AdminMailer.new_user_waiting_for_approval(email).deliver if self.is_worker?
   end
 
   def set_stripe_customer_id
