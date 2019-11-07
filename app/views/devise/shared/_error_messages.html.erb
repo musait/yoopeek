@@ -4,7 +4,7 @@
        <%= I18n.t("errors.messages.not_saved",count: resource.errors.count) %>
     </h2>
     <% resource.errors.full_messages.each do |message| %>
-      <p><%= message.split[2..-1].join(" ") %></p>
+      <p><%= message %></p>
     <% end %>
     <a class="close" href="#"></a>
   </div>
