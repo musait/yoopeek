@@ -3,10 +3,8 @@
 	<!-- Header -->
 	<div id="header">
 		<div class="container">
-
 			<!-- Left Side Content -->
 			<div class="left-side">
-
 				<!-- Logo -->
 				<div id="logo">
 					<%= link_to root_path,data: { turbolinks: false } do %>
@@ -23,7 +21,7 @@
 								<!-- <li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li> -->
 								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path %></li>
 
-								<li><%= link_to I18n.t('.header.rooms'), room_path(id:Room.last.id), method: :get %></li>
+								<li><%= link_to I18n.t('.header.rooms'), room_path(id:Room.where(author_id: current_user.id).or(Room.where(receiver_id:current_user.id)).first.id), method: :get %></li>
 								<li><a href="#">Pro Paiements</a></li>
 								<li> <%= link_to t('.header.portfolio'), portfolios_path, method: :get %></li>
 							<% else %>
