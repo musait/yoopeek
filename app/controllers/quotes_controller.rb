@@ -30,6 +30,7 @@ class QuotesController < ApplicationController
   end
 
   def accept
+    @quote.update(status:"accepted")
     @total = @quote.total_within_vat
     @intent = Stripe::PaymentIntent.create({
       amount: @total.to_i * 100,
@@ -43,6 +44,8 @@ class QuotesController < ApplicationController
       session[:payment_intent_id],
     )
     if @intent.status == "succeeded"
+      @quote.update(status:"paid")
+      @quote.job.update(worker_id: @quote.sender.id,status:"in_progress",sold_at: @intent.amount/100)
       session.delete(:payment_intent_id)
       respond_to do |format|
         format.any {
@@ -59,10 +62,6 @@ class QuotesController < ApplicationController
   def decline
     @quote = Quote.find(params[:quote])
     @quote.update(status:"declined")
-    sender = @quote.receiver
-    receiver = @quote.sender
-    Notification.create!(message: t('.your_quote_has_been_declined',job: @quote.job.name), quote: @quote, created_for: @quote.class.to_s.underscore, sender: sender, receiver: receiver)
-    UserMailer.with(user: @quote.sender, quote: @quote).quote_declined.deliver_later
     redirect_to @quote
   end
 
