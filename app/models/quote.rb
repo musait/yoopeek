@@ -6,7 +6,7 @@ class Quote < ApplicationRecord
   belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id'
   has_many :notifications
 
-  enum status: [:created, :declined, :accepted]
+  enum status: [:created, :declined, :accepted, :paid]
   before_create :increment_quote
   after_save :send_notification_and_email, if :status_changed?
 
@@ -30,9 +30,9 @@ class Quote < ApplicationRecord
       when "created"
         Notification.create!(message: I18n.t('.quotes.create.you_have_received_a_quote',pro: self.sender.full_name, job: self.job.name), quote: self,created_for: self.class.to_s.underscore, sender: self.sender, receiver: self.receiver)
         UserMailer.with(user: self.receiver, quote: self).new_quote.deliver_now
-      when "accepted"
-        Notification.create!(message: I18n.t('.quotes.create.your_quote_has_been_accepted',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.receiver, receiver: self.sender)
-        UserMailer.with(user: self.sender, quote: self).quote_accepted.deliver_now
+      when "paid"
+        Notification.create!(message: I18n.t('.quotes.accept.your_quote_has_been_paid',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.receiver, receiver: self.sender)
+        UserMailer.with(user: self.sender, quote: self).quote_paid.deliver_now
       when "declined"
         Notification.create!(message: I18n.t('.your_quote_has_been_declined',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.sender, receiver: self.receiver)
         UserMailer.with(user: self.sender, quote: self).quote_declined.deliver_now
