@@ -1,0 +1,96 @@
+
+<!-- Invoice -->
+<div id="invoice">
+
+	<%= render "/layouts/pdf_header" %>
+
+	<!-- Client & Supplier -->
+	<div class="row">
+		<div class="col-12">
+			<h2>Facture n° <%= @subscription.invoice_number %></h2>
+		</div>
+	</div>
+
+	<div class="row ">
+		<div class="col-6">
+			<strong class="margin-bottom-5">Vendeur</strong>
+			<p>
+				Nom de la compagnie <br>
+				ville de la compagnie, departement de la compagnie<br>
+				rue de la compagnie <br>
+			</p>
+		</div>
+
+
+		<div class="col-6">
+			<strong class="margin-bottom-5">Client</strong>
+			<p>
+				<%= @customer.full_name %> <br>
+				<%= @customer.try("address").try("city") %>, <%= @customer.try("address").try("zip") %><br>
+				<%= @customer.try("address").try("street") %><br>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<table class="margin-top-20">
+				<tr>
+					<th>Description</th>
+					<th>Quantité</th>
+					<th>Total</th>
+				</tr>
+
+
+        <tr>
+          <td><%= @subscription.plan_limitation.label %></td>
+          <td>1</td>
+          <!-- <td><%#= @user.with_vat? ? currency_formated(invoice_element.total / 1.2) : currency_formated(product.price) %></td> -->
+          <td><%= currency_formated(@amount_without_taxes) %></td>
+        </tr>
+
+			</table>
+		</div>
+	</div>
+	<!-- Invoice -->
+	<%# if @user.with_vat? %>
+		<div class="row">
+			<div class="col-4 offset-8">
+				<table id="totalsHT">
+					<tr>
+						<th>Sous total HT</th>
+						<!-- <th><span><%#= currency_formated (@user.with_vat? ? @amount_without_taxes : @order_transaction.amount) %></span></th> -->
+						<th><span><%= currency_formated (@amount_without_taxes) %></span></th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 offset-8">
+				<table id="totalsHT">
+					<tr>
+						<th>TVA 20% de <%= currency_formated @amount_without_taxes %></th>
+						<th><span><%= currency_formated @taxes %></span></th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	<%# end %>
+	<div class="row">
+		<div class="col-4 offset-8">
+			<table id="totals">
+				<tr>
+					<th>Total TTC</th>
+					<th><span><%= currency_formated @total %></span></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<!-- Footer -->
+	<div class="row">
+		<div class="col-12">
+			<ul id="footer">
+				<li> TVA non applicable, Article 293 du CGI</li>
+			</ul>
+		</div>
+	</div>
+</div>

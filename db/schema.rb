@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_103743) do
+ActiveRecord::Schema.define(version: 2019_11_07_131612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -104,6 +104,9 @@ ActiveRecord::Schema.define(version: 2019_11_06_103743) do
     t.string "stripe_payment_method_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "invoice_number"
+    t.uuid "credits_offer_id"
+    t.index ["credits_offer_id"], name: "index_credits_payments_on_credits_offer_id"
     t.index ["user_id"], name: "index_credits_payments_on_user_id"
   end
 
@@ -355,6 +358,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_103743) do
     t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "invoice_number"
     t.index ["plan_limitation_id"], name: "index_subscriptions_on_plan_limitation_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
@@ -429,6 +433,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_103743) do
   add_foreign_key "credit_changements", "rooms"
   add_foreign_key "credit_changements", "subscriptions"
   add_foreign_key "credit_changements", "users"
+  add_foreign_key "credits_payments", "credits_offers"
   add_foreign_key "credits_payments", "users"
   add_foreign_key "invoice_elements", "invoices"
   add_foreign_key "invoices", "jobs"

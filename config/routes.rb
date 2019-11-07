@@ -16,7 +16,14 @@ Rails.application.routes.draw do
         get :decline
       end
     end
-    resources :subscriptions
+    resources :subscriptions do
+      collection do
+        get :invoices
+      end
+      member do
+        get :invoice
+      end
+    end
     resources :users, only: [:show] do
       collection do
         get :my_subscription
@@ -42,6 +49,8 @@ Rails.application.routes.draw do
       end
     end
     get "buy_credits" => 'home#buy_credits'
+    get "credits_payments_invoices" => 'home#credits_payments_invoices'
+    get "invoice_credits_payment" => 'home#invoice_credits_payment'
     get "checkout_credit" => 'home#checkout_credit'
     post "add_credits" => 'home#add_credits'
     post "stripe_subscription_webhook" => 'home#stripe_subscription_webhook'

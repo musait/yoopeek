@@ -34,7 +34,28 @@ class HomeController < ApplicationController
     end
     session[:credits_offer_id] = params[:id]
   end
+  def credits_payments_invoices
+    @credits_payments = current_user.credits_payments
+  end
+  def invoice_credits_payment
+    @credits_payment = CreditsPayment.find(params[:id])
+    respond_to do |format|
+      format.pdf do
+        @customer = @credits_payment.user
+        @total = @credits_payment.amount
+        @amount_without_taxes = @total / 1.2
+        @taxes = @amount_without_taxes * 20 / 100
+        render pdf: "invoice",
+          encoding: "UTF-8",
+          margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
+          layout: 'pdf.html',
+          # show_as_html: false
 
+          # header: { :content => render_to_string({:template => "/layouts/pdf_header.html.erb", layout: false })},
+          disposition: 'attachment'
+      end
+    end
+  end
   def buy_credits
     @credits_offers = CreditsOffer.order(:price, reduction: :desc).all
   end
@@ -64,7 +85,7 @@ class HomeController < ApplicationController
 
   def add_credits
     credits_offer = CreditsOffer.find(session[:credits_offer_id])
-    CreditsPayment.create user: current_user, credits_add: credits_offer.credits, amount: credits_offer.price, stripe_intent_id: params[:payment_intent_id], stripe_payment_method_id: params[:payment_method_id]
+    CreditsPayment.create credits_offer: credits_offer, user: current_user, credits_add: credits_offer.credits, amount: credits_offer.price, stripe_intent_id: params[:payment_intent_id], stripe_payment_method_id: params[:payment_method_id]
     session.delete(:credits_offer_id)
     respond_to do |format|
       format.any {
