@@ -69,6 +69,30 @@ class SubscriptionsController < UsersController
     #   redirect_back fallback_location: users_subscription_path
     # end
   end
+
+  def invoices
+    @subscriptions = current_user.subscriptions
+  end
+
+  def invoice
+    @subscription = Subscription.find(params[:id])
+    respond_to do |format|
+      format.pdf do
+        @customer = @subscription.user
+        @total = @subscription.plan_amount
+        @amount_without_taxes = @total / 1.2
+        @taxes = @amount_without_taxes * 20 / 100
+        render pdf: "invoice",
+          encoding: "UTF-8",
+          margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
+          layout: 'pdf.html',
+          # show_as_html: false
+
+          # header: { :content => render_to_string({:template => "/layouts/pdf_header.html.erb", layout: false })},
+          disposition: 'attachment'
+      end
+    end
+  end
   private
   def pay_plan plan_limitation
     plan_id = plan_limitation.stripe_plan_id

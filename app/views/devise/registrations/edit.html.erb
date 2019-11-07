@@ -139,6 +139,9 @@
                     <%= link_to buy_credits_path, class: "button", style: "margin-top: 20px;" do %>
                       <%= I18n.t('.user.pro_profile.edit.buy_credits') %>
                     <% end %>
+                    <%= link_to credits_payments_invoices_path, class: "button", style: "margin-top: 20px;" do %>
+                      <%= I18n.t('show_invoices') %>
+                    <% end %>
                     <!-- <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"></a> -->
                   </div>
                 </div>
@@ -451,7 +454,8 @@
             relationship: {
               representative: true,
               owner: true,
-              director: true
+              director: true,
+              percent_ownership: 100,
             }
           },
         });

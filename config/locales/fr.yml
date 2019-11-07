@@ -35,10 +35,19 @@ fr:
   action_not_enable: Action non disponible
   no_quote_created: Aucun devis a été créé
   credit: Crédit
+  show_invoices: Voir mes factures
   not_enougth_credits: Vous n'avez pas assez de crédit
   credits_for:
     html: <strong>%{credits} crédits:</strong> %{for}
   buy: Acheter
+  invoice_credits: "%{credits} crédits"
+  your_invoices: Vos factures
+  invoice_number: Numéro de la facture
+  invoice_date: Date de la facture
+  invoice_amount: Montant de la facture
+  download_link: Lien de téléchargement
+  you_doesnt_have_invoice: Vous n'avez pas de facture sur votre compte
+  download: Télécharger
   summary: Résumé
   subscriptions:
     index:

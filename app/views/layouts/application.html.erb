@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="/theme/user/hireo/css/style.css">
     <link rel="stylesheet" href="/theme/user/hireo/css/colors/blue.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Rails.application.credentials.google[:place_api_key]}" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -58,6 +59,7 @@
     <script src="/theme/user/hireo/js/magnific-popup.min.js"></script>
     <script src="/theme/user/hireo/js/slick.min.js"></script>
     <script src="/theme/user/hireo/js/custom.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
       $(document).on('turbolinks:load', function() {
       function initializeAutocomplete(id) {
