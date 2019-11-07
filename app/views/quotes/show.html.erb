@@ -66,32 +66,45 @@
 										<!-- Avatar -->
 										<div class="freelancer-avatar">
 											<div class="verified-badge"></div>
-											<a href="/theme/user/hireo/single-freelancer-profile.html"><img src=" <%= @quote.sender.avatar_url %>" alt=""></a>
+											<img src=" <%= @quote.sender.avatar_url %>" alt="">
 										</div>
 
 										<!-- Name -->
 										<div class="freelancer-name">
-											<h4><a href="/theme/user/hireo/single-freelancer-profile.html"> <%= @quote.sender.full_name %></a></h4>
+											<h4><%= @quote.sender.full_name %></h4>
 											<span> <%= @quote.sender.profession.name %></span><br>
 										</div>
 										<!-- Rating -->
 									</div>
-                  <% if current_user.is_worker %>
-  	                <% if current_user.have_one_room_with_user(@quote.job.customer) %>
-  	      						<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @quote.job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @quote.job.customer.id)).first.id),class:"button margin-bottom-10" do %>
-  	      							<%= raw I18n.t('.quotes.show.send_mp') %>
-  	      						<% end %>
-  	      					<% end %>
-                  <% else %>
-                    <% if current_user.have_one_room_with_user(@quote.job.customer) %>
-                      <%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @quote.sender.id).or(Room.where(receiver_id:current_user.id,author_id: @quote.sender.id)).first.id),class:"button margin-bottom-10" do %>
-                        <%= raw I18n.t('.quotes.show.send_mp') %>
-                      <% end %>
-                    <% end %>
+                  <%= link_to room_path(id: Room.where(author_id:current_user.id,job_id: @quote.job.id,receiver_id: @quote.sender.id).or(Room.where(receiver_id:current_user.id,job_id: @quote.job.id,author_id: @quote.sender.id)).first.id),class:"button margin-bottom-10" do %>
+                    <%= raw I18n.t('.quotes.show.send_mp') %>
                   <% end %>
-
 								</div>
 							</div>
+            <% else %>
+            <div class="">
+              <!-- Overview -->
+              <div class="freelancer-overview">
+                <div class="freelancer-overview-inner d-flex">
+                  <!-- Bookmark Icon -->
+                  <!-- Avatar -->
+                  <div class="freelancer-avatar">
+                    <img src=" <%= @quote.receiver.avatar_url %>" alt="">
+                  </div>
+
+                  <!-- Name -->
+                  <div class="freelancer-name">
+                    <h4> <%= @quote.receiver.full_name %></h4>
+                  </div>
+                  <!-- Rating -->
+                </div>
+                <% if current_user.have_one_room_with_user(@quote.job.customer) %>
+                  <%= link_to room_path(id: Room.where(author_id:current_user.id,job_id: @quote.job.id,receiver_id: @quote.receiver.id).or(Room.where(receiver_id:current_user.id,job_id: @quote.job.id,author_id: @quote.receiver.id)).first.id),class:"button margin-bottom-10" do %>
+                    <%= raw I18n.t('.quotes.show.send_mp') %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
 						<% end %>
 			      <div class="boxed-widget summary margin-top-0">
 			        <div class="boxed-widget-headline">
