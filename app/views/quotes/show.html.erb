@@ -21,7 +21,8 @@
 				    <h3><i class="icon-feather-folder-plus"></i> <%= t('.quote_in_progress_for_customer') %> <mark class="color" style="background-color: orange"><%= raw I18n.t('.quotes.show.quote_in_progress') %></mark></h3>
           <% when "declined" %>
             <h3><i class="icon-feather-folder-plus"></i>  <%= t('.quote_declined_by_customer') %> <mark class="color" style="background-color: #e53038"><%= raw I18n.t('.quotes.show.quote_decline') %></mark></h3>
-
+          <% when "paid" %>
+            <h3><i class="icon-feather-folder-plus"></i>  <%= t('.quote_paid_by_customer') %> <mark class="color" style="background-color:  #28b661"><%= raw I18n.t('.quotes.show.quote_paid') %></mark></h3>
           <% else %>
             <h3><i class="icon-feather-folder-plus"></i> <%= t('.quote_accepted_by_customer') %> <mark class="color" style="background-color: #28b661"><%= raw I18n.t('.quotes.show.quote_accepted') %></mark></h3>
         <% end %>
@@ -111,7 +112,7 @@
 	                <% when "created" %>
 	                  <%= link_to t('.decline'), decline_quote_path(quote: @quote),style:"margin-right: 10px;display: flex; align-items: center" %>
 	                  <%= link_to t('.accept_quote'), accept_quote_path(id: @quote),class:"button", "data-turbolinks" => "false" %>
-	                <% when "accepted" %>
+	                <% when "paid" %>
 	                  <p> <%= t('.message_for_quote_accepted') %></p>
 	                <% else %>
                     <p><%= t('.message_for_quote_declined') %></p>
