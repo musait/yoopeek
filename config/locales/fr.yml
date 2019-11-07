@@ -263,6 +263,11 @@ fr:
       select_something: "Séléctionnez un filtre"
       filter_by: "Filtrer par"
       you_havent_realised_any_job: "Vous n'avez pas encore de missions réalisées"
+    finished:
+      worker_declare_job_finished: "%{pro} a déclarer avoir fini la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
+      correctement déroulée. Si ce n'est pas le cas, contactez le service client ."
+      customer_declare_job_finished: "%{customer} a déclarer avoir fini la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
+      correctement déroulée. Si ce n'est pas le cas, contactez le service client ."
   users:
     omniauth_callbacks:
       facebook:
@@ -409,6 +414,12 @@ fr:
       your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusé"
     accept:
       your_quote_has_been_paid: "Votre devis conçernant la mission suivante : %{job} a été acceptée et payée. Vous pouvez contacter votre client pour commencer la mission"
+      paiement_amout: "Montant du paiement"
+      security_message: "Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptées et sécurisées"
+      payment_proceed: "Valider le paiement"
+      quote: "Devis n° %{number}"
+      total: "Total TTC"
+      terms_agreements: "Je suis d'accord avec les conditions générales des ventes"
   order:
     show:
       summary: "Récapitulatif"
