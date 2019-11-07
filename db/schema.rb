@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_131612) do
+ActiveRecord::Schema.define(version: 2019_11_07_181413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_131612) do
     t.integer "total_without_vat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "commission_collected"
     t.index ["job_id"], name: "index_invoices_on_job_id"
     t.index ["quote_id"], name: "index_invoices_on_quote_id"
     t.index ["receiver_id"], name: "index_invoices_on_receiver_id"
@@ -274,6 +275,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_131612) do
     t.integer "total_without_vat"
     t.integer "vat"
     t.integer "total_within_vat"
+    t.float "commission_collected"
     t.index ["job_id"], name: "index_quotes_on_job_id"
     t.index ["quote_element_id"], name: "index_quotes_on_quote_element_id"
     t.index ["user_id"], name: "index_quotes_on_user_id"
