@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_181413) do
+ActiveRecord::Schema.define(version: 2019_11_08_111459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -235,6 +235,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_181413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "stripe_plan_id"
+    t.integer "limit_portfolio_content"
   end
 
   create_table "portfolios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -419,6 +420,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_181413) do
     t.float "total_credits", default: 0.0
     t.datetime "birthdate"
     t.string "stripe_person_id"
+    t.string "stripe_connect_bank_id"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["category_id"], name: "index_users_on_category_id"

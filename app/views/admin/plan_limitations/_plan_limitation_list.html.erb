@@ -7,6 +7,7 @@
       <th>Commission par prestation</th>
       <th>Nombre de réponses aux annonces</th>
       <th>Limite du portfolio</th>
+      <th>Limite du contenu du portfolio</th>
       <th>Avec badge</th>
       <th>Avec status</th>
       <th>Actions</th>
@@ -21,6 +22,7 @@
         <td><%= plan_limitation.commission_per_service %> <%= plan_limitation.commission_type %></td>
         <td><%= plan_limitation.nb_answer %> / <%= I18n.t(plan_limitation.nb_answer_type) %></td>
         <td><%= plan_limitation.limit_portfolio_to_s %></td>
+        <td><%= plan_limitation.limit_portfolio_content_to_s %></td>
         <td><%= I18n.t(plan_limitation.have_badge?) %></td>
         <td><%= I18n.t(plan_limitation.have_status?) %></td>
         <td class="actions">
