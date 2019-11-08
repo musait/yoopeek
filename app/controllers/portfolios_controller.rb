@@ -1,6 +1,6 @@
 class PortfoliosController < ApplicationController
+  before_action :check_portfolio_access
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
-
   # GET /portfolios
   # GET /portfolios.json
   def index
@@ -61,6 +61,10 @@ class PortfoliosController < ApplicationController
   end
 
   private
+  def check_portfolio_access
+    user_plan = current_user.current_plan
+    redirect_back fallback_location: root_path, flash: {error: I18n.t("no_portfolio_with_this_plan")} if( user_plan.limit_portfolio.present? &&user_plan.limit_portfolio <= 0)
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_portfolio
       @portfolio = Portfolio.find(params[:id])
