@@ -43,8 +43,8 @@ class HomeController < ApplicationController
       format.pdf do
         @customer = @credits_payment.user
         @total = @credits_payment.amount
-        @amount_without_taxes = @total / 1.2
-        @taxes = @amount_without_taxes * 20 / 100
+        @amount_without_taxes = @total / 1.077
+        @taxes = @amount_without_taxes * 7.7 / 100
         render pdf: "invoice",
           encoding: "UTF-8",
           margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},

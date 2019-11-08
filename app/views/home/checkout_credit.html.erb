@@ -26,17 +26,6 @@
       </div>
 
 		</div>
-		<!-- <div class="payment margin-top-30">
-
-			<div class="payment-tab payment-tab-active">
-				<div class="payment-tab-trigger">
-          <div class="col-md-12 mb-2" id="card-element"></div>
-				</div>
-			</div>
-
-		</div> -->
-		<!-- Payment Methods Accordion / End -->
-
     <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65"> <%=t('.confirm')%></button>
 	</div>
 
@@ -51,8 +40,8 @@
 			</div>
 			<div class="boxed-widget-inner">
 				<ul>
-					<li><%= float_formated @credits_offer.credits %> <%= t("credit").pluralize %> <span><%= currency_formated (@credits_offer.price - @credits_offer.price * 0.2) %></span></li>
-					<li>TVA (20%) <span><%= currency_formated (@credits_offer.price * 0.2) %></span></li>
+					<li><%= float_formated @credits_offer.credits %> <%= t("credit").pluralize %> <span><%= currency_formated (@credits_offer.price - @credits_offer.price * 0.077) %></span></li>
+					<li>TVA 7,7% : <span><%= currency_formated (@credits_offer.price * 0.077) %></span></li>
 					<li class="total-costs"> <%= t('subscriptions.form.total') %> <span><%= currency_formated (@credits_offer.price) %></span></li>
 				</ul>
 			</div>
