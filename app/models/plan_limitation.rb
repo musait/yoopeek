@@ -12,6 +12,7 @@ class PlanLimitation < ApplicationRecord
       nb_answer: 0,
       nb_answer_type: "month",
       limit_portfolio: 0,
+      limit_portfolio_content: 0,
       have_badge: false,
       have_status: false,
       show_order: 0
@@ -26,7 +27,8 @@ class PlanLimitation < ApplicationRecord
       commission_type: "€",
       nb_answer: 5,
       nb_answer_type: "month",
-      limit_portfolio: 15,
+      limit_portfolio: 5,
+      limit_portfolio_content: 15,
       have_badge: false,
       have_status: false,
       show_order: 1
@@ -42,6 +44,7 @@ class PlanLimitation < ApplicationRecord
       nb_answer: 50,
       nb_answer_type: "month",
       limit_portfolio: nil,
+      limit_portfolio_content: nil,
       have_badge: true,
       have_status: true,
       show_order: 2
@@ -50,5 +53,8 @@ class PlanLimitation < ApplicationRecord
 
   def limit_portfolio_to_s
     limit_portfolio.present? ? limit_portfolio : I18n.t("unlimited")
+  end
+  def limit_portfolio_content_to_s
+    limit_portfolio_content.present? ? limit_portfolio_content : I18n.t("unlimited")
   end
 end

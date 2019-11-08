@@ -75,6 +75,6 @@ class Admin::PlanLimitationsController <  AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_limitation_params
-      params.require(:plan_limitation).permit(:name, :label, :description, :price_per_month, :commission_per_service, :commission_type, :nb_answer, :nb_answer_type, :limit_portfolio, :have_badge, :have_status, :stripe_plan_id)
+      params.require(:plan_limitation).permit(:name, :label, :description, :price_per_month, :commission_per_service, :commission_type, :nb_answer, :nb_answer_type, :limit_portfolio, :limit_portfolio_content, :have_badge, :have_status, :stripe_plan_id)
     end
 end
