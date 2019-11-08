@@ -8,6 +8,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <input type="hidden" name="user[account_token]" id="token-account">
+  <input type="hidden" name="user[bank_token]" id="token-bank">
   <input type="hidden" name="user[person_token]" id="token-person">
   <%= render "devise/shared/error_messages", resource: resource %>
   <!-- Row -->
@@ -259,16 +260,17 @@
                         </div>
                       </div>
                     <% end %>
-                    <div class="col-xl-6">
-                      <div class="submit-field">
-                        <h5><%= raw I18n.t('.user.company.edit.iban') %></h5>
-                        <%= c.text_field :iban, class:"with-border" %>
-                      </div>
-                    </div>
+
                     <div class="col-xl-6">
                       <div class="submit-field">
                         <h5><%= raw I18n.t('.user.company.edit.website') %></h5>
                         <%= c.text_field :website, class:"with-border" %>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5><%= raw I18n.t('.user.company.edit.iban') %></h5>
+                        <%= c.text_field :iban, class:"with-border", required: true %>
                       </div>
                     </div>
                     <div class="col-xl-6">
@@ -334,7 +336,7 @@
 
     <!-- Button -->
     <div class="col-xl-12">
-      <%= f.submit I18n.t('.user.all.edit.save_modification'),class:"button ripple-effect big margin-top-30" %>
+      <%= f.submit I18n.t('.user.all.edit.save_modification'),class:"button ripple-effect big margin-top-30", id: "submit-form-button" %>
     </div>
   </div>
 <% end %>
@@ -460,13 +462,37 @@
           },
         });
       <% end %>
-
+      const bankResult = await stripe.createToken('bank_account', {
+        country: "FR",
+        currency: document.querySelector('#user_company_attributes_currency').value,
+        account_number: document.querySelector('#user_company_attributes_iban').value,
+      });
+      if (personResult.error != null) {
+        if (personResult.error.param == "person[dob][year]") {
+          toastr['error']("<%= I18n.t('stripe.watch_your_birthdate') %>");
+        } else {
+          toastr['error'](personResult.error.message);
+        }
+      }
+      if (accountResult.error != null) {
+        console.log(accountResult.error);
+        toastr['error'](accountResult.error.message);
+      }
+      if (bankResult.error != null) {
+        console.log(bankResult.error);
+        if (bankResult.error.code == "account_number_invalid") {
+          toastr['error']("<%= I18n.t('stripe.watch_your_iban') %>");
+        }
+        toastr['error'](bankResult.error.message);
+      }
 
       if (accountResult.token && personResult.token) {
         document.querySelector('#token-account').value = accountResult.token.id;
         document.querySelector('#token-person').value = personResult.token.id;
+        document.querySelector('#token-bank').value = bankResult.token.id;
         myForm.submit();
       }
+      $("#submit-form-button").prop("disabled", false);
     }
     </script>
   <% end %>
