@@ -47,6 +47,7 @@ fr:
   invoice_date: Date de la facture
   invoice_amount: Montant de la facture
   download_link: Lien de téléchargement
+  no_portfolio_with_this_plan: Vous n'avez pas acces au portfolio dans votre plan
   you_doesnt_have_invoice: Vous n'avez pas de facture sur votre compte
   download: Télécharger
   summary: Résumé
