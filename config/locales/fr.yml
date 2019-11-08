@@ -47,6 +47,9 @@ fr:
   invoice_date: Date de la facture
   invoice_amount: Montant de la facture
   download_link: Lien de téléchargement
+  stripe:
+    watch_your_iban: Vérifiez votre IBAN
+    watch_your_birthdate: Vérifiez votre date de naissance
   portfolio_content_limit_number: Vous ne pouvez pas avoir plus de %{limit} image dans votre portfolio dans le plan %{plan}
   portfolio_limit_number: Vous ne pouvez pas avoir plus de %{limit} portfolio dans le plan %{plan}
   no_portfolio_with_this_plan: Vous n'avez pas acces au portfolio dans votre plan
