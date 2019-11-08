@@ -13,21 +13,22 @@
 
 	<div class="row ">
 		<div class="col-6">
-			<strong class="margin-bottom-5">Vendeur</strong>
+			<strong class="margin-bottom-5">Emetteur</strong>
 			<p>
-				Nom de la compagnie <br>
-				ville de la compagnie, departement de la compagnie<br>
-				rue de la compagnie <br>
+				Yoopeek <br>
+				3 Rue de la Plaine<br>
+				1400 Yverdon-les-Bains<br>
+				Suisse
 			</p>
 		</div>
 
 
 		<div class="col-6">
-			<strong class="margin-bottom-5">Client</strong>
+			<strong class="margin-bottom-5">Destinataire</strong>
 			<p>
-				<%= @customer.full_name %> <br>
-				<%= @customer.try("address").try("city") %>, <%= @customer.try("address").try("zip") %><br>
-				<%= @customer.try("address").try("street") %><br>
+				<%= @customer.company.try("address").try("street") %><br>
+				<%=	@customer.try("address").try("zip") %> <%= @customer.company.try("address").try("city") %> <br>
+				<%= @customer.company.try("address").try("country") %><br>
 			</p>
 		</div>
 	</div>
@@ -39,12 +40,9 @@
 					<th>Quantité</th>
 					<th>Total</th>
 				</tr>
-
-
         <tr>
           <td><%= @subscription.plan_limitation.label %></td>
           <td>1</td>
-          <!-- <td><%#= @user.with_vat? ? currency_formated(invoice_element.total / 1.2) : currency_formated(product.price) %></td> -->
           <td><%= currency_formated(@amount_without_taxes) %></td>
         </tr>
 
@@ -58,7 +56,6 @@
 				<table id="totalsHT">
 					<tr>
 						<th>Sous total HT</th>
-						<!-- <th><span><%#= currency_formated (@user.with_vat? ? @amount_without_taxes : @order_transaction.amount) %></span></th> -->
 						<th><span><%= currency_formated (@amount_without_taxes) %></span></th>
 					</tr>
 				</table>
@@ -68,7 +65,7 @@
 			<div class="col-4 offset-8">
 				<table id="totalsHT">
 					<tr>
-						<th>TVA 20% de <%= currency_formated @amount_without_taxes %></th>
+						<th>TVA 7,7% de <%= currency_formated @amount_without_taxes %></th>
 						<th><span><%= currency_formated @taxes %></span></th>
 					</tr>
 				</table>
@@ -85,12 +82,5 @@
 			</table>
 		</div>
 	</div>
-	<!-- Footer -->
-	<div class="row">
-		<div class="col-12">
-			<ul id="footer">
-				<li> TVA non applicable, Article 293 du CGI</li>
-			</ul>
-		</div>
-	</div>
+	<%= render 'layouts/pdf_footer' %>
 </div>
