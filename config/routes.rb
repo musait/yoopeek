@@ -37,8 +37,6 @@ Rails.application.routes.draw do
         get :invoice
       end
     end
-    get 'show' => 'jobs#show_test'
-    get 'show_quote' => 'quotes#show_test'
     get 'search_result' => 'home#search_result'
     post  'search_result' => 'home#search_result'
     resources :reviews
