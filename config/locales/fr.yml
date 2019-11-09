@@ -4,6 +4,16 @@ fr:
       template:
         header: "Ce/Cette %{model} n'a pas pu être sauvegardé(e) pour la/les raison(s) suivante(s) :"
       models:
+        user:
+          attributes:
+            is_worker:
+              must_exist: "Le statut doit être précisé"
+            firstname:
+              must_exist: "Votre nom est obligatoire"
+            lastname:
+              must_exist: "Votre prénom est obligatoire"
+
+
         quote_element:
           attributes:
             price:
