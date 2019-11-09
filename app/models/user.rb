@@ -20,6 +20,7 @@ class User < ApplicationRecord
   after_save :set_stripe_customer_id, if: Proc.new { stripe_customer_id.blank? }
   attr_accessor :account_token
   attr_accessor :person_token
+  attr_accessor :bank_token
   acts_as_reader
   has_one_attached :avatar
   phony_normalize :phone_number, default_country_code: 'FR'
@@ -70,6 +71,25 @@ class User < ApplicationRecord
           p e
           account = nil
         end
+      end
+    end
+
+
+    if bank_token.present?
+      begin
+        if account_id.present?
+          bank_account = Stripe::Account.create_external_account(
+            account_id,
+            {
+              external_account: bank_token,
+            }
+          )
+
+          self.stripe_connect_bank_id = bank_account.id
+        end
+      rescue Stripe::InvalidRequestError => e
+        p e
+        account = nil
       end
     end
   end

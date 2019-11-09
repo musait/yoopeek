@@ -10,7 +10,7 @@ class RoomMessagesController < ApplicationController
         if current_user.pay_with_credits(credits, "room", @room)
           create_message
         else
-          current_user.refund_credits(credits)
+          # current_user.refund_credits(credits)
           render js: 'toastr["error"]("' + I18n.t('not_enougth_credits') + '");'
         end
       end
