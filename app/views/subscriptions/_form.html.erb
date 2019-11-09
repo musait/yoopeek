@@ -53,7 +53,7 @@
 			<div class="boxed-widget-inner">
 				<ul>
 					<li><%= @plan_limitation.label %> <span><%= currency_formated (@plan_limitation.price_per_month - @plan_limitation.price_per_month * 0.2) %></span></li>
-					<li>TVA (20%) <span><%= currency_formated (@plan_limitation.price_per_month * 0.2) %></span></li>
+					<li>TVA (7,7%) <span><%= currency_formated (@plan_limitation.price_per_month * 0.077) %></span></li>
 					<li class="total-costs"> <%= t('.total') %> <span><%= currency_formated (@plan_limitation.price_per_month) %></span></li>
 				</ul>
 			</div>
