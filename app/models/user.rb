@@ -25,6 +25,9 @@ class User < ApplicationRecord
   has_one_attached :avatar
   phony_normalize :phone_number, default_country_code: 'FR'
   has_many :portfolios
+  validates :is_worker, presence: { message: :must_exist }
+  validates :firstname, presence: { message: :must_exist }
+  validates :lastname, presence: { message: :must_exist }
 
   before_save :set_stripe_account
   after_create :set_conv_with_yoopeek
