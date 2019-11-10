@@ -420,6 +420,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_111459) do
     t.float "total_credits", default: 0.0
     t.datetime "birthdate"
     t.string "stripe_person_id"
+    t.string "stripe_connect_bank_id"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["category_id"], name: "index_users_on_category_id"
