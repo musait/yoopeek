@@ -11,8 +11,10 @@ class Job < ApplicationRecord
   paginates_per 3
   validates_numericality_of :max_price, presence: true, :message => :is_not_a_number
   validates_numericality_of :min_price, presence: true, :message => :is_not_a_number
+  validates_numericality_of :max_price, :greater_than => :min_price , :message => :has_to_be_greather
   validates_numericality_of :min_time, presence: true, :message => :is_not_a_number
   validates_numericality_of :max_time, presence: true, :message => :is_not_a_number
+  validates_numericality_of :max_time, :greater_than => :min_time, :message => :has_to_be_greather
   validates :date_delivery, not_in_past: true,:allow_blank => false, :if => :date_delivery_changed?
 
   after_validation :set_slug, only: [:create, :update]
