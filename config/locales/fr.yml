@@ -26,10 +26,12 @@ fr:
           attributes:
             max_price:
               is_not_a_number: "Votre budget maximal doit être un nombre et doit être présent"
+              has_to_be_greather: "Votre budget maximal doit être supérieur au budget minimal"
             min_price:
               is_not_a_number: "Votre budget minimal doit être un nombre et doit être présent"
             max_time:
               is_not_a_number: "Le temps estimé minimal doit être un nombre et doit être présent"
+              has_to_be_greather: "Le temps estimé maximal doit être supérieur au temps estimé minimal"
             min_price:
               is_not_a_number: "Le temps estimé maximal doit être un nombre et doit être présent"
             category:
@@ -181,7 +183,7 @@ fr:
   home:
     index:
       your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
-      intro: "Vous avez un projet photographique ? <br> Yoopek est là pour vous ! "
+      intro: "Vous avez un projet photographique ? <br> Yoopeek est là pour vous ! "
       what: "Quoi ?"
       where: "Où ?"
       search: "Chercher"
