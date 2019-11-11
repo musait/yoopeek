@@ -89,7 +89,6 @@
     if($('#customer-radio').is(':checked')) {
       var linkToFacebook= $('a#linkToFacebook')["0"].href;
       var linkToGoogle= $('a#linkToGoogle')["0"].href;
-      console.log(linkToFacebook)
       $('a#linkToFacebook').attr("href",linkToFacebook.split('?')[0]);
       $('a#linkToGoogle').attr("href",linkToGoogle.split('?')[0]);
 
