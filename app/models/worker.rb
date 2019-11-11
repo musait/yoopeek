@@ -10,4 +10,8 @@ class Worker < User
 
   has_many :join_tag_workers
   has_many :tags, through: :join_tag_workers
+
+  def get_or_build_company
+    company ||Company.new
+  end
 end

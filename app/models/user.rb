@@ -221,7 +221,7 @@ class User < ApplicationRecord
   end
 
   def pay_with_credits credits, create_for = nil, element = nil
-    if current_credits > credits
+    if current_credits >= credits
       remove_credits credits, create_for, element
       true
     else
@@ -231,6 +231,10 @@ class User < ApplicationRecord
 
   def refund_credits credits
     update current_credits: (current_credits + credits)
+  end
+
+  def get_or_build_address
+    address||Address.new
   end
 
   def from_omniauth?

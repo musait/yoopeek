@@ -14,4 +14,7 @@ class Company < ApplicationRecord
   def is_subject_to_vat?
     self.subject_to_vat == true
   end
+  def get_or_build_address
+    address||Address.new
+  end
 end
