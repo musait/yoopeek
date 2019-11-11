@@ -77,7 +77,7 @@
                   <div class="submit-field">
                     <h5><%= I18n.t('.user.all.edit.birthdate') %></h5>
                     <div class="" style="display:flex">
-      								<%= f.date_select :birthdate,order: [:day, :month, :year], class:"date-time", required: true%>
+      								<%= f.date_select :birthdate,order: [:day, :month, :year], class:"date-time",start_year: 100.year.ago.year, required: true%>
       							</div>
                   </div>
                 </div>
@@ -177,32 +177,6 @@
             <ul class="fields-ul">
               <li>
                 <div class="row">
-                  <div class="col-xl-8">
-                    <h3><%= I18n.t('.user.pro_profile.edit.your_badge') %></h3>
-                    <!-- Multi step form -->
-                    <div class="progress">
-                      <span class="bar done"></span>
-                      <div class="circle bronze">
-
-                      </div>
-                      <span class="bar done"></span>
-                      <div class="circle argent">
-                      </div>
-                      <span class="bar done"></span>
-
-                      <div class="circle or">
-
-                      </div>
-                      <span class="bar done"></span>
-                    </div>
-                  </div>
-                  <div class="col-xl-4">
-                    <p>Explication des badges à venir</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="row">
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <div class="bidding-widget">
@@ -282,7 +256,7 @@
                     <div class="col-xl-6">
                       <div class="submit-field">
                         <h5><%= raw I18n.t('.user.company.edit.iban') %></h5>
-                        <%= c.text_field :iban, class:"with-border", required: true %>
+                        <%= c.text_field :iban, class:"with-border"%>
                       </div>
                     </div>
                     <div class="col-xl-6">
@@ -428,7 +402,6 @@
 
         });
       <% end %>
-      var dob = $("#user_birthdate").val().split("-")
       <% if current_user.stripe_person_id.present? %>
         const personResult = await stripe.createToken('person', {
           person: {
@@ -436,9 +409,9 @@
             last_name: document.querySelector('#user_lastname').value,
             email: document.querySelector('#user_email').value,
             dob: {
-              day: dob[2],
-              month: dob[1],
-              year: dob[0]
+              day: document.querySelector('#user_birthdate_3i').value,
+              month: document.querySelector('#user_birthdate_2i').value,
+              year: document.querySelector('#user_birthdate_1i').value
             },
             address: {
               line1: document.querySelector('#street_id').value,
@@ -455,9 +428,9 @@
             last_name: document.querySelector('#user_lastname').value,
             email: document.querySelector('#user_email').value,
             dob: {
-              day: dob[2],
-              month: dob[1],
-              year: dob[0]
+              day: document.querySelector('#user_birthdate_3i').value,
+              month: document.querySelector('#user_birthdate_2i').value,
+              year: document.querySelector('#user_birthdate_1i').value
             },
             address: {
               line1: document.querySelector('#street_id').value,
@@ -474,11 +447,25 @@
           },
         });
       <% end %>
-      const bankResult = await stripe.createToken('bank_account', {
-        country: "FR",
-        currency: document.querySelector('#user_company_attributes_currency').value,
-        account_number: document.querySelector('#user_company_attributes_iban').value,
-      });
+        var bankResult = null
+        if (document.querySelector('#user_company_attributes_iban').value == "" || document.querySelector('#user_company_attributes_iban').value == null) {
+          var bankResult = null
+        } else {
+          const bankResult = await stripe.createToken('bank_account', {
+            country: "FR",
+            currency: document.querySelector('#user_company_attributes_currency').value,
+            account_number: document.querySelector('#user_company_attributes_iban').value,
+          });
+          if (bankResult.error != null) {
+            if (bankResult.error.code == "account_number_invalid") {
+              toastr['error']("<%= I18n.t('stripe.watch_your_iban') %>");
+            }
+            toastr['error'](bankResult.error.message);
+          }
+        }
+
+
+
       if (personResult.error != null) {
         if (personResult.error.param == "person[dob][year]") {
           toastr['error']("<%= I18n.t('stripe.watch_your_birthdate') %>");
@@ -490,18 +477,13 @@
         console.log(accountResult.error);
         toastr['error'](accountResult.error.message);
       }
-      if (bankResult.error != null) {
-        console.log(bankResult.error);
-        if (bankResult.error.code == "account_number_invalid") {
-          toastr['error']("<%= I18n.t('stripe.watch_your_iban') %>");
-        }
-        toastr['error'](bankResult.error.message);
-      }
-
       if (accountResult.token && personResult.token) {
         document.querySelector('#token-account').value = accountResult.token.id;
         document.querySelector('#token-person').value = personResult.token.id;
-        document.querySelector('#token-bank').value = bankResult.token.id;
+        if (bankResult != null) {
+          document.querySelector('#token-bank').value = bankResult.token.id;
+          console.log(document.querySelector('#token-bank').value);
+        }
         myForm.submit();
       }
       $("#submit-form-button").prop("disabled", false);
