@@ -126,9 +126,9 @@ class User < ApplicationRecord
 
   def set_conv_with_yoopeek
     unless self.email == "yoopeek@yoopeek.com"
-      @room = Room.create(author_id: User.find_by(email:"yoopeek@yoopeek.com").id,receiver_id: self.id )
-
-      RoomMessage.create(room: @room,author:User.find_by(email:"yoopeek@yoopeek.com"),receiver:self, message:"Bienvenue sur Yoopeek")
+      @room = Room.create(author_id: User.unscoped.find_by(email:"yoopeek@yoopeek.com").id,receiver_id: self.id )
+      RoomMessage.create(room: @room,author:User.unscoped.find_by(email:"yoopeek@yoopeek.com"),receiver:self, message:"Bienvenue sur Yoopeek. Chaque message vous coutera 6 points. Si le client vous réponds pas, vous serez remboursé intégralement.
+      Si le client vous répond mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points")
     end
   end
   def send_admin_mail
@@ -157,6 +157,7 @@ class User < ApplicationRecord
         user.is_worker = false
       end
       user.skip_confirmation!
+      user.save!
     end
   end
 
@@ -230,5 +231,9 @@ class User < ApplicationRecord
 
   def refund_credits credits
     update current_credits: (current_credits + credits)
+  end
+
+  def from_omniauth?
+    facebook_id || google_id
   end
 end
