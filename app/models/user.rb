@@ -25,7 +25,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   phony_normalize :phone_number, default_country_code: 'FR'
   has_many :portfolios
-  validates :is_worker, presence: { message: :must_exist }
+  validates_presence_of :is_worker, message: :must_exist
   validates :firstname, presence: { message: :must_exist }
   validates :lastname, presence: { message: :must_exist }
 
