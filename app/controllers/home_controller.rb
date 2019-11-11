@@ -91,6 +91,8 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.any {
         render js: ''
+        flash[:success] = I18n.t('other.credits_added')
+        flash.keep(:success)
       }
       format.html {
         redirect_to buy_credits_path, flash: {success: I18n.t("other.credits_added")}, method: :get

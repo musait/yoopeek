@@ -7,6 +7,7 @@ class SubscriptionsController < UsersController
       PlanLimitation.premium_limitation
       @plan_limitations = PlanLimitation.order(:show_order).all
     end
+
   end
   def new
     @plan_limitation = PlanLimitation.find(params[:plan_limitation_id])
@@ -102,9 +103,13 @@ class SubscriptionsController < UsersController
       format.any {
         # Charge à notre code d'implémenter le to_xls
         render js: ''
+        flash[:success] = I18n.t("other.subscription_changed")
+        flash.keep(:success)
       }
       format.html {
-        redirect_to subscriptions_path, flash: {success: I18n.t("other.subscription_changed")}, method: :get
+        redirect_to subscriptions_path
+        flash[:success] = I18n.t("other.subscription_changed")
+        flash.keep(:success)
       }
 
     end
