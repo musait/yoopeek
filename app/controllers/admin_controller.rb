@@ -15,7 +15,7 @@ class AdminController < ApplicationController
 
   def is_admin?
     if current_user.present?
-      if current_user.is_admin
+      if current_user.admin?
       else
         redirect_to root_path, alert: "Vous devez être administrateur pour vous rendre sur cette page"
       end

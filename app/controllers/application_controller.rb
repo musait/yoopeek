@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource.is_admin
+    if resource.admin?
       admin_index_path
     else
       root_path
