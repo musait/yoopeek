@@ -72,11 +72,13 @@
               <% end %>
             </li>
           <% end %>
-          <li style="display: flex; justify-content: space-between">
-            <%= link_to new_quote_path(:job_id => @room.job.id) do %>
-              <%= raw I18n.t('.rooms.show.new_quote') %><i class="icon-material-outline-add"></i>
-            <% end %>
-          </li>
+          <% if current_user.is_worker  %>
+            <li style="display: flex; justify-content: space-between">
+              <%= link_to new_quote_path(:job_id => @room.job.id) do %>
+                <%= raw I18n.t('.rooms.show.new_quote') %><i class="icon-material-outline-add"></i>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
     <% end %>
