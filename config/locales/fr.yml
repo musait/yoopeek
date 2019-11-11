@@ -12,8 +12,6 @@ fr:
               must_exist: "Votre nom est obligatoire"
             lastname:
               must_exist: "Votre prénom est obligatoire"
-
-
         quote_element:
           attributes:
             price:
@@ -32,7 +30,7 @@ fr:
             max_time:
               is_not_a_number: "Le temps estimé minimal doit être un nombre et doit être présent"
               has_to_be_greather: "Le temps estimé maximal doit être supérieur au temps estimé minimal"
-            min_price:
+            min_time:
               is_not_a_number: "Le temps estimé maximal doit être un nombre et doit être présent"
             category:
               required: "Vous devez indiquer une catégorie"
@@ -126,6 +124,7 @@ fr:
       subject: "Vous avez reçu une nouvelle facture de la part de Yoopeek"
     subscription_expiration:
       your_sub_gonna_expire: "Votre abonnement va expirer !"
+      extend_your_sub: "Prolongez vite votre abonnement pour pouvoir continuer à utiliser Yoopeek pleinement"
   other:
     credits_added: Crédits ajouté
     subscription_have_no_plan: Cette abonnement n'a pas de plan stripe
@@ -179,7 +178,7 @@ fr:
       header:
         notification_not_seen: "Vous n'avez pas de notifications non lues"
         message_not_seen: "Vous n'avez pas de messages non lus"
-        worker_jobs: "Missions réalisées"
+        worker_jobs: "Vos missions"
   home:
     index:
       your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
@@ -277,7 +276,7 @@ fr:
     edit:
       job_edition: "Modifier cette mission"
     worker_jobs:
-      your_missions: "Vos missions réalisées"
+      your_missions: "Vos missions"
       select_something: "Séléctionnez un filtre"
       filter_by: "Filtrer par"
       you_havent_realised_any_job: "Vous n'avez pas encore de missions réalisées"
