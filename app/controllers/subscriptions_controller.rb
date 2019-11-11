@@ -97,7 +97,7 @@ class SubscriptionsController < UsersController
   private
   def pay_plan plan_limitation
     plan_id = plan_limitation.stripe_plan_id
-    StripeSubscription.create current_user, plan_id, @plan_limitation
+    StripeSubscription.switch_plan current_user, plan_id, @plan_limitation
     session.delete(:plan_limitation_id)
     respond_to do |format|
       format.any {
