@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, skip: :omniauth_callbacks,controllers: {:registrations => 'registrations'}
     root 'home#index'
+    devise_scope :user do
+      match '/users' => "registrations#new", via: :get
+    end
     mount ActionCable.server, at: '/cable'
     resources :autocompletes
     resources :addresses
