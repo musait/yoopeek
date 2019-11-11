@@ -120,7 +120,6 @@
                 $("#card-button").html("Valider")
               },
               success: function () {
-                toastr['success']("<%= t('other.credits_added') %>");
                 $("#card-button").prop("disabled", false)
                 $("#card-button").html("Valider")
                 document.location.href = '<%= buy_credits_path %>'
