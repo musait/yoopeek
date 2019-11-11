@@ -18,11 +18,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def google_oauth2
-    if request.env['omniauth.params'].empty?
-      @user = Customer.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
-    else
-      @user = Worker.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
-    end
+    @user = User.from_google(request.env['omniauth.auth'],request.env['omniauth.params'])
+
     if @user.persisted?
       if @user.is_worker && !@user.approved?
         sign_in(@user)

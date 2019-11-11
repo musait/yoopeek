@@ -21,16 +21,15 @@ class User < ApplicationRecord
   attr_accessor :account_token
   attr_accessor :person_token
   attr_accessor :bank_token
-  acts_as_reader
   has_one_attached :avatar
   phony_normalize :phone_number, default_country_code: 'FR'
   has_many :portfolios
-  validates_presence_of :is_worker, message: :must_exist
+  validates_presence_of :is_worker, message: :must_exist, if: Proc.new { |user| user.is_worker.nil? && !from_omniauth? }
   validates :firstname, presence: { message: :must_exist }
   validates :lastname, presence: { message: :must_exist }
 
   before_save :set_stripe_account
-  after_create :set_conv_with_yoopeek
+  after_create_commit :set_conv_with_yoopeek
   def set_stripe_account
     if account_token.present?
       begin
@@ -126,8 +125,9 @@ class User < ApplicationRecord
 
   def set_conv_with_yoopeek
     unless self.email == "yoopeek@yoopeek.com"
-      @room = Room.create(author_id: User.unscoped.find_by(email:"yoopeek@yoopeek.com").id,receiver_id: self.id )
-      RoomMessage.create(room: @room,author:User.unscoped.find_by(email:"yoopeek@yoopeek.com"),receiver:self, message:"Bienvenue sur Yoopeek. Chaque message vous coutera 6 points. Si le client vous réponds pas, vous serez remboursé intégralement.
+      @yoopeek_user = User.find_by(email:"yoopeek@yoopeek.com")
+      @room = Room.create!(author: @yoopeek_user,receiver: self )
+      RoomMessage.create(room: @room,author:@yoopeek_user,receiver:self, message:"Bienvenue sur Yoopeek. Chaque message vous coutera 6 points. Si le client vous réponds pas, vous serez remboursé intégralement.
       Si le client vous répond mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points")
     end
   end
@@ -140,7 +140,7 @@ class User < ApplicationRecord
   end
 
   def self.from_facebook(auth,params)
-    where(facebook_id: auth.uid).first_or_create do |user|
+    @user = where(facebook_id: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email
       user.firstname = auth.info.name.partition(" ").first
       user.lastname = auth.info.name.partition(" ").last
@@ -157,12 +157,13 @@ class User < ApplicationRecord
         user.is_worker = false
       end
       user.skip_confirmation!
-      user.save!
     end
+    @user.save!
+    @user
   end
 
   def self.from_google(auth,params)
-    where(google_id: auth.uid).first_or_create do |user|
+    @user = where(google_id: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email
       user.firstname = auth.info.first_name
       user.lastname = auth.info.last_name
@@ -172,25 +173,23 @@ class User < ApplicationRecord
       user.avatar.attach(io: downloaded_image, filename: 'avatar.jpg', content_type: downloaded_image.content_type)
       if params['isWorker'] == "1"
         user.type = "Worker"
+        user.is_worker = true
       else
         user.type = "Customer"
+        user.is_worker = false
       end
       user.skip_confirmation!
     end
+    @user.save!
+    @user
   end
 
   def full_name
     "#{self.firstname} #{self.lastname}"
   end
 
-  def is_worker
-    self.type == "Worker"
-  end
-  def is_customer
-    self.type == "Customer"
-  end
-  def is_admin
-    self.admin?
+  def become_a_worker
+    is_worker ? becomes!(Worker) : becomes!(Customer)
   end
 
   def current_subscription
