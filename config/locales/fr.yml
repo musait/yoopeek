@@ -291,6 +291,9 @@ fr:
     omniauth_callbacks:
       facebook:
           fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
+      google:
+          fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
+
     show:
       about: "A propos de %{pro}"
       history_and_reviews: "Historique des missions et avis"
