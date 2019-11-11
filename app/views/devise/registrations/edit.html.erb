@@ -1,5 +1,15 @@
 <%= content_for :body_style do %>
 <link rel="stylesheet" href="/theme/user/hireo/css/progress_bar.css">
+<style media="screen">
+  .submit-field > .date-time {
+    width: 30%;
+    text-indent: 15px;
+  }
+  .required:after {
+    content: " *";
+    color: red;
+  }
+</style>
 <% end %>
 <!-- Dashboard Headline -->
 <div class="dashboard-headline">
@@ -66,7 +76,9 @@
                 <div class="col-xl-6">
                   <div class="submit-field">
                     <h5><%= I18n.t('.user.all.edit.birthdate') %></h5>
-                    <%= f.date_field :birthdate, class:"with-border", required: true %>
+                    <div class="" style="display:flex">
+      								<%= f.date_select :birthdate,order: [:day, :month, :year], class:"date-time", required: true%>
+      							</div>
                   </div>
                 </div>
 
