@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
   belongs_to :job, optional: true
-  validates :job_id, presence: true, unless: -> {author.email == "yoopeek@yoopeek.com"}
+  validates :job_id, presence: true, unless: -> {User.unscoped.find(self.author_id).email == "yoopeek@yoopeek.com"}
 
   scope :with_receiver, -> (user) { where(receiver_id: user.id)}
   scope :with_author, -> (user) { where(author_id: user.id)}
