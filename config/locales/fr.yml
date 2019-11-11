@@ -7,11 +7,13 @@ fr:
         user:
           attributes:
             is_worker:
-              must_exist: "Le statut doit être précisé"
+              must_exist: "doit être précisé"
             firstname:
-              must_exist: "Votre nom est obligatoire"
+              must_exist: "est obligatoire"
             lastname:
-              must_exist: "Votre prénom est obligatoire"
+              must_exist: "est obligatoire"
+            email:
+              must_exist: "est obligatoire"
         quote_element:
           attributes:
             price:

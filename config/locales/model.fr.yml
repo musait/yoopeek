@@ -19,6 +19,11 @@ fr:
       tag: Tag
       plan_limitation: Limitation des plans
     attributes:
+      user:
+        is_worker: "Le statut"
+        firstname: "Le prénom"
+        lastname:  "Le nom"
+        email: "Le mail"
       plan_limitation:
         label: Label
         description: Description
