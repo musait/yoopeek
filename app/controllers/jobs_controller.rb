@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   def index
     if current_user.is_worker
       if params[:filter].present?
-        @jobs = Job.joins(:category).where(categories: {id: params[:filter]}).where(status: "created").page(params[:page])
+        @jobs = Job.where(worker_id: current_user.id).where(status: params[:filter]).page(params[:page])
       else
         @jobs = Job.where(status: "created").page(params[:page])
       end
@@ -40,6 +40,7 @@ class JobsController < ApplicationController
             disposition: 'attachment'
         end
       end
+      UserMailer.with(user: @invoice.customer, invoice: @invoice).new_invoice.deliver_now
     else
       redirect_back fallback_location: root_path, flash:{error: I18n.t('job_without_invoice')}
     end
@@ -75,6 +76,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new
+    @subcategories = Subcategory.all
   end
 
   # GET /jobs/1/edit
