@@ -250,7 +250,7 @@
           </div>
 
           <div class="content with-padding padding-bottom-0">
-            <%= f.fields_for :company do |c| %>
+            <%= f.fields_for :company, current_user.get_or_build_company do |c| %>
               <div class="row">
                 <div class="col">
                   <div class="row">
@@ -260,7 +260,7 @@
                         <%= c.text_field :name, class:"with-border" %>
                       </div>
                     </div>
-                    <%= c.fields_for :address do |a| %>
+                    <%= c.fields_for :address, c.object.get_or_build_address do |a| %>
                       <div class="col-xl-6">
                         <div class="submit-field">
                           <h5><%= raw I18n.t('.user.company.edit.address') %></h5>
