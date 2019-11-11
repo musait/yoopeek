@@ -77,7 +77,9 @@ class HomeController < ApplicationController
         user.update stripe_subscription_id: subscription_id, current_plan_amount: amount, stripe_plan_id: plan_id, subscription_end_at: Time.at(subscription_end)
       when 'customer.subscription.deleted'
         subscription = Subscription.find_by stripe_subscription_id: object["id"]
-        StripeSubscription.cancel_subscription(subscription.user)
+        stripe_subscription = Stripe::Subscription.retrieve(object["id"])
+        # StripeSubscription.cancel_subscription(subscription.user)
+        subscription.update subscription_canceled_at: Time.current, end_at: Time.at(stripe_subscription['current_period_end']) if subscription.present?
       end
     end
 

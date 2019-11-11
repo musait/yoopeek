@@ -6,7 +6,7 @@ class Subscription < ApplicationRecord
     where(is_active: true)
   }
   scope :current_actived_subscriptions, -> () {
-    where("end_at > ? and is_active = ?", Time.current, true).order(:created_at => :desc)
+    where("end_at >= ? and is_active = ?", Time.current, true).order(:created_at => :desc)
   }
 
   before_validation do

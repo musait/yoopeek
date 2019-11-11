@@ -3,6 +3,6 @@ class StripeSubscriptionCancel < ApplicationRecord
   belongs_to :subscription
 
   before_create do
-    subscription.update is_active: false
+    # subscription.update is_active: false
   end
 end
