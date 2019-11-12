@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   def index
     if current_user.is_worker
       if params[:filter].present?
-        @jobs = Job.where(worker_id: current_user.id).where(status: params[:filter]).page(params[:page])
+        @jobs = Job.joins(:category).where(categories: {id: params[:filter]}).where(status: "created").page(params[:page])
       else
         @jobs = Job.where(status: "created").page(params[:page])
       end
@@ -84,7 +84,11 @@ class JobsController < ApplicationController
   end
 
   def worker_jobs
-    @jobs = Job.where(worker_id: current_user.id).page(params[:page]).per(5)
+    if params[:filter].present?
+      @jobs = Job.where(worker_id: current_user.id).where(status: params[:filter]).page(params[:page])
+    else
+      @jobs = Job.where("worker_id = ?",current_user.id).page(params[:page])
+    end
   end
 
   # POST /jobs
