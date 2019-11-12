@@ -19,7 +19,7 @@
               </h5>
               <span> <%= time_ago_in_words(@room.created_at) %></span>
             </div>
-            <p><%= room.room_messages.last.message if room.room_messages.present? %></p>
+            <p><%= room.room_messages.valid_messages.last.message if room.room_messages.valid_messages.present? %></p>
           </div>
         <% end %>
       </li>
