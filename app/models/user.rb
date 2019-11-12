@@ -127,8 +127,12 @@ class User < ApplicationRecord
     unless self.email == "yoopeek@yoopeek.com"
       @yoopeek_user = User.find_by(email:"yoopeek@yoopeek.com")
       @room = Room.create!(author: @yoopeek_user,receiver: self )
-      RoomMessage.create(room: @room,author:@yoopeek_user,receiver:self, message:"Bienvenue sur Yoopeek. Chaque message vous coutera 6 points. Si le client vous réponds pas, vous serez remboursé intégralement.
-      Si le client vous répond mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points")
+      if self.worker?
+        RoomMessage.create(room: @room,author:@yoopeek_user,receiver:self, message:"Bienvenue sur Yoopeek. Chaque message vous coutera 6 points. Si le client vous réponds pas, vous serez remboursé intégralement.
+        Si le client vous répond mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points")
+      else
+        RoomMessage.create(room: @room,author:@yoopeek_user,receiver:self, message:"Bienvenue sur Yoopeek.")
+      end
     end
   end
   def send_admin_mail
