@@ -156,6 +156,7 @@ fr:
     create_job: "Créer une mission"
     your_job: "Vos missions"
     portfolio: "Portfolios"
+    your_quotes: "Vos devis"
   footer:
   layouts:
     user:
@@ -399,6 +400,18 @@ fr:
     create:
       you_have_received_a_message: "Vous avez reçu un message de la part de %{creator}"
   quotes:
+    index:
+      your_quotes: "Vos devis"
+      no_quotes_find: "Vous n'avez pas encore de devis actifs"
+      quote_decline: "Déclinée"
+      quote_in_progress: "En cours"
+      quote_accepted: 'Accepté'
+      quote_paid: "Payé"
+    quote_list:
+      status: "Statut du devis"
+      quote_total: "Montant du devis"
+      quote_job_name: "Mission conçernée"
+      quote: "Devis"
     new:
       quote_creation: "Créer un devis"
       creation_form: "Formulaire de création"

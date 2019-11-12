@@ -139,4 +139,4 @@ fr:
      one: "Le champ suivant présente une erreur :"
      other: "Les champs suivants présentent des erreurs :"
     company:
-     iban_not_valid: "L'Iban n'est pas valide"
+     iban_not_valid: "n'est pas valide"

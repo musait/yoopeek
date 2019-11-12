@@ -19,6 +19,9 @@ fr:
       tag: Tag
       plan_limitation: Limitation des plans
     attributes:
+      company:
+        iban: "L'IBAN"
+        vat_number: ""
       user:
         is_worker: "Le statut"
         firstname: "Le prénom"
