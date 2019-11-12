@@ -36,7 +36,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les Formats de Livraisons</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill"> <%= FormatDelivery.count %></span>
+                      <span class="badge badge-pill"> <%= @format_deliveries_count %></span>
                   </div>
             <% end %>
           </li>
@@ -45,7 +45,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les métiers</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill"> <%= Profession.count %></span>
+                      <span class="badge badge-pill"> <%= @professions_count %></span>
                   </div>
             <% end %>
           </li>
@@ -54,7 +54,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Limitation des plans</span>
               <div class="site-menu-badge">
-                  <span class="badge badge-pill"> <%= PlanLimitation.count %></span>
+                  <span class="badge badge-pill"> <%= @plan_limitations_count %></span>
               </div>
             <% end %>
           </li>
@@ -63,7 +63,16 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Offre de crédit</span>
               <div class="site-menu-badge">
-                  <span class="badge badge-pill"> <%= CreditsOffer.count %></span>
+                  <span class="badge badge-pill"> <%= @credits_offers_count %></span>
+              </div>
+            <% end %>
+          </li>
+          <li class="site-menu-item has-sub">
+            <%= link_to admin_forbiden_words_path do %>
+              <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+              <span class="site-menu-title">Mot interdits</span>
+              <div class="site-menu-badge">
+                  <span class="badge badge-pill"> <%= @forbiden_words_count %></span>
               </div>
             <% end %>
           </li>

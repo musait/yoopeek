@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       resources :format_deliveries
       resources :users
       resources :professions
+      resources :forbiden_words
     end
   end
 
