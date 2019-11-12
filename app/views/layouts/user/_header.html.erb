@@ -22,7 +22,6 @@
 								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path %></li>
 
 								<li><%= link_to I18n.t('.header.rooms'), room_path(id:Room.where(author_id: current_user.id).or(Room.where(receiver_id:current_user.id)).first.id), method: :get %></li>
-								<li><a href="#">Pro Paiements</a></li>
 								<li> <%= link_to t('.header.portfolio'), portfolios_path, method: :get %></li>
 							<% else %>
 								<li><%= link_to I18n.t('.header.create_job'), new_job_path,method: :get, class:"button ripple-effect", style:"color: white"%></li>
@@ -187,19 +186,19 @@
 									<div class="user-details">
 										<div class="user-avatar status-online"><img src="<%= current_user.avatar_url %>" alt=""></div>
 										<div class="user-name">
-											<%= current_user.full_name %> <span><%= current_user.type %></span>
+											<%= current_user.full_name %> <span><%= current_user.worker? ? t('.worker') : t('.customer') %></span>
 										</div>
 									</div>
 
 									<!-- User Status Switcher -->
-									<div class="status-switch" id="snackbar-user-status">
+									<!-- <div class="status-switch" id="snackbar-user-status">
 
-										<label class="user-online current-status"> <%= User.types[0] %></label>
-										<label class="user-invisible"><%= User.types[1] %></label>
+										<label class="user-online current-status"> <%#= User.types[0] %></label>
+										<label class="user-invisible"><%#= User.types[1] %></label>
 										<!-- Status Indicator -->
-										<span class="status-indicator" aria-hidden="true"></span>
+										<!-- <span class="status-indicator" aria-hidden="true"></span> -->
 
-									</div>
+									<!-- </div> -->
 								</div>
 
 								<ul class="user-menu-small-nav">
@@ -208,17 +207,17 @@
 										<li><a href="#"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
 										<li>
 											<%= link_to subscriptions_path do %>
-												<i class="icon-material-outline-settings"></i> Mon abonnement
+												<i class="icon-material-outline-settings"></i> <%= t('.my_subscription') %>
 											<% end %>
 										</li>
 									<% end %>
 									<li><%= link_to edit_user_registration_path, method: :get  do %>
-									<i class="icon-material-outline-settings"></i> Settings
+									<i class="icon-material-outline-settings"></i> <%= t('.settings') %>
 									<% end %></li>
 
 									<li>
 										<%= link_to destroy_user_session_path, method: :delete do %>
-											<i class="icon-material-outline-power-settings-new"></i> Logout
+											<i class="icon-material-outline-power-settings-new"></i> <%= t('.logout') %>
 										<% end %>
 									</li>
 								</ul>
