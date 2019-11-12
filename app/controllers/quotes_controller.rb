@@ -5,7 +5,7 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.all
+    @quotes = Quote.where("receiver_id = ? OR sender_id = ?",current_user.id,current_user.id)
   end
 
   # GET /quotes/1
