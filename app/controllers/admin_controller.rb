@@ -11,6 +11,11 @@ class AdminController < ApplicationController
     @jobs = Job.all
     @categories = Category.all
     @users = User.all
+    @forbiden_words_count = ForbidenWord.count
+    @credits_offers_count = CreditsOffer.count
+    @plan_limitations_count = PlanLimitation.count
+    @professions = Profession.count
+    @format_deliveries_count = FormatDelivery.count
   end
 
   def is_admin?
