@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = User.from_facebook(request.env['omniauth.auth'],request.env['omniauth.params'])
 
     if @user.persisted?
-      if @user.is_worker && !@user.approved?
+      if @user.worker? && !@user.approved?
         sign_in(@user)
         redirect_to edit_user_registration_path, notice: t('.fill_information')
       else
@@ -21,7 +21,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_google(request.env['omniauth.auth'],request.env['omniauth.params'])
 
     if @user.persisted?
-      if @user.is_worker && !@user.approved?
+      if @user.worker? && !@user.approved?
         sign_in(@user)
         redirect_to edit_user_registration_path, notice: t('.fill_information')
       else

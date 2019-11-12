@@ -132,7 +132,7 @@ class User < ApplicationRecord
     end
   end
   def send_admin_mail
-    AdminMailer.new_user_waiting_for_approval(email).deliver if self.is_worker?
+    AdminMailer.new_user_waiting_for_approval(email).deliver if self.worker?
   end
 
   def set_stripe_customer_id
@@ -189,7 +189,7 @@ class User < ApplicationRecord
   end
 
   def become_a_worker
-    is_worker ? becomes!(Worker) : becomes!(Customer)
+    worker? ? becomes!(Worker) : becomes!(Customer)
   end
 
   def current_subscription

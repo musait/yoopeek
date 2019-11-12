@@ -16,7 +16,7 @@
 				<nav id="navigation">
 					<ul id="responsive">
 						<% if user_signed_in?%>
-							<% if current_user.is_worker %>
+							<% if current_user.worker? %>
 								<li> <%= link_to t('.worker_jobs'), worker_jobs_path %></li>
 								<!-- <li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li> -->
 								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path %></li>
@@ -203,7 +203,7 @@
 
 								<ul class="user-menu-small-nav">
 									<%= switch_user_select %>
-									<% if current_user.is_worker %>
+									<% if current_user.worker? %>
 										<li><a href="#"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
 										<li>
 											<%= link_to subscriptions_path do %>
