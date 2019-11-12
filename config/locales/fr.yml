@@ -81,6 +81,8 @@ fr:
         html: <del>Statut</del>
       unlimited_portfolio: Portfolio illimité
       no_portfolio: Portfolio
+      change_subscription: "Changer d'abonnement"
+      caracteristics: "Caractéristiques"
     form:
       information_about_security: "Vous êtes sur une page respectant les normes de sécurité bancaires. Toutes vos données personnelles sont cryptées et sécurisées"
       confirm: "Valider et payer"
