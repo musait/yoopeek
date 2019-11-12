@@ -19,10 +19,10 @@
               <tbody>
                 <% @subscriptions.each do |subscription| %>
                   <tr>
-                      <td><%= subscription.invoice_number %></td>
-                      <td><%= l(subscription.created_at, format: :short_date) %></td>
-                      <td><%= currency_formated subscription.plan_amount %></td>
-                      <td> <%= link_to I18n.t("download"), invoice_subscription_path(locale: I18n.locale, id: subscription.id, format: :pdf) %></td>
+                    <td><%= subscription.invoice_number %></td>
+                    <td><%= l(subscription.created_at, format: :short_date) %></td>
+                    <td><%= currency_formated subscription.plan_amount %></td>
+                    <td> <%= link_to I18n.t("download"), invoice_subscription_path(locale: I18n.locale, id: subscription.id, format: :pdf) %></td>
                   </tr>
                 <% end %>
               </tbody>
