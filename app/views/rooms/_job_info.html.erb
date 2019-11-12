@@ -66,6 +66,8 @@
                     <mark class="color" style="background-color: grey"> <%= t('.quote_in_progress') %></mark>
                   <% when "accepted" %>
                     <mark class="color" style="background-color: green"><%= t('.quote_accepted') %></mark>
+                  <% when "paid"  %>
+                  <mark class="color" style="background-color: green"><%= t('.quote_paid') %></mark>
                   <% else %>
                     <mark class="color" style="background-color: red "><%= t('.quote_declined') %></mark>
                 <% end %>
