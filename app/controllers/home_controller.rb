@@ -55,7 +55,7 @@ class HomeController < ApplicationController
           disposition: 'attachment'
       end
     end
-    UserMailer.with(user: @credits_payment.user, invoice: @credits_payment).new_invoice.deliver_now
+    # UserMailer.with(user: @credits_payment.user, invoice: @credits_payment).new_invoice.deliver_now
   end
   def buy_credits
     @credits_offers = CreditsOffer.order(:price, reduction: :desc).all
