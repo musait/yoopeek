@@ -1,25 +1,15 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Quotes</h1>
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3> <%= t('.your_quotes') %> </h3>
+</div>
+<div class="row">
+	<div class="col-xl-12">
+		<div class="listings-container margin-top-35" id="job_list">
+			<%= render "quote_list" %>
+		</div>
+	</div>
+</div>
+<%= content_for :body_script do %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @quotes.each do |quote| %>
-      <tr>
-        <td><%= link_to 'Show', quote %></td>
-        <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
-        <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Quote', new_quote_path %>
+<% end %>
