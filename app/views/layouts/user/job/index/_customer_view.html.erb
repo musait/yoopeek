@@ -7,7 +7,7 @@
 	<div class="col-xl-12">
 		<div class="row justify-content-end">
 			<div class="col-xl-3">
-				<% grouped_options = grouped_options = [[t('.status'),[[t('.created'),'created'],[t('.in_progress'),'in_progress'],[t('.finished'),'completed'],[t('.aborted'),'aborted']]]] %>
+				<% grouped_options = grouped_options = [[t('.status'),[[t('.created'),'created'],[t('.in_progress'),'in_progress'],['Terminée par le professionel','completed_by_worker'],['Terminée par le client','completed_by_customer']]]] %>
 				<%= form_tag("filter", :remote => true) do %>
 					<%= t('.filter_by') %>
           <%= select_tag 'filter',grouped_options_for_select(grouped_options), prompt: t('.select_something'), class:"custom-select", id:"job_filter" %>
