@@ -402,12 +402,12 @@ fr:
   quotes:
     index:
       your_quotes: "Vos devis"
-      no_quotes_find: "Vous n'avez pas encore de devis actifs"
       quote_decline: "Déclinée"
       quote_in_progress: "En cours"
       quote_accepted: 'Accepté'
       quote_paid: "Payé"
     quote_list:
+      no_quotes_find: "Vous n'avez pas encore de devis"
       status: "Statut du devis"
       quote_total: "Montant du devis"
       quote_job_name: "Mission conçernée"
