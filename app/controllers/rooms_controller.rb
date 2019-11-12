@@ -35,7 +35,7 @@ class RoomsController < ApplicationController
   def show
     @room_message = RoomMessage.new room: @room
     @room = Room.includes(:room_messages => [:author => :avatar_attachment]).find(params[:id]) if params[:id]
-    @room_messages = @room.room_messages
+    @room_messages = @room.room_messages.valid_messages
     Notification.set_seen @notifications, "room_message", @room_messages.ids
     count_notification
   end

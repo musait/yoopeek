@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_111459) do
+ActiveRecord::Schema.define(version: 2019_11_12_164325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -108,6 +108,13 @@ ActiveRecord::Schema.define(version: 2019_11_08_111459) do
     t.uuid "credits_offer_id"
     t.index ["credits_offer_id"], name: "index_credits_payments_on_credits_offer_id"
     t.index ["user_id"], name: "index_credits_payments_on_user_id"
+  end
+
+  create_table "forbiden_words", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "word"
+    t.boolean "is_valid_after_quote_accepted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "format_deliveries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -313,6 +320,8 @@ ActiveRecord::Schema.define(version: 2019_11_08_111459) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_valid", default: true
+    t.string "unvalid_reason"
     t.index ["author_id"], name: "index_room_messages_on_author_id"
     t.index ["receiver_id"], name: "index_room_messages_on_receiver_id"
     t.index ["room_id"], name: "index_room_messages_on_room_id"
@@ -329,6 +338,15 @@ ActiveRecord::Schema.define(version: 2019_11_08_111459) do
     t.index ["job_id"], name: "index_rooms_on_job_id"
     t.index ["name"], name: "index_rooms_on_name", unique: true
     t.index ["receiver_id"], name: "index_rooms_on_receiver_id"
+  end
+
+  create_table "stripe_payouts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "stripe_payout_id"
+    t.uuid "user_id"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stripe_payouts_on_user_id"
   end
 
   create_table "stripe_subscription_cancels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -421,6 +439,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_111459) do
     t.datetime "birthdate"
     t.string "stripe_person_id"
     t.string "stripe_connect_bank_id"
+    t.float "available_payout_amount"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["category_id"], name: "index_users_on_category_id"
@@ -463,6 +482,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_111459) do
   add_foreign_key "reviews", "users", column: "worker_id"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "rooms", "jobs"
+  add_foreign_key "stripe_payouts", "users"
   add_foreign_key "stripe_subscription_cancels", "subscriptions"
   add_foreign_key "stripe_subscription_cancels", "users"
   add_foreign_key "subscriptions", "plan_limitations"
