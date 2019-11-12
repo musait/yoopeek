@@ -181,6 +181,11 @@ fr:
         notification_not_seen: "Vous n'avez pas de notifications non lues"
         message_not_seen: "Vous n'avez pas de messages non lus"
         worker_jobs: "Vos missions"
+        my_subscription: "Mon abonnement"
+        settings: "Paramètres"
+        logout: "Se déconnecter"
+        worker: "Professionnel"
+        customer: "Particulier"
   home:
     index:
       your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
@@ -386,6 +391,8 @@ fr:
       job_in_progress: "En cours"
       job_completed: "Terminé"
       job_canceled: "Annulé"
+    rooms:
+      conversation_list: "Liste de vos conversations"
   room_messages:
     create:
       you_have_received_a_message: "Vous avez reçu un message de la part de %{creator}"
