@@ -1,4 +1,4 @@
-<% if current_user.is_worker %>
+<% if current_user.worker? %>
 <%= render "layouts/user/job/index/worker_view" %>
 <% else %>
 <%= render "layouts/user/job/index/customer_view" %>
