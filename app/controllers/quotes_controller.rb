@@ -69,6 +69,8 @@ class QuotesController < ApplicationController
       respond_to do |format|
         format.any {
           render js: ''
+          flash[:success] = I18n.t("other.payment_done")
+          flash.keep(:success)
         }
         format.html {
           redirect_back fallback_location: root_path, flash: {success: I18n.t("other.payment_done")}, method: :get
