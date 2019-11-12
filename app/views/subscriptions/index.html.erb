@@ -15,7 +15,7 @@
             <h3><%= plan_limitation.label %></h3>
             <div class="pricing-plan-label billed-monthly-label"><strong><%= currency_formated plan_limitation.price_per_month %></strong>/ mois</div>
             <div class="pricing-plan-features">
-              <strong><%= t("advantages") %></strong>
+              <strong><%= t(".caracteristics") %></strong>
               <ul>
                 <li><%= plan_limitation.commission_per_service.to_i %> <%= plan_limitation.commission_type %> <%= t("per_performance") %></li>
                 <li><%= plan_limitation.nb_answer %> <%= t("responses_to_ads") %> / <%= t(plan_limitation.nb_answer_type) %></li>
@@ -37,7 +37,7 @@
             <h3><%= plan_limitation.label %></h3>
             <div class="pricing-plan-label billed-monthly-label"><strong><%= currency_formated plan_limitation.price_per_month %></strong>/ mois</div>
             <div class="pricing-plan-features">
-              <strong><%= t("advantages") %></strong>
+              <strong><%= t(".caracteristics") %></strong>
               <ul>
                 <li><%= plan_limitation.commission_per_service.to_i %> <%= plan_limitation.commission_type %> <%= t("per_performance") %></li>
                 <li><%= plan_limitation.nb_answer %> <%= t("responses_to_ads") %> / <%= t(plan_limitation.nb_answer_type) %></li>
@@ -52,7 +52,7 @@
                 <li><%= plan_limitation.have_status.present? ? t(".have_status") : t(".have_no_status.html") %></li>
               </ul>
             </div>
-            <%= link_to "Upgrader", new_subscription_path(plan_limitation_id: plan_limitation.id), class: "button full-width margin-top-20", "data-turbolinks" => "false" %>
+            <%= link_to t('.change_subscription'), new_subscription_path(plan_limitation_id: plan_limitation.id), class: "button full-width margin-top-20", "data-turbolinks" => "false" %>
           </div>
         <% end %>
       <% end %>
