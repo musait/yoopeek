@@ -137,7 +137,28 @@
         </div>
       </div>
     </div>
+
     <% if current_user.worker? %>
+      <div class="col-xl-12">
+        <div class="dashboard-box">
+          <div class="headline">
+            <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_banner') %></h3>
+          </div>
+          <div class="content">
+            <ul class="fields-ul">
+              <% if @user.banner_url.present? %>
+                <img src=<%= @user.banner_url %>, class="img-fluid" alt="Responsive image" width="100%" height="auto">
+              <% else %>
+
+              <% end %>
+              <div class="upload-preview">
+                  <img />
+              </div>
+              <%= f.file_field :banner, class:"file-upload" %>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div class="col-xl-12">
         <div class="dashboard-box">
           <div class="headline">
@@ -328,6 +349,21 @@
 <% end %>
 <!-- Row / End -->
 <%= content_for :body_script do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    var preview = $(".upload-preview img");
+      $("#user_banner").change(function(event){
+         var input = $(event.currentTarget);
+         var file = input[0].files[0];
+         var reader = new FileReader();
+         reader.onload = function(e){
+             image_base64 = e.target.result;
+             preview.attr("src", image_base64);
+         };
+         reader.readAsDataURL(file);
+      });
+    });
+  </script>
   <script type="text/javascript">
     $(document).ready(function () {
       $('#checkbox1').change(function () {
