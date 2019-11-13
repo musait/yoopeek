@@ -139,7 +139,7 @@
     </div>
 
     <% if current_user.worker? %>
-      <div class="col-xl-6">
+      <div class="col-xl-12">
         <div class="dashboard-box">
           <div class="headline">
             <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_banner') %></h3>
@@ -184,7 +184,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-6">
+      <div class="col-xl-12">
         <div class="dashboard-box">
           <div class="headline">
             <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.available_payout_amount') %></h3>
@@ -194,7 +194,7 @@
               <li>
                 <div class="row">
                   <div class="col-xl-12">
-                    <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong><%= currency_formated current_user.available_payout_amount.to_f %></strong> </h3>
+                    <h3><%= I18n.t('.user.pro_profile.edit.payout') %> <strong><%= currency_formated current_user.available_payout_amount.to_f %></strong> </h3>
                     <%= link_to stripe_payouts_path, class: "button", style: "margin-top: 20px;", method: :post do %>
                       <%= I18n.t('.user.pro_profile.edit.transfer_available_payout_amount') %>
                     <% end %>
@@ -235,7 +235,7 @@
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= raw I18n.t('.user.pro_profile.edit.your_skills') %></h5>
-                      <%= f.collection_select :tag_ids, Tag.all, :id, :name, {include_hidden: true }, {class:"form-control",multiple: true,id:"tag_select"} %>
+                      <%= f.select :skills, @user.skills, {include_hidden: false }, {multiple: true,id:"tag_select"} %>
                     </div>
                   </div>
                 </div>
@@ -373,6 +373,13 @@
 <%= content_for :body_script do %>
   <script type="text/javascript">
     $(document).ready(function(){
+      $(".select2-selection__choice__remove").click(function(event){
+         alert('hhh');
+       });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
     var preview = $(".upload-preview img");
       $("#user_banner").change(function(event){
          var input = $(event.currentTarget);
@@ -399,7 +406,23 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $("#tag_select").select2({
+        createTag: function (params) {
+          var term = $.trim(params.term);
+
+          if (term === '') {
+            return null;
+          }
+
+          return {
+            id: term,
+            text: term,
+            newTag: true // add additional parameters
+          }
+        },
         theme: "bootstrap",
+        tags: true,
+        allowClear: true,
+        tokenSeparators: [',', ' '],
         multiple: true
       })
     });
