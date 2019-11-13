@@ -41,7 +41,7 @@
 								<%= render partial: 'quote_element_fields', locals: { f: ff }  %>
 
 							<% end %>
-							<%= link_to_add_fields '<i class="icon-material-outline-add"></i> Ajouter un élément'.html_safe, f, :quote_elements%>
+							<%= link_to_add_fields '<i class="icon-material-outline-add"></i> Ajouter un élément'.html_safe, f, :quote_elements , id: "add_quotes_elements"%>
 
 						</div>
 					</div>
@@ -61,18 +61,36 @@
 </div>
 <%= content_for :body_script do %>
   <script type="text/javascript">
-    $( document ).ready(function() {
-  		$('#quantity').on('blur', function() {
+		function update_total(elem) {
+			var row = elem.closest('.row')
+			var price = row.find(".quote_price").val();
+			var quantity = row.find(".quote_quantity").val();
+			var total = row.find(".quote_total");
 
-  		  var price = $('#price').val();
-  		  var quantity = $('#quantity').val();
-
-  		  var total = $('#total').val();
-
-  		  var total_calculated = price * quantity;
-
-  			$('#total').val(total_calculated)
+			var total_calculated = price * quantity;
+			if ($.isNumeric(total_calculated)) {
+				total.val(total_calculated)
+			}
+		}
+		function init_event() {
+			$('.quote_quantity').on('keyup input change', function() {
+				update_total($(this))
   		});
+  		$('.quote_price').on('keyup input change', function() {
+				update_total($(this))
+  		});
+  		$('.quote_total').on('keyup input change', function() {
+				update_total($(this))
+  		});
+		}
+    $( document ).ready(function() {
+			$("#add_quotes_elements").click(function () {
+				setTimeout(function () {
+					init_event()
+				}, 100);
+			})
+			init_event()
+
   	});
   </script>
 <%end %>

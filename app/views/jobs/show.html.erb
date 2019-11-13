@@ -231,14 +231,12 @@
 					<% end %>
 				<% end %>
 			<% end %>
-			<% unless (@job.worker == current_user || @job.worker.nil?) %>
-				<% if (current_user.worker? && !@job.completed_by_worker?)||(current_user.customer? && !@job.completed_by_customer?) %>
+			<% if (@job.worker == current_user || @job.customer == current_user) && !@job.created? %>
+				<% if (current_user.worker? && (!@job.completed_by_worker? &&!@job.completed_by_customer?) )||((current_user.customer? && !@job.completed_by_customer?) &&@job.completed_by_worker?) %>
 					<%= link_to finished_job_path(slug: @job.slug), class: "apply-now-button" do %>
 						<%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i>
 					<% end %>
-				<% elsif current_user.worker? &&@job.completed_by_worker? %>
-					<span class="apply-now-button"> <%= t(".mission_finished") %></span>
-				<% elsif current_user.customer? &&@job.completed_by_customer? %>
+				<% else %>
 					<span class="apply-now-button"> <%= t(".mission_finished") %></span>
 				<% end %>
 			<% end %>

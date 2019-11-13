@@ -20,15 +20,16 @@ class JobsController < ApplicationController
   end
   def invoice
     @invoice = @job.invoice
+    @customer = @job.customer
     if @invoice.present?
       respond_to do |format|
         format.pdf do
           @invoice_elements = @invoice.invoice_elements
-          @customer = @job.customer
           @worker = @invoice.sender
           @worker_company = @worker.company
           @total = @invoice.total
-          @amount_without_taxes = @total / 1.2
+          @commission = @invoice.commission_collected
+          @amount_without_taxes = (@total / 1.2)
           @taxes = @amount_without_taxes * 20 / 100
           render pdf: "invoice",
             encoding: "UTF-8",
@@ -40,7 +41,7 @@ class JobsController < ApplicationController
             disposition: 'attachment'
         end
       end
-      UserMailer.with(user: @invoice.customer, invoice: @invoice).new_invoice.deliver_now
+      UserMailer.with(user: @customer, invoice: @invoice).new_invoice.deliver_now
     else
       redirect_back fallback_location: root_path, flash:{error: I18n.t('job_without_invoice')}
     end

@@ -34,7 +34,7 @@ class QuotesController < ApplicationController
     @quote.update(status:"accepted")
       @total = @quote.total_within_vat
       worker = @quote.sender
-      stripe_total = @total.to_i * 100
+      stripe_total = (@total * 100).to_i
       worker_plan = worker.current_plan
       if worker_plan.commission_type == "%"
         commission_collected = (@total * worker_plan.commission_per_service / 100)
@@ -62,7 +62,7 @@ class QuotesController < ApplicationController
       session[:payment_intent_id],
     )
     if @intent.status == "succeeded"
-      @quote.update(status:"paid", commission_collected: session[:commission_collected])
+      @quote.update(status:"paid", commission_collected: session[:commission_collected], stripe_intent_id: @intent.id)
       @quote.job.update(worker_id: @quote.sender.id,status:"in_progress",sold_at: @intent.amount/100)
       session.delete(:payment_intent_id)
       session.delete(:commission_collected)
@@ -92,7 +92,7 @@ class QuotesController < ApplicationController
     @quote = Quote.new(quote_params)
     sender = @quote.sender
     receiver = @quote.receiver
-    @quote.total_without_vat = @quote.quote_elements.map(&:total).sum
+    @quote.total_without_vat = @quote.quote_elements.sum(&:total)
     if sender.company.is_subject_to_vat?
       # Il faut changer la TVA en fonction qu'elle soit française ou suisse
       @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)

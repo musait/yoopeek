@@ -1,25 +1,25 @@
 <div class="col-xl-8 offset-xl-2 form_element">
   <div class="submit-field">
     <h5><%= t('.item_detail') %></h5>
-    <%= f.text_area :content,class:"with-border"%>
+    <%= f.text_area :content,class:"with-border", required: true%>
   </div>
   <div class="row">
     <div class="col-xl-3 submit-field">
       <h5><%= t('.unit_price') %></h5>
       <div class="input-with-icon">
-        <%= f.text_field :price,placeholder:"0",class:"with-border",id:"price"%>
+        <%= f.number_field :price,placeholder:"0",class:"with-border quote_price", required: true%>
         <i class="currency">€</i>
       </div>
     </div>
 
     <div class="col-xl-2 submit-field">
       <h5><%= t('.quantity') %></h5>
-      <%= f.text_field :quantity,placeholder:"1",class:"with-border",id:"quantity" %>
+      <%= f.number_field :quantity,placeholder:"1",class:"with-border quote_quantity", required: true %>
     </div>
     <div class="col-xl-2 submit-field">
       <h5><%= t('.total') %></h5>
       <div class="input-with-icon">
-        <%= f.text_field :total,placeholder:"10",class:"with-border",id:"total" %>
+        <%= f.number_field :total,placeholder:"10",class:"with-border quote_total", required: true %>
         <i class="currency">€</i>
       </div>
     </div>
@@ -27,16 +27,3 @@
   <%= f.hidden_field :_destroy %>
   <%= link_to_remove_fields t('.delete_element'), '.form_element' %>
 </div>
-
-  <script type="text/javascript">
-    $( document ).ready(function() {
-  		$('#price').on('change', function() {
-
-  		  var price = $('#price').val();
-  		  var quantity = $('#quantity').val();
-  		  var total_calculated = price * quantity;
-        debugger
-  			$('#total').val(total_calculated)
-  		});
-  	});
-  </script>
