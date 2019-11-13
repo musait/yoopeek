@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :autocompletes
     resources :addresses
     resources :rooms
+    resources :stripe_payouts
     resources :room_messages
     get "worker_jobs" => "jobs#worker_jobs"
     resources :quotes do

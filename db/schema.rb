@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_164325) do
+ActiveRecord::Schema.define(version: 2019_11_13_152709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(version: 2019_11_12_164325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "commission_collected"
+    t.integer "commission_invoice_number"
+    t.string "stripe_intent_id"
     t.index ["job_id"], name: "index_invoices_on_job_id"
     t.index ["quote_id"], name: "index_invoices_on_quote_id"
     t.index ["receiver_id"], name: "index_invoices_on_receiver_id"
@@ -284,6 +286,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_164325) do
     t.integer "vat"
     t.integer "total_within_vat"
     t.float "commission_collected"
+    t.string "stripe_intent_id"
     t.index ["job_id"], name: "index_quotes_on_job_id"
     t.index ["quote_element_id"], name: "index_quotes_on_quote_element_id"
     t.index ["user_id"], name: "index_quotes_on_user_id"
@@ -439,7 +442,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_164325) do
     t.datetime "birthdate"
     t.string "stripe_person_id"
     t.string "stripe_connect_bank_id"
-    t.float "available_payout_amount"
+    t.float "available_payout_amount", default: 0.0
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["category_id"], name: "index_users_on_category_id"

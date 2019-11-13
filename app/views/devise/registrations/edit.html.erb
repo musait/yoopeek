@@ -139,7 +139,7 @@
     </div>
 
     <% if current_user.worker? %>
-      <div class="col-xl-12">
+      <div class="col-xl-6">
         <div class="dashboard-box">
           <div class="headline">
             <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_banner') %></h3>
@@ -175,6 +175,28 @@
                     <% end %>
                     <%= link_to credits_payments_invoices_path, class: "button", style: "margin-top: 20px;" do %>
                       <%= I18n.t('show_invoices') %>
+                    <% end %>
+                    <!-- <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"></a> -->
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="dashboard-box">
+          <div class="headline">
+            <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.available_payout_amount') %></h3>
+          </div>
+          <div class="content">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-xl-12">
+                    <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong><%= currency_formated current_user.available_payout_amount.to_f %></strong> </h3>
+                    <%= link_to stripe_payouts_path, class: "button", style: "margin-top: 20px;", method: :post do %>
+                      <%= I18n.t('.user.pro_profile.edit.transfer_available_payout_amount') %>
                     <% end %>
                     <!-- <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"></a> -->
                   </div>
@@ -489,7 +511,7 @@
         } else {
           const bankResult = await stripe.createToken('bank_account', {
             country: "FR",
-            currency: document.querySelector('#user_company_attributes_currency').value,
+            currency: document.querySelector('#user_company_attributes_currency').value.toLowerCase(),
             account_number: document.querySelector('#user_company_attributes_iban').value,
           });
           if (bankResult.error != null) {

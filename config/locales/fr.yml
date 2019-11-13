@@ -102,6 +102,9 @@ fr:
   year: Année
   "true": Oui
   "false": Non
+  not_enougth_available_payout_amount: "Il vous faut plus de 1 € pour envoyant de l'argent"
+  fill_all_company_fields: veuillez remplir tous les champs lier à l'entreprise
+  available_payout_amount_sent: Montant transféré
   unlimited: Illimité
   admin_mailer:
     new_user_waiting_for_approval:
@@ -353,6 +356,8 @@ fr:
         twitter: "Lien vers votre profil Twitter"
     pro_profile:
       edit:
+        available_payout_amount: "Montant disponible"
+        transfer_available_payout_amount: "Transferer le montant disponible"
         your_subscription: "Votre abonnement"
         your_credits: "Vos points"
         your_banner: "Votre bannière"

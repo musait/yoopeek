@@ -49,7 +49,6 @@
             <td><%= currency_formated(invoice_element.total / 1.2) %></td>
           </tr>
         <% end %>
-
 			</table>
 		</div>
 	</div>
@@ -67,7 +66,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-4 offset-8">
+			<div class="col-7 offset-5">
 				<table id="totalsHT">
 					<tr>
 						<th>TVA 20% de <%= currency_formated @amount_without_taxes %></th>
@@ -76,13 +75,24 @@
 				</table>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-7 offset-5">
+				<table id="totalsHT">
+					<tr>
+						<th>Commission de service Yoopeek</th>
+						<th><span><%= currency_formated @commission %></span></th>
+					</tr>
+				</table>
+			</div>
+		</div>
 	<%# end %>
 	<div class="row">
-		<div class="col-4 offset-8">
+		<div class="col-7 offset-5">
 			<table id="totals">
 				<tr>
 					<th>Total TTC</th>
-					<th><span><%= currency_formated @total %></span></th>
+					<th><span><%= currency_formated @total - @commission  %></span></th>
 				</tr>
 			</table>
 		</div>

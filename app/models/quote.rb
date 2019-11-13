@@ -17,7 +17,7 @@ class Quote < ApplicationRecord
   def create_invoice
     invoice = Invoice.create attributes.except!("id", "quote_element_id", "status", "quote_number", "user_id").merge!(quote_id: id)
     quote_elements.each do |quote_element|
-      InvoiceElement.create quote_element.attributes.except!("quote_id").merge!(invoice_id: invoice.id)
+      InvoiceElement.create! quote_element.attributes.except!("quote_id", "id").merge!(invoice_id: invoice.id)
     end
   end
 
