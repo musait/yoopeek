@@ -45,17 +45,18 @@ fr:
             format_delivery:
               required: "Vous devez indiquer un format de livraison"
             date_delivery:
-              cant_be_in_past: "La date ne peux pas être antérieure à aujourd'hui"
+              cant_be_in_past: "La date ne peut pas être antérieure à aujourd'hui"
   job_without_invoice: "Cette mission n'a pas de facture"
-  mission_finished: Missison terminé
+  mission_finished: Mission terminée
   action_not_enable: Action non disponible
-  no_quote_created: Aucun devis a été créé
+  no_quote_created: Aucun devis n'a été créé
   credit: Crédit
   show_invoices: Voir mes factures
   not_enougth_credits: Vous n'avez pas assez de crédit
   credits_for:
     html: <strong>%{credits} crédits:</strong> %{for}
   buy: Acheter
+  no_stripe_account: Le professionnel n'a pas encore rempli toutes ces informations.
   unvalid_room_message: "Le(s) mot(s) %{reason} ne sont pas permis"
   no_stripe_account: Le professionel n'a pas encore rempli toutes ces informations .
   invoice_credits: "%{credits} crédits"
@@ -69,7 +70,7 @@ fr:
     watch_your_birthdate: Vérifiez votre date de naissance
   portfolio_content_limit_number: Vous ne pouvez pas avoir plus de %{limit} image dans votre portfolio dans le plan %{plan}
   portfolio_limit_number: Vous ne pouvez pas avoir plus de %{limit} portfolio dans le plan %{plan}
-  no_portfolio_with_this_plan: Vous n'avez pas acces au portfolio dans votre plan
+  no_portfolio_with_this_plan: Vous n'avez pas accès au portfolio dans votre plan
   you_doesnt_have_invoice: Vous n'avez pas de facture sur votre compte
   download: Télécharger
   summary: Résumé
@@ -105,13 +106,13 @@ fr:
   admin_mailer:
     new_user_waiting_for_approval:
       hello: "Bonjour ! "
-      new_user: "Un nouveau professionel vient de s'inscrire sur votre site."
+      new_user: "Un nouveau professionnel vient de s'inscrire sur votre site."
       you_can_approve_it: "Vous pouvez consulter ses informations et l'approuver dans l'onglet Utilisateurs de votre back-office"
   user_mailer:
     new_quote:
       new_quote: "Nouveau devis !"
       for_job: "Mission concernée : %{job_title}"
-      you_received_new_quote: "Vous avez reçu un devis de la part de %{worker_fullname}. Vous pouvez aller le consulter grâce au lien ci-dessous et l'accepter ou le refuser"
+      you_received_new_quote: "Vous avez reçu un devis de la part de %{worker_fullname}. Vous pouvez aller le consulter grâce au lien ci-dessous, puis l'accepter ou le refuser"
       subject: "%{user}, vous avez reçu un nouveau devis!"
       link_to_quote: "Lien vers le devis"
     quote_declined:
@@ -122,7 +123,7 @@ fr:
       link_to_quote: "Lien vers le devis"
     quote_paid:
       quote_accepted: "Votre devis a été accepté et payé"
-      your_quote_has_been_paid: "Votre devis a été accepté et payé. Veuillez maintenant prendre contact avec votre client pour déterminé la date exacte de réalisation de la mission ."
+      your_quote_has_been_paid: "Votre devis a été accepté et payé. Veuillez maintenant prendre contact avec le client afin de déterminer la date exacte de réalisation de la mission ."
       for_job: "Mission concernée : %{job_title}"
       link_to_quote: "Lien vers le devis"
       subject: "Bonne nouvelle %{user}! Votre devis a été accepté!"
@@ -137,7 +138,7 @@ fr:
   other:
     credits_added: Crédits ajouté
     subscription_have_no_plan: Cette abonnement n'a pas de plan stripe
-    payment_done: "Paiement fini"
+    payment_done: "Paiement effectué"
     send_mp: Envoyer un message
     subscription_changed: "Votre abonnement a été pris en compte et le paiement s'est déroulé avec succès"
   stripe:
@@ -146,7 +147,7 @@ fr:
     and: ainsi que les
     stripe_connect: Conditions d'Utilisation des Comptes Connectés Stripe
   notifications:
-    room_message_created: "%{creator} vous à envoyer un message"
+    room_message_created: "%{creator} vous à envoyé un message"
     quote_created: "Vous avez reçu un devis de la part de %{creator} pour la mission suivante : %{job}"
     you_have_received_a_review: "Vous avez reçu un nouvel avis de la part de xxx"
   number:
@@ -196,7 +197,7 @@ fr:
         customer: "Particulier"
   home:
     index:
-      your_information_are_saved: "Vos informations ont été prise en compte. Votre compte est en cours de validation par un administrateur"
+      your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
       intro: "Vous avez un projet photographique ? <br> Yoopeek est là pour vous ! "
       what: "Quoi ?"
       where: "Où ?"
@@ -205,10 +206,10 @@ fr:
       pros: "Professionnels"
       how_it_works: "Comment ça marche ?"
       first_bloc_explanation: "<h3>Créer votre compte et déposer une annonce</h3>
-      <p>Mettez en ligne votre demande afin de voir des photographes qui corresponde à votre besoin et aussi en contacter</p>"
+      <p>Mettez en ligne votre demande afin d'être en contact avec des photographes pouvant répondre à vos besoins</p>"
       second_bloc_explanation: "<h3>Comparez les professionnels</h3>
-      <p>Disctuez avec pleins de professionnels autour de vous.</p>"
-      third_bloc_explanation: "<h3>Trouvez la perle rare !</h3><p>Une fois votre professionel trouvé, prenez rendez-vous pour réaliser votre besoin!</p>"
+      <p>Disctuez avec un nombre important de professionnels autour de vous.</p>"
+      third_bloc_explanation: "<h3>Trouvez la perle rare !</h3><p>Une fois votre professionel trouvé, prenez rendez-vous afin de réaliser vos envies!</p>"
       best_pros: "Les meilleurs professionels du moment"
     pros_presentation:
       localisation: "Localisation"
@@ -232,20 +233,20 @@ fr:
       published_at: "Publiée il y a"
       user_dont_have_job: "Vous n'avez aucune mission pour l'instant. Vous pouvez en créer une %{create_job_link}"
       here: "ici"
-      unsucessful_research: "Nous sommes désolés mais il n'existe pas de missions avec les caractéristiques indiquées"
+      unsucessful_research: "Nous sommes désolés mais il n'existe pas de missions possédant les caractéristiques indiquées"
       status: "Statut"
-      this_is_no_mission: "Il n'existe pas de missions disponible pour le moment"
+      this_is_no_mission: "Il n'existe pas de missions disponibles pour le moment"
     show:
       mission_finished: Mission terminée
       job_description: "Description de la mission"
-      pro_choosen: "Le professionel que vous avez choisi"
+      pro_choosen: "Le professionnel que vous avez choisi"
       the_client: "Le client"
       see_pro_profile: "Voir le profil"
       your_review: "Votre avis"
       leave_a_review: "Laisser un avis"
       no_reviews_yet: "Pas encore d'avis"
       edit_review: "Modifier cet avis"
-      this_pro_may_be_suitable: "Ces professionels pourraient vous convenir"
+      this_pro_may_be_suitable: "Ces professionnels pourraient vous convenir"
       send_mp_to_client: "Envoyer une message au client"
       your_conversation: "Votre conversation"
       job_finished: "Marquer la mission comme terminée"
@@ -267,7 +268,7 @@ fr:
       hour: "heure(s)"
       invoice_print: "Imprimer la facture"
       rate_pro_project: Noter %{pro} pour la mission %{job}
-      delivered_on_budget: "Est-ce que ce professionel a respecté votre budget ?"
+      delivered_on_budget: "Est-ce que ce professionnel a respecté votre budget ?"
       delivered_on_time: "Est-ce que cette mission a été réalisée dans les temps ?"
       your_rating: "Quelle note lui donneriez-vous ?"
       price_rate: "Taux horaire"
@@ -296,16 +297,16 @@ fr:
       filter_by: "Filtrer par"
       you_havent_realised_any_job: "Vous n'avez pas encore de missions réalisées"
     finished:
-      worker_declare_job_finished: "%{pro} a déclarer avoir fini la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
+      worker_declare_job_finished: "%{pro} a déclaré avoir achevé la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
       correctement déroulée. Si ce n'est pas le cas, contactez le service client ."
-      customer_declare_job_finished: "%{customer} a déclarer avoir fini la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
+      customer_declare_job_finished: "%{customer} a déclarer avoir achevé la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
       correctement déroulée. Si ce n'est pas le cas, contactez le service client ."
   users:
     omniauth_callbacks:
       facebook:
-          fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
+          fill_information: "Veuillez remplir les champs relatifs à votre profil et celui de votre entreprise afin que votre inscription en tant que professionnel soit pris en compte"
       google:
-          fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
+          fill_information: "Veuillez remplir les champs relatifs à votre profil et celui de votre entreprise afin que votre inscription en tant que professionnel soit pris en compte"
 
     show:
       about: "A propos de %{pro}"
@@ -313,7 +314,7 @@ fr:
       hour_rate: "Taux horaire"
       job_realized: "Missions réalisées"
       send_mp: "Envoyer un message "
-      social_medias: "Résaux sociaux"
+      social_medias: "Réseaux sociaux"
       skills: "Compétences"
       add_to_favorites: "Ajouter aux favoris"
   user:
@@ -342,6 +343,7 @@ fr:
       edit:
         your_subscription: "Votre abonnement"
         your_credits: "Vos points"
+        your_banner: "Votre bannière"
         credits_balance: "Votre solde de points : "
         credits: "points."
         buy_credits: "Acheter des crédits"
@@ -370,7 +372,7 @@ fr:
       title: "Message"
       respond_to_mp_cost_ten_credits: "Répondre à ce message vous coûtera 10 crédits"
       reply: "Répondre"
-      respond_to_mp_need_ten_credits: "Répondre à ce message néccesite 10 crédits"
+      respond_to_mp_need_ten_credits: "Répondre à ce message nécésite 10 crédits"
       buy_credits: "Racheter des crédits"
       conversation_with_user: "Discussion avec %{user}"
       create_a_job: "Créer une mission"
@@ -415,7 +417,7 @@ fr:
       no_quotes_find: "Vous n'avez pas encore de devis"
       status: "Statut du devis"
       quote_total: "Montant du devis"
-      quote_job_name: "Mission conçernée"
+      quote_job_name: "Mission concernée"
       quote: "Devis"
     new:
       quote_creation: "Créer un devis"
@@ -433,7 +435,7 @@ fr:
       total: "Total (HT)"
       add_item: "Ajouter un élément"
       quote_creation: "Créer un devis"
-      delete_element: "Supprimer cet élement"
+      delete_element: "Supprimer cet élément"
     show:
       quote_recap: "Récapitulatif du devis n°%{quote_number}"
       description: "Description"
@@ -454,15 +456,15 @@ fr:
       quote_accepted_by_customer: "Proposition acceptée"
       quote_paid_by_customer: "Proposition payée"
       quote_declined_by_customer: "Proposition déclinée"
-      message_for_quote_accepted: "Vous avez accepté et payé   ce devis. Un message a été envoyé au professionnel pour l'informer de votre accord. Si au bout de 24-48h, il n'est pas revenu vers vous, contactez-le !"
+      message_for_quote_accepted: "Vous avez accepté et payé ce devis. Un message a été envoyé au professionnel pour l'informer de votre accord. Si au bout de 48h, il n'est pas revenu vers vous, contactez-le !"
       message_for_quote_declined: "Vous avez refusé ce devis. Un message a été envoyé au professionnel pour l'informer de votre refus. Il reviendra peut-être vers vous pour faire une autre proposition."
     create:
       quote_created: "Votre devis a été crée avec succès"
       you_have_received_a_quote: "Vous avez reçu un devis de la part de %{pro} pour la mission suivante : %{job}"
     decline:
-      your_quote_has_been_declined: "Votre devis conçernant la mission suivante : %{job} a été refusé"
+      your_quote_has_been_declined: "Votre devis concernant la mission suivante : %{job} a été refusé"
     accept:
-      your_quote_has_been_paid: "Votre devis conçernant la mission suivante : %{job} a été acceptée et payée. Vous pouvez contacter votre client pour commencer la mission"
+      your_quote_has_been_paid: "Votre devis concernant la mission suivante : %{job} a été acceptée et payée. Vous pouvez contacter votre client pour commencer la mission"
       paiement_amout: "Montant du paiement"
       security_message: "Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptées et sécurisées"
       payment_proceed: "Valider le paiement"
@@ -473,7 +475,7 @@ fr:
     show:
       summary: "Récapitulatif"
       agreed_terms: "J'accepte les conditions générales de ventes"
-      payment_proceed: "Proceder au paiement"
+      payment_proceed: "Procéder au paiement"
     confirmation:
       thanks_for_your_order: "Merci pour votre commande"
       message_confirmation: "Votre paiement a bien été reçu. Il sera transmis au professionnel une fois la mission terminée."
@@ -487,7 +489,7 @@ fr:
       create_portfolio: "Créer un portfolio"
       add_this_pictures: "Ajouter les photos"
       create_with_success: "Votre portfolio a été crée avec succès"
-      create_with_error: "Une erreur a été detectée. Verifiez le format de votre image ou de votre vidéo (seuls ces formats sont acceptés)."
+      create_with_error: "Une erreur a été détectée. Vérifiez le format de votre image ou de votre vidéo (seuls ces formats sont acceptés)."
     destroy:
       destroyed_with_success: "Votre portfolio a été supprimé avec succès"
     show:
