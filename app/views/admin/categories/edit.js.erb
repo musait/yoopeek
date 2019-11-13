@@ -9,14 +9,14 @@ $(".tag_select").select2({
     }).on("change", function (e) {
       var isNew = $(this).find('[data-select2-tag="true"]');
       if (isNew.length) {
-          $.ajax({
-              type: "POST",
-              url: "/admin/new_tag",
-              data: {tag: isNew.val()},
-              success: function(data){ // success est toujours en place, bien sûr !
-                isNew.val(data.id)
-              },
-          });
+        $.ajax({
+            type: "POST",
+            url: "/admin/new_tag",
+            data: {tag: isNew.val()},
+            success: function(data){ // success est toujours en place, bien sûr !
+              isNew.val(data.id)
+            },
+        });
       }
 })
 

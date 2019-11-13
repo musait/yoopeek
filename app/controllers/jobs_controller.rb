@@ -77,9 +77,16 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new
-    @subcategories = Subcategory.all
+    @categories = Category.all
+    @category = Category.find_by(id: @job.category_id) || @categories.first
+    @subcategories = @category.subcategories || Subcategory.all
   end
+  def init_categories
+    @categories = Category.all
+    @category = Category.find_by(id: @job.category_id) || @categories.first
+    @subcategories = @category.subcategories || Subcategory.all
 
+  end
   # GET /jobs/1/edit
   def edit
   end
@@ -95,14 +102,17 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
+
     @job = Job.new(job_params)
     @job.optional_services = params[:job][:optional_services][0].split(' ')
     @job.status = "created"
+
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
         format.json { render :show, status: :created, location: @job }
       else
+        init_categories
         format.html { render :new }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end

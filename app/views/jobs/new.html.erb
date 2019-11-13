@@ -51,7 +51,7 @@
 					<div class="col-xl-4">
 						<div class="submit-field">
 							<h5 class="required"><%= t('.category') %></h5>
-							<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: t('.pick_category')}, {id:"category_id"}) %>
+							<%= form.collection_select(:category_id,@categories, :id, :name, {prompt: t('.pick_category')}, {id:"category_id"}) %>
 						</div>
 					</div>
 
@@ -59,7 +59,7 @@
 						<div  class="submit-field">
 							<h5 class="required"><%= raw I18n.t('.jobs.new.under_category') %></h5>
 								<div id="subcategories_select">
-									<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: t('.pick_subcategory')}, {disabled: true}) %>
+									<%= form.collection_select(:subcategory_id,@subcategories, :id, :name, {prompt: t('.pick_subcategory')}, {id:"subcategory_id",disabled: true}) %>
 								</div>
 						</div>
 					</div>
@@ -165,6 +165,11 @@
 <div class="dashboard-footer-spacer"></div>
 <%= content_for :body_script do  %>
 	<script>
+		$(document).ready(function(){
+			if ($('#subcategory_id').val() != null) {
+				$('#subcategory_id').prop('disabled', false)
+			}
+		});
 		$('#category_id').change( function() {
 	   var category_id = $(this).val();
 	   console.log(category_id);
