@@ -135,6 +135,18 @@ fr:
     subscription_expiration:
       your_sub_gonna_expire: "Votre abonnement va expirer !"
       extend_your_sub: "Prolongez vite votre abonnement pour pouvoir continuer à utiliser Yoopeek pleinement"
+    customer_declare_job_finished:
+      declaration: "Bonne nouvelle! %{customer} a confirmé que la mission est terminée."
+      get_your_money: "Vous allez bientôt recevoir vos fonds. Cette somme d'argent correspond à votre facture moins les commissions Yoopeek.
+      Vous pourrez les retirer en effectuant un virement depuis votre espace client dans la partie 'Mes paiements' en cliquant sur le lien ci dessous."
+      in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à help@yoopeek.com . A bientôt sur Yoopeek !"
+      go_to_account: "Aller sur mon compte"
+    customer_declare_job_finished:
+      declaration: "Bonne nouvelle! %{worker} a annoncé que la mission est terminée."
+      confirm_job_finished: "Si la mission s'est déroulée comme prévu, veuillez s'il vous plait confirmer en cliquant sur le lien ci dessous."
+      in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à help@yoopeek.com . A bientôt sur Yoopeek !"
+      job_finished: "Mission terminée"
+
   other:
     credits_added: Crédits ajouté
     subscription_have_no_plan: Cette abonnement n'a pas de plan stripe
