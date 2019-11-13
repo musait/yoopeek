@@ -26,7 +26,7 @@
 
     <div id="wrapper">
       <%= render "layouts/user/header"%>
-      <% unless controller_name == "home" && action_name == "index" %>
+      <% unless (controller_name == "home" && action_name == "index") || (controller_name == "users" && action_name == "show")  %>
       <div class="dashboard-container">
     		<div class="dashboard-content-container">
     			<div class="dashboard-content-inner" >
