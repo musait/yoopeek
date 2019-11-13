@@ -356,6 +356,7 @@ fr:
         twitter: "Lien vers votre profil Twitter"
     pro_profile:
       edit:
+        payout: "Voici le montant que vous pouvez transfrer sur votre compte bancaire :"
         available_payout_amount: "Montant disponible"
         transfer_available_payout_amount: "Transferer le montant disponible"
         your_subscription: "Votre abonnement"
