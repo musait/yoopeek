@@ -15,7 +15,6 @@
 //= require activestorage
 //= require turbolinks
 //= require popper
-//= require bootstrap-sprockets
 //= require toastr_rails
 //= require link_to_add_fields
 //= require select2
@@ -37,5 +36,3 @@ toastr.options = ({
  "showMethod": "fadeIn",
  "hideMethod": "fadeOut"
  });
-
- 
