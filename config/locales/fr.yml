@@ -212,6 +212,7 @@ fr:
         customer: "Particulier"
   home:
     index:
+
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
       intro: "Vous avez un projet photographique ? <br> Yoopeek est là pour vous ! "
       what: "Quoi ?"
@@ -225,6 +226,10 @@ fr:
       second_bloc_explanation: "<h3>Comparez les professionnels</h3>
       <p>Disctuez avec un nombre important de professionnels autour de vous.</p>"
       third_bloc_explanation: "<h3>Trouvez la perle rare !</h3><p>Une fois votre professionel trouvé, prenez rendez-vous afin de réaliser vos envies!</p>"
+      our_engagement: "Notre engagement"
+      fourth_bloc_explanation: "Lorem ipsum"
+      fifth_bloc_explanation: "Lorem ipsum"
+      sixth_bloc_explanation: "Lorem ipsum"
       best_pros: "Les meilleurs professionels du moment"
     pros_presentation:
       localisation: "Localisation"
