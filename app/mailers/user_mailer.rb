@@ -1,6 +1,18 @@
 class UserMailer < Devise::Mailer
     default from: 'notifications@yoopeek.com'
 
+    def send_mail_contact
+      attachments.inline['image.png'] = File.read('public/theme/user/hireo/images/logo.png')
+      @sender_email = params[:sender]
+      @sender_name = params[:name]
+      @subject = params[:subject]
+      @content = params[:content]
+      mail(
+        from: @sender_email,
+        to: 'yoopeekonline@gmail.com',
+        subject: @subject
+      )
+    end
 
     def new_quote
       attachments.inline['image.png'] = File.read('public/theme/user/hireo/images/logo.png')

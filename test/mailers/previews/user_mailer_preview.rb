@@ -30,4 +30,8 @@ class UserMailerPreview < ActionMailer::Preview
   def subscription_expiration
     UserMailer.with(user:Worker.first).subscription_expiration
   end
+  
+  def send_mail_contact
+    UserMailer.with(user:Worker.first).send_mail_contact
+  end
 end
