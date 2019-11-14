@@ -2,86 +2,57 @@
 	<%= content_for :body_style do %>
 		<%= render "layouts/admin/style_datatable" %>
 	<% end %>
-  <body class="animsition">
-    <!-- Page -->
-    <div class="page">
-      <div class="page-header">
-        <h1 class="page-title">Les formats de livraison</h1>
-      </div>
-
-      <div class="page-content">
-        <!-- Panel Table Add Row -->
-				<div class="panel">
-          <header class="panel-heading">
-            <h3 class="panel-title">Voici les format de livraison actuellement en ligne : </h3>
-          </header>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-15">
-									<%= link_to 'Ajouter un format de livraison', new_admin_format_delivery_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#addFormatDelivery', class: 'btn btn-primary'}  %>
-                </div>
-              </div>
-            </div>
-						<div class="panel-body" id="format_deliveries_list">
-							<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
-	              <thead>
-	                <tr>
-	                  <th>Nom</th>
-	                  <th>Actions</th>
-	                </tr>
-	              </thead>
-	              <tbody>
-									<% @format_deliveries.each do |fd| %>
-		                <tr>
-											<td><%=fd.name%></td>
-		                  <td class="actions">
-		                    <%= link_to edit_admin_format_delivery_path(id: fd.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#editFormatDelivery',class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
-		                      <i class="icon wb-edit" aria-hidden="true"></i>
-												<% end %>
-												<%= link_to admin_format_delivery_path(id: fd.id), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row" do%>
-													<i class="icon wb-trash" aria-hidden="true"></i>
-												<% end %>
-		                  </td>
-		                </tr>
-									<% end %>
-	              </tbody>
-	            </table>
-						</div>
-						<div class="modal fade" id="addFormatDelivery" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
-							<div class="modal-dialog modal-simple">
-								<%= form_for [:admin,@format_delivery],class:"modal-content" do |form| %>
-								  <div class="modal-header">
-								    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								      <span aria-hidden="true">×</span>
-								    </button>
-								    <h4 class="modal-title" id="exampleFormModalLabel">Ajout d'un format de livraison</h4>
-								  </div>
-								  <div class="modal-body">
-								    <div class="row">
-								      <div class="col-xl-12 form-group">
-												<h5>Nom du format</h5>
-								        <%= form.text_field :name,class:"form-control" %>
-								      </div>
-								      <div class="col-md-12 float-right">
-												<%= form.submit "Ajouter un format de livraison", class:"btn btn-primary btn-outline"%>
-								      </div>
-								    </div>
-								  </div>
-								<%end%>
-							</div>
-						</div>
-            <div id="edit-fd">
-
-            </div>
-          </div>
+<%= content_for :page_title, "Les formats de livraison" %>
+<div class="page-content">
+<!-- Panel Table Add Row -->
+<div class="panel">
+  <header class="panel-heading">
+    <h3 class="panel-title">Voici les format de livraison actuellement en ligne : </h3>
+  </header>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-15">
+					<%= link_to 'Ajouter un format de livraison', new_admin_format_delivery_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#addFormatDelivery', class: 'btn btn-primary'}  %>
         </div>
-        <!-- End Panel Table Add Row -->
-
-
-
       </div>
     </div>
+		<div class="panel-body" id="format_deliveries_list">
+			<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+					<% @format_deliveries.each do |fd| %>
+            <tr>
+							<td><%=fd.name%></td>
+              <td class="actions">
+                <%= link_to edit_admin_format_delivery_path(id: fd.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#editFormatDelivery',class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
+                  <i class="icon wb-edit" aria-hidden="true"></i>
+								<% end %>
+								<%= link_to admin_format_delivery_path(id: fd.id), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row" do%>
+									<i class="icon wb-trash" aria-hidden="true"></i>
+								<% end %>
+              </td>
+            </tr>
+					<% end %>
+        </tbody>
+      </table>
+		</div>
+		<div class="modal fade" id="addFormatDelivery" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
+			<div class="modal-dialog modal-simple">
+				<%= render "form" %>
+			</div>
+		</div>
+    <div id="edit-fd">
+
+    </div>
+  </div>
+</div>
+<!-- End Panel Table Add Row -->
 <%= content_for :body_script do %>
 <%= render "layouts/admin/script_datatable" %>
 <% end %>

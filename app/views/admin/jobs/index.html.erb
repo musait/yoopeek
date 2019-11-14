@@ -2,35 +2,18 @@
 <%= content_for :body_style do %>
   <%= render "layouts/admin/style_datatable" %>
 <% end %>
-  <body class="animsition">
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <!-- Page -->
-    <div class="page">
-      <div class="page-header">
-        <h1 class="page-title">Les missions</h1>
+<%= content_for :page_title, "Les missions" %>
+<!-- Panel Table Add Row -->
+<div class="panel">
+  <header class="panel-heading">
+    <h3 class="panel-title">Voici les missions actuellement en ligne : </h3>
+  </header>
+  <div class="panel-body" id="user_list">
+    <%= render "job_list" %>
+  </div>
+</div>
 
-      </div>
-
-      <div class="page-content">
-
-        <!-- Panel Table Add Row -->
-				<div class="panel">
-          <header class="panel-heading">
-            <h3 class="panel-title">Voici les missions actuellement en ligne : </h3>
-          </header>
-          <div class="panel-body" id="user_list">
-            <%= render "job_list" %>
-          </div>
-        </div>
-        <!-- End Panel Table Add Row -->
-
-
-
-      </div>
-    </div>
 <%= content_for :body_script do %>
 	<%= render "layouts/admin/script_datatable" %>
 	<script type="text/javascript">

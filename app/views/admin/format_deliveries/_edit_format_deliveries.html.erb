@@ -1,23 +1,5 @@
 <div class="modal fade" id="editFormatDelivery" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
   <div class="modal-dialog modal-simple">
-    <%= form_with(model: [:admin,@format_delivery] ,class:"modal-content")  do |form| %>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title" id="exampleFormModalLabel">Edition d'un format de livraison</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-xl-12 form-group">
-            <h5>Nom du format</h5>
-            <%= form.text_field :name,class:"form-control" %>
-          </div>
-          <div class="col-md-12 float-right">
-            <%= form.submit "Modifier ce format de livraison", class:"btn btn-primary btn-outline"%>
-          </div>
-        </div>
-      </div>
-    <%end%>
+    <%= render "form" %>
   </div>
 </div>

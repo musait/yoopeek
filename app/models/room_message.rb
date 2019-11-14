@@ -11,10 +11,11 @@ class RoomMessage < ApplicationRecord
     where.not(is_valid: true)
   }
   scope :catched_messages, -> () {
-    where(is_catched: true)
+    valid_messages.where(is_catched: true)
   }
   validate :check_author_credits,unless: -> {User.unscoped.find(self.author_id).email == "yoopeek@yoopeek.com"}
   before_validation :content_valid?
+  FILTERS = ["validated", "unvalidated", "catched"]
   REGEX_EMAIL = /[\w+\-.]+@[a-z\d\-.]+\.[a-z]+/
   REGEX_URL = /(http|https):\/\/|[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?/
   REGEX_PHONE = /(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})/

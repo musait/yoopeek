@@ -16,6 +16,7 @@ class AdminController < ApplicationController
     @plan_limitations_count = PlanLimitation.count
     @professions = Profession.count
     @format_deliveries_count = FormatDelivery.count
+    @room_messages_count = RoomMessage.count
   end
 
   def is_admin?
