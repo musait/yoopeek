@@ -7519,7 +7519,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								/* Banner Headline */
 								.banner-headline {
 									display: block;
-									max-width: 55%;
+									max-width: 100%;
 								}
 
 								.banner-headline h1,
