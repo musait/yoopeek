@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def count_notification
     if current_user.present?
-      @notification_messages = Notification.joins(:room_message).where("notifications.receiver_id=?",current_user.id).not_seen.order(:created_at => :desc).page(params[:notifications_page])
+      @notification_messages = Notification.joins(:room_message).where("room_messages.is_valid = ?", true).where("notifications.receiver_id=?",current_user.id).not_seen.order(:created_at => :desc).page(params[:notifications_page])
       @notifications = Notification.where.not(created_for: "room_message").where("notifications.receiver_id=?",current_user.id).not_seen.order(:created_at => :desc).page(params[:notifications_page])
     else
       @notifications_count = 0
