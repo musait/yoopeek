@@ -73,6 +73,6 @@ class Admin::ForbidenWordsController <  AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def forbiden_word_params
-      params.require(:forbiden_word).permit(:word, :is_valid_after_quote_accepted)
+      params.require(:forbiden_word).permit(:word, :is_valid_after_quote_accepted, :is_catched_word)
     end
 end
