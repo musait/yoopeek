@@ -22,6 +22,10 @@ class UsersController < ApplicationController
       render json: { error: 'Reply could not be sent.' }, status: 400
     end
   end
-  def private
+
+  def skill
+    binding.pry
+    current_user.skills.delete(params[:skills])
+    current_user.save!
   end
 end

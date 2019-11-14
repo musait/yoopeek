@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     devise_scope :user do
       match '/users' => "registrations#new", via: :get
     end
+    get "/users/skill" => "users#skill"
     mount ActionCable.server, at: '/cable'
     resources :autocompletes
     resources :addresses

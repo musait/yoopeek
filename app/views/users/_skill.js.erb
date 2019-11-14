@@ -1,0 +1,1 @@
+$('#skills').html("<%= j collection_select(:skills, @user.skills, {include_hidden: false }, {multiple: true,id:'tag_select'}) %>");

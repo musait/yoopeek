@@ -235,7 +235,9 @@
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= raw I18n.t('.user.pro_profile.edit.your_skills') %></h5>
-                      <%= f.select :skills, @user.skills, {include_hidden: false }, {multiple: true,id:"tag_select"} %>
+                      <div id="skills">
+                        <%= f.select :skills, @user.skills, {include_hidden: false }, {multiple: true,id:"tag_select"} %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -371,13 +373,13 @@
 <% end %>
 <!-- Row / End -->
 <%= content_for :body_script do %>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $(document).ready(function(){
       $(".select2-selection__choice__remove").click(function(event){
          alert('hhh');
        });
     });
-  </script>
+  </script> -->
   <script type="text/javascript">
     $(document).ready(function(){
     var preview = $(".upload-preview img");
@@ -424,7 +426,16 @@
         allowClear: true,
         tokenSeparators: [',', ' '],
         multiple: true
-      })
+      }).on('select2:unselecting', function (e) {
+          var skill_name = this.value;
+          debugger
+          $.ajax({
+            url: "/users/skill",
+            type: "GET",
+            dataType: "script",
+            data: { "skills": skill_name }
+          });
+      });
     });
     $('#category_id').change( function() {
      var category_id = this.value;
