@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       resources :users
       resources :professions
       resources :forbiden_words
+      resources :room_messages
     end
   end
 

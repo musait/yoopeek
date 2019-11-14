@@ -2,80 +2,52 @@
 <%= content_for :body_style do %>
   <%= render "layouts/admin/style_datatable" %>
   <% end %>
-  <body class="animsition">
-    <!-- Page -->
-    <div class="page">
-      <div class="page-header">
-        <h1 class="page-title">Les métiers</h1>
-      </div>
-      <div class="page-content">
-        <!-- Panel Table Add Row -->
-				<div class="panel">
-          <header class="panel-heading">
-            <h3 class="panel-title">Voici les métiers actuellement en ligne : </h3>
-          </header>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-15">
-                  <%= link_to 'Ajouter une profession', new_admin_profession_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#addProfession', class: 'btn btn-primary'}  %>
-                </div>
-              </div>
-            </div>
-						<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Nombre de pro ayant ce métier</th>
-									<th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-								<% @professions.each do |profession| %>
-	                <tr>
-										<td><%= profession.name%></td>
-										<td><%= profession.workers.count if profession.workers %></td>
-	                  <td class="actions">
-	                    <%= link_to edit_admin_profession_path(id: profession.id),{:remote => true, class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
-	                      <i class="icon wb-edit" aria-hidden="true"></i>
-											<% end %>
-	                  </td>
-	                </tr>
-								<% end %>
-							</tbody>
-            </table>
-          </div>
+<%= content_for :page_title, "Les métiers" %>
+<!-- Panel Table Add Row -->
+<div class="panel">
+  <header class="panel-heading">
+    <h3 class="panel-title">Voici les métiers actuellement en ligne : </h3>
+  </header>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-15">
+          <%= link_to 'Ajouter une profession', new_admin_profession_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#addProfession', class: 'btn btn-primary'}  %>
         </div>
-        <!-- End Panel Table Add Row -->
       </div>
     </div>
-    <div class="modal fade" id="addProfession" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
-      <div class="modal-dialog modal-simple">
-        <%= form_with(model: [:admin, @profession],class:"modal-content") do |form| %>
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-            <h4 class="modal-title" id="exampleFormModalLabel">Ajout d'une profession</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-xl-12 form-group">
+		<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Nombre de pro ayant ce métier</th>
+					<th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+				<% @professions.each do |profession| %>
+          <tr>
+						<td><%= profession.name%></td>
+						<td><%= profession.workers.count if profession.workers %></td>
+            <td class="actions">
+              <%= link_to edit_admin_profession_path(id: profession.id),{:remote => true, class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
+                <i class="icon wb-edit" aria-hidden="true"></i>
+							<% end %>
+            </td>
+          </tr>
+				<% end %>
+			</tbody>
+    </table>
+  </div>
+</div>
+<div class="modal fade" id="addProfession" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-simple">
+    <%= render "form" %>
+  </div>
+</div>
+<div id="editProfession">
 
-                <h5>Nom</h5>
-                <%= form.text_field :name,class:"form-control" %>
-              </div>
-              <div class="col-md-12 float-right">
-                <%= form.submit "Ajouter une profession", class:"btn btn-primary btn-outline"%>
-              </div>
-            </div>
-          </div>
-        <%end%>
-      </div>
-    </div>
-		<div id="editProfession">
-
-		</div>
+</div>
 <%= content_for :body_script do %>
 	<%= render "layouts/admin/script_datatable" %>
 <% end %>

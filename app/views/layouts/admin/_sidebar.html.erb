@@ -76,6 +76,15 @@
               </div>
             <% end %>
           </li>
+          <li class="site-menu-item has-sub">
+            <%= link_to admin_room_messages_path do %>
+              <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+              <span class="site-menu-title">Messages</span>
+              <div class="site-menu-badge">
+                  <span class="badge badge-pill"> <%= @room_messages_count %></span>
+              </div>
+            <% end %>
+          </li>
         </ul>
 
       </div>
