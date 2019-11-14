@@ -24,7 +24,11 @@
         <h5>Pourquoi le message est invalide</h5>
         <%= form.text_field :unvalid_reason,class:"form-control" %>
       </div>
-    
+      <div class="col-xl-12 form-group">
+        <h5>Pourquoi le message a été capturer</h5>
+        <%= form.text_field :catched_reason,class:"form-control" %>
+      </div>
+
       <div class="col-md-12 float-right">
         <%= form.submit "Enregistrer", class:"btn btn-primary btn-outline"%>
       </div>
