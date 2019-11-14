@@ -373,13 +373,6 @@
 <% end %>
 <!-- Row / End -->
 <%= content_for :body_script do %>
-  <!-- <script type="text/javascript">
-    $(document).ready(function(){
-      $(".select2-selection__choice__remove").click(function(event){
-         alert('hhh');
-       });
-    });
-  </script> -->
   <script type="text/javascript">
     $(document).ready(function(){
     var preview = $(".upload-preview img");
@@ -427,8 +420,7 @@
         tokenSeparators: [',', ' '],
         multiple: true
       }).on('select2:unselecting', function (e) {
-          var skill_name = this.value;
-          debugger
+          var skill_name = e.params.args.data.text;
           $.ajax({
             url: "/users/skill",
             type: "GET",
