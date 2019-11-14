@@ -7,7 +7,7 @@
     <%= content_for :other_header_page do %>
       <%= render "/layouts/admin/page_header_action_button", links: [
         form_with(url: admin_room_messages_path, class: " col-2", method: :get) do |f|
-          f.select :sort_by,RoomMessage::FILTERS.map {|f| [t("room_messages.filters.#{f}"), f]}, {include_blank: t("all")}, class: "form-control message_filter", style: "height: 100%", id: "message_filter"
+          f.select :sort_by,RoomMessage::FILTERS.map {|r_m_f| [t("room_messages.filters.#{r_m_f}"), r_m_f]}, {include_blank: t("all")}, class: "form-control message_filter", style: "height: 100%", id: "message_filter"
         end
       ] %>
     <% end %>
@@ -40,7 +40,7 @@
 		</div>
 <%= content_for :body_script do %>
 <%= render "layouts/admin/script_datatable" %>
-  <%= render "/layouts/data_table_conf.js.erb", element: "messages"  %>
+<%= render "/layouts/data_table_conf.js.erb", element: "messages"  %>
 
   <script type="text/javascript">
     $(function () {
