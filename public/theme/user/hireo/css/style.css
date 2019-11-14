@@ -2957,8 +2957,8 @@ em.mm-counter+a.mm-fullsubopen+span {
 									top: 0;
 									left: 0;
 									height: 100%;
-									width: 50%;
-									left: 50%;
+									width: 100%;
+									left: 100%;
 									z-index: 10;
 								}
 
@@ -7495,7 +7495,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								.intro-banner .background-image-container {
 									background-size: cover;
 									background-repeat: no-repeat;
-									background-position: 100% 60%;
+									background-position: 20% 20%;
 									position: absolute;
 									top: 0;
 									left: 0;
@@ -7508,8 +7508,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 
 								/* Disabled Gradient */
 								.intro-banner.disable-gradient:before {
-									background: #f2f2f2;
-									opacity: 0.85;
+									opacity: 0.6;
 								}
 
 								.intro-banner.disable-gradient .background-image-container {
