@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def error
+    render status_code.to_s, status: (params[:code] || 500)
+  end
+
 
   private
   def set_locale
