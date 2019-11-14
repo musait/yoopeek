@@ -6,8 +6,8 @@
     <%= content_for :page_title, "Les messages" %>
     <%= content_for :other_header_page do %>
       <%= render "/layouts/admin/page_header_action_button", links: [
-        form_with(url: admin_users_path, class: " col-2", method: :get) do |f|
-          f.select :sort_by,RoomMessage::FILTERS.map {|d_f| [t("room_messages.filters.#{d_f}"), d_f]}, {include_blank: t("all")}, class: "form-control message_filter", style: "height: 100%", id: "message_filter"
+        form_with(url: admin_room_messages_path, class: " col-2", method: :get) do |f|
+          f.select :sort_by,RoomMessage::FILTERS.map {|r_m_f| [t("room_messages.filters.#{r_m_f}"), r_m_f]}, {include_blank: t("all")}, class: "form-control message_filter", style: "height: 100%", id: "message_filter"
         end
       ] %>
     <% end %>
@@ -17,9 +17,12 @@
             <h3 class="panel-title">Voici les messages : </h3>
           </header>
           <div class="panel-body">
-						<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+            <table id="messages" class="table table-hover dataTable table-striped w-full" data-source="<%= admin_room_messages_path(wanted_filter: @sort_by, format: "json") %>">
               <thead>
                 <tr>
+                  <th>Créer le</th>
+                  <th>Auteur</th>
+                  <th>Receveur</th>
                   <th>Message</th>
                   <th>Valider?</th>
                   <th>Capturer?</th>
@@ -27,21 +30,7 @@
                 </tr>
               </thead>
               <tbody>
-								<% @room_messages.each do |room_message| %>
-	                <tr>
-										<td><%= room_message.message%></td>
-										<td><%= t(room_message.is_valid.present?) %></td>
-										<td><%= t(room_message.is_catched.present?) %></td>
-	                  <td class="actions">
-	                    <%= link_to edit_admin_room_message_path(id: room_message.id),{:remote => true, class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
-	                      <i class="icon wb-edit" aria-hidden="true"></i>
-											<% end %>
-                      <%= link_to admin_room_message_path(id: room_message.id), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row", data: {confirm: "Voulez-vous supprimer ce mot ?"} do%>
-                        <i class="icon wb-trash" aria-hidden="true"></i>
-                      <% end %>
-	                  </td>
-	                </tr>
-								<% end %>
+
 							</tbody>
             </table>
           </div>
@@ -50,12 +39,15 @@
 
 		</div>
 <%= content_for :body_script do %>
-	<%= render "layouts/admin/script_datatable" %>
+<%= render "layouts/admin/script_datatable" %>
+<%= render "/layouts/data_table_conf.js.erb", element: "messages"  %>
+
   <script type="text/javascript">
     $(function () {
+      table = $("#messages").DataTable();
+
       $(".message_filter").on("change", function () {
-        table = $("#messages_table").DataTable();
-        table.ajax.url( '<%= admin_room_messages_path(wanted_filter: "wanted_filter", format: "json") %>'.replace("wanted_filter", $("#message_filter").val()) ).load();
+        table.ajax.url( '<%= admin_room_messages_path(wanted_filter: "message_wanted_filter", format: "json") %>'.replace("message_wanted_filter", $("#message_filter").val()) ).load();
         // table.ajax.reload()
       })
       $(".message_filter").change()

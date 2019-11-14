@@ -65,6 +65,7 @@ fr:
   invoice_date: Date de la facture
   invoice_amount: Montant de la facture
   download_link: Lien de téléchargement
+  all: Tous
   stripe:
     watch_your_iban: Vérifiez votre IBAN
     watch_your_birthdate: Vérifiez votre date de naissance
@@ -427,6 +428,10 @@ fr:
     rooms:
       conversation_list: "Liste de vos conversations"
   room_messages:
+    filters:
+      valid_message: Messsage validé
+      unvalid_message: Messsage non validé
+      catched_message: Messsage capturé
     create:
       you_have_received_a_message: "Vous avez reçu un message de la part de %{creator}"
   quotes:

@@ -4,8 +4,10 @@ class Admin::ForbidenWordsController <  AdminController
   # GET /forbiden_words
   # GET /forbiden_words.json
   def index
-    @forbiden_words = ForbidenWord.order(:created_at).all
-    @forbiden_word = ForbidenWord.new
+    respond_to do |format|
+      format.html {@forbiden_word = ForbidenWord.new}
+      format.json { render json: AdminsForbidenWordsDatatable.new(view_context, params[:wanted_filter]) }
+    end
   end
 
   # GET /forbiden_words/1

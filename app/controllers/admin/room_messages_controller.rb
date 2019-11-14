@@ -4,8 +4,10 @@ class Admin::RoomMessagesController <  AdminController
   # GET /room_messages
   # GET /room_messages.json
   def index
-    @room_messages = RoomMessage.order(:created_at).all
-    @room_message = RoomMessage.new
+    respond_to do |format|
+      format.html
+      format.json { render json: AdminsRoomMessagesDatatable.new(view_context, params[:wanted_filter]) }
+    end
   end
 
   # GET /room_messages/1
@@ -73,6 +75,6 @@ class Admin::RoomMessagesController <  AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_message_params
-      params.require(:room_message).permit(:is_valid, :unvalid_reason)
+      params.require(:room_message).permit(:is_valid, :unvalid_reason, :catched_reason)
     end
 end
