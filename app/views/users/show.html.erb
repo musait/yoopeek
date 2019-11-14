@@ -31,39 +31,41 @@
 				</div>
 			</div>
 			<!-- Boxed List -->
-			<div class="boxed-list margin-bottom-60">
-				<div class="boxed-list-headline">
-					<h3><i class="icon-material-outline-thumb-up"></i> <%= t('.history_and_reviews') %></h3>
-				</div>
-				<ul class="boxed-list-ul">
-					<% @jobs.each do |job| %>
-							<li>
-								<div class="boxed-list-item">
-									<!-- Content -->
-									<div class="item-content">
-										<h4>	<% job.name %></h4>
-										<div class="item-details margin-top-10">
-											<div class="star-rating" data-rating="4.0"></div>
-											<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
-										</div>
-										<div class="item-description">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
+			<% if @jobs.present? %>
+				<div class="boxed-list margin-bottom-60">
+					<div class="boxed-list-headline">
+						<h3><i class="icon-material-outline-thumb-up"></i> <%= t('.history_and_reviews') %></h3>
+					</div>
+					<ul class="boxed-list-ul">
+						<% @jobs.each do |job| %>
+								<li>
+									<div class="boxed-list-item">
+										<!-- Content -->
+										<div class="item-content">
+											<h4>	<% job.name %></h4>
+											<div class="item-details margin-top-10">
+												<div class="star-rating" data-rating="4.0"></div>
+												<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
+											</div>
+											<div class="item-description">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
+											</div>
 										</div>
 									</div>
-								</div>
-							</li>
-					<% end %>
-				</ul>
+								</li>
+						<% end %>
+					</ul>
 
-				<!-- Pagination -->
-				<div class="clearfix"></div>
-				<div class="pagination-container margin-top-40 margin-bottom-10">
-					<%= paginate @jobs if @jobs.present?%>
+					<!-- Pagination -->
+					<div class="clearfix"></div>
+					<div class="pagination-container margin-top-40 margin-bottom-10">
+						<%= paginate @jobs if @jobs.present?%>
+					</div>
+					<div class="clearfix"></div>
+					<!-- Pagination / End -->
+
 				</div>
-				<div class="clearfix"></div>
-				<!-- Pagination / End -->
-
-			</div>
+			<% end %>
 			<!-- Boxed List / End -->
 		</div>
 		<!-- Sidebar -->
@@ -98,8 +100,10 @@
 				<div class="sidebar-widget">
 					<h3> <%= t('.skills') %></h3>
 					<div class="task-tags">
-						<% @user.tags.each do |tag| %>
-						<span> <%= tag.name %></span>
+						<% if @user.skills.present? %>
+							<% @user.skills.each do |skill| %>
+							<span> <%= skill %></span>
+							<% end %>
 						<% end %>
 					</div>
 				</div>
