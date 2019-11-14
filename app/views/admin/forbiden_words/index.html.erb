@@ -2,64 +2,46 @@
 <%= content_for :body_style do %>
   <%= render "layouts/admin/style_datatable" %>
   <% end %>
-  <body class="animsition">
-    <!-- Page -->
-    <div class="page">
-      <div class="page-header">
-        <h1 class="page-title">Les métiers</h1>
-      </div>
-      <div class="page-content">
-        <!-- Panel Table Add Row -->
-				<div class="panel">
-          <header class="panel-heading">
-            <h3 class="panel-title">Voici les métiers actuellement en ligne : </h3>
-          </header>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-15">
-                  <%= link_to 'Ajouter un mot interdit', new_admin_forbiden_word_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#addForbidenWord', class: 'btn btn-primary'}  %>
-                </div>
-              </div>
-            </div>
-						<table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
-              <thead>
-                <tr>
-                  <th>mot</th>
-                  <th>Valide après acceptation du devis?</th>
-									<th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-								<% @forbiden_words.each do |forbiden_word| %>
-	                <tr>
-										<td><%= forbiden_word.word%></td>
-										<td><%= t(forbiden_word.is_valid_after_quote_accepted.present?) %></td>
-	                  <td class="actions">
-	                    <%= link_to edit_admin_forbiden_word_path(id: forbiden_word.id),{:remote => true, class:"btn btn-sm btn-icon btn-pure btn-default on-default edit-row"} do %>
-	                      <i class="icon wb-edit" aria-hidden="true"></i>
-											<% end %>
-                      <%= link_to admin_forbiden_word_path(id: forbiden_word.id), method: :delete, class:"btn btn-sm btn-icon btn-pure btn-default on-default remove-row", data: {confirm: "Voulez-vous supprimer ce mot ?"} do%>
-                        <i class="icon wb-trash" aria-hidden="true"></i>
-                      <% end %>
-	                  </td>
-	                </tr>
-								<% end %>
-							</tbody>
-            </table>
-          </div>
+  <%= content_for :page_title, "Les mots interdits" %>
+<div class="panel">
+  <header class="panel-heading">
+    <h3 class="panel-title">Voici les mots interdits en ligne : </h3>
+  </header>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-15">
+          <%= link_to 'Ajouter un mot interdit', new_admin_forbiden_word_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#addForbidenWord', class: 'btn btn-primary'}  %>
         </div>
-        <!-- End Panel Table Add Row -->
       </div>
     </div>
-    <div class="modal fade" id="addForbidenWord" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
-      <div class="modal-dialog modal-simple">
-        <%= render "form" %>
-      </div>
-    </div>
-		<div id="editForbidenWord">
+    <table id="forbiden_words" class="table table-hover dataTable table-striped w-full" data-source="<%= admin_forbiden_words_path(wanted_filter: @sort_by, format: "json") %>">
+      <thead>
+        <tr>
+          <th>Ajouter le</th>
+          <th>mot</th>
+          <th>Valide après acceptation du devis?</th>
+          <th>Mot Surveiller?</th>
+					<th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
 
-		</div>
+			</tbody>
+    </table>
+  </div>
+</div>
+<div class="modal fade" id="addForbidenWord" aria-hidden="false" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-simple">
+    <%= render "form" %>
+  </div>
+</div>
+<div id="editForbidenWord">
+
+</div>
+
 <%= content_for :body_script do %>
-	<%= render "layouts/admin/script_datatable" %>
+<%= render "layouts/admin/script_datatable" %>
+<%= render "/layouts/data_table_conf.js.erb", element: "forbiden_words"  %>
+
 <% end %>

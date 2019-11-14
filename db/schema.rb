@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_174939) do
+ActiveRecord::Schema.define(version: 2019_11_14_112121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_174939) do
     t.boolean "is_valid_after_quote_accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_catched_word", default: false
   end
 
   create_table "format_deliveries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -325,6 +326,8 @@ ActiveRecord::Schema.define(version: 2019_11_13_174939) do
     t.datetime "updated_at", null: false
     t.boolean "is_valid", default: true
     t.string "unvalid_reason"
+    t.boolean "is_catched", default: false
+    t.string "catched_reason"
     t.index ["author_id"], name: "index_room_messages_on_author_id"
     t.index ["receiver_id"], name: "index_room_messages_on_receiver_id"
     t.index ["room_id"], name: "index_room_messages_on_room_id"

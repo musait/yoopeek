@@ -11,19 +11,19 @@ class SubscriptionsController < UsersController
   end
   def new
     @plan_limitation = PlanLimitation.find(params[:plan_limitation_id])
+
     if @plan_limitation.stripe_plan_id.present?
-      @intent = Stripe::SetupIntent.create({
-        usage: 'on_session', # The default usage is off_session
-      })
-      if current_user.stripe_customer_id.present?
-        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      if @plan_limitation.price_per_month == 0
+        StripeCustomer.get current_user
+        pay_plan @plan_limitation
       else
-        customer = Stripe::Customer.create(
-          :email => current_user.email
-        )
-        current_user.update stripe_customer_id: customer.id
+        @intent = Stripe::SetupIntent.create({
+          usage: 'on_session', # The default usage is off_session
+        })
+        StripeCustomer.get current_user
+        session[:plan_limitation_id] = @plan_limitation.id
       end
-      session[:plan_limitation_id] = @plan_limitation.id
+
     else
       redirect_back fallback_location: root_path, flash: {info: I18n.t("other.subscription_have_no_plan")}
     end
@@ -107,7 +107,7 @@ class SubscriptionsController < UsersController
         flash.keep(:success)
       }
       format.html {
-        redirect_to subscriptions_path
+        redirect_to root_path
         flash[:success] = I18n.t("other.subscription_changed")
         flash.keep(:success)
       }
