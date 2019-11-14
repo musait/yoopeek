@@ -24,8 +24,13 @@ class UsersController < ApplicationController
   end
 
   def skill
-    binding.pry
     current_user.skills.delete(params[:skills])
-    current_user.save!
+    respond_to do |format|
+      if current_user.save
+        format.html
+        format.js
+      end
+    end
   end
+
 end
