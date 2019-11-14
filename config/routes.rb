@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, skip: :omniauth_callbacks,controllers: {:registrations => 'registrations'}
     root 'home#index'
+    get "/pages/:page" => "pages#show"
+    get 'send_mail_contact' => "pages#send_mail_contact"
     devise_scope :user do
       match '/users' => "registrations#new", via: :get
     end
@@ -73,6 +75,9 @@ Rails.application.routes.draw do
       resources :users
       resources :professions
       resources :forbiden_words
+    end
+    %w( 404 422 500 ).each do |code|
+      get code, controller: :application, action: :error, code: code
     end
   end
 
