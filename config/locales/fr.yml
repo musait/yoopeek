@@ -210,11 +210,18 @@ fr:
         logout: "Se déconnecter"
         worker: "Professionnel"
         customer: "Particulier"
+      footer:
+        my_account: "Mon compte"
+        login: "Se connecter"
+        contact: "Contact"
+        private_policy: "Politique de confidentialité"
+        cgv: "Condition générales d'utilisation"
+        sav: "Service client"
+        all_rights_reserved: "Tout droits réservé"
   home:
     index:
-
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
-      intro: "Vous avez un projet photographique ? <br> Yoopeek est là pour vous ! "
+      intro: "Vous avez un projet <div id='text'></div><div id='cursor'></div> ? <br> Yoopeek est là pour vous ! "
       what: "Quoi ?"
       where: "Où ?"
       search: "Chercher"
@@ -520,3 +527,7 @@ fr:
       remove: "Supprimer"
       update_your_portfolio: "Mettre à jour le portfolio"
       update_with_success: "Votre portfolio a été mis à jour avec succès"
+  pages:
+    contact:
+      our_office: "Nos bureaux"
+      any_questions: "Des questions ? N'hésitez pas à nous joindre !"
