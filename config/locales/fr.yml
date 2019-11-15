@@ -385,6 +385,8 @@ fr:
         add_ten_skills: "Ajoutez jusqu'à 10 compétences"
         nationality: "Nationalité"
         description: "Description"
+        change_banner: "Changer de bannière (1280x400)"
+        add_banner: "Ajouter une bannière (1280x400)"
     company:
       edit:
         name: "Nom ou Raison sociale"
