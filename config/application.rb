@@ -18,6 +18,8 @@ module Yoopeek
     config.eager_load_paths << "#{Rails.root}/lib/modules"
     config.eager_load_paths << "#{Rails.root}/app/models/user"
     config.exceptions_app = self.routes
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
+    config.assets.enabled = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
