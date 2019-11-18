@@ -1,6 +1,7 @@
 <%= content_for :body_style do  %>
-<style media="screen">
 <link rel="preload" href="/assets/videos/yoopeek_video_home.mp4" as="video" type="video/mp4">
+<link rel="stylesheet" href="/theme/user/hireo/css/vertical_flip.css">
+<style media="screen">
 	display: inline-block;
 	}
 
@@ -38,9 +39,16 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="banner-headline">
-						<h3>
-							<strong><%= raw I18n.t('.home.index.intro') %> </strong>
-							<br>
+						<h3 class="cd-headline slide" style="font-weight: bold; color: black">
+							<span> <%= I18n.t('.home.index.find_a') %></span>
+							<span class="cd-words-wrapper" style="width:auto !important">
+								<strong class="is-visible"><%= I18n.t('.home.index.photographer') %></strong>
+								<strong><%= I18n.t('.home.index.videographer') %></strong>
+								<strong><%= I18n.t('.home.index.muha') %></strong>
+								<strong><%= I18n.t('.home.index.stylist') %></strong>
+								<strong><%= I18n.t('.home.index.drone') %></strong>
+							</span>
+							<span><%= I18n.t('.home.index.with_a_clic') %></span>
 						</h3>
 					</div>
 				</div>
@@ -137,8 +145,6 @@
 				<div style="width:100%;height:100%">
 					<%= video_tag "yoopeek_video_home.mp4", width:"100%",height:"100%", :controls => true %>
 				</div>
-
-
 			</div>
 		</div>
 	 </div>
@@ -188,13 +194,13 @@
 	</div>
  		-->
 
-	<!-- Highest Rated Freelancers -->
+	<!-- Highest Rated Freelancers
 	<div class="section gray padding-top-65 padding-bottom-70 full-width-carousel-fix">
 		<div class="container">
 			<div class="row">
 
 				<div class="col-xl-12">
-					<!-- Section Headline -->
+
 					<div class="section-headline margin-top-0 margin-bottom-25">
 						<h3><%= raw I18n.t('.home.index.best_pros') %> </h3>
 					</div>
@@ -203,36 +209,36 @@
 				<div class="col-xl-12">
 					<div class="default-slick-carousel freelancers-container freelancers-grid-layout">
 
-						<!--Freelancer -->
+
 						<div class="freelancer">
 
-							<!-- Overview -->
+
 							<div class="freelancer-overview">
 								<div class="freelancer-overview-inner">
 
-									<!-- Bookmark Icon -->
+
 									<span class="bookmark-icon"></span>
 
-									<!-- Avatar -->
+
 									<div class="freelancer-avatar">
 										<div class="verified-badge"></div>
 										<a href="#"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
 									</div>
 
-									<!-- Name -->
+
 									<div class="freelancer-name">
 										<h4><a href="#">Tom Smith <img class="flag" src="/theme/user/hireo/images/flags/fr.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
 										<span>Photographe</span>
 									</div>
 
-									<!-- Rating -->
+
 									<div class="freelancer-rating">
 										<div class="star-rating" data-rating="5.0"></div>
 									</div>
 								</div>
 							</div>
 
-							<!-- Details -->
+
 							<div class="freelancer-details">
 								<div class="freelancer-details-list">
 									<ul style="display: flex;justify-content: space-around;">
@@ -243,13 +249,14 @@
 								<a href="#" class="button button-sliding-icon ripple-effect"><%= raw I18n.t('.home.pros_presentation.see_his_profile') %><i class="icon-material-outline-arrow-right-alt"></i></a>
 							</div>
 						</div>
-						<!-- Freelancer / End -->
+
 					</div>
 				</div>
 
 			</div>
 		</div>
 	</div>
+	-->
 	<%= content_for :body_script do  %>
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -259,10 +266,11 @@
 		<script type="text/javascript">
 			// List of sentences
 			var _CONTENT = [
-				"<%= raw I18n.t('.home.index.published_ads') %>",
-				"<%= raw I18n.t('.home.index.published_ads') %>",
-				"<%= raw I18n.t('.home.index.published_ads') %>",
-				"<%= raw I18n.t('.home.index.published_ads') %>"
+				"<%= raw I18n.t('.home.index.photographer') %>",
+				"<%= raw I18n.t('.home.index.videographer') %>",
+				"<%= raw I18n.t('.home.index.muha') %>",
+				"<%= raw I18n.t('.home.index.drone') %>",
+				"<%= raw I18n.t('.home.index.stylist') %>"
 			];
 
 			// Current sentence being processed
@@ -331,4 +339,5 @@
 			_INTERVAL_VAL = setInterval(Type, 100);
 
 		</script>
+		<script src="/theme/user/hireo/js/vertical_flip.js" charset="utf-8"></script>
 	<% end %>
