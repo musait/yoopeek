@@ -2,6 +2,18 @@ class PlanLimitation < ApplicationRecord
   enum commission_type: ["%", "€"]
   enum nb_answer_type: ["month", "year"]
 
+  before_validation do
+    if self.price_per_month_changed?
+      stripe_plan = Stripe::Plan.create({
+        amount: (self.price_per_month * 100).to_i,
+        currency: 'eur',
+        interval: 'month',
+        product: {name: "YOOPEEK #{self.label}"},
+      })
+
+      self.stripe_plan_id = stripe_plan.id
+    end
+  end
   def self.free_limitation
     where(name: "free").first_or_create(
       label: "Sans abo",
@@ -20,9 +32,9 @@ class PlanLimitation < ApplicationRecord
   end
   def self.classic_limitation
     where(name: "classic").first_or_create(
-      label: "Abo 19€/mois",
-      description: "Abo 19€/mois",
-      price_per_month: 19,
+      label: "Abo 29€/mois",
+      description: "Abo 29€/mois",
+      price_per_month: 29,
       commission_per_service: 1,
       commission_type: "€",
       nb_answer: 5,
@@ -36,9 +48,9 @@ class PlanLimitation < ApplicationRecord
   end
   def self.premium_limitation
     where(name: "premium").first_or_create(
-      label: "Abo 49€/mois",
-      description: "Abo 49€/mois",
-      price_per_month: 49,
+      label: "Abo 69€/mois",
+      description: "Abo 69€/mois",
+      price_per_month: 69,
       commission_per_service: 1,
       commission_type: "€",
       nb_answer: 50,
