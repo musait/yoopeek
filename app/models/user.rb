@@ -197,7 +197,7 @@ class User < ApplicationRecord
   end
 
   def current_subscription
-    subscriptions.current_actived_subscriptions.order(:plan_amount => :desc).last
+    subscriptions.current_actived_subscriptions.order(:plan_amount => :desc).first
   end
 
   def current_plan
