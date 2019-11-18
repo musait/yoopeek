@@ -216,9 +216,9 @@ fr:
         login: "Se connecter"
         contact: "Contact"
         private_policy: "Politique de confidentialité"
-        cgv: "Condition générales d'utilisation"
+        cgv: "Conditions générales d'utilisation"
         sav: "Service client"
-        all_rights_reserved: "Tout droits réservé"
+        all_rights_reserved: "Tout droits réservés"
   home:
     index:
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
@@ -239,7 +239,7 @@ fr:
       <p>Cherchez un professionnel dans votre région grâce au moteur de recherche ou créez votre annonce afin de trouver un professionnel de l’image pouvant répondre à vos besoins.</p>"
       second_bloc_explanation: "<h3>Comparez les professionnels</h3>
       <p>Entrez en relation avec un nombre important de professionnels autour de vous. Notre équipe sélectionne avec soin des professionnels expérimentés.</p>"
-      third_bloc_explanation: "<h3>Trouvez la perle rare !</h3><p>Après avoir trouvé un professionnel qui correspond à votre demande, validez le devis et prenez rendez vous pour réalisez vos envies.</p>"
+      third_bloc_explanation: "<h3>Trouvez la perle rare !</h3><p>Après avoir trouvé un professionnel qui correspond à votre demande, validez le devis et prenez rendez-vous pour réaliser vos envies.</p>"
       our_engagement: "Notre engagement"
       fourth_bloc_explanation: "Lorem ipsum"
       fifth_bloc_explanation: "Lorem ipsum"
@@ -293,7 +293,7 @@ fr:
       finished: "Terminée"
       aborted: "Annulée"
       category: "Catégorie"
-      under_category: "Sous catégorie"
+      under_category: "Sous-catégorie"
       delivery_format: "Format de livraison"
       estimated_time: "Temps estimé"
       time_range: "Entre %{min_time} et %{max_time} heure(s)"
