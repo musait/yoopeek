@@ -1,6 +1,4 @@
 <%= content_for :body_style do %>
-  <link rel="stylesheet" href="/theme/user/hireo/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 <% end %>
 <% if @quotes.empty? %>
   <div class="container">
@@ -47,8 +45,6 @@
 <% end %>
 
 <%= content_for :body_script do %>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" charset="utf-8"></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 		  $('#quotes_datatable').dataTable({
