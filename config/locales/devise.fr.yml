@@ -74,6 +74,7 @@ fr:
         sign_in: "Se connecter"
         sign_up: "S'inscrire"
         remember_me: "Se souvenir de moi"
+        or: "ou"
       signed_in: "Connecté."
       signed_out: "Déconnecté."
     unlocks:

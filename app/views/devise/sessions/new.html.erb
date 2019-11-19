@@ -33,10 +33,10 @@
         <% end %>
 
         <!-- Social Login -->
-        <div class="social-login-separator"><span>or</span></div>
+        <div class="social-login-separator"><span><%=t('.or')%></span></div>
         <div class="social-login-buttons">
-          <button class='facebook-login ripple-effect' ><i class='icon-brand-facebook-f'></i><a href="/users/auth/facebook"> <%=t('.facebook_signin')%></a></button>
-          <button class='google-login ripple-effect' ><i class='icon-brand-google-plus-g'></i><a href="/users/auth/google_oauth2"> <%=t('.google_signin')%></a></button>
+          <a class='facebook-login ripple-effect' href="/users/auth/facebook"> <i class='icon-brand-facebook-f'></i><%=t('.facebook_signin')%> </a>
+          <a class='google-login ripple-effect' href="/users/auth/google_oauth2"> <i class='icon-brand-google-plus-g'></i> <%=t('.google_signin')%>  </a>
         </div>
       </div>
 
