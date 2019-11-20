@@ -1,4 +1,5 @@
 class UserMailer < Devise::Mailer
+    layout "mailer"
     default from: 'notifications@yoopeek.com'
 
     def send_mail_contact
