@@ -328,6 +328,8 @@ fr:
       job_destoyed: "Votre mission a été supprimée avec succès"
     edit:
       job_edition: "Modifier cette mission"
+      edition_form: "Formulaire d'édition"
+      are_you_sure: "Êtes-vous sur de vouloir supprimer cette mission ?"
     worker_jobs:
       your_missions: "Vos missions"
       select_something: "Séléctionnez un filtre"
