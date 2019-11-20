@@ -1,10 +1,9 @@
 
 <!-- Dashboard Headline -->
 <div class="dashboard-headline">
-	<h3><%= raw I18n.t('.job.edit.job_edition') %></h3>
+	<h3><%= raw I18n.t('.jobs.edit.job_edition') %></h3>
 </div>
 
-<!-- Row -->
 <div class="row">
 
 	<!-- Dashboard Box -->
@@ -13,15 +12,15 @@
 
 			<!-- Headline -->
 			<div class="headline">
-				<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.job.new.creation_form') %></h3>
+				<h3><i class="icon-feather-folder-plus"></i><%= raw I18n.t('.jobs.edit.edition_form') %></h3>
 			</div>
 			<%= form_with(model: @job, local: true) do |form| %>
 			  <% if @job.errors.any? %>
 					<div class="notification error closeable">
-						<p><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</p>
+						<p><%= t('activerecord.errors.template.header',:model => @job.model_name.human.downcase) %></p>
 						<ul>
-						<% @job.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
+						<% @job.errors.values.each do |message| %>
+							<li><%= message[0]%></li>
 						<% end %>
 						</ul>
 						<a class="close" href="#"></a>
@@ -32,33 +31,33 @@
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.title') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.title') %></h5>
 							<%= form.text_field :name,class:"with-border" %>
 						</div>
 					</div>
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.category') %></h5>
-							<%= form.collection_select(:category_id,Category.all, :id, :name, {prompt: "Choissisez une catégorie"}, {class:"selectpicker",id:"category_id"}) %>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.category') %></h5>
+							<%= form.collection_select(:category_id,@categories, :id, :name, {prompt: t('.pick_category')}, {id:"category_id"}) %>
 						</div>
 					</div>
 
 					<div class="col-xl-4">
 						<div  class="submit-field">
-							<h5><%= raw I18n.t('.job.new.under_category') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.under_category') %></h5>
 								<div id="subcategories_select">
-									<%= form.collection_select(:subcategory_id,Subcategory.all, :id, :name, {prompt: "Choissisez une sous-catégorie"}, {disabled: true,class:"selectpicker"}) %>
+									<%= form.collection_select(:subcategory_id,@subcategories, :id, :name, {prompt: t('.pick_subcategory')}, {id:"subcategory_id",disabled: true}) %>
 								</div>
 						</div>
 					</div>
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.localisation') %></h5>
+							<h5><%= raw I18n.t('.jobs.new.localisation') %></h5>
 							<div class="input-with-icon">
 								<div id="autocomplete-container">
-									<%= form.text_field :localisation,class:"with-border",placeholder:"ex: Nice, 75002, Suisse" %>
+									<%= form.text_field :localisation,class:"with-border",placeholder:"ex: Nice, 75002, Suisse", id: "autocomplete_address" %>
 								</div>
 								<i class="icon-material-outline-location-on"></i>
 							</div>
@@ -67,7 +66,7 @@
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.estimated_budget') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.estimated_budget') %></h5>
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="input-with-icon">
@@ -87,7 +86,7 @@
 
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.additional_services') %></h5>
+							<h5><%= raw I18n.t('.jobs.new.additional_services') %></h5>
 							<div class="keywords-container">
 								<div class="keyword-input-container">
 									<%= form.text_field :optional_services,multiple: true,class:"keyword-input with-border",placeholder:"ex: Maquillage" %>
@@ -99,7 +98,7 @@
 					</div>
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.estimated_time') %></h5>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.estimated_time') %></h5>
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="input-with-icon">
@@ -118,28 +117,36 @@
 					</div>
 					<div class="col-xl-4">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.desired_format') %></h5>
-							<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: "Choissisez un format de livraison"}, {class:"selectpicker"}) %>
+							<h5 class="required"><%= raw I18n.t('.jobs.new.desired_format') %></h5>
+							<%= form.collection_select(:format_delivery_id,FormatDelivery.all, :id, :name, {prompt: t('.pick_format_delivery')}) %>
+						</div>
+					</div>
+					<div class="col-xl-4">
+						<div class="submit-field">
+							<h5 class="required"><%= raw I18n.t('.jobs.new.which_date') %></h5>
+							<div class="" style="display:flex">
+								<%= form.date_select :date_delivery,order: [:day, :month, :year], class:"date-time"%>
+							</div>
 						</div>
 					</div>
 
 					<div class="col-xl-12">
 						<div class="submit-field">
-							<h5><%= raw I18n.t('.job.new.description') %></h5>
+							<h5><%= raw I18n.t('.jobs.new.description') %></h5>
 							<%= form.text_area :description,col:"30",rows:"5",class:"with-border"%>
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<%= form.hidden_field :customer_id, :value => current_user.id %>
 	<div class="col-xl-12">
-		<%= form.submit I18n.t('.job.edit.job_edition'), class:"button ripple-effect big margin-top-30" %>
+		<%= form.submit I18n.t('.jobs.edit.job_edition'), class:"button ripple-effect big margin-top-30" %>
 	</div>
 <%end%>
 </div>
-<!-- Row / End -->
 <div class="dashboard-footer-spacer"></div>
 <script>
 	$('#category_id').change( function() {
