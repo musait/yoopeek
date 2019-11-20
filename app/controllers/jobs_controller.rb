@@ -89,6 +89,7 @@ class JobsController < ApplicationController
   end
   # GET /jobs/1/edit
   def edit
+    init_categories
   end
 
   def worker_jobs
