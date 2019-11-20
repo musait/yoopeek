@@ -145,69 +145,69 @@
 
 		</div>
 		<% if current_user.customer? %>
-			<div class="single-page-section">
-				<h3 class="margin-bottom-25"> <%= t('.this_pro_may_be_suitable') %></h3>
+			<% if !@workers.empty? %>
+				<div class="single-page-section">
+					<h3 class="margin-bottom-25"> <%= t('.this_pro_may_be_suitable') %></h3>
+					<!-- Listings Container -->
+					<div class="listings-container grid-layout" style="width: 100%">
 
-				<!-- Listings Container -->
-				<div class="listings-container grid-layout" style="width: 100%">
+						<!-- Job Listing -->
+						<div class="freelancers-container freelancers-list-layout margin-top-35">
 
-					<!-- Job Listing -->
-					<div class="freelancers-container freelancers-list-layout margin-top-35">
+							<!--Freelancer -->
 
-						<!--Freelancer -->
-						<% @workers.each do |worker| %>
-						<div class="freelancer">
+								<% @workers.each do |worker| %>
+									<div class="freelancer">
 
-							<!-- Overview -->
-							<div class="freelancer-overview">
-								<div class="freelancer-overview-inner">
+										<!-- Overview -->
+										<div class="freelancer-overview">
+											<div class="freelancer-overview-inner">
 
-									<!-- Bookmark Icon -->
-									<span class="bookmark-icon"></span>
+												<!-- Bookmark Icon -->
+												<span class="bookmark-icon"></span>
 
-									<!-- Avatar -->
-									<div class="freelancer-avatar">
-										<div class="verified-badge"></div>
-										<a href="single-freelancer-profile.html"><img src="<%= worker.avatar_url %>" alt=""></a>
-									</div>
+												<!-- Avatar -->
+												<div class="freelancer-avatar">
+													<div class="verified-badge"></div>
+													<a href="single-freelancer-profile.html"><img src="<%= worker.avatar_url %>" alt=""></a>
+												</div>
 
-									<!-- Name -->
-									<div class="freelancer-name">
-										<h4><%= worker.full_name %></h4>
-										<span><%= worker.profession.name %></span>
-										<!-- Rating -->
-										<% if worker.reviews.exists? %>
-											<div class="freelancer-rating">
-												<div class="star-rating" data-rating="4.9"></div>
+												<!-- Name -->
+												<div class="freelancer-name">
+													<h4><%= worker.full_name %></h4>
+													<span><%= worker.profession.name %></span>
+													<!-- Rating -->
+													<% if worker.reviews.exists? %>
+														<div class="freelancer-rating">
+															<div class="star-rating" data-rating="4.9"></div>
+														</div>
+													<% else %>
+														<span class="company-not-rated margin-bottom-5">5 votes minimum</span>
+													<% end %>
+												</div>
 											</div>
-										<% else %>
-											<span class="company-not-rated margin-bottom-5">5 votes minimum</span>
-										<% end %>
+										</div>
+
+										<!-- Details -->
+										<div class="freelancer-details">
+											<div class="freelancer-details-list">
+												<ul>
+													<li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i> <%= worker.company.address.city %></strong></li>
+													<li> <%= t('.price_rate') %> <strong> <%= number_to_currency(worker.price_rate,strip_insignificant_zeros: true)%></strong></li>
+												</ul>
+											</div>
+
+											<%= link_to user_path(id: worker.id), class:"button button-sliding-icon ripple-effect" do %>
+											<%= t('.see_pro_profile') %> <i class="icon-material-outline-arrow-right-alt"></i>
+											<% end %>
+										</div>
 									</div>
-								</div>
-							</div>
-
-							<!-- Details -->
-							<div class="freelancer-details">
-								<div class="freelancer-details-list">
-									<ul>
-										<li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i> <%= worker.company.address.city %></strong></li>
-										<li> <%= t('.price_rate') %> <strong> <%= number_to_currency(worker.price_rate,strip_insignificant_zeros: true)%></strong></li>
-									</ul>
-								</div>
-
-								<%= link_to user_path(id: worker.id), class:"button button-sliding-icon ripple-effect" do %>
-								<%= t('.see_pro_profile') %> <i class="icon-material-outline-arrow-right-alt"></i>
 								<% end %>
-							</div>
 						</div>
-						<!-- Freelancer / End -->
-						<% end %>
 					</div>
+					<!-- Listings Container / End -->
 				</div>
-				<!-- Listings Container / End -->
-
-			</div>
+			<% end %>
 		<% end %>
 	</div>
 	<!-- Sidebar -->
