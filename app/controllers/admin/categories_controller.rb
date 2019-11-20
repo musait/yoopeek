@@ -60,7 +60,6 @@ class Admin::CategoriesController <  AdminController
   end
 
   def new_subcategory
-    binding.pry
     subcategory = Subcategory.find_by(name:params[:subcategory])
    @new_subcategory = Subcategory.create(name:params[:subcategory]) if !category
    render :json => @new_subcategory
