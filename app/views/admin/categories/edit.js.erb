@@ -11,7 +11,7 @@ $(".tag_select").select2({
       if (isNew.length) {
         $.ajax({
             type: "POST",
-            url: "/admin/new_tag",
+            url: "/admin/categories/new_tag",
             data: {tag: isNew.val()},
             success: function(data){ // success est toujours en place, bien sûr !
               isNew.val(data.id)
