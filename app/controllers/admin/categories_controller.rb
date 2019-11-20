@@ -61,7 +61,7 @@ class Admin::CategoriesController <  AdminController
 
   def new_subcategory
     subcategory = Subcategory.find_by(name:params[:subcategory])
-   @new_subcategory = Subcategory.create(name:params[:subcategory]) if !category
+   @new_subcategory = Subcategory.create(name:params[:subcategory]) if !subcategory
    render :json => @new_subcategory
   end
 
