@@ -20,7 +20,22 @@ $(".tag_select").select2({
       }
 })
 
-$("#subcategory_select").select2({
+
+$(".subcategory_select").select2({
   theme: "bootstrap",
-  multiple: true
+  tags: true,
+  tokenSeparators: [",", " "]
+    }).on("change", function (e) {
+      var isNew = $(this).find('[data-select2-tag="true"]');
+      debugger
+      if (isNew.length) {
+        $.ajax({
+            type: "POST",
+            url: "/admin/categories/new_subcategory",
+            data: {subcategory: isNew.val()},
+            success: function(data){ // success est toujours en place, bien sûr !
+              isNew.val(data.id)
+            },
+        });
+      }
 })

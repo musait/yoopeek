@@ -76,6 +76,9 @@ Rails.application.routes.draw do
       resources :professions
       resources :forbiden_words
       resources :room_messages
+      post "/categories/new_tag" => "categories#new_tag"
+      post "/categories/new_subcategory" => "categories#new_subcategory"
+
     end
     %w( 404 422 500 ).each do |code|
       get code, controller: :application, action: :error, code: code

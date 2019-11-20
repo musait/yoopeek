@@ -59,10 +59,16 @@ class Admin::CategoriesController <  AdminController
    render :json => @new_tag
   end
 
+  def new_subcategory
+    binding.pry
+    subcategory = Subcategory.find_by(name:params[:subcategory])
+   @new_subcategory = Subcategory.create(name:params[:subcategory]) if !category
+   render :json => @new_subcategory
+  end
+
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    binding.pry
     @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update(category_params)
