@@ -332,6 +332,8 @@ fr:
       are_you_sure: "Êtes-vous sur de vouloir supprimer cette mission ?"
     update:
       job_updated: "Votre mission a été modifiée avec succès"
+    destroy:
+      job_destoyed: "Votre mission a été supprimée avec succès "
     worker_jobs:
       your_missions: "Vos missions"
       select_something: "Séléctionnez un filtre"
