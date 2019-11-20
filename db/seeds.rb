@@ -24,8 +24,7 @@ end
 
 if User.all.empty?
    User.create!([
-    {confirmed_at: Time.now.utc,approved: true,email: 'yoopeek@yoopeek.com', firstname: 'Yoopeek', lastname: 'Yoopeek',is_worker: true, type: 'Worker',price_rate: '', nationality: '', description: '', password:"password"},
-    {confirmed_at: Time.now.utc,approved: true,email: 'a@a.com', firstname: 'new', lastname: 'client',is_worker: false, type: 'Customer',price_rate: '', nationality: '', description: '', password:"password"}])
+    {confirmed_at: Time.now.utc,approved: true,email: 'yoopeek@yoopeek.com', firstname: 'Yoopeek', lastname: 'Yoopeek',is_worker: true, type: 'Worker',price_rate: '', nationality: '', description: '', password:"password"}])
 end
 if Admin.all.empty?
   Admin.create!({  confirmed_at: Time.now.utc,approved: true,firstname:"admin",is_worker: false,lastname:"admin",email:"admin@admin.com",password:"password"})
