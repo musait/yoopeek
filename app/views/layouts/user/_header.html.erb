@@ -231,9 +231,15 @@
 
 				<% else %>
 
-					<div class="header-widget">
+					<div class="header-widget display-flex">
+						<%= link_to new_user_registration_path,method: :get, class:"popup-with-zoom-anim log-in-button" do %>
+						 	<i class="icon-feather-log-in"></i> <span><%= I18n.t('.header.register') %></span>
+						<% end %>
+					</div>
+
+					<div class="header-widget display-flex">
 						<%= link_to new_user_session_path,method: :get, class:"popup-with-zoom-anim log-in-button" do %>
-						 	<i class="icon-feather-log-in"></i> <span><%= I18n.t('.header.sign_in_register') %></span>
+							<i class="icon-feather-log-in"></i> <span><%= I18n.t('.header.sign_in') %></span>
 						<% end %>
 					</div>
 
