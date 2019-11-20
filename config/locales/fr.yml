@@ -323,6 +323,9 @@ fr:
       pick_category: "Choissisez une catégorie"
       pick_subcategory: "Choissisez une sous-catégorie"
       pick_format_delivery: "Choissisez un format de livraison"
+      job_created: "Votre mission a été créée avec succès"
+      job_updated: "Votre mission a été modifiée avec succès"
+      job_destoyed: "Votre mission a été supprimée avec succès"
     edit:
       job_edition: "Modifier cette mission"
     worker_jobs:
