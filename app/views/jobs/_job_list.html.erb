@@ -34,15 +34,25 @@
   </div>
 <% else %>
   <% @jobs.each do |job| %>
-    <%= link_to job_path(slug:job.slug), class:"job-listing" do%>
+    <div class="job-listing">
       <div class="job-listing-details">
-
         <!-- Details -->
         <div class="job-listing-description">
           <!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
-          <h3 class="job-listing-title"> <%= job.name %></h3>
+          <div style="display: flex;justify-content: space-between;">
+            <%= link_to job_path(job.slug) do  %>
+            <h3 class="job-listing-title"> <%= job.name %></h3>
+            <% end %>
+            <div class="">
+              <%= link_to edit_job_path(job.slug) do  %>
+                <i class="icon-line-awesome-edit"></i>
+              <% end %>
+              <%= link_to job_path(job.slug), method: :delete,data: {confirm: I18n.t('.jobs.edit.are_you_sure')} do %>
+              <i class="icon-feather-trash-2"></i>
+              <% end %>
+            </div>
+          </div>
           <p class="job-listing-text"> <%= job.description %></p>
-
         </div>
       </div>
       <div class="job-listing-footer">
@@ -67,6 +77,20 @@
         </ul>
 
       </div>
-    <% end %>
+    </div>
   <%end%>
+<% end %>
+<%= content_for :body_script do  %>
+  <script type="text/javascript">
+    $('#first_link').on('click', function() {
+              job_slug = $(this)[0].dataset.slug
+              $.ajax({
+                type: "GET",
+                success: function(data, textStatus, jqXHR){
+                  document.location= '/jobs/' + job_slug +'/edit'
+                },
+                error: function(jqXHR, textStatus, errorThrown){debugger}
+              })
+       });
+  </script>
 <% end %>
