@@ -1,28 +1,6 @@
 <%= content_for :body_style do  %>
 <link rel="preload" href="/assets/videos/yoopeek_video_home.mp4" as="video" type="video/mp4">
 <link rel="stylesheet" href="/theme/user/hireo/css/vertical_flip.css">
-<style media="screen">
-	display: inline-block;
-	}
-
-	#cursor {
-		display: inline-block;
-		vertical-align: middle;
-		width: 3px;
-		height: 50px;
-		background-color: black;
-		animation: blink .75s step-end infinite;
-	}
-
-	@keyframes blink {
-		from, to {
-			background-color: transparent
-		}
-		50% {
-			background-color: black;
-		}
-	}
-</style>
 <% end %>
 	<!-- Header Container
 	================================================== -->
@@ -33,22 +11,22 @@
 
 <!-- Intro Banner
 ================================================== -->
-	<div class="intro-banner disable-gradient" data-background-image="/theme/user/hireo/images/BACKSTAGE_SHOOT_ALICIA_BANIT-4541_2-min.jpg">
+	<div style="margin-top: -30px; height:1000px" class="intro-banner disable-gradient" data-background-image="/theme/user/hireo/images/BACKSTAGE_SHOOT_ALICIA_BANIT-4541_2-min.jpg">
 		<div class="container">
 			<!-- Intro Headline -->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="banner-headline">
 						<h3 class="cd-headline slide" style="font-weight: bold; color: black">
-							<span> <%= I18n.t('.home.index.find_a') %></span>
-							<span class="cd-words-wrapper" style="width:auto !important">
+							<span style="font-size: 35px;"> <%= I18n.t('.home.index.find_a') %></span>
+							<span style="font-size: 35px;" class="cd-words-wrapper" style="width:auto !important">
 								<strong class="is-visible"><%= I18n.t('.home.index.photographer') %></strong>
 								<strong><%= I18n.t('.home.index.videographer') %></strong>
 								<strong><%= I18n.t('.home.index.muha') %></strong>
 								<strong><%= I18n.t('.home.index.stylist') %></strong>
 								<strong><%= I18n.t('.home.index.drone') %></strong>
 							</span>
-							<span><%= I18n.t('.home.index.with_a_clic') %></span>
+							<span style="font-size: 35px;"><%= I18n.t('.home.index.with_a_clic') %></span>
 						</h3>
 					</div>
 				</div>
@@ -61,12 +39,12 @@
 						<div class="intro-banner-search-form margin-top-95">
 							<div class="intro-search-field">
 								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
-								<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name), id:"category_select",:include_blank => 'Sélectionnez une catégorie' %>
+								<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name), id:"category_select",:include_blank => t('.category_exemples') %>
 							</div>
 							<div class="intro-search-field with-autocomplete">
 								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.where') %></label>
 								<div class="input-with-icon">
-									<%= text_field_tag 'city',nil, {placeholder: 'Entrez une ville',id: 'autocomplete_address'} %>
+									<%= text_field_tag 'city',nil, {placeholder: t('.type_a_city'),id: 'autocomplete_address'} %>
 								</div>
 							</div>
 							<!-- Button -->

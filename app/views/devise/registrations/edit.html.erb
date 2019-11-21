@@ -5,7 +5,7 @@
   {
      display: none;
   }
-  label{
+  .banner_upload{
     background-color: #4267b2;
     top: 0;
     padding: 10px 20px;
@@ -164,20 +164,20 @@
       <div class="col-xl-12">
         <div class="dashboard-box">
           <div class="headline">
-            <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_banner') %></h3>
+            <h3><%= I18n.t('.user.pro_profile.edit.your_banner') %></h3>
           </div>
           <div class="content">
             <ul class="fields-ul">
               <% if @user.banner_url.present? %>
-                <img src=<%= @user.banner_url %>, class="img-fluid" alt="Responsive image" width="100%" height="auto">
-                <label class="margin-top-10 margin-left-10">
+                <img src=<%= @user.banner_url %>, class="img-fluid" alt="" width="100%" height="auto">
+                <label class=" banner_upload margin-top-10 margin-left-10">
                   <%= I18n.t('.user.pro_profile.edit.change_banner') %>
                   <span style="display:none;">
                     <%= f.file_field :banner, name: 'banner' %>
                   </span>
                 </label>
               <% else %>
-              <label class="margin-top-10 margin-left-10">
+              <label class=" banner_upload margin-top-10 margin-left-10">
                  <%= I18n.t('.user.pro_profile.edit.add_banner') %>
                 <span style="display:none;">
                   <%= f.file_field :banner, name: 'banner' %>
@@ -194,7 +194,7 @@
       <div class="col-xl-12">
         <div class="dashboard-box">
           <div class="headline">
-            <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_credits') %></h3>
+            <h3>  <%= I18n.t('.user.pro_profile.edit.your_credits') %></h3>
           </div>
           <div class="content">
             <ul class="fields-ul">
@@ -219,7 +219,7 @@
       <div class="col-xl-12">
         <div class="dashboard-box">
           <div class="headline">
-            <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.available_payout_amount') %></h3>
+            <h3><i class="icon-material-outline-money"></i>  <%= I18n.t('.user.pro_profile.edit.available_payout_amount') %></h3>
           </div>
           <div class="content">
             <ul class="fields-ul">
@@ -279,7 +279,7 @@
                   <div class="col-xl-12">
                     <div class="submit-field">
                       <h5><%= raw I18n.t('.user.pro_profile.edit.description') %></h5>
-                      <textarea cols="30" rows="5" class="with-border">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</textarea>
+                      <textarea cols="30" rows="5" class="with-border"></textarea>
                     </div>
                   </div>
 
@@ -297,7 +297,7 @@
 
           <!-- Headline -->
           <div class="headline">
-            <h3><i class="icon-material-outline-account-circle"></i> <%= I18n.t('.user.company.edit.your_company_infos') %></h3>
+            <h3><i class="icon-material-outline-business"></i> <%= I18n.t('.user.company.edit.your_company_infos') %></h3>
           </div>
 
           <div class="content with-padding padding-bottom-0">
@@ -382,7 +382,7 @@
                 <% if @minimum_password_length %>
                   <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
                 <% end %></h5>
-                <%= f.password_field :password, placeholder:t('.leave_blank_if_you_don_t_want_to_change_it'),autocomplete: "new-password",class:"with-border" %>
+                <%= f.password_field :password,autocomplete: "new-password",class:"with-border" %>
               </div>
             </div>
 

@@ -11,7 +11,6 @@
 						<li>Rue de la plaine 3</li>
             <li>1400 Yverdon-les-Bains</li>
             <li>Suisse</li>
-						<li><a href="mailto:yoopeekonline@gmail.com<">yoopeekonline@gmail.com</a></li>
 					</ul>
 
 				</div>
@@ -21,35 +20,35 @@
 		<div class="col-xl-8 col-lg-8 offset-xl-2 offset-lg-2">
 
 			<section id="contact" class="margin-bottom-60">
-				<h3 class="headline margin-top-15 margin-bottom-35"> <%= t('.any_questions') %></h3>
+				<h3 class="headline margin-top-15 margin-bottom-35"> <%= raw t('.any_questions') %></h3>
 
         <%= form_tag(send_mail_contact_path, :method => :get) do %>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="input-with-icon-left">
-                <%= text_field_tag :name, "",class:"with-border", placeholder:"Your name", required:"required" %>
+                <%= text_field_tag :name, "",class:"with-border", placeholder:t('.your_name'), required:"required" %>
 								<i class="icon-material-outline-account-circle"></i>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="input-with-icon-left">
-                <%= email_field_tag :email,"", class:"with-border", placeholder:"Your email", pattern:"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$",required:"required" %>
+                <%= email_field_tag :email,"", class:"with-border", placeholder:t('.your_email'), pattern:"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$",required:"required" %>
 								<i class="icon-material-outline-email"></i>
 							</div>
 						</div>
 					</div>
 
 					<div class="input-with-icon-left">
-            <%= text_field_tag :subject,"", class:"with-border", placeholder:"Subject", required:"required" %>
+            <%= text_field_tag :subject,"", class:"with-border", placeholder:t('.subject'), required:"required" %>
 						<i class="icon-material-outline-assignment"></i>
 					</div>
 
 					<div>
-						<%= text_area_tag 'content', nil, rows: 5, cols: 5,class:"with-border", placeholder:"Message", required:"required"%>
+						<%= text_area_tag 'content', nil, rows: 5, cols: 5,class:"with-border", placeholder:t('.your_message'), required:"required"%>
 					</div>
 
-          <%= submit_tag "Submit Message", class:"submit button margin-top-15"%>
+          <%= submit_tag t('.send'), class:"submit button margin-top-15"%>
 				<% end %>
 			</section>
 

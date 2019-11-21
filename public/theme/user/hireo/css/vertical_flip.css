@@ -91,6 +91,13 @@ Primary style
 xslide
 
 -------------------------------- */
+@media only screen and (max-width: 425px) {
+  .cd-headline.slide {
+    display: flex;
+    flex-direction: column
+  }
+}
+
 .cd-headline.slide span {
   display: inline-block;
   padding: .2em 0;

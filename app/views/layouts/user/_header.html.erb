@@ -230,9 +230,9 @@
 
 				<% else %>
 
-					<div class="header-widget display-flex">
-						<%= link_to new_user_registration_path,method: :get, class:"popup-with-zoom-anim log-in-button" do %>
-						 	<i class="icon-feather-log-in"></i> <span><%= I18n.t('.header.register') %></span>
+					<div class="header-widget display-flex" style="background-color:#4267b2">
+						<%= link_to new_user_registration_path,method: :get, class:"popup-with-zoom-anim log-in-button", style:"color:white" do %>
+						 	<i style="color:white" class="icon-feather-log-in"></i> <span><%= I18n.t('.header.register') %></span>
 						<% end %>
 					</div>
 

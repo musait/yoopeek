@@ -275,7 +275,6 @@ img { max-width: 100%; }
 ------------------------------------- */
 #logo {
 	display: inline-block;
-	border-right: 1px solid #e0e0e0;
 	height: 100%;
 	vertical-align: top;
 	padding-right: 35px;
@@ -283,7 +282,7 @@ img { max-width: 100%; }
 }
 
 #logo img {
-	height: 100px;
+	height: 80px;
 	width: auto;
 	top: 50%;
 	position: relative;
@@ -296,7 +295,7 @@ img { max-width: 100%; }
 	padding: 0;
 	box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.12);
 	font-size: 16px;
-	height: 82px;
+	height: 50px;
 	background-color: #fff;
 }
 
@@ -438,7 +437,6 @@ header.fullwidth .container {
 	.header-widget .log-in-button i:hover { color: #555; }
 
 	.header-widget .log-in-button {
-		background-color: #f0f0f0;
 		border-radius: 4px;
 		height: 46px;
 		width: 46px;
@@ -927,7 +925,7 @@ ul.user-menu-small-nav li a:hover i { color: #66676b; }
 #navigation {
 	position: relative;
 	display: inline-block;
-	margin-top: 22px;
+	margin-top: 10px;
 }
 
 #navigation ul {
@@ -2175,7 +2173,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								/* Footer
 								------------------------------------- */
 								#footer {
-									background-color: #303030;
+									background-color: #EDEDED;
 									color: #c0c0c0;
 								}
 
@@ -2267,8 +2265,8 @@ em.mm-counter+a.mm-fullsubopen+span {
 									height: 44px;
 									padding-right: 35px;
 									padding-left: 18px;
-									color: #fff;
-									background-color: #444;
+									color: black;
+									background-color: #F9F9F9;
 									transition: 0.3s;
 									box-shadow: none;
 								}
@@ -2303,7 +2301,6 @@ em.mm-counter+a.mm-fullsubopen+span {
 								/* Social Icons */
 								.footer-social-links {
 									list-style: none;
-									margin: 0 -10px;
 									margin-top: 3px;
 									padding: 0;
 								}
@@ -2318,7 +2315,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								.footer-social-links li a {
 									font-size: 20px;
 									padding: 0 10px;
-									color: #fff;
+									color: black;
 									display: inline-block;
 									transition: 0.3s;
 									opacity: 0.5;
@@ -2340,7 +2337,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								#footer h2,
 								.footer-links h3 {
 									font-size: 18px;
-									color: #fff;
+									color: #black;
 									margin: 0 0 15px 0;
 									padding: 0;
 									display: block
@@ -2369,7 +2366,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								.footer-links ul li:last-child a { padding-bottom: 0; }
 
 								.footer-links ul li a {
-									color: #c0c0c0;
+									color: black;
 									display: block;
 									line-height: 25px;
 									position: relative;
@@ -2383,7 +2380,7 @@ em.mm-counter+a.mm-fullsubopen+span {
 								}
 
 								.footer-links ul li a:hover {
-									color: #fff;
+									color: #black;
 								}
 
 								.footer-links ul li a span:before {
@@ -2461,12 +2458,29 @@ em.mm-counter+a.mm-fullsubopen+span {
 								}
 
 								.footer-bottom-section strong {
-									color: #fff;
+									color: black;
 									font-weight: 500;
 								}
 
 
 								/* Footer Media Queries*/
+								@media (max-width: 992px) {
+									#footer > div.footer-middle-section > div > div {
+										text-align: center;
+									}
+									#footer > div.footer-middle-section > div > div > div > div > ul {
+										text-align: center;
+									}
+									.footer-social-links {
+										display: flex;
+										justify-content: center;
+									}
+									#footer > div.footer-middle-section > div > div > div:nth-child(3) {
+										margin-top: 20px;
+									}
+								}
+
+
 								@media (max-width: 992px) {
 									#footer h3 { margin-top: 45px; }
 									.footer-middle-section { padding-top: 0; padding-bottom: 45px }

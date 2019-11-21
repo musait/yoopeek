@@ -1,100 +1,69 @@
 <div id="footer">
-
-	<!-- Footer Top Section -->
-	<div class="footer-top-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-12">
-
-					<!-- Footer Rows Container -->
-					<div class="footer-rows-container">
-
-						<!-- Left Side -->
-						<div class="footer-rows-left">
-							<div class="footer-row">
-								<div class="footer-row-inner footer-logo">
-
-								</div>
-							</div>
-						</div>
-
-						<!-- Right Side -->
-						<div class="footer-rows-right">
-
-							<!-- Social Icons -->
-							<div class="footer-row">
-								<div class="footer-row-inner">
-									<ul class="footer-social-links">
-										<li>
-											<a href="https://www.facebook.com/pg/Yoopeek-112779796830769/posts/?ref=page_internal" title="Facebook" data-tippy-placement="bottom" data-tippy-theme="light">
-												<i class="icon-brand-facebook-f"></i>
-											</a>
-										</li>
-										<li>
-											<a href="https://www.instagram.com/yoopeek/" title="Instagram" data-tippy-placement="bottom" data-tippy-theme="light">
-												<i class="icon-brand-instagram"></i>
-											</a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-
-							<!-- Language Switcher -->
-							<!-- <div class="footer-row">
-								<div class="footer-row-inner">
-									<select class="selectpicker language-switcher" data-selected-text-format="count" data-size="3" onchange="location = this.value;">
-
-										<option value="<%#=root_path(locale: :fr)%>">Français</option>
-										<option value="<%#=root_path(locale: :en)%>">English</option>
-										<option value="<%#=root_path(locale: :de)%>">Deutsch</option>
-									</select>
-								</div>
-							</div> -->
-						</div>
-
-					</div>
-					<!-- Footer Rows Container / End -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Footer Top Section / End -->
-
 	<!-- Footer Middle Section -->
 	<div class="footer-middle-section">
 		<div class="container">
 			<div class="row">
-
 				<!-- Links -->
-
-
-				<!-- Links -->
-
-
-				<!-- Links -->
-				<div class="col-xl-2 col-lg-2 col-md-3">
+				<div class="col-xl-4 col-sm-12">
 					<div class="footer-links">
-						<h3><%= t('.sav') %></h3>
+						<h3><%= t('.yoopeek') %></h3>
 						<ul>
-							<li><a href="pages/contact"><span><%= t('.contact') %></span></a></li>
+							<li><a href="#"><span><%= t('.who_are_we') %></span></a></li>
+							<li><a href="pages/contact"><span><%= t('.contact_us') %></span></a></li>
+							<li><a href="#"><span><%= t('.faq') %></span></a></li>
+							<li><a href="#"><span><%= t('.blog') %></span></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Links -->
+				<div class="col-xl-4 col-sm-12">
+					<div class="footer-links">
+						<h3><%= t('.legal_information') %></h3>
+						<ul>
 							<li><a href="pages/private_policy"><span><%= t('.private_policy') %></span></a></li>
 							<li><a href="pages/cgv"><span><%= t('.cgv') %></span></a></li>
 						</ul>
 					</div>
 				</div>
-
-				<!-- Links -->
-				<div class="col-xl-2 col-lg-2 col-md-3">
-					<div class="footer-links">
-						<h3> <%= t('.my_account') %></h3>
-						<ul>
-							<li><%= link_to new_user_session_path do  %> <span><%= t('.login') %></span> <% end %></li>
-							<li><%= link_to edit_user_registration_path do %><span><%= t('.my_account') %></span> <% end %></li>
+				<div class="col-xl-4 col-sm-12" style="display:flex; flex-direction:column">
+					<div class="">
+						<select class="selectpicker language-switcher" data-selected-text-format="count" data-size="3" onchange="location = this.value;">
+							<option value="<%=root_path(locale: :fr)%>">Français</option>
+							<option value="<%=root_path(locale: :en)%>">English</option>
+							<option value="<%=root_path(locale: :de)%>">Deutsch</option>
+						</select>
+					</div>
+					<div class="" style="margin-top:20px">
+						<ul class="footer-social-links">
+							<li>
+								<a href="https://www.facebook.com/pg/Yoopeek-112779796830769/posts/?ref=page_internal" title="Facebook" data-tippy-placement="bottom" data-tippy-theme="light" style="font-size:40px">
+									<i class="icon-brand-facebook-f"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.instagram.com/yoopeek/" title="Instagram" data-tippy-placement="bottom" data-tippy-theme="light" style="font-size:40px;margin-left:20px">
+									<i class="icon-brand-instagram"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.youtube.com/channel/UCFZaYhq1xN8zyJce7Ge3zCg" title="Youtube" data-tippy-placement="bottom" data-tippy-theme="light" style="font-size:40px;margin-left:20px">
+									<i class="icon-brand-youtube"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="" style="margin-top:20px">
+						<ul class="footer-social-links" style="display:flex;justify-content:flex-start">
+							<li>
+									<i style="color:black;font-size:40px" class="icon-brand-cc-visa"></i>
+							</li>
+							<li>
+									<i style="color:black;font-size:40px;margin-left:20px" class="icon-brand-cc-mastercard"></i>
+							</li>
 						</ul>
 					</div>
 				</div>
-
 				<!-- Newsletter -->
 				<!-- <div class="col-xl-4 col-lg-4 col-md-12">
 					<h3><i class="icon-feather-mail"></i>Inscrivez-vous pour recevoir notre newsletter</h3>
@@ -112,8 +81,8 @@
 	<div class="footer-bottom-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-xl-12">
-					© 2019 <strong>Yoopeek</strong>. <%= t('.all_rights_reserved') %>
+				<div class="col-xl-12" style="display:flex;justify-content:center">
+					<p style="color:black;margin-right:15px">© 2019 </p><strong >Yoopeek</strong>. <p style="color:black;margin-left:15px"><%= t('.all_rights_reserved') %></p>
 				</div>
 			</div>
 		</div>
