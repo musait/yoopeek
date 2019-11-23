@@ -99,7 +99,7 @@ class User < ApplicationRecord
       ActiveStorage::Current.host = Rails.application.credentials.dig(Rails.env.to_sym, :host)
       avatar.service_url
     else
-      ActionController::Base.helpers.asset_path 'logo.png'
+      ActionController::Base.helpers.asset_path '/theme/user/hireo/images/user-avatar-placeholder.png'
     end
   end
   def worker?
