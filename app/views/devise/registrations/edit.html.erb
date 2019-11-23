@@ -127,28 +127,28 @@
 
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5><%= I18n.t('.user.all.edit.facebook') %></h5>
+                      <h5><i class="icon-feather-facebook"></i><%= I18n.t('.user.all.edit.facebook') %></h5>
                       <%= f.text_field :facebook_profile, class:"with-border" %>
                     </div>
                   </div>
 
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5><%= I18n.t('.user.all.edit.instagram') %></h5>
+                      <h5><i class="icon-feather-instagram"></i><%= I18n.t('.user.all.edit.instagram') %></h5>
                       <%= f.text_field :instagram_profile, class:"with-border" %>
                     </div>
                   </div>
 
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5><%= I18n.t('.user.all.edit.pinterest') %></h5>
+                      <h5><i class="icon-line-awesome-pinterest"></i><%= I18n.t('.user.all.edit.pinterest') %></h5>
                       <%= f.text_field :pinterest_profile, class:"with-border" %>
                     </div>
                   </div>
 
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5><%= I18n.t('.user.all.edit.twitter') %></h5>
+                      <h5><i class="icon-feather-twitter"></i><%= I18n.t('.user.all.edit.twitter') %></h5>
                       <%= f.text_field :twitter_profile, class:"with-border" %>
                     </div>
                   </div>
@@ -574,7 +574,7 @@
           });
           if (bankResult.error != null) {
             if (bankResult.error.code == "account_number_invalid") {
-              toastr['error']("<%= I18n.t('stripe.watch_your_iban') %>");
+              toastr['error']("Vérifiez votre IBAN");
             }
             toastr['error'](bankResult.error.message);
           }
@@ -584,7 +584,7 @@
 
       if (personResult.error != null) {
         if (personResult.error.param == "person[dob][year]") {
-          toastr['error']("<%= I18n.t('stripe.watch_your_birthdate') %>");
+          toastr['error']("Vérifiez votre date de naissance (vous devez avoir plus de 18 ans )");
         } else {
           toastr['error'](personResult.error.message);
         }

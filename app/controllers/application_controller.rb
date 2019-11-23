@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_approved
     if current_user.present?
-      if current_user.worker? && !current_user.approved
+      if current_user.worker? && current_user.company.nil?
         if url_who_we_are_from == "registrations/edit"
           if action_name ==  "destroy"
             sign_out current_user

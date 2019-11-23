@@ -31,13 +31,15 @@ class QuotesController < ApplicationController
 
   def accept
     if @quote.sender.stripe_account_id.present?
-    @quote.update(status:"accepted")
-      @total = @quote.total_within_vat
+      @quote.update(status:"accepted")
+      @total_without_vat = @quote.total_without_vat
+      @vat = @quote.vat
+      @total_within_vat = @quote.total_within_vat
       worker = @quote.sender
-      stripe_total = (@total * 100).to_i
+      stripe_total = (  @total_within_vat * 100).to_i
       worker_plan = worker.current_plan
       if worker_plan.commission_type == "%"
-        commission_collected = (@total * worker_plan.commission_per_service / 100)
+        commission_collected = (  @total_within_vat * worker_plan.commission_per_service / 100)
       else
         commission_collected = (worker_plan.commission_per_service)
       end

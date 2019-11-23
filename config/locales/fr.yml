@@ -68,7 +68,7 @@ fr:
   all: Tous
   stripe:
     watch_your_iban: Vérifiez votre IBAN
-    watch_your_birthdate: Vérifiez votre date de naissance (vous devez avoir plus de 18 ans)
+    watch_your_birthdate: Vérifiez votre date de naissance (vous devez avoir plus de 18 ans )
   portfolio_content_limit_number: Vous ne pouvez pas avoir plus de %{limit} image dans votre portfolio avec votre abonnement actuel
   portfolio_limit_number: Vous ne pouvez pas avoir plus de %{limit} portfolio avec votre abonnement actuel
   no_portfolio_with_this_plan: Vous n'avez pas accès au portfolio sans abonnement
@@ -106,7 +106,7 @@ fr:
   "true": Oui
   "false": Non
   not_enougth_available_payout_amount: "Il vous faut plus de 1 € pour envoyant de l'argent"
-  fill_all_company_fields: veuillez remplir tous les champs lier à l'entreprise
+  fill_all_company_fields: Veuillez remplir tous les champs liés à votre entreprise
   available_payout_amount_sent: Montant transféré
   unlimited: Illimité
   admin_mailer:
@@ -256,6 +256,7 @@ fr:
       fifth_bloc_explanation: "Lorem ipsum"
       sixth_bloc_explanation: "Lorem ipsum"
       best_pros: "Les meilleurs professionels du moment"
+      fill_information: "Veuillez remplir les champs relatifs à votre profil et celui de votre entreprise afin que votre inscription en tant que professionnel soit pris en compte"
     pros_presentation:
       localisation: "Localisation"
       price: "Taux horaire"
@@ -363,7 +364,6 @@ fr:
           fill_information: "Veuillez remplir les champs relatifs à votre profil et celui de votre entreprise afin que votre inscription en tant que professionnel soit pris en compte"
       google:
           fill_information: "Veuillez remplir les champs relatifs à votre profil et celui de votre entreprise afin que votre inscription en tant que professionnel soit pris en compte"
-
     show:
       about: "A propos de %{pro}"
       history_and_reviews: "Historique des missions et avis"

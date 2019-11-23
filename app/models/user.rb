@@ -16,7 +16,6 @@ class User < ApplicationRecord
   has_many :notif_send, class_name: 'Notification', foreign_key: 'sender_id'
   belongs_to :address, optional: true
   accepts_nested_attributes_for :address
-  after_create :send_admin_mail
   after_save :set_stripe_customer_id, if: Proc.new { stripe_customer_id.blank? }
   attr_accessor :account_token
   attr_accessor :person_token
@@ -27,7 +26,7 @@ class User < ApplicationRecord
   validates_presence_of :is_worker, message: :must_exist, if: Proc.new { |user| user.is_worker.nil? && !from_omniauth? }
   validates :firstname, presence: { message: :must_exist }
   validates :lastname, presence: { message: :must_exist }
-
+  before_create :add_approval
   before_save :set_stripe_account
   after_create_commit :set_conv_with_yoopeek
   def set_stripe_account
@@ -112,8 +111,8 @@ class User < ApplicationRecord
   def admin?
     is_a? Admin
   end
-  def add_type
-    self.type ="Customer"
+  def add_approval
+    self.approved = true
   end
   def self.types
     %w(Worker Customer)
@@ -156,6 +155,8 @@ class User < ApplicationRecord
       if params['isWorker'] == "1"
         user.type = "Worker"
         user.is_worker = true
+        # delete this line to approve user by admin
+        user.approved = true
       else
         user.type = "Customer"
         user.is_worker = false
@@ -178,6 +179,8 @@ class User < ApplicationRecord
       if params['isWorker'] == "1"
         user.type = "Worker"
         user.is_worker = true
+        # delete this line to approve user by admin
+        user.approved = true
       else
         user.type = "Customer"
         user.is_worker = false
