@@ -8,7 +8,7 @@
 				<!-- Logo -->
 				<div id="logo">
 					<%= link_to root_path,data: { turbolinks: false } do %>
-					<%= image_tag "logo.svg" %>
+					<%= image_tag "/theme/user/hireo/images/LOGO_YOOPEEK_PLAT.png" %>
 					<%end%>
 				</div>
 
@@ -207,7 +207,7 @@
 									<% if current_user.worker? %>
 										<li>
 											<%= link_to subscriptions_path do %>
-												<i class="icon-material-outline-settings"></i> <%= t('.my_subscription') %>
+												<i class="icon-material-outline-library-books"></i> <%= t('.my_subscription') %>
 											<% end %>
 										</li>
 									<% end %>
@@ -232,7 +232,7 @@
 
 					<div class="header-widget display-flex" style="background-color:#4267b2">
 						<%= link_to new_user_registration_path,method: :get, class:"popup-with-zoom-anim log-in-button", style:"color:white" do %>
-						 	<i style="color:white" class="icon-feather-log-in"></i> <span><%= I18n.t('.header.register') %></span>
+						 	<i style="color:white" class="icon-feather-user-plus"></i> <span><%= I18n.t('.header.register') %></span>
 						<% end %>
 					</div>
 

@@ -7,24 +7,111 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 if Subcategory.all.empty?
   Subcategory.create([
-    { name: 'Portrait' },
-    { name: 'Évènement'},
-    { name: 'Mariage' },
-    { name: 'Cinéma'},
-    { name: 'Court-métrage'},
-    { name: 'Publicité'},
+    { name: 'Mode' },
+    { name: 'Portrait'},
+    { name: 'Naissance' },
+    { name: 'EVJF'},
+    { name: 'Mariage'},
+    { name: 'Grossesse'},
+    { name: 'Baptème'},
+    { name: 'Anniversaire'},
+    { name: 'Couple'},
+    { name: 'Famille'},
+    { name: 'Evènementiel'},
+    { name: 'Barmitzvah/Batmitzvah'},
+    { name: 'Entreprise (Corporate)'},
+    { name: 'Culinaire'},
+    { name: 'Immobilier'},
+    { name: 'Packshot Produit'},
+    { name: 'Animalier'},
+    { name: 'Vlog'},
+    { name: 'Vidéo Clip Musique'},
+    { name: 'Cinéma (Court, Moyen, Long Métrage)'},
+
     ])
   end
 if Category.all.empty?
-  Category.create([{ name: 'Photographie' }, { name: 'Maquillage' }, { name: 'Vidéographie' }])
+  Category.create([{ name: 'Photographe' }, { name: 'Stylisme' }, { name: 'Vidéo' },{ name: 'Maquillage'},{ name: 'Coiffure'},{ name: 'Drone'}])
+
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Mode")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Portrait")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Naissance")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"EVJF")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Mariage")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Grossesse")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Anniversaire")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Couple")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Famille")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Evènementiel")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Immobilier")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Barmitzvah/Batmitzvah")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Entreprise (Corporate)")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Culinaire")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Packshot Produit")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Animalier")
+
+  Category.find_by(name:"Drone").subcategories << Subcategory.find_by(name:"Evènementiel")
+  Category.find_by(name:"Drone").subcategories << Subcategory.find_by(name:"Immobilier")
+  Category.find_by(name:"Drone").subcategories << Subcategory.find_by(name:"Entreprise (Corporate)")
+  Category.find_by(name:"Drone").subcategories << Subcategory.find_by(name:"Vlog")
+  Category.find_by(name:"Drone").subcategories << Subcategory.find_by(name:"Vidéo Clip Musique")
+  Category.find_by(name:"Drone").subcategories << Subcategory.find_by(name:"Mariage")
+  Category.find_by(name:"Drone").subcategories << Subcategory.find_by(name:"Cinéma (Court, Moyen, Long Métrage)")
+
+
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Evènementiel")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Mode")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Portrait")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Anniversaire")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Couple")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Famille")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"EVJF")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Mariage")
+
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Evènementiel")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Mode")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Portrait")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Anniversaire")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Couple")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Famille")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"EVJF")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Mariage")
+
+  Category.find_by(name:"Stylisme").subcategories << Subcategory.find_by(name:"Evènementiel")
+  Category.find_by(name:"Stylisme").subcategories << Subcategory.find_by(name:"Mode")
+  Category.find_by(name:"Stylisme").subcategories << Subcategory.find_by(name:"Mariage")
+
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Mode")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"EVJF")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Mariage")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Anniversaire")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Couple")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Famille")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Evènementiel")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Barmitzvah/Batmitzvah")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Entreprise (Corporate)")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Vlog")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Vidéo Clip Musique")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Cinéma (Court, Moyen, Long Métrage)")
+
+
+
+
 end
+
+
+
 if Profession.all.empty?
   Profession.create([{ name: 'Photographe' }, { name: 'Vidéographe' }])
 end
 
 if User.all.empty?
    User.create!([
-    {confirmed_at: Time.now.utc,approved: true,email: 'yoopeek@yoopeek.com', firstname: 'Yoopeek', lastname: 'Yoopeek',is_worker: true, type: 'Worker',price_rate: '', nationality: '', description: '', password:"password"}])
+    {confirmed_at: Time.now.utc,approved: true,email: 'yoopeek@yoopeek.com', firstname: 'Team', lastname: 'Yoopeek',is_worker: true, type: 'Worker',price_rate: '', nationality: '', description: '', password:"password"}])
 end
 if Admin.all.empty?
   Admin.create!({  confirmed_at: Time.now.utc,approved: true,firstname:"admin",is_worker: false,lastname:"admin",email:"admin@admin.com",password:"password"})

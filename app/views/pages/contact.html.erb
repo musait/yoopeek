@@ -20,8 +20,8 @@
 		<div class="col-xl-8 col-lg-8 offset-xl-2 offset-lg-2">
 
 			<section id="contact" class="margin-bottom-60">
-				<h3 class="headline margin-top-15 margin-bottom-35"> <%= raw t('.any_questions') %></h3>
-
+				<h3 class="headline margin-top-15"> <%= raw t('.any_questions') %></h3>
+				<p style="font-family:avalon" class="headline"> <%=t('.any_questions_detail') %></p>
         <%= form_tag(send_mail_contact_path, :method => :get) do %>
 					<div class="row">
 						<div class="col-md-6">

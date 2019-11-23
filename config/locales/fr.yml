@@ -68,17 +68,18 @@ fr:
   all: Tous
   stripe:
     watch_your_iban: Vérifiez votre IBAN
-    watch_your_birthdate: Vérifiez votre date de naissance
-  portfolio_content_limit_number: Vous ne pouvez pas avoir plus de %{limit} image dans votre portfolio dans le plan %{plan}
-  portfolio_limit_number: Vous ne pouvez pas avoir plus de %{limit} portfolio dans le plan %{plan}
-  no_portfolio_with_this_plan: Vous n'avez pas accès au portfolio dans votre plan
+    watch_your_birthdate: Vérifiez votre date de naissance (vous devez avoir plus de 18 ans)
+  portfolio_content_limit_number: Vous ne pouvez pas avoir plus de %{limit} image dans votre portfolio avec votre abonnement actuel
+  portfolio_limit_number: Vous ne pouvez pas avoir plus de %{limit} portfolio avec votre abonnement actuel
+  no_portfolio_with_this_plan: Vous n'avez pas accès au portfolio sans abonnement
   you_doesnt_have_invoice: Vous n'avez pas de facture sur votre compte
   download: Télécharger
   summary: Résumé
   subscriptions:
     index:
       your_subscription: "Votre abonnement"
-      limit_portfolio: Portfolio limité à %{limit} contenus
+      limit_portfolio: Portfolio limité à %{picture_limitation} contenus
+      limit_portfolio_with_content: Portfolio limité à %{portfolio_limitation} portfolios de %{picture_limitation} contenus chacun
       have_badge: Badge
       have_no_badge:
         html: <del>Badge</del>
@@ -90,13 +91,14 @@ fr:
       no_portfolio: Portfolio
       change_subscription: "Changer d'abonnement"
       caracteristics: "Caractéristiques"
+      you_can_buy_credit_to_answer: "Possibilité d'acheter des crédits pour répondre aux annonces."
     form:
       information_about_security: "Vous êtes sur une page respectant les normes de sécurité bancaires. Toutes vos données personnelles sont cryptées et sécurisées"
       confirm: "Valider et payer"
       total: "Total"
       subscription_payement: "Paiement de votre abonnement"
   responses_to_ads: réponse(s) aux annonces
-  per_performance: par prestation
+  per_performance: de commission par prestation
   your_actual_subscription: Votre abonnement actuel
   advantages: Avantages
   month: Mois
@@ -209,7 +211,7 @@ fr:
         worker_jobs: "Vos missions"
         my_subscription: "Mon abonnement"
         settings: "Paramètres"
-        logout: "Se déconnecter"
+        logout: "Déconnexion"
         worker: "Professionnel"
         customer: "Particulier"
       footer:
@@ -248,7 +250,7 @@ fr:
       <p>Listez vos envies ou choisissez directement un professionnel proche de chez vous grâce au moteur de recherche</p>"
       second_bloc_explanation: "<h3>Comparez les professionnels</h3>
       <p>Choisissez et contactez les artistes qui correspondent a vos besoins. Notre équipe sélectionne avec soin des professionnels fiables et expérimentés.</p>"
-      third_bloc_explanation: "<h3>Trouvez la perle rare !</h3><p>Maintenant que vous avez trouvé la perle rare, validez le devis et laissez opérer la magie!</p>"
+      third_bloc_explanation: "<h3>Laissez vous guider</h3><p>Maintenant que vous avez trouvé la perle rare, validez le devis et laissez opérer la magie!</p>"
       our_engagement: "Notre engagement"
       fourth_bloc_explanation: "Lorem ipsum"
       fifth_bloc_explanation: "Lorem ipsum"
@@ -323,10 +325,10 @@ fr:
       under_category: "Sous catégorie"
       localisation: "Localisation"
       estimated_budget: "Quel est votre budget ?"
-      additional_services: "Est-ce que vous avez besoin de services supplémentaires ? <span>(optionnel)</span> "
+      additional_services: "Avez-vous besoin de services complémentaires ? <span>(optionnel)</span> "
       estimated_time: "Temps estimé"
-      desired_format: "Sélectionnez le type de format que vous souhaitez"
-      which_date: "A quelle date souhaitez vous réaliser cette mission ?"
+      desired_format: "Comment souhaitez-vous recevoir vos fichiers ?"
+      which_date: "Quand souhaitez-vous realiser cette mission ?"
       description: "Description de la mission"
       job_creation: "Créez votre mission"
       pick_category: "Choissisez une catégorie"
@@ -335,6 +337,8 @@ fr:
       job_created: "Votre mission a été créée avec succès"
       job_updated: "Votre mission a été modifiée avec succès"
       job_destoyed: "Votre mission a été supprimée avec succès"
+    create:
+      job_created: "Votre mission a été créée avec succès"
     edit:
       job_edition: "Modifier cette mission"
       edition_form: "Formulaire d'édition"
@@ -454,7 +458,7 @@ fr:
       quote_in_progress: "En cours"
       quote_accepted: 'Accepté'
       quote_paid: 'Payé'
-      job_created: "Crée"
+      job_created: "Créée"
       job_in_progress: "En cours"
       job_completed: "Terminé"
       job_canceled: "Annulé"
@@ -561,7 +565,8 @@ fr:
   pages:
     contact:
       our_office: "Où nous trouver"
-      any_questions: "<b>Vous avez une question, besoin d’aide, ou une remarque à nous faire ? </b> <br> Contactez-nous directement par e-mail à cette adresse: yoopeekonline@gmail.com ou via le formulaire ci-dessous. "
+      any_questions: "<b>Vous avez une question, besoin d’aide, ou une remarque à nous faire ? </b> <br> "
+      any_questions_detail: "Contactez-nous directement par e-mail à cette adresse: yoopeekonline@gmail.com ou via le formulaire ci-dessous. "
       your_name: "Votre nom"
       your_email: "Votre email"
       subject: "Objet"

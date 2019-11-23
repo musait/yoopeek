@@ -7,7 +7,7 @@
 
 		<div class="notify-box margin-top-15">
 
-			
+
 		</div>
 
 		<!-- Freelancers List Container -->
@@ -65,7 +65,7 @@
                   <li> <%= t('.price_rate') %><strong> <%= number_to_currency(worker.price_rate , strip_insignificant_zeros: true) %></strong></li>
                 </ul>
               </div>
-              <%= link_to user_path(id: worker.id), class: "button button-sliding-icon ripple-effect" do %>
+              <%= link_to user_path(id: worker.id), class: "button ripple-effect" do %>
                 <%= t('.see_his_profile') %> <i class="icon-material-outline-arrow-right-alt"></i>
               <% end %>
             </div>

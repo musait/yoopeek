@@ -16,8 +16,8 @@ class PlanLimitation < ApplicationRecord
   end
   def self.free_limitation
     where(name: "free").first_or_create(
-      label: "Sans abo",
-      description: "plan gratuit.",
+      label: "Formule BRONZE",
+      description: "Formule BRONZE",
       price_per_month: (0),
       commission_per_service: 19,
       commission_type: "%",
@@ -32,8 +32,8 @@ class PlanLimitation < ApplicationRecord
   end
   def self.classic_limitation
     where(name: "classic").first_or_create(
-      label: "Abo 29€/mois",
-      description: "Abo 29€/mois",
+      label: "Formule SILVER",
+      description: "Formule SILVER",
       price_per_month: 29,
       commission_per_service: 1,
       commission_type: "€",
@@ -48,8 +48,8 @@ class PlanLimitation < ApplicationRecord
   end
   def self.premium_limitation
     where(name: "premium").first_or_create(
-      label: "Abo 69€/mois",
-      description: "Abo 69€/mois",
+      label: "Formule GOLD",
+      description: "Formule GOLD",
       price_per_month: 69,
       commission_per_service: 1,
       commission_type: "€",

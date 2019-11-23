@@ -282,7 +282,7 @@ img { max-width: 100%; }
 }
 
 #logo img {
-	height: 80px;
+	height: 25px;
 	width: auto;
 	top: 50%;
 	position: relative;
@@ -1341,7 +1341,7 @@ body #navigation ul ul ul { margin-top: 0; }
 
 #wrapper.wrapper-with-transparent-header #header .right-side { background-color: transparent; }
 #header { transition: background 0.3s; }
-#wrapper { padding-top: 82px; }
+#wrapper { padding-top: 50px; }
 #wrapper.wrapper-with-transparent-header { padding-top: 0 !important;}
 
 @media (max-width: 1099px) {

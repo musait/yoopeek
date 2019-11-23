@@ -18,7 +18,7 @@ fr:
       not_approved: "Votre compte n'a pas encore été confirmé par un administrateur"
     mailer:
       confirmation_instructions:
-        subject: "Instructions de confirmation"
+        subject: "Confirmation de votre inscription yoopeek"
         welcome_to_yoopeek: "Bienvenue sur Yoopeek"
         account_confirmation: "Confirmation de votre inscription"
       reset_password_instructions:
@@ -100,7 +100,7 @@ fr:
       sign_up: "S'enregistrer"
       confirmations:
         new:
-          resend_confirmation_instructions: "Renvoyer le courriel de confirmation"
+          resend_confirmation_instructions: "Renvoyer"
       mailer:
         confirmation_instructions:
           welcome: "Bienvenu(e)"
@@ -134,7 +134,7 @@ fr:
           back: "Retour"
       unlocks:
         new:
-          resend_unlock_instructions: "Renvoyez le mail pour déverrouiller mon compte"
+          resend_unlock_instructions: "Renvoyer le mail pour déverrouiller mon compte"
   errors:
    messages:
     already_confirmed: "a déjà été validé(e), veuillez essayer de vous connecter"

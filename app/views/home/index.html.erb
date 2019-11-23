@@ -1,5 +1,5 @@
 <%= content_for :body_style do  %>
-<link rel="preload" href="/assets/videos/yoopeek_video_home.mp4" as="video" type="video/mp4">
+<link rel="preload" href="/assets/videos/video_presentation_yoopeek.mp4" as="video" type="video/mp4">
 <link rel="stylesheet" href="/theme/user/hireo/css/vertical_flip.css">
 <% end %>
 	<!-- Header Container
@@ -11,7 +11,7 @@
 
 <!-- Intro Banner
 ================================================== -->
-	<div style="margin-top: -30px; height:1000px" class="intro-banner disable-gradient" data-background-image="/theme/user/hireo/images/BACKSTAGE_SHOOT_ALICIA_BANIT-4541_2-min.jpg">
+	<div style="height:800px" class="intro-banner disable-gradient" data-background-image="/theme/user/hireo/images/BACKSTAGE_SHOOT_ALICIA_BANIT-4541_2-min.jpg">
 		<div class="container">
 			<!-- Intro Headline -->
 			<div class="row">
@@ -39,7 +39,7 @@
 						<div class="intro-banner-search-form margin-top-95">
 							<div class="intro-search-field">
 								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
-								<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name), id:"category_select",:include_blank => t('.category_exemples') %>
+								<%= select_tag 'category', options_for_select(Category.all.collect{ |u| [u.name, u.id] }), id:"category_select",:prompt => t('.category_exemples') %>
 							</div>
 							<div class="intro-search-field with-autocomplete">
 								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.where') %></label>
@@ -91,7 +91,7 @@
 					<!-- Icon Box -->
 					<div class="icon-box">
 						<!-- Icon -->
-						<img src="/theme/user/hireo/images/Comment_ça_marche_1-min.jpg" alt="">
+						<img style="margin-bottom: 15px;" src="/theme/user/hireo/images/Comment_ça_marche_1-min.jpg" alt="">
 						<%= raw I18n.t('.home.index.first_bloc_explanation') %>
 					</div>
 				</div>
@@ -100,7 +100,7 @@
 					<!-- Icon Box -->
 					<div class="icon-box">
 						<!-- Icon -->
-						<img src="/theme/user/hireo/images/Comment_ça_marche_2-min.jpg" alt="">
+						<img style="margin-bottom: 15px;" src="/theme/user/hireo/images/Comment_ça_marche_2-min.jpg" alt="">
 						<%= raw I18n.t('.home.index.second_bloc_explanation') %>
 					</div>
 				</div>
@@ -109,7 +109,7 @@
 					<!-- Icon Box -->
 					<div class="icon-box">
 						<!-- Icon -->
-						<img src="/theme/user/hireo/images/Comment_ça_marche_3-min.jpg" alt="">
+						<img style="margin-bottom: 15px;" src="/theme/user/hireo/images/Comment_ça_marche_3-min.jpg" alt="">
 						<%= raw I18n.t('.home.index.third_bloc_explanation') %>
 					</div>
 				</div>
@@ -121,7 +121,7 @@
 		<div class="container">
 			<div class="row">
 				<div style="width:100%;height:100%">
-					<%= video_tag "yoopeek_video_home.mp4", width:"100%",height:"100%", :controls => true %>
+					<%= video_tag "video_presentation_yoopeek.mp4", width:"100%",height:"100%", :controls => true %>
 				</div>
 			</div>
 		</div>
@@ -318,4 +318,7 @@
 
 		</script>
 		<script src="/theme/user/hireo/js/vertical_flip.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('select > option:first').hide();
+		</script>
 	<% end %>

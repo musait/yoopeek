@@ -57,7 +57,9 @@
 										<li><%= t('.price_rate') %> <strong><%= number_to_currency(@job.worker.price_rate,strip_insignificant_zeros: true)%></strong></li>
 									</ul>
 								</div>
-								<a href="/theme/user/hireo/single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">Voir son profil <i class="icon-material-outline-arrow-right-alt"></i></a>
+								<%= link_to user_show_path(id:@job.worker.id),class:"button button-sliding-icon ripple-effect" do %>
+								<%= t('.see_pro_profile') %>
+								<% end %>
 							</div>
 						</div>
 					<% end %>
@@ -88,7 +90,7 @@
 								<!-- Details -->
 								<div class="freelancer-details" style="display: flex; align-items: center; justify-content: flex-end;">
 									<% if Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).exists? %>
-										<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"button button-sliding-icon ripple-effect" do %>
+										<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"button ripple-effect" do %>
 											<%= t('.your_conversation') %> <i class="icon-material-outline-arrow-right-alt"></i>
 										<% end %>
 									<% else %>
