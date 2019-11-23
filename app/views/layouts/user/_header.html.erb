@@ -41,8 +41,13 @@
 
 
 			<!-- Right Side Content / End -->
+			<% if current_user %>
 			<div class="right-side" style="top: 0">
 
+			<% else %>
+			<div class="right-side" style="margin-right:-25px; top: 0">
+
+			<% end %>
 				<% if user_signed_in? %>
 					<!--  User Notifications -->
 					<div class="header-widget hide-on-mobile">
@@ -243,7 +248,7 @@
 					</div>
 
 				<% end %>
-
+				<% if current_user %>
 				<!-- Mobile Navigation Button -->
 				<span class="mmenu-trigger">
 					<button class="hamburger hamburger--collapse" type="button">
@@ -252,7 +257,7 @@
 						</span>
 					</button>
 				</span>
-
+				<% end %>
 			</div>
 
 			<!-- Right Side Content / End -->
