@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :credits_payments
   has_many :notif_received, class_name: 'Notification', foreign_key: 'receiver_id'
   has_many :notif_send, class_name: 'Notification', foreign_key: 'sender_id'
+  has_many :join_user_subcategories
+  has_many :subcategories, :through => :join_user_subcategories
   belongs_to :address, optional: true
   accepts_nested_attributes_for :address
   after_save :set_stripe_customer_id, if: Proc.new { stripe_customer_id.blank? }
