@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show,:get_subcategories,:new_subcategory,:delete_subcategory]
   def show
     @user = User.find(params[:id])
     @jobs = @user.jobs.page(params[:page])
@@ -18,11 +18,20 @@ class UsersController < ApplicationController
   def get_tags
     @category = Category.find(params[:category_id]) if params[:category_id].present?
     @tags = @category.tags if @category
-    if !@category.present?
-      render json: { error: 'Reply could not be sent.' }, status: 400
-    end
   end
 
+  def get_subcategories
+    @profession = Profession.find(params[:profession_id])
+    @subcategories = @profession.subcategories
+  end
+  def new_subcategory
+    @subcategory = Subcategory.find(params[:subcategory])
+    current_user.subcategories << @subcategory
+  end
+
+  def delete_subcategory
+    current_user.subcategories.delete_all
+  end
   def skill
     current_user.skills.delete(params[:skills])
     respond_to do |format|

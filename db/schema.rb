@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_112121) do
+ActiveRecord::Schema.define(version: 2019_11_24_113333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -193,6 +193,15 @@ ActiveRecord::Schema.define(version: 2019_11_14_112121) do
     t.index ["subcategory_id"], name: "index_join_categories_on_subcategory_id"
   end
 
+  create_table "join_profession_subcategories", force: :cascade do |t|
+    t.uuid "profession_id"
+    t.uuid "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profession_id"], name: "index_join_profession_subcategories_on_profession_id"
+    t.index ["subcategory_id"], name: "index_join_profession_subcategories_on_subcategory_id"
+  end
+
   create_table "join_tag_workers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "tag_id"
     t.uuid "worker_id"
@@ -209,6 +218,15 @@ ActiveRecord::Schema.define(version: 2019_11_14_112121) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_join_tags_on_category_id"
     t.index ["tag_id"], name: "index_join_tags_on_tag_id"
+  end
+
+  create_table "join_user_subcategories", force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subcategory_id"], name: "index_join_user_subcategories_on_subcategory_id"
+    t.index ["user_id"], name: "index_join_user_subcategories_on_user_id"
   end
 
   create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

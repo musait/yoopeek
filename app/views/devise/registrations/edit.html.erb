@@ -114,17 +114,17 @@
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= I18n.t('.user.all.edit.profession') %></h5>
-                      <%= f.collection_select :profession_id, Profession.all,:id,:name,{}, {class:"form-control",prompt: true,include_hidden: true}%>
+                      <%= f.collection_select :profession_id, @professions,:id,:name,{include_hidden: true}, {class:"selectpicker",id:"profession_id",prompt: true}%>
                     </div>
                   </div>
-
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5><%= I18n.t('.user.all.edit.category') %></h5>
-                      <%= f.collection_select :category_id, Category.all,:id,:name,{class:"form-control",prompt: true,include_hidden: true,class:"form-control" },{id:"category_id"}%>
+                      <h5><%= I18n.t('.user.all.edit.subcategory') %></h5>
+                      <div id="subcategory_select">
+                        <%= f.collection_select :subcategory_ids, @subcategories,:id,:name,{include_hidden: true},{class:"selectpicker",multiple: true,id:"subcategory_id"}%>
+                      </div>
                     </div>
                   </div>
-
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><i class="icon-feather-facebook"></i><%= I18n.t('.user.all.edit.facebook') %></h5>
@@ -430,6 +430,41 @@
       });
   });
   </script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#category_id,#subcategory_id,#profession_id').selectpicker();
+    });
+    $(document).ready(function () {
+      $('#profession_id').change(function(e){
+        var profession_id = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: "/users/delete_subcategory",
+            success: function(data){
+              $.ajax({
+                  type: "POST",
+                  url: "/users/get_subcategories",
+                  data: {profession_id: profession_id}
+              });
+            }
+        });
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#subcategory_id").on("change", function (e) {
+        if ($(this)[0].length) {
+          $.ajax({
+              type: "POST",
+              url: "/users/new_subcategory",
+              data: {subcategory: $(this)[0].value}
+          });
+        }
+      });
+    });
+  </script>
   <script type="text/javascript">
     $(document).ready(function () {
       $("#tag_select").select2({
@@ -446,7 +481,7 @@
             newTag: true // add additional parameters
           }
         },
-        theme: "bootstrap",
+        theme: "classic",
         tags: true,
         allowClear: true,
         tokenSeparators: [',', ' '],
@@ -461,149 +496,140 @@
           });
       });
     });
-    $('#category_id').change( function() {
-     var category_id = this.value;
-       $.ajax({
-         url: "/users/get_tags",
-         type: "GET",
-         dataType: "script",
-         data: { "category_id": category_id }
-       });
-     });
      $(document).ready(function(){
         $("#slider").change(function(){
           $('#price_rate').val($(this).val())
         });
       });
   </script>
-  <% if current_user.worker? %>
-    <script src="https://js.stripe.com/v3/" data-no-turbolink></script>
-    <script type="text/javascript">
-      const stripe = Stripe('<%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key)  %>');
-      const myForm = document.querySelector('#edit_user');
-      myForm.addEventListener('submit', handleForm);
+    <% if current_user.worker? %>
+      <script src="https://js.stripe.com/v3/" data-no-turbolink></script>
+      <script type="text/javascript">
+        const stripe = Stripe('<%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key)  %>');
+        const myForm = document.querySelector('#edit_user');
+        myForm.addEventListener('submit', handleForm);
 
-      async function handleForm(event) {
-      event.preventDefault();
-      <% if current_user.stripe_account_id.present? %>
-        const accountResult = await stripe.createToken('account', {
-          // business_type: 'individual',
-          business_type: 'company',
-          company: {
-            name: document.querySelector('#user_company_attributes_name').value,
-            address: {
-              line1: document.querySelector('#street_id').value,
-              city: document.querySelector('#locality').value,
-              state: document.querySelector('#country').value,
-              postal_code: document.querySelector('#postal_code').value,
-            },
+        async function handleForm(event) {
+        event.preventDefault();
+        <% if current_user.stripe_account_id.present? %>
+          const accountResult = await stripe.createToken('account', {
+            // business_type: 'individual',
+            business_type: 'company',
+            company: {
+              name: document.querySelector('#user_company_attributes_name').value,
+              address: {
+                line1: document.querySelector('#street_id').value,
+                city: document.querySelector('#locality').value,
+                state: document.querySelector('#country').value,
+                postal_code: document.querySelector('#postal_code').value,
+              },
 
-          },
-        });
-      <% else %>
-        const accountResult = await stripe.createToken('account', {
-          // business_type: 'individual',
-          business_type: 'company',
-          company: {
-            name: document.querySelector('#user_company_attributes_name').value,
-            address: {
-              line1: document.querySelector('#street_id').value,
-              city: document.querySelector('#locality').value,
-              state: document.querySelector('#country').value,
-              postal_code: document.querySelector('#postal_code').value,
             },
-
-          },
-          tos_shown_and_accepted: true,
-
-        });
-      <% end %>
-      <% if current_user.stripe_person_id.present? %>
-        const personResult = await stripe.createToken('person', {
-          person: {
-            first_name: document.querySelector('#user_firstname').value,
-            last_name: document.querySelector('#user_lastname').value,
-            email: document.querySelector('#user_email').value,
-            dob: {
-              day: document.querySelector('#user_birthdate_3i').value,
-              month: document.querySelector('#user_birthdate_2i').value,
-              year: document.querySelector('#user_birthdate_1i').value
-            },
-            address: {
-              line1: document.querySelector('#street_id').value,
-              city: document.querySelector('#locality').value,
-              state: document.querySelector('#country').value,
-              postal_code: document.querySelector('#postal_code').value,
-            }
-          },
-        });
-      <% else %>
-        const personResult = await stripe.createToken('person', {
-          person: {
-            first_name: document.querySelector('#user_firstname').value,
-            last_name: document.querySelector('#user_lastname').value,
-            email: document.querySelector('#user_email').value,
-            dob: {
-              day: document.querySelector('#user_birthdate_3i').value,
-              month: document.querySelector('#user_birthdate_2i').value,
-              year: document.querySelector('#user_birthdate_1i').value
-            },
-            address: {
-              line1: document.querySelector('#street_id').value,
-              city: document.querySelector('#locality').value,
-              state: document.querySelector('#country').value,
-              postal_code: document.querySelector('#postal_code').value,
-            },
-            relationship: {
-              representative: true,
-              owner: true,
-              director: true,
-              percent_ownership: 100,
-            }
-          },
-        });
-      <% end %>
-        var bankResult = null
-        if (document.querySelector('#user_company_attributes_iban').value == "" || document.querySelector('#user_company_attributes_iban').value == null) {
-          var bankResult = null
-        } else {
-          const bankResult = await stripe.createToken('bank_account', {
-            country: "FR",
-            currency: document.querySelector('#user_company_attributes_currency').value.toLowerCase(),
-            account_number: document.querySelector('#user_company_attributes_iban').value,
           });
-          if (bankResult.error != null) {
-            if (bankResult.error.code == "account_number_invalid") {
-              toastr['error']("Vérifiez votre IBAN");
+        <% else %>
+          const accountResult = await stripe.createToken('account', {
+            // business_type: 'individual',
+            business_type: 'company',
+            company: {
+              name: document.querySelector('#user_company_attributes_name').value,
+              address: {
+                line1: document.querySelector('#street_id').value,
+                city: document.querySelector('#locality').value,
+                state: document.querySelector('#country').value,
+                postal_code: document.querySelector('#postal_code').value,
+              },
+
+            },
+            tos_shown_and_accepted: true,
+
+          });
+        <% end %>
+        <% if current_user.stripe_person_id.present? %>
+          const personResult = await stripe.createToken('person', {
+            person: {
+              first_name: document.querySelector('#user_firstname').value,
+              last_name: document.querySelector('#user_lastname').value,
+              email: document.querySelector('#user_email').value,
+              dob: {
+                day: document.querySelector('#user_birthdate_3i').value,
+                month: document.querySelector('#user_birthdate_2i').value,
+                year: document.querySelector('#user_birthdate_1i').value
+              },
+              address: {
+                line1: document.querySelector('#street_id').value,
+                city: document.querySelector('#locality').value,
+                state: document.querySelector('#country').value,
+                postal_code: document.querySelector('#postal_code').value,
+              }
+            },
+          });
+        <% else %>
+          const personResult = await stripe.createToken('person', {
+            person: {
+              first_name: document.querySelector('#user_firstname').value,
+              last_name: document.querySelector('#user_lastname').value,
+              email: document.querySelector('#user_email').value,
+              dob: {
+                day: document.querySelector('#user_birthdate_3i').value,
+                month: document.querySelector('#user_birthdate_2i').value,
+                year: document.querySelector('#user_birthdate_1i').value
+              },
+              address: {
+                line1: document.querySelector('#street_id').value,
+                city: document.querySelector('#locality').value,
+                state: document.querySelector('#country').value,
+                postal_code: document.querySelector('#postal_code').value,
+              },
+              relationship: {
+                representative: true,
+                owner: true,
+                director: true,
+                percent_ownership: 100,
+              }
+            },
+          });
+        <% end %>
+          var bankResult = null
+          if (document.querySelector('#user_company_attributes_iban').value == "" || document.querySelector('#user_company_attributes_iban').value == null) {
+            var bankResult = null
+          } else {
+            const bankResult = await stripe.createToken('bank_account', {
+              country: "FR",
+              currency: document.querySelector('#user_company_attributes_currency').value.toLowerCase(),
+              account_number: document.querySelector('#user_company_attributes_iban').value,
+            });
+            if (bankResult.error != null) {
+              if (bankResult.error.code == "account_number_invalid") {
+                toastr['error']("Vérifiez votre IBAN");
+              }
+              toastr['error'](bankResult.error.message);
             }
-            toastr['error'](bankResult.error.message);
+          }
+
+
+
+        if (personResult.error != null) {
+          if (personResult.error.param == "person[dob][year]") {
+            toastr['error']("Vérifiez votre date de naissance (vous devez avoir plus de 18 ans )");
+          } else {
+            toastr['error'](personResult.error.message);
           }
         }
-
-
-
-      if (personResult.error != null) {
-        if (personResult.error.param == "person[dob][year]") {
-          toastr['error']("Vérifiez votre date de naissance (vous devez avoir plus de 18 ans )");
-        } else {
-          toastr['error'](personResult.error.message);
+        if (accountResult.error != null) {
+          console.log(accountResult.error);
+          toastr['error'](accountResult.error.message);
         }
-      }
-      if (accountResult.error != null) {
-        console.log(accountResult.error);
-        toastr['error'](accountResult.error.message);
-      }
-      if (accountResult.token && personResult.token) {
-        document.querySelector('#token-account').value = accountResult.token.id;
-        document.querySelector('#token-person').value = personResult.token.id;
-        if (bankResult != null) {
-          document.querySelector('#token-bank').value = bankResult.token.id;
-          console.log(document.querySelector('#token-bank').value);
+        if (accountResult.token && personResult.token) {
+          document.querySelector('#token-account').value = accountResult.token.id;
+          document.querySelector('#token-person').value = personResult.token.id;
+          if (bankResult != null) {
+            document.querySelector('#token-bank').value = bankResult.token.id;
+            console.log(document.querySelector('#token-bank').value);
+          }
+          myForm.submit();
         }
-        myForm.submit();
-      }
-      $("#submit-form-button").prop("disabled", false);
-    }
-    </script>
-  <% end %>
+        $("#submit-form-button").prop("disabled", false);
+        }
+      </script>
+    <% end %>
 <% end %>

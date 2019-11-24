@@ -21,12 +21,12 @@
         <!-- Account Type -->
         <div class="account-type">
           <div>
-            <%= f.radio_button :is_worker, "0", id:"customer-radio", class:"account-type-radio" %>
+            <%= f.radio_button :is_worker, "0", id:"customer-radio", class:"user account-type-radio" %>
             <label for="customer-radio" id="customer" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i><%=t('.usual_customer')%></label>
           </div>
 
           <div>
-            <%= f.radio_button :is_worker, "1", id:"freelancer-radio",class:"account-type-radio" %>
+            <%= f.radio_button :is_worker, "1", id:"freelancer-radio",class:"pro account-type-radio" %>
             <label for="freelancer-radio" id="freelancer"class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i><%=t('.professional')%></label>
           </div>
         </div>
@@ -57,25 +57,34 @@
         <!-- Button -->
         <%= f.submit t('.sign_up'), class:"button full-width margin-top-10" %>
         <div class="social-login-separator"><span><%=t('.or')%></span></div>
+				<div class="account-type">
+          <div>
+            <%= f.radio_button :is_worker, "0", id:"customer-radio1", class:"user account-type-radio" %>
+            <label for="customer-radio1" id="customer" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i><%=t('.usual_customer')%></label>
+          </div>
+
+          <div>
+            <%= f.radio_button :is_worker, "1", id:"freelancer-radio1",class:"pro account-type-radio" %>
+            <label for="freelancer-radio1" id="freelancer"class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i><%=t('.professional')%></label>
+          </div>
+        </div>
         <div class="social-login-buttons">
           <a class='facebook-login ripple-effect' id="linkToFacebook" href="/users/auth/facebook"> <i class='icon-brand-facebook-f'></i> <%=t('.facebook_register')%>   </a>
           <a class='google-login ripple-effect' id="linkToGoogle" href="/users/auth/google_oauth2"> <i class='icon-brand-google-plus-g'></i> <%=t('.google_register')%>  </a>
         </div>
       <% end %>
-
+			<div class="margin-top-40"></div>
       <!-- Social Login -->
 
     </div>
-
-
   </div>
 </div>
 
 
 <script type="text/javascript">
 
-  $('#freelancer-radio').click(function() {
-     if($('#freelancer-radio').is(':checked')) {
+  $('.pro').click(function() {
+     if($('.pro').is(':checked')) {
        var isWorker = "1"
        var linkToFacebook= $('a#linkToFacebook')["0"].href;
        var linkToGoogle= $('a#linkToGoogle')["0"].href;
@@ -84,8 +93,8 @@
      }
   });
 
-  $('#customer-radio').click(function() {
-    if($('#customer-radio').is(':checked')) {
+  $('.user').click(function() {
+    if($('.user').is(':checked')) {
       var linkToFacebook= $('a#linkToFacebook')["0"].href;
       var linkToGoogle= $('a#linkToGoogle')["0"].href;
       $('a#linkToFacebook').attr("href",linkToFacebook.split('?')[0]);

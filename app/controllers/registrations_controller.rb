@@ -12,6 +12,13 @@ class RegistrationsController < Devise::RegistrationsController
       sign_in_and_redirect @user, event: :authentification
     end
   end
+
+  def edit
+    @professions = Profession.all
+    @profession= Profession.find_by(id: current_user.profession_id) || @professions.first
+    @subcategories = @profession.subcategories || Subcategory.all
+    super
+  end
   protected
 
   def update_resource(resource, params)
