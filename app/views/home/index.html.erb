@@ -39,8 +39,14 @@
 					<%= form_tag(search_result_path) do  %>
 						<div class="intro-banner-search-form margin-top-95">
 							<div class="intro-search-field">
-								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
+								<label class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
 								<%= select_tag 'category', options_for_select(Category.all.collect{ |u| [u.name, u.id] }), id:"category_select",:prompt => t('.category_exemples') %>
+							</div>
+							<div class="intro-search-field">
+								<label class="field-title ripple-effect"><%= raw I18n.t('.home.index.what_subcategory') %></label>
+								<div id="subcategory_select" style="width:100%">
+									<%= select_tag 'subcategory', options_for_select(@subcategories.collect{ |u| [u.name, u.id] }), class:"selectpicker",id:"subcategory_select",:prompt => t('.subcategory_exemples') %>
+								</div>
 							</div>
 							<div class="intro-search-field with-autocomplete">
 								<label for="autocomplete-input" class="field-title ripple-effect"><%= raw I18n.t('.home.index.where') %></label>
@@ -84,10 +90,6 @@
 			</div>
 		</div>
 	 </div>
-
-
-
-
 	<div  class="section padding-top-65 padding-bottom-65">
 		<div class="container">
 			<div class="row">
@@ -250,8 +252,21 @@
 	<%= content_for :body_script do  %>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('#category_select').selectpicker();
+				$('#category_select,#subcategory_select').selectpicker();
 			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+	      $('#category_select').change(function(e){
+	        var category_id = $(this).val();
+          $.ajax({
+              type: "POST",
+							dataType : "script",
+              url: "/home/get_subcategories",
+              data: {category_id: category_id}
+          });
+	      });
+	    });
 		</script>
 		<script type="text/javascript">
 			// List of sentences
