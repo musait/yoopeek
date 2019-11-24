@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit:sign_up,keys: [:bank_token, :birthdate, :account_token, :person_token, :email, :password, :password_confirmation, :firstname, :lastname,:is_worker,:profession_id,:phone_number,:banner,:avatar,:price_rate,:facebook_profile,:instagram_profile,:pinterest_profile,:twitter_profile,:category_id,:skills => [],:address_attributes => [:id, :complete_address,:street, :city, :zip, :country],:tag_ids => [:id,:name],:company_attributes => [:id, :name, :website,:iban, :subject_to_vat, :vat_number,:currency, :address_attributes =>[:id, :complete_address,:street, :city, :zip, :country]]]
-    devise_parameter_sanitizer.permit:account_update,keys: [:bank_token, :birthdate, :account_token, :person_token, :email, :password, :password_confirmation, :firstname, :lastname,:is_worker,:profession_id,:phone_number,:price_rate,:banner,:avatar,:facebook_profile,:instagram_profile,:pinterest_profile,:twitter_profile,:category_id,:skills => [],:address_attributes => [:id, :complete_address,:street, :city, :zip, :country],:tag_ids => [], :company_attributes => [:id, :website,:name, :iban, :subject_to_vat, :vat_number,:currency, :address_attributes =>[:id, :complete_address,:street, :city, :zip, :country]]]
+    devise_parameter_sanitizer.permit:sign_up,keys: [:bank_token, :birthdate, :account_token, :person_token, :email, :password, :password_confirmation, :firstname, :lastname,:is_worker,:profession_id,:subcategory_ids,:phone_number,:banner,:avatar,:price_rate,:facebook_profile,:instagram_profile,:pinterest_profile,:twitter_profile,:category_id,:skills => [],:address_attributes => [:id, :complete_address,:street, :city, :zip, :country],:tag_ids => [:id,:name],:company_attributes => [:id, :name, :website,:iban, :subject_to_vat, :vat_number,:currency, :address_attributes =>[:id, :complete_address,:street, :city, :zip, :country]]]
+    devise_parameter_sanitizer.permit:account_update,keys: [:bank_token, :birthdate, :account_token, :person_token, :email, :password, :password_confirmation, :firstname, :lastname,:is_worker,:profession_id,:phone_number,:price_rate,:banner,:avatar,:facebook_profile,:instagram_profile,:pinterest_profile,:twitter_profile,:category_id,:skills => [],:address_attributes => [:id, :complete_address,:street, :city, :zip, :country],:tag_ids => [],:subcategory_ids => [], :company_attributes => [:id, :website,:name, :iban, :subject_to_vat, :vat_number,:currency, :address_attributes =>[:id, :complete_address,:street, :city, :zip, :country]]]
   end
 
   def count_notification
@@ -59,18 +59,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_approved
     if current_user.present?
-      if current_user.worker? && current_user.company.nil?
-        if url_who_we_are_from == "registrations/edit"
-          if action_name ==  "destroy"
-            sign_out current_user
-          else
-            sign_out current_user
-            redirect_to new_user_session_path, notice: t('.your_information_are_saved')
-          end
-        else
-          redirect_to edit_user_registration_path, notice: t('.fill_information')
-        end
-      end
+      
     end
   end
 
