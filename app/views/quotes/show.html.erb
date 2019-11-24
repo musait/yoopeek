@@ -64,7 +64,7 @@
 										<!-- Avatar -->
 										<div class="freelancer-avatar">
 											<div class="verified-badge"></div>
-											<img src=" <%= @quote.sender.avatar_url %>" alt="">
+											<img src=" <%= @quote.sender.avatar_url if @quote.sender.avatar_url.present? %>" alt="">
 										</div>
 
 										<!-- Name -->

@@ -20,17 +20,20 @@
 			<h3 class="margin-top-50"> <%= t('.security_message') %></h3>
 
 			<!-- Payment Methods Accordion -->
+      <form id="example4">
+  			<div class="margin-top-30">
 
-			<div class="margin-top-30">
+            <div class="payment-tab-trigger">
+              <div class="col-md-12 mb-2" id="card-element"></div>
+              <div class="checkbox margin-top-30">
+          				<input type="checkbox" id="field_terms" type="checkbox" required name="terms">
+          				<label for="field_terms"><span class="checkbox-icon"></span> <%= t('.terms_agreements') %></label>
+        			</div>
+            </div>
 
-        <div class="payment-tab-trigger">
-          <div class="col-md-12 mb-2" id="card-element"></div>
-        </div>
-
-			</div>
-
-
-      <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65"> <%= t('.payment_proceed') %></button>
+  			</div>
+        <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65"> <%= t('.payment_proceed') %></button>
+      </form>
 		</div>
 
 
@@ -44,24 +47,52 @@
 				</div>
 				<div class="boxed-widget-inner">
 					<ul>
-						<li><%= t('.quote',number:@quote.quote_number)%> <span><%= currency_formated (@total - @total * 0.2) %></span></li>
-						<li>TVA (20%) <span><%= currency_formated (@total * 0.2) %></span></li>
-						<li class="total-costs"> <%= t('.total') %> <span><%= currency_formated (@total) %></span></li>
+						<li><%= t('.quote',number:@quote.quote_number)%> <span><%= currency_formated (@total_without_vat) %></span></li>
+              <li>TVA (20%) <span><%= currency_formated (@vat) %></span></li>
+            <li class="total-costs"> <%= t('.total') %> <span><%= currency_formated (@total_within_vat) %></span></li>
 					</ul>
 				</div>
 			</div>
 			<!-- Summary / End -->
 
 			<!-- Checkbox -->
-			<div class="checkbox margin-top-30">
-				<input type="checkbox" id="two-step">
-				<label for="two-step"><span class="checkbox-icon"></span> <%= t('.terms_agreements') %></label>
-			</div>
+
 		</div>
 
 	</div>
 </div>
 <%= content_for :body_script do %>
+<script>
+
+  window.addEventListener("DOMContentLoaded", function(e) {
+
+    var myForm = document.getElementById("example4");
+    var checkForm = function(e) {
+      if(!this.terms.checked) {
+        alert("Please indicate that you accept the Terms and Conditions");
+        this.terms.focus();
+        e.preventDefault(); // equivalent to return false
+        return;
+      }
+    };
+
+    // attach the form submit handler
+    myForm.addEventListener("submit", checkForm, false);
+
+    var myCheckbox = document.getElementById("field_terms");
+    var myCheckboxMsg = "Please indicate that you accept the Terms and Conditions";
+
+    // set the starting error message
+    myCheckbox.setCustomValidity(myCheckboxMsg);
+
+    // attach checkbox handler to toggle error message
+    myCheckbox.addEventListener("change", function(e) {
+      this.setCustomValidity(this.validity.valueMissing ? myCheckboxMsg : "");
+    }, false);
+
+  }, false);
+</script>
+
   <script src="https://js.stripe.com/v3/"></script>
 
   <script type="text/javascript">
