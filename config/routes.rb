@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, skip: :omniauth_callbacks,controllers: {:registrations => 'registrations'}
     root 'home#index'
+    post "/home/get_subcategories" => "home#get_subcategories"
     get "/pages/:page" => "pages#show"
     get 'send_mail_contact' => "pages#send_mail_contact"
     devise_scope :user do
@@ -48,6 +49,9 @@ Rails.application.routes.draw do
     post  'search_result' => 'home#search_result'
     resources :reviews
     resources :subcategories
+    post "/users/new_subcategory" => "users#new_subcategory"
+    post "/users/get_subcategories" => "users#get_subcategories"
+    post "/users/delete_subcategory" => "users#delete_subcategory"
     resources :categories do
       member do
         get :get_subcategories, defaults: { format: "js" }
