@@ -1,0 +1,17 @@
+$('#subcategory_select').html("<%= j select(:user,:subcategory_ids,  @subcategories.collect {|p| [ p.name, p.id ] },{:prompt => 'Séléctionnez une catégorie',include_hidden: true},{multiple: true,class:'selectpicker',id:'subcategory_id'}) %>");
+
+$(document).ready(function(){
+  $('#subcategory_id,#profession_id').selectpicker();
+});
+
+$(document).ready(function () {
+  $("#subcategory_id").on("change", function (e) {
+        if ($(this)[0].length) {
+          $.ajax({
+          type: "POST",
+          url: "/users/new_subcategory",
+          data: {subcategory: $(this)[0].value}
+      });
+    }
+  });
+});
