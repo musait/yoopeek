@@ -1,1 +1,1 @@
-<%= select_tag 'subcategory', options_for_select(@subcategories.collect{ |u| [u.name, u.id] }), id:"subcategory_select",:prompt => t('.subcategory_exemples') %>
+<%= select_tag 'subcategory', options_for_select(@subcategories.collect{ |u| [u.name, u.id] }), id:"subcategory_select",disabled: false%>

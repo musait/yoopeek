@@ -45,7 +45,7 @@
 							<div class="intro-search-field">
 								<label class="field-title ripple-effect"><%= raw I18n.t('.home.index.what_subcategory') %></label>
 								<div id="subcategory_select" style="width:100%">
-									<%= select_tag 'subcategory', options_for_select(@subcategories.collect{ |u| [u.name, u.id] }), class:"selectpicker",id:"subcategory_select",:prompt => t('.subcategory_exemples') %>
+									<%= select_tag 'subcategory', options_for_select(@subcategories.collect{ |u| [u.name, u.id] }), class:"selectpicker",id:"subcategory_select",disabled: true,:prompt => t('.subcategory_exemples') %>
 								</div>
 							</div>
 							<div class="intro-search-field with-autocomplete">
