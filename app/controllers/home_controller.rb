@@ -3,12 +3,21 @@ class HomeController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:stripe_subscription_webhook]
 
   def index
+    @categories = Category.all
+    @category= Category.find_by(id: params[:category_id]) || @categories.first
+    @subcategories = @category.subcategories || Subcategory.all
   end
   def search_result
     @workers = []
     if params[:category].present?
       @category = Category.find(params[:category])
-      @workers = Worker.joins(:category).where(categories: {name: @category.name}).page(params[:page])
+      @workers = Worker.joins(:profession).where(professions: {name: @category.name}).page(params[:page])
+      
+      if @workers.present? && params[:subcategory].present?
+        
+        @subcategory = Subcategory.find(params[:subcategory])
+        @workers = @workers.includes(:subcategories).where(subcategories: {name: @subcategory.name }).page(params[:page])
+      end
     else
       @workers = Worker.all
     end
@@ -16,6 +25,11 @@ class HomeController < ApplicationController
       @workers = @workers.joins(:company => [:address]).where(addresses: {city: params[:city].split(',')[0]}).page(params[:page])
 
     end
+  end
+  def get_subcategories
+    @categories = Category.all
+    @category= Category.find_by(id: params[:category_id]) || @categories.first
+    @subcategories = @category.subcategories || Subcategory.all
   end
   def checkout_credit
     @credits_offer = CreditsOffer.find(params[:id])
