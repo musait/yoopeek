@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :search_result, :stripe_subscription_webhook]
+  skip_before_action :authenticate_user!, only: [:index, :search_result, :stripe_subscription_webhook,:get_subcategories]
   skip_before_action :verify_authenticity_token, only: [:stripe_subscription_webhook]
 
   def index
@@ -12,9 +12,9 @@ class HomeController < ApplicationController
     if params[:category].present?
       @category = Category.find(params[:category])
       @workers = Worker.joins(:profession).where(professions: {name: @category.name}).page(params[:page])
-      
+
       if @workers.present? && params[:subcategory].present?
-        
+
         @subcategory = Subcategory.find(params[:subcategory])
         @workers = @workers.includes(:subcategories).where(subcategories: {name: @subcategory.name }).page(params[:page])
       end
