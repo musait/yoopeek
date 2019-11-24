@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates_presence_of :is_worker, message: :must_exist, if: Proc.new { |user| user.is_worker.nil? && !from_omniauth? }
   validates :firstname, presence: { message: :must_exist }
   validates :lastname, presence: { message: :must_exist }
-  before_create :add_approval
+  after_create :add_approval
   before_save :set_stripe_account
   after_create_commit :set_conv_with_yoopeek
   def set_stripe_account
