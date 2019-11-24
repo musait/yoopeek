@@ -69,7 +69,7 @@ fr:
       updated: "Votre compte a été modifié avec succès."
     sessions:
       create:
-        fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionel soit pris en compte"
+        fill_information: "Veuillez remplir les champs conçernant votre profil et celui de votre entreprise afin que votre inscription en tant que professionnel soit prise en compte"
       new:
         welcome_to_yoopeek: "Bienvenue chez Yoopeek"
         not_sign_up_yet: "Vous n'êtes pas encore inscrit ?"
