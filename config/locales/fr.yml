@@ -229,6 +229,8 @@ fr:
         sav: "Service client"
         all_rights_reserved: "Tous droits réservés"
   home:
+    subcategory_select:
+      subcategory_exemples: "Mariage, Mode, Vlog"
     index:
       category_exemples: "Photographe, vidéaste, coiffeur,..."
       subcategory_exemples: "Mariage, Evènement entreprise, Vlog,..."
