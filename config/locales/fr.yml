@@ -58,7 +58,7 @@ fr:
   buy: Acheter
   no_stripe_account: Le professionnel n'a pas encore rempli toutes ces informations.
   unvalid_room_message: "Le(s) mot(s) %{reason} ne sont pas permis"
-  no_stripe_account: Le professionel n'a pas encore rempli toutes ces informations .
+  no_stripe_account: Le professionnel n'a pas encore rempli toutes ces informations .
   invoice_credits: "%{credits} crédits"
   your_invoices: Vos factures
   invoice_number: Numéro de la facture
@@ -231,6 +231,7 @@ fr:
   home:
     index:
       category_exemples: "Photographe, vidéaste, coiffeur,..."
+      subcategory_exemples: "Mariage, Evènement entreprise, Vlog,..."
       type_a_city: "Entrez une ville (Paris, Genève, Bruxelles)"
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
       find_a: "Trouvez votre"
@@ -241,6 +242,7 @@ fr:
       drone: "Pilote de Drone"
       stylist: "Styliste"
       what: "Quel professionnel ?"
+      what_subcategory: "Sous-catégorie"
       where: "Où ?"
       search: "Rechercher"
       published_ads: "Annonces publiées"
@@ -255,7 +257,7 @@ fr:
       fourth_bloc_explanation: "Lorem ipsum"
       fifth_bloc_explanation: "Lorem ipsum"
       sixth_bloc_explanation: "Lorem ipsum"
-      best_pros: "Les meilleurs professionels du moment"
+      best_pros: "Les meilleurs professionnels du moment"
       fill_information: "Veuillez remplir les champs relatifs à votre profil et celui de votre entreprise afin que votre inscription en tant que professionnel soit pris en compte"
     pros_presentation:
       localisation: "Localisation"
@@ -395,6 +397,7 @@ fr:
         instagram: "Lien vers votre profil Instagram"
         pinterest: "Lien vers votre profil Pinterest"
         twitter: "Lien vers votre profil Twitter"
+        subcategory: "Sous-catégorie"
     pro_profile:
       edit:
         payout: "Voici le montant que vous pouvez transfrer sur votre compte bancaire :"
