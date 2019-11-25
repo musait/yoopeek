@@ -1,6 +1,6 @@
 class UserMailer < Devise::Mailer
     layout "mailer"
-    default from: 'notifications@yoopeek.com'
+    default from: 'contact@yoopeek.com'
 
     def send_mail_contact
       attachments.inline['image.png'] = File.read('public/theme/user/hireo/images/logo.png')

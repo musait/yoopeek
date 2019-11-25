@@ -1,5 +1,5 @@
 class AdminMailer < Devise::Mailer
-    default from: 'from@example.com'
+    default from: 'contact@yoopeek.com'
     layout 'mailer'
 
     def new_user_waiting_for_approval(email)
