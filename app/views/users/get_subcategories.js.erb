@@ -1,7 +1,11 @@
-$('#subcategory_select').html("<%= j select(:user,:subcategory_ids,  @subcategories.collect {|p| [ p.name, p.id ] },{:prompt => 'Séléctionnez une catégorie',include_hidden: true},{multiple: true,class:'selectpicker',id:'subcategory_id'}) %>");
+$('#subcategory_select').html("<%= j select(:user,:subcategory_ids,  @subcategories.collect {|p| [ p.name, p.id ] },{include_hidden: true},{multiple: true,class:'selectpicker',id:'subcategory_id'}) %>");
 
 $(document).ready(function(){
-  $('#subcategory_id,#profession_id').selectpicker();
+  $('#profession_id').selectpicker();
+});
+$('#subcategory_id').selectpicker({
+  title : 'Choisis ta/tes spécialité(s)',
+  noneSelectedText: ''
 });
 
 $(document).ready(function () {
