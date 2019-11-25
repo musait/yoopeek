@@ -77,18 +77,22 @@
 					<% end %>
 					<div class="overview-item"><strong> <%= @user.jobs.count %></strong><span>	<%= t('.job_realized') %></span></div>
 				</div>
-				<% if @user != current_user %>
-					<% if current_user.have_one_room_with_user(@user).present? %>
-						<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @user.id).or(Room.where(receiver_id:current_user.id,author_id: @user.id)).first.id),class:"apply-now-button margin-bottom-50" do %>
-							 <%= t('.send_mp') %><i class="icon-material-outline-arrow-right-alt"></i>
-						<% end %>
-					<% else %>
-						<%= form_for Room.new do |form| %>
-							<%= form.hidden_field :author_id, value: current_user.id  %>
-							<%= form.hidden_field :receiver_id, value: @user.id %>
-							<%= form.submit t('.send_mp'),class:"apply-now-button margin-bottom-50" %>
+				<% if current_user %>
+					<% if (@user != current_user) %>
+						<% if current_user.have_one_room_with_user(@user).present? %>
+							<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @user.id).or(Room.where(receiver_id:current_user.id,author_id: @user.id)).first.id),class:"apply-now-button margin-bottom-50" do %>
+								 <%= t('.send_mp') %><i class="icon-material-outline-arrow-right-alt"></i>
+							<% end %>
+						<% else %>
+							<%= form_for Room.new do |form| %>
+								<%= form.hidden_field :author_id, value: current_user.id  %>
+								<%= form.hidden_field :receiver_id, value: @user.id %>
+								<%= form.submit t('.send_mp'),class:"apply-now-button margin-bottom-50" %>
+							<% end %>
 						<% end %>
 					<% end %>
+				<% else %>
+				<p><%= t('.sigin_to_send_mp') %></p>
 				<% end %>
 
 				<!-- Freelancer Indicators -->
