@@ -215,6 +215,11 @@
 												<i class="icon-material-outline-library-books"></i> <%= t('.my_subscription') %>
 											<% end %>
 										</li>
+										<li>
+											<%= link_to user_path(id:current_user.id) do %>
+												<i class="icon-material-outline-account-circle"></i> <%= t('.my_profile') %>
+											<% end %>
+										</li>
 									<% end %>
 									<li><%= link_to edit_user_registration_path, method: :get  do %>
 									<i class="icon-material-outline-settings"></i> <%= t('.settings') %>
