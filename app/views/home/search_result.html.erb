@@ -57,7 +57,7 @@
             <div class="freelancer-details">
               <div class="freelancer-details-list">
                 <ul>
-									<% if worker.company.address.city.present? %>
+									<% if worker.company.present? && worker.company.address.city.present? %>
                   <li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i> <%= worker.company.address.city %></strong></li>
 									<% end %>
 									<% if worker.price_rate%>
@@ -83,7 +83,9 @@
 			<div class="col-md-12">
 				<!-- Pagination -->
 				<div class="pagination-container">
+					<% if @workers.present? %>
 					<%= paginate @workers%>
+					<% end %>
 				</div>
 			</div>
 		</div>
