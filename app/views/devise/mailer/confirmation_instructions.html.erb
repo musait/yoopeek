@@ -80,7 +80,7 @@
 																				</tr>
 																				<tr>
 																					<td align="center" valign="top" style="font-family:'Open Sans', Verdana, Arial; font-size:24px; color:#312e2e; font-weight:normal; line-height:36px;" mc:edit="nm2-04">
-																						<p><%= t('.greeting', recipient: @user.full_name) %></p>
+																						<p><%=  @user.full_name %>,</p>
 																					</td>
 																				</tr>
 																				<tr>
@@ -108,7 +108,7 @@
 											</tr>
 											<tr>
 												<td align="center" valign="top" style="font-family:'Open Sans', Verdana, Arial; font-size:16px; color:#767676; font-weight:normal; line-height:32px;" mc:edit="nm2-06">
-													<multiline><%= t('.instruction') %></multiline>
+													<multiline><%= t('.you_can_confirm_your_account_through_the_link_below') %></multiline>
 												</td>
 											</tr>
 											<tr>
@@ -125,7 +125,7 @@
 																		<td height="100%" align="center" valign="middle"
 																			style="background:#4267b2; font-family:'Open Sans', Verdana, Arial; font-size:14px; color:#FFF; font-weight:normal; text-transform:uppercase; line-height:28px; -moz-border-radius: 25px; border-radius: 25px;"
 																			mc:edit="nm2-07">
-																			<multiline><%= link_to t('.action'), confirmation_url(@resource, confirmation_token: @token),style:"color:white !important;" %></multiline>
+																			<multiline><%= link_to t('.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token),style:"color:white !important;" %></multiline>
 																		</td>
 																	</tr>
 																	<tr>
