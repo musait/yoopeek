@@ -12,18 +12,15 @@ class HomeController < ApplicationController
     if params[:category].present?
       @category = Category.find(params[:category])
       @workers = Worker.joins(:profession).where(professions: {name: @category.name}).page(params[:page])
-
       if @workers.present? && params[:subcategory].present?
-
         @subcategory = Subcategory.find(params[:subcategory])
         @workers = @workers.includes(:subcategories).where(subcategories: {name: @subcategory.name }).page(params[:page])
       end
     else
-      @workers = Worker.all
+      @workers = Worker.all.page(params[:page])
     end
     if params[:city].present?
       @workers = @workers.joins(:company => [:address]).where(addresses: {city: params[:city].split(',')[0]}).page(params[:page])
-
     end
   end
   def get_subcategories
