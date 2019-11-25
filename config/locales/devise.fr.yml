@@ -18,6 +18,8 @@ fr:
       not_approved: "Votre compte n'a pas encore été confirmé par un administrateur"
     mailer:
       confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: " Vous pouvez confirmer votre mail grâce au lien ci-dessous :"
+        confirm_my_account: "Confirmer"
         subject: "Confirmation de votre inscription yoopeek"
         welcome_to_yoopeek: "Bienvenue sur Yoopeek"
         account_confirmation: "Confirmation de votre inscription"
@@ -104,8 +106,8 @@ fr:
       mailer:
         confirmation_instructions:
           welcome: "Bienvenu(e)"
-          you_can_confirm_your_account_through_the_link_below: "Vous pouvez confirmer votre compte en cliquant sur le lien ci-dessous"
-          confirm_my_account: "Confirmer mon compte"
+          you_can_confirm_your_account_through_the_link_below: " Vous pouvez confirmer votre mail grâce au lien ci-dessous :"
+          confirm_my_account: "Confirmer"
         reset_password_instructions:
           # For "Someone has requested a link to change your password, and you can do this through the link below."
           reset_password_instruction: "Un changement de mot de passe a été demandé. Vous pouvez le faire en cliquant sur le lien ci-dessous."
