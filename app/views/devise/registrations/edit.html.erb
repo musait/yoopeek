@@ -391,91 +391,6 @@
 <% end %>
 <!-- Row / End -->
 <%= content_for :body_script do %>
-<script type='text/javascript'>
-  $(document).ready(function () {
-    Common.init();
-  })
-</script>
-<script type="text/javascript">
-  var Common = {
-  init: function () {
-    this.getImage();
-    this.showImage();
-  },
-
-  readURL: function (input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#image_src').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
-  },
-
-  getImage: function () {
-    $("#imgInp").change(function () {
-      Common.readURL(this);
-    });
-  },
-  var Common = {
-  init: function () {
-    this.getImage();
-    this.showImage();
-  },
-
-  readURL: function (input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#image_src').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
-  },
-
-  getImage: function () {
-    $("#imgInp").change(function () {
-      Common.readURL(this);
-    });
-  },
-
-  showImage: function () {
-    var viewer = ImageViewer();
-    $('.upload_privew').click(function () {
-      var imgSrc = this.src,
-          highResolutionImage = $(this).data('high-res-img');
-      viewer.show(imgSrc, highResolutionImage);
-    });
-  }
-}
-}
-</script>
-  <!-- <script type="text/javascript">
-    $(document).ready(function(){
-    var preview = $(".upload-preview img");
-      $("#user_banner").change(function(event){
-        var files = event.target.files;
-
-          for (var i = 0, len = files.length; i < len; i++) {
-              var file = files[i];
-
-              var reader = new FileReader();
-
-              reader.onload = (function(f) {
-                  return function(e) {
-                    var image_base64 = e.result;
-                    preview.attr($('#image_banner')[0].src, image_base64);
-                      // Here you can use `e.target.result` or `this.result`
-                      // and `f.name`.
-                  };
-              })(file);
-
-              reader.readAsText(file);
-          }
-      });
-    });
-  </script> -->
   <script type="text/javascript">
     $(document).ready(function () {
       $('#checkbox1').change(function () {
@@ -490,11 +405,11 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('#profession_id').selectpicker({
-        title : 'Veuillez séléctionner une profession'
+        title : 'Veuillez sélectionner une profession'
       });
       $('#subcategory_id').selectpicker({
         title : 'Choisis ta/tes spécialité(s)',
-        noneSelectedText: 'Choisis ta/tes spécialité(s)'
+        noneSelectedText: ''
       });
     });
     $(document).ready(function () {
