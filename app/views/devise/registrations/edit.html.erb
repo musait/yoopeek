@@ -265,7 +265,7 @@
                   <div class="col-xl-12">
                     <div class="submit-field">
                       <h5><%= raw I18n.t('.user.pro_profile.edit.description') %></h5>
-                      <textarea cols="30" rows="5" class="with-border"></textarea>
+                      <%= f.text_area :description, col:'5', rows:'5', class:"with-border" %>
                     </div>
                   </div>
 
