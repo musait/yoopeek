@@ -2,15 +2,17 @@
 <style media="screen">
 	.cover {
     width: 100%;
-    height: 200px;
-    background-image: url("<%= @user.banner_url %>");
+    height: 300px;
+    /* background-image: url("<%= @user.banner_url %>");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
+    background-position: 50% 50%; */
 }​
 </style>
 <% end %>
-<div class="cover "></div>
+<div class="cover">
+	<%= image_tag(@user.banner_url, width: '100%', height:'100%')  %>
+</div>
 <!-- Recent Blog Posts / End -->
 <div class="container margin-top-70">
 	<div class="row">
@@ -43,12 +45,8 @@
 										<!-- Content -->
 										<div class="item-content">
 											<h4>	<% job.name %></h4>
-											<div class="item-details margin-top-10">
-												<div class="star-rating" data-rating="4.0"></div>
-												<div class="detail-item"><i class="icon-material-outline-date-range"></i> Aout 2019</div>
-											</div>
 											<div class="item-description">
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper arcu non nibh sodales pharetra.</p>
+												<p><%= job.description %></p>
 											</div>
 										</div>
 									</div>
@@ -74,11 +72,23 @@
 
 				<!-- Profile Overview -->
 				<div class="profile-overview">
-					<div class="overview-item"><strong> <%= number_to_currency(@user.price_rate, strip_insignificant_zeros: true) %></strong><span>	<%= t('.hour_rate') %></span></div>
+					<% if @user.price_rate %>
+						<div class="overview-item"><strong> <%= number_to_currency(@user.price_rate, strip_insignificant_zeros: true) %></strong><span>	<%= t('.hour_rate') %></span></div>
+					<% end %>
 					<div class="overview-item"><strong> <%= @user.jobs.count %></strong><span>	<%= t('.job_realized') %></span></div>
 				</div>
 
-				<a href="#" class="apply-now-button margin-bottom-50"> <%= t('.send_mp') %><i class="icon-material-outline-arrow-right-alt"></i></a>
+				<% if current_user.have_one_room_with_user(@user).present? %>
+					<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @user.id).or(Room.where(receiver_id:current_user.id,author_id: @user.id)).first.id),class:"apply-now-button margin-bottom-50" do %>
+						 <%= t('.send_mp') %><i class="icon-material-outline-arrow-right-alt"></i>
+					<% end %>
+				<% else %>
+					<%= form_for Room.new do |form| %>
+						<%= form.hidden_field :author_id, value: current_user.id  %>
+						<%= form.hidden_field :receiver_id, value: @user.id %>
+						<%= form.submit t('.send_mp'),class:"apply-now-button margin-bottom-50" %>
+					<% end %>
+				<% end %>
 
 				<!-- Freelancer Indicators -->
 
@@ -88,10 +98,18 @@
 					<h3> <%= t('.social_medias') %></h3>
 					<div class="freelancer-socials margin-top-25">
 						<ul>
-							<li><a href="<%= @user.facebook_profile if @user.facebook_profile %>" title="Facebook" data-tippy-placement="top"><i class="icon-brand-facebook"></i></a></li>
+							<% if @user.facebook_profile.present? %>
+							<li><a href="<%= @user.facebook_profile %>" title="Facebook" data-tippy-placement="top"><i class="icon-brand-facebook"></i></a></li>
+							<% end %>
+							<% if @user.twitter_profile.present? %>
 							<li><a href="<%= @user.twitter_profile if @user.twitter_profile %>" title="Twitter" data-tippy-placement="top"><i class="icon-brand-twitter"></i></a></li>
+							<% end %>
+							<% if @user.instagram_profile.present? %>
 							<li><a href="<%= @user.instagram_profile if @user.instagram_profile %>" title="Instagram" data-tippy-placement="top"><i class="icon-brand-instagram"></i></a></li>
+							<% end %>
+							<% if @user.pinterest_profile.present? %>
 							<li><a href="<%= @user.pinterest_profile if @user.pinterest_profile %>" title="Pinterest " data-tippy-placement="top"><i class="icon-brand-pinterest"></i></a></li>
+							<% end %>
 						</ul>
 					</div>
 				</div>
@@ -108,6 +126,24 @@
 					</div>
 				</div>
 
+				<div class="sidebar-widget">
+					<h3> <%= t('.subcategories') %></h3>
+					<div class="task-tags">
+						<% if @user.subcategories.present? %>
+							<% @user.subcategories.each do |subcategory| %>
+							<span> <%= subcategory.name %></span>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+				<% if @user.company.website.present? %>
+					<div class="sidebar-widget">
+						<h3> <%= t('.website') %></h3>
+						<div class="task-tags">
+							<span> <a href=<%= @user.company.website %>><%= @user.company.website %></a></span>
+						</div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
