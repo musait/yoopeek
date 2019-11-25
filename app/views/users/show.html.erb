@@ -136,7 +136,7 @@
 						<% end %>
 					</div>
 				</div>
-				<% if @user.company.website.present? %>
+				<% if @user.company.present? && @user.company.website.present? %>
 					<div class="sidebar-widget">
 						<h3> <%= t('.website') %></h3>
 						<div class="task-tags">
