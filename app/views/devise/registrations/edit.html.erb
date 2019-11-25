@@ -114,14 +114,14 @@
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= I18n.t('.user.all.edit.profession') %></h5>
-                      <%= f.collection_select :profession_id, @professions,:id,:name,{include_hidden: true}, {class:"selectpicker",id:"profession_id",prompt: true}%>
+                      <%= f.collection_select :profession_id, @professions,:id,:name,{}, {class:"selectpicker",id:"profession_id"}%>
                     </div>
                   </div>
                   <div class="col-xl-6">
                     <div class="submit-field">
                       <h5><%= I18n.t('.user.all.edit.subcategory') %></h5>
                       <div id="subcategory_select">
-                        <%= f.collection_select :subcategory_ids, @subcategories,:id,:name,{include_hidden: true},{class:"selectpicker",multiple: true,id:"subcategory_id"}%>
+                        <%= f.collection_select :subcategory_ids, @subcategories,:id,:name,{},{class:"selectpicker",multiple: true,id:"subcategory_id"}%>
                       </div>
                     </div>
                   </div>
@@ -433,7 +433,12 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#category_id,#subcategory_id,#profession_id').selectpicker();
+      $('#profession_id').selectpicker({
+        title : 'Veuillez séléctionner une profession'
+      });
+      $('#subcategory_id').selectpicker({
+        noneSelectedText : 'Choisis ta/tes spécialité(s)'
+      });
     });
     $(document).ready(function () {
       $('#profession_id').change(function(e){
