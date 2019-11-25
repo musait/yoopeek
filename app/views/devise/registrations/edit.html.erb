@@ -5,7 +5,7 @@
   {
      display: none;
   }
-  .banner_upload{
+  .banner{
     background-color: #4267b2;
     top: 0;
     padding: 10px 20px;
@@ -167,27 +167,13 @@
             <h3><%= I18n.t('.user.pro_profile.edit.your_banner') %></h3>
           </div>
           <div class="content">
-            <ul class="fields-ul">
-              <% if @user.banner_url.present? %>
-                <img src=<%= @user.banner_url %>, class="img-fluid" alt="" width="100%" height="auto">
-                <label class=" banner_upload margin-top-10 margin-left-10">
-                  <%= I18n.t('.user.pro_profile.edit.change_banner') %>
-                  <span style="display:none;">
-                    <%= f.file_field :banner, name: 'banner' %>
-                  </span>
-                </label>
-              <% else %>
-              <label class=" banner_upload margin-top-10 margin-left-10">
-                 <%= I18n.t('.user.pro_profile.edit.add_banner') %>
-                <span style="display:none;">
-                  <%= f.file_field :banner, name: 'banner' %>
-                </span>
-              </label>
-              <% end %>
-
-
-
-            </ul>
+            <img class="profile-pic" height="400px" width="100%" src= <%= @user.banner_url %> alt=""  />
+            <label id="banner_upload"class=" banner margin-top-10 margin-left-10">
+              <%= I18n.t('.user.pro_profile.edit.change_banner') %>
+              <span style="display:none">
+                <%= f.file_field :banner, class:"file-upload" %>
+              </span>
+            </label>
           </div>
         </div>
       </div>
@@ -405,21 +391,91 @@
 <% end %>
 <!-- Row / End -->
 <%= content_for :body_script do %>
-  <script type="text/javascript">
+<script type='text/javascript'>
+  $(document).ready(function () {
+    Common.init();
+  })
+</script>
+<script type="text/javascript">
+  var Common = {
+  init: function () {
+    this.getImage();
+    this.showImage();
+  },
+
+  readURL: function (input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#image_src').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  },
+
+  getImage: function () {
+    $("#imgInp").change(function () {
+      Common.readURL(this);
+    });
+  },
+  var Common = {
+  init: function () {
+    this.getImage();
+    this.showImage();
+  },
+
+  readURL: function (input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#image_src').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  },
+
+  getImage: function () {
+    $("#imgInp").change(function () {
+      Common.readURL(this);
+    });
+  },
+
+  showImage: function () {
+    var viewer = ImageViewer();
+    $('.upload_privew').click(function () {
+      var imgSrc = this.src,
+          highResolutionImage = $(this).data('high-res-img');
+      viewer.show(imgSrc, highResolutionImage);
+    });
+  }
+}
+}
+</script>
+  <!-- <script type="text/javascript">
     $(document).ready(function(){
     var preview = $(".upload-preview img");
       $("#user_banner").change(function(event){
-         var input = $(event.currentTarget);
-         var file = input[0].files[0];
-         var reader = new FileReader();
-         reader.onload = function(e){
-             image_base64 = e.target.result;
-             preview.attr("src", image_base64);
-         };
-         reader.readAsDataURL(file);
+        var files = event.target.files;
+
+          for (var i = 0, len = files.length; i < len; i++) {
+              var file = files[i];
+
+              var reader = new FileReader();
+
+              reader.onload = (function(f) {
+                  return function(e) {
+                    var image_base64 = e.result;
+                    preview.attr($('#image_banner')[0].src, image_base64);
+                      // Here you can use `e.target.result` or `this.result`
+                      // and `f.name`.
+                  };
+              })(file);
+
+              reader.readAsText(file);
+          }
       });
     });
-  </script>
+  </script> -->
   <script type="text/javascript">
     $(document).ready(function () {
       $('#checkbox1').change(function () {
@@ -437,7 +493,8 @@
         title : 'Veuillez séléctionner une profession'
       });
       $('#subcategory_id').selectpicker({
-        noneSelectedText : 'Choisis ta/tes spécialité(s)'
+        title : 'Choisis ta/tes spécialité(s)',
+        noneSelectedText: 'Choisis ta/tes spécialité(s)'
       });
     });
     $(document).ready(function () {
