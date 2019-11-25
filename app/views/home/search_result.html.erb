@@ -5,10 +5,6 @@
 
 		<h3 class="page-title"> <%= t('.profile_who_match') %></h3>
 
-		<div class="notify-box margin-top-15">
-
-
-		</div>
 
 		<!-- Freelancers List Container -->
 		<div class="freelancers-container freelancers-list-layout margin-top-35">
@@ -50,9 +46,9 @@
                   <% end %></h4>
                   <span><%= worker.profession.try("name") %></span>
                   <!-- Rating -->
-                  <div class="freelancer-rating">
+                  <!-- <div class="freelancer-rating">
                     <div class="star-rating" data-rating="4.9"></div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -61,9 +57,13 @@
             <div class="freelancer-details">
               <div class="freelancer-details-list">
                 <ul>
+									<% if worker.company.address.city.present? %>
                   <li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i> <%= worker.company.address.city %></strong></li>
-                  <li> <%= t('.price_rate') %><strong> <%= number_to_currency(worker.price_rate , strip_insignificant_zeros: true) %></strong></li>
-                </ul>
+									<% end %>
+									<% if worker.price_rate%>
+									<li> <%= t('.price_rate') %><strong> <%= number_to_currency(worker.price_rate , strip_insignificant_zeros: true) %></strong></li>
+									<% end %>
+								</ul>
               </div>
               <%= link_to user_path(id: worker.id), class: "button ripple-effect" do %>
                 <%= t('.see_his_profile') %> <i class="icon-material-outline-arrow-right-alt"></i>
