@@ -377,6 +377,8 @@ fr:
       social_medias: "Réseaux sociaux"
       skills: "Compétences"
       add_to_favorites: "Ajouter aux favoris"
+      subcategories: "Domaines d'expertise"
+      website: "Site web"
   user:
     all:
       edit:
