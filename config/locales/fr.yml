@@ -96,6 +96,7 @@ fr:
       information_about_security: "Vous êtes sur une page respectant les normes de sécurité bancaires. Toutes vos données personnelles sont cryptées et sécurisées"
       confirm: "Valider et payer"
       total: "Total"
+      terms_agreements: "J'accepte les conditions générales d'utilisation"
       subscription_payement: "Paiement de votre abonnement"
   responses_to_ads: réponse(s) aux annonces
   per_performance: de commission par prestation
@@ -547,7 +548,7 @@ fr:
   order:
     show:
       summary: "Récapitulatif"
-      agreed_terms: "J'accepte les conditions générales de ventes"
+      agreed_terms: "J'accepte les conditions générales de ventes ainsi qu'avec les conditions générales de ventes"
       payment_proceed: "Procéder au paiement"
     confirmation:
       thanks_for_your_order: "Merci pour votre commande"
