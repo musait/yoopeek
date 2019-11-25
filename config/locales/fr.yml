@@ -210,6 +210,7 @@ fr:
         message_not_seen: "Vous n'avez pas de messages non lus"
         worker_jobs: "Vos missions"
         my_subscription: "Mon abonnement"
+        my_profile: "Mon profil"
         settings: "Paramètres"
         logout: "Déconnexion"
         worker: "Professionnel"
