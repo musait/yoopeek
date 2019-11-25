@@ -23,6 +23,7 @@ class User < ApplicationRecord
   attr_accessor :person_token
   attr_accessor :bank_token
   has_one_attached :avatar
+  has_one_attached :banner
   phony_normalize :phone_number, default_country_code: 'FR'
   has_many :portfolios
   validates_presence_of :is_worker, message: :must_exist, if: Proc.new { |user| user.is_worker.nil? && !from_omniauth? }
@@ -94,6 +95,14 @@ class User < ApplicationRecord
         p e
         account = nil
       end
+    end
+  end
+  def banner_url
+    if banner.attached?
+        ActiveStorage::Current.host = Rails.application.credentials.dig(Rails.env.to_sym, :host)
+        banner.service_url
+    else
+      ActionController::Base.helpers.asset_path '/theme/user/hireo/images/banner.jpg'
     end
   end
   def avatar_url
