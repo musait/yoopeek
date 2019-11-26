@@ -40,7 +40,7 @@
 						<div class="intro-banner-search-form margin-top-95">
 							<div class="intro-search-field">
 								<label class="field-title ripple-effect"><%= raw I18n.t('.home.index.what') %></label>
-								<%= select_tag 'category', options_for_select(Category.all.collect{ |u| [u.name, u.id] }), id:"category_select",:prompt => t('.category_exemples') %>
+								<%= select_tag 'profession', options_for_select(Profession.all.collect{ |u| [u.name, u.id] }), id:"category_select",:prompt => t('.category_exemples') %>
 							</div>
 							<div class="intro-search-field">
 								<label class="field-title ripple-effect"><%= raw I18n.t('.home.index.what_subcategory') %></label>
