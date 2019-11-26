@@ -14147,6 +14147,14 @@ em.mm-counter+a.mm-fullsubopen+span {
 								object-fit: cover;
 							}
 
+							.banner_place{
+								box-sizing: border-box;
+								text-align:center;
+								margin:auto;
+						    width: 100%;
+						    max-height: 300px !important;
+								line-height:300px;
+							}
 							.avatar-wrapper .profile-pic:after {
 								font-family: Feather-Icons;
 								content: "\e9f1";
