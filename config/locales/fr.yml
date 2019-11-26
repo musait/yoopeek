@@ -381,7 +381,7 @@ fr:
       add_to_favorites: "Ajouter aux favoris"
       subcategories: "Domaines d'expertise"
       website: "Site web"
-      sigin_to_send_mp: "Pour envoyer un message à ce professionel, vous devez être connecter"
+      sigin_to_send_mp: "Pour envoyer un message à ce professionnel, vous devez être connecter"
   user:
     all:
       edit:
