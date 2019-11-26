@@ -27,13 +27,8 @@
             <!-- Overview -->
             <div class="freelancer-overview">
               <div class="freelancer-overview-inner">
-
-                <!-- Bookmark Icon -->
-                <span class="bookmark-icon"></span>
-
                 <!-- Avatar -->
                 <div class="freelancer-avatar">
-                  <div class="verified-badge"></div>
                   <%= link_to user_path(id: worker.id) do %>
                     <img src="<%= worker.avatar_url %>" alt="">
                   <% end %>
