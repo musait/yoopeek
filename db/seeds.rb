@@ -13,7 +13,7 @@ if Subcategory.all.empty?
     { name: 'EVJF'},
     { name: 'Mariage'},
     { name: 'Grossesse'},
-    { name: 'Baptème'},
+    { name: 'Baptême'},
     { name: 'Anniversaire'},
     { name: 'Couple'},
     { name: 'Famille'},
@@ -39,7 +39,7 @@ if Category.all.empty?
   Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"EVJF")
   Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Mariage")
   Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Grossesse")
-  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Baptême")
   Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Anniversaire")
   Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Couple")
   Category.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Famille")
@@ -63,7 +63,7 @@ if Category.all.empty?
   Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Evènementiel")
   Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Mode")
   Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Portrait")
-  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Baptême")
   Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Anniversaire")
   Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Couple")
   Category.find_by(name:"Coiffure").subcategories << Subcategory.find_by(name:"Famille")
@@ -73,7 +73,7 @@ if Category.all.empty?
   Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Evènementiel")
   Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Mode")
   Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Portrait")
-  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Baptême")
   Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Anniversaire")
   Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Couple")
   Category.find_by(name:"Maquillage").subcategories << Subcategory.find_by(name:"Famille")
@@ -87,7 +87,7 @@ if Category.all.empty?
   Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Mode")
   Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"EVJF")
   Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Mariage")
-  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Baptème")
+  Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Baptême")
   Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Anniversaire")
   Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Couple")
   Category.find_by(name:"Vidéo").subcategories << Subcategory.find_by(name:"Famille")
@@ -113,7 +113,7 @@ if Profession.all.empty?
   Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"EVJF")
   Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Mariage")
   Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Grossesse")
-  Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Baptème")
+  Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Baptême")
   Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Anniversaire")
   Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Couple")
   Profession.find_by(name:"Photographe").subcategories << Subcategory.find_by(name:"Famille")
@@ -137,7 +137,7 @@ if Profession.all.empty?
   Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Evènementiel")
   Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Mode")
   Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Portrait")
-  Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Baptème")
+  Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Baptême")
   Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Anniversaire")
   Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Couple")
   Profession.find_by(name:"Coiffeur").subcategories << Subcategory.find_by(name:"Famille")
@@ -147,7 +147,7 @@ if Profession.all.empty?
   Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Evènementiel")
   Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Mode")
   Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Portrait")
-  Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Baptème")
+  Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Baptême")
   Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Anniversaire")
   Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Couple")
   Profession.find_by(name:"Maquilleur").subcategories << Subcategory.find_by(name:"Famille")
@@ -161,7 +161,7 @@ if Profession.all.empty?
   Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"Mode")
   Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"EVJF")
   Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"Mariage")
-  Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"Baptème")
+  Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"Baptême")
   Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"Anniversaire")
   Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"Couple")
   Profession.find_by(name:"Vidéaste").subcategories << Subcategory.find_by(name:"Famille")
