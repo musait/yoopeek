@@ -91,12 +91,12 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { :host => 'https://yoopeek.herokuapp.com' }
-  Rails.application.routes.default_url_options[:host] ='https://yoopeek.herokuapp.com'
+  config.action_mailer.default_url_options = { :host => 'https://yoopeek-staging.herokuapp.com' }
+  Rails.application.routes.default_url_options[:host] ='https://yoopeek-staging.herokuapp.com'
   config.action_mailer.smtp_settings = {
     :user_name => Rails.application.credentials.sendgrid[:sendgrid_username],
     :password => Rails.application.credentials.sendgrid[:sendgrid_password],
-    :domain => 'www.yoopeek.herokuapp.com',
+    :domain => 'www.yoopeek-staging.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
