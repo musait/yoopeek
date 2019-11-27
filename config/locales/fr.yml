@@ -235,7 +235,7 @@ fr:
       subcategory_exemples: "Mariage, Mode,etc."
     index:
       category_exemples: "Photographe, vidéaste,etc."
-      subcategory_exemples: "Mariage, Mode,Baptème,etc."
+      subcategory_exemples: "Mariage, Mode,Baptême,etc."
       type_a_city: "Entrez une ville (Paris, Genève, etc.)"
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
       find_a: "Trouvez votre"
@@ -407,7 +407,7 @@ fr:
         subcategory: "Sous-catégorie"
     pro_profile:
       edit:
-        payout: "Voici le montant que vous pouvez transfrer sur votre compte bancaire :"
+        payout: "Voici le montant que vous pouvez transférer sur votre compte bancaire :"
         available_payout_amount: "Montant disponible"
         transfer_available_payout_amount: "Transférer le montant disponible"
         your_subscription: "Votre abonnement"
