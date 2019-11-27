@@ -232,10 +232,10 @@ fr:
         all_rights_reserved: "Tous droits réservés"
   home:
     subcategory_select:
-      subcategory_exemples: "Mariage, Evènement entreprise,etc."
+      subcategory_exemples: "Mariage, Mode,etc."
     index:
       category_exemples: "Photographe, vidéaste,etc."
-      subcategory_exemples: "Mariage, Evènement entreprise,etc."
+      subcategory_exemples: "Mariage, Mode,Baptème,etc."
       type_a_city: "Entrez une ville (Paris, Genève, etc.)"
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
       find_a: "Trouvez votre"
