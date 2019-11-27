@@ -45,6 +45,7 @@ class Admin::UsersController <  AdminController
     @user = User.find(params[:id])
     if @user.subscriptions.present?
       @user.subscriptions.destroy_all
+      CreditChangement.find_by(user_id: @user.id).destroy
     end
     @user.destroy
     redirect_to admin_users_path
