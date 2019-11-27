@@ -43,6 +43,9 @@ class Admin::UsersController <  AdminController
   end
   def destroy
     @user = User.find(params[:id])
+    if @user.subscriptions.present?
+      @user.subscriptions.destroy_all
+    end
     @user.destroy
     redirect_to admin_users_path
  end
