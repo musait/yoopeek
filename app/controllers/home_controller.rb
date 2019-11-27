@@ -24,9 +24,9 @@ class HomeController < ApplicationController
     end
   end
   def get_subcategories
-    @categories = Category.all
-    @category= Category.find_by(id: params[:category_id]) || @categories.first
-    @subcategories = @category.subcategories || Subcategory.all
+    @professions = Profession.all
+    @profession = Profession.find_by(id: params[:profession_id]) || @professions.first
+    @subcategories = @profession.subcategories || Subcategory.all
   end
   def checkout_credit
     @credits_offer = CreditsOffer.find(params[:id])
