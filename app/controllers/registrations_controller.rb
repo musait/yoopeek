@@ -20,6 +20,13 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def update
+    @professions = Profession.all
+    @subcategories = Subcategory.all
+
+    super
+  end
+
   protected
 
   def after_update_path_for(resource)
@@ -31,7 +38,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update_resource(resource, params)
-    if params[:password]
+    if !params[:password].empty?
       resource.password = params[:password]
       resource.password_confirmation = params[:password_confirmation]
     end
