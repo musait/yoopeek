@@ -1,5 +1,5 @@
 class Subscription < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   belongs_to :plan_limitation
 
   scope :actived, -> () {
