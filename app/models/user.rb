@@ -39,7 +39,8 @@ class User < ApplicationRecord
           account = Stripe::Account.create({
             country: "FR",
             type: "custom",
-            account_token: account_token
+            account_token: account_token,
+            requested_capabilities: ['card_payments', 'transfers']
           })
           self.stripe_account_id = account.id
         else
