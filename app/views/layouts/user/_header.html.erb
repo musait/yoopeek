@@ -115,7 +115,13 @@
 						<!-- Messages -->
 						<div class="header-notifications">
 							<div class="header-notifications-trigger">
-								<a href="#"><i class="icon-feather-mail"></i><span><%= @notification_messages.count %></span></a>
+								<a href="#"><i class="icon-feather-mail"></i>
+									<% if  @notification_messages.count > 0 %>
+									<span style="background-color:red"><%= @notification_messages.count %></span>
+									<% else %>
+									<span><%= @notification_messages.count %></span>
+									<% end %>
+								</a>
 							</div>
 
 							<!-- Dropdown -->
