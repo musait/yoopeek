@@ -26,8 +26,7 @@ class Job < ApplicationRecord
 
 
   validates_numericality_of :max_time, :greater_than => :min_time, :message => :has_to_be_greather
-  validates :date_delivery, not_in_past: true,:allow_blank => false, :if => :date_delivery_changed?
-
+  validates :date_delivery, inclusion: { in: (Date.yesterday..Date.today+5.years) },:allow_blank => false, :if => :date_delivery_changed?
   after_validation :set_slug, only: [:create, :update]
   enum status: [:created, :in_progress, :cancelled, :completed_by_worker, :completed_by_customer]
   after_save :send_notification_and_email, if :status_changed?
