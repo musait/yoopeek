@@ -1,1 +1,4 @@
-$('#subcategories_select').html("<%= j collection_select(:job,:subcategory_id, @subcategories, :id, :name,{prompt: 'Choissisez une sous-catégorie'}, {disabled:false,class:''}) %>");
+$('#subcategories_select').html("<%= j collection_select(:job,:subcategory_id, @subcategories, :id, :name,{prompt: 'Choissisez une sous-catégorie'}, {id:'subcategory_id',disabled:false,class:'selectpicker'}) %>");
+$(document).ready(function(){
+  $('#subcategory_id').selectpicker();
+});
