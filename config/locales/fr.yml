@@ -31,13 +31,17 @@ fr:
             max_price:
               is_not_a_number: "Votre budget maximal doit être un nombre et doit être présent"
               has_to_be_greather: "Votre budget maximal doit être supérieur au budget minimal"
+              has_to_be_greather_than_zero: "Votre budget maximal doit être supérieur à 0"
             min_price:
               is_not_a_number: "Votre budget minimal doit être un nombre et doit être présent"
+              has_to_be_greather_than_zero: "Votre budget minimal doit être supérieur à 0"
             max_time:
               is_not_a_number: "Le temps estimé minimal doit être un nombre et doit être présent"
               has_to_be_greather: "Le temps estimé maximal doit être supérieur au temps estimé minimal"
+              has_to_be_greather_than_zero: "Le temps estimé maximal doit être supérieur à 0"
             min_time:
               is_not_a_number: "Le temps estimé maximal doit être un nombre et doit être présent"
+              has_to_be_greather_than_zero: "Le temps estimé minimal doit être supérieur à 0"
             category:
               required: "Vous devez indiquer une catégorie"
             subcategory:
@@ -234,8 +238,8 @@ fr:
     subcategory_select:
       subcategory_exemples: "Mariage, Mode,etc."
     index:
-      category_exemples: "Photographe, vidéaste,etc."
-      subcategory_exemples: "Mariage, Mode,Baptême,etc."
+      category_exemples: "Photographe, vidéaste, etc."
+      subcategory_exemples: "Mariage, Mode, Baptême, etc. "
       type_a_city: "Entrez une ville (Paris, Genève, etc.)"
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
       find_a: "Trouvez votre"
@@ -256,7 +260,7 @@ fr:
       <p>Listez vos envies ou choisissez directement un professionnel proche de chez vous grâce au moteur de recherche</p>"
       second_bloc_explanation: "<h3>Comparez les professionnels</h3>
       <p>Choisissez et contactez les artistes qui correspondent a vos besoins. Notre équipe sélectionne avec soin des professionnels fiables et expérimentés.</p>"
-      third_bloc_explanation: "<h3>Laissez vous guider</h3><p>Maintenant que vous avez trouvé la perle rare, validez le devis et laissez opérer la magie!</p>"
+      third_bloc_explanation: "<h3>Laissez vous guider</h3><p>Maintenant que vous avez trouvé la perle rare, validez le devis et laissez opérer la magie !</p>"
       our_engagement: "Notre engagement"
       fourth_bloc_explanation: "Lorem ipsum"
       fifth_bloc_explanation: "Lorem ipsum"
