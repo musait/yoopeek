@@ -150,13 +150,13 @@ fr:
       declaration: "Bonne nouvelle! %{customer} a confirmé que la mission est terminée."
       get_your_money: "Vous allez bientôt recevoir vos fonds. Cette somme d'argent correspond à votre facture moins les commissions Yoopeek.
       Vous pourrez les retirer en effectuant un virement depuis votre espace client dans la partie 'Mes paiements' en cliquant sur le lien ci dessous."
-      in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à help@yoopeek.com . A bientôt sur Yoopeek !"
+      in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à contact@yoopeek.com . A bientôt sur Yoopeek !"
       go_to_account: "Aller sur mon compte"
-    customer_declare_job_finished:
+    worker_declare_job_finished:
       declaration: "Bonne nouvelle! %{worker} a annoncé que la mission est terminée."
       confirm_job_finished: "Si la mission s'est déroulée comme prévu, veuillez s'il vous plait confirmer en cliquant sur le lien ci dessous."
-      in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à help@yoopeek.com . A bientôt sur Yoopeek !"
-      job_finished: "Mission terminée"
+      in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à contact@yoopeek.com . A bientôt sur Yoopeek !"
+      job_finished: "Je confirme que la mission s'est bien déroulée"
 
   other:
     credits_added: Crédits ajouté
@@ -305,7 +305,8 @@ fr:
       this_pro_may_be_suitable: "Ces professionnels pourraient vous convenir"
       send_mp_to_client: "Envoyer une message au client"
       your_conversation: "Votre conversation"
-      job_finished: "Marquer la mission comme terminée"
+      job_finished_by_worker: "Marquer la mission comme terminée"
+      job_finished_by_customer: "Confirmer la mission comme terminée"
       abort_job: "Annuler la mission"
       recap: "Récapitulatif"
       your_budget: "Budget"
@@ -507,6 +508,8 @@ fr:
       legal_notice_information: "Vos mentions légales apparaîtront sur les factures auto-générées par Yoopeek.
         Vous pourrez les modifier dans votre espace personnel."
       creation_button: "Créer votre devis"
+    create:
+      to_create_a_quote_you_must_have_a_company: "Pour créer un devis, veuillez renseigner les informations relatives à votre entreprise, nottament si vous soumis ou non à la TVA"
     quote_element_fields:
       item_detail: "Détail de l'élément"
       unit_price: "Prix unitaire (HT)"
