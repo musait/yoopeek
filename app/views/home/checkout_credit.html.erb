@@ -24,6 +24,10 @@
       <div class="payment-tab-trigger">
         <div class="col-md-12 mb-2" id="card-element"></div>
       </div>
+      <div class="checkbox margin-top-30">
+  			<input type="checkbox" id="two-step">
+  			<label for="two-step"><span class="checkbox-icon"></span> <%= t('.terms_agreements') %></label>
+  		</div>
 
 		</div>
     <button type="button" id="card-button" data-secret="<%= @intent.client_secret %>" class="button big ripple-effect margin-top-40 margin-bottom-65"> <%=t('.confirm')%></button>
@@ -49,10 +53,7 @@
 		<!-- Summary / End -->
 
 		<!-- Checkbox -->
-		<div class="checkbox margin-top-30">
-			<input type="checkbox" id="two-step">
-			<label for="two-step"><span class="checkbox-icon"></span>  I agree to the <a href="#">Terms and Conditions</a> and the <a href="#">Automatic Renewal Terms</a></label>
-		</div>
+
 	</div>
 
 </div>
