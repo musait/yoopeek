@@ -240,7 +240,7 @@ fr:
     index:
       category_exemples: "Photographe, vidéaste, etc."
       subcategory_exemples: "Mariage, Mode, Baptême, etc. "
-      type_a_city: "Entrez une ville (Paris, Genève, etc.)"
+      type_a_city: "   Entrez une ville (Paris, Genève, etc.)"
       your_information_are_saved: "Vos informations ont été prises en compte. Votre compte est en cours de validation par un administrateur"
       find_a: "Trouvez votre"
       with_a_clic: "en un clic"
@@ -259,7 +259,7 @@ fr:
       first_bloc_explanation: "<h3>Créez votre annonce</h3>
       <p>Listez vos envies ou choisissez directement un professionnel proche de chez vous grâce au moteur de recherche</p>"
       second_bloc_explanation: "<h3>Comparez les professionnels</h3>
-      <p>Choisissez et contactez les artistes qui correspondent a vos besoins. Notre équipe sélectionne avec soin des professionnels fiables et expérimentés.</p>"
+      <p>Choisissez et contactez les artistes qui correspondent à vos besoins. Notre équipe sélectionne avec soin des professionnels fiables et expérimentés.</p>"
       third_bloc_explanation: "<h3>Laissez vous guider</h3><p>Maintenant que vous avez trouvé la perle rare, validez le devis et laissez opérer la magie !</p>"
       our_engagement: "Notre engagement"
       fourth_bloc_explanation: "Lorem ipsum"
