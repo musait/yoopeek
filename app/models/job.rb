@@ -3,17 +3,28 @@ class Job < ApplicationRecord
   belongs_to :subcategory
   belongs_to :worker, optional: true
   belongs_to :customer
-  belongs_to :format_delivery
+  belongs_to :format_delivery, optional: true
   has_many :rooms
   has_many :quotes
   has_one :invoice
   has_one :notification
   paginates_per 3
   validates_numericality_of :max_price, presence: true, :message => :is_not_a_number
+  validates_numericality_of :max_price, :greater_than => 0.0, :message => :has_to_be_greather_than_zero
+
+
   validates_numericality_of :min_price, presence: true, :message => :is_not_a_number
+  validates_numericality_of :min_price, :greater_than => 0.0, :message => :has_to_be_greather_than_zero
+
   validates_numericality_of :max_price, :greater_than => :min_price , :message => :has_to_be_greather
   validates_numericality_of :min_time, presence: true, :message => :is_not_a_number
+  validates_numericality_of :min_time, :greater_than => 0.0, :message => :has_to_be_greather_than_zero
+
+
   validates_numericality_of :max_time, presence: true, :message => :is_not_a_number
+  validates_numericality_of :max_time, :greater_than => 0.0, :message => :has_to_be_greather_than_zero
+
+
   validates_numericality_of :max_time, :greater_than => :min_time, :message => :has_to_be_greather
   validates :date_delivery, not_in_past: true,:allow_blank => false, :if => :date_delivery_changed?
 
