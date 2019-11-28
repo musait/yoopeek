@@ -91,29 +91,34 @@ class QuotesController < ApplicationController
   # POST /quotes
   # POST /quotes.json
   def create
+
     @quote = Quote.new(quote_params)
     sender = @quote.sender
     receiver = @quote.receiver
-    @quote.total_without_vat = @quote.quote_elements.sum(&:total)
-    if sender.company.is_subject_to_vat?
-      # Il faut changer la TVA en fonction qu'elle soit française ou suisse
-      @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)
-      @quote.vat = (@quote.total_within_vat - @quote.total_without_vat)
-    else
-      @quote.total_within_vat = @quote.total_without_vat
-      @quote.vat = 0
-    end
-    @quote.job_id = params[:quote][:job_id]
-    respond_to do |format|
-      if @quote.save
-        format.html { redirect_to @quote, notice: t('.quote_created') }
-        format.json { render :show, status: :created, location: @quote }
+    if sender.company.present?
+      @quote.total_without_vat = @quote.quote_elements.sum(&:total)
+      if sender.company.is_subject_to_vat?
+        # Il faut changer la TVA en fonction qu'elle soit française ou suisse
+        @quote.total_within_vat = (@quote.total_without_vat * 1.2).round(2)
+        @quote.vat = (@quote.total_within_vat - @quote.total_without_vat)
       else
-        @job = @quote.job
-
-        format.html { render :new  }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
+        @quote.total_within_vat = @quote.total_without_vat
+        @quote.vat = 0
       end
+      @quote.job_id = params[:quote][:job_id]
+      respond_to do |format|
+        if @quote.save
+          format.html { redirect_to @quote, notice: t('.quote_created') }
+          format.json { render :show, status: :created, location: @quote }
+        else
+          @job = @quote.job
+
+          format.html { render :new  }
+          format.json { render json: @quote.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      redirect_to edit_user_registration_path(id:sender.id), notice: t('.to_create_a_quote_you_must_have_a_company')
     end
   end
 
