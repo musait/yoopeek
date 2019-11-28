@@ -211,8 +211,8 @@ fr:
             aborted: "Annulée"
             status: "Statut"
       header:
-        notification_not_seen: "Vous n'avez pas de notifications non lues"
-        message_not_seen: "Vous n'avez pas de messages non lus"
+        notification_not_seen: "Vous n'avez pas de notifications"
+        message_not_seen: "Vous n'avez pas de messages"
         worker_jobs: "Vos missions"
         my_subscription: "Mon abonnement"
         my_profile: "Mon profil"
