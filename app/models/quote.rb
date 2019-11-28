@@ -4,8 +4,8 @@ class Quote < ApplicationRecord
   belongs_to :job
   belongs_to :sender, class_name: 'User', foreign_key: 'sender_id'
   belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id'
-  has_many :notifications
-
+  has_many :notifications, dependent: :destroy
+  has_one :invoice, dependent: :destroy
   enum status: [:created, :declined, :accepted, :paid]
   before_create :increment_quote
   after_save :send_notification_and_email, if :status_changed?
