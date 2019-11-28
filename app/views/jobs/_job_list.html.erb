@@ -43,14 +43,16 @@
             <%= link_to job_path(job.slug) do  %>
             <h3 class="job-listing-title"> <%= job.name %></h3>
             <% end %>
-            <div class="">
-              <%= link_to edit_job_path(job.slug) do  %>
-                <i class="icon-line-awesome-edit"></i>
-              <% end %>
-              <%= link_to job_path(job.slug), method: :delete,data: {confirm: I18n.t('.jobs.edit.are_you_sure')} do %>
-              <i class="icon-feather-trash-2"></i>
-              <% end %>
-            </div>
+            <% if current_user.eql?(job.customer) && !(job.status.eql?("completed_by_worker") || job.status.eql?("completed_by_customer"))  %>
+              <div class="">
+                <%= link_to edit_job_path(job.slug) do  %>
+                  <i class="icon-line-awesome-edit"></i>
+                <% end %>
+                <%= link_to job_path(job.slug), method: :delete,data: {confirm: I18n.t('.jobs.edit.are_you_sure')} do %>
+                  <i class="icon-feather-trash-2"></i>
+                <% end %>
+              </div>
+            <% end %>
           </div>
           <p class="job-listing-text"> <%= job.description %></p>
         </div>
@@ -62,15 +64,15 @@
             <li><mark class="color" style="background-color: grey"><%= t('jobs.index.created') %></mark></li>
             <% when "in_progress" %>
             <mark class="color" style="background-color: #28b661"><%= t('jobs.index.in_progress') %></mark>
-            <% when "completed" %>
+            <% when "completed_by_worker" %>
             <mark class="color" style="background-color: #2a41e8"><%= t('jobs.index.finished') %></mark>
-            <% when "cancelled" %>
-            <mark class="color" style="background-color: #e53038"><%= t('jobs.index.aborted') %></mark>
+            <% else %>
+            <mark class="color" style="background-color: #28b661"><%= t('jobs.index.job_completed') %></mark>
           <% end %>
           <li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.min_price,strip_insignificant_zeros: true) +"-"+ number_to_currency(job.max_price,strip_insignificant_zeros: true)%></li>
           <li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
           <li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
-          <li><i class="icon-material-outline-location-on"></i> <%= job.format_delivery.name %></li>
+          <li><i class="icon-material-outline-location-on"></i> <%= job.format_delivery.name if job.format_delivery.present? %></li>
           <li><i class="icon-material-outline-location-on"></i> <%=  t('jobs.index.time_range', min_time: job.min_time,max_time: job.max_time) if job.min_time %></li>
           <li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
           <li><i class="icon-material-outline-access-time"></i> <%= t('jobs.index.published_at') %> <%= time_ago_in_words(job.created_at) %></li>

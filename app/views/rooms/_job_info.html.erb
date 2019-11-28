@@ -18,10 +18,10 @@
             <mark class="color" style="background-color: grey"> <%= t('.job_created') %></mark>
             <% when "in_progress" %>
             <mark class="color" style="background-color: orange"><%= t('.job_in_progress') %></mark>
-            <% when "completed" %>
-            <mark class="color" style="background-color: #28b661"><%= t('.job_completed') %></mark>
+            <% when "completed_by_worker" %>
+            <mark class="color" style="background-color: #2a41e8"><%= t('.job_completed') %></mark>
             <% else%>
-            <mark class="color" style="background-color: #e53038"><%= t('.job_canceled') %></mark>
+            <mark class="color" style="background-color: #28b661"><%= t('.job_completed') %></mark>
             <% end %>
           </li>
           <li>
@@ -37,7 +37,7 @@
           <li>
             <i class="icon-material-outline-location-on"></i>
             <span><%= t('.format_delivery') %></span>
-            <h5><%= @room.job.format_delivery.name %></h5>
+            <h5><%= @room.job.format_delivery.name if @room.job.format_delivery.present?%></h5>
           </li>
           <li>
             <i class="icon-material-outline-business-center"></i>
