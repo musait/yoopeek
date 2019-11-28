@@ -33,18 +33,18 @@
 
 									<!-- Avatar -->
 									<div class="freelancer-avatar">
-										<div class="verified-badge"></div>
-										<a href="single-freelancer-profile.html"><img src="/theme/user/hireo/images/user-avatar-big-01.jpg" alt=""></a>
+										<!-- <div class="verified-badge"></div> -->
+										<img src=" <%= @job.worker.avatar_url %>" alt="">
 									</div>
 
 									<!-- Name -->
 									<div class="freelancer-name">
 										<h4><%= @job.worker.full_name %></h4>
-										<span><%= @job.worker.profession.name %></span>
+										<span><%= @job.worker.profession.name if @job.worker.profession.present? %></span>
 										<!-- Rating -->
-										<div class="freelancer-rating">
+										<!-- <div class="freelancer-rating">
 											<div class="star-rating" data-rating="3"></div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
@@ -53,11 +53,15 @@
 							<div class="freelancer-details">
 								<div class="freelancer-details-list">
 									<ul>
-										<li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i><%= @job.worker.company.address.city %></strong></li>
-										<li><%= t('.price_rate') %> <strong><%= number_to_currency(@job.worker.price_rate,strip_insignificant_zeros: true)%></strong></li>
+										<% if @job.worker.company.address.city.present? %>
+											<li> <%= t('.localisation') %> <strong><i class="icon-material-outline-location-on"></i><%= @job.worker.company.address.city if @job.worker.company.address.city.present? %></strong></li>
+										<% end %>
+										<% if @job.worker.price_rate.present?%>
+											<li><%= t('.price_rate') %> <strong><%= number_to_currency(@job.worker.price_rate,strip_insignificant_zeros: true) if @job.worker.price_rate.present?%></strong></li>
+										<% end %>
 									</ul>
 								</div>
-								<%= link_to user_show_path(id:@job.worker.id),class:"button button-sliding-icon ripple-effect" do %>
+								<%= link_to user_path(id:@job.worker.id),class:"button button-sliding-icon ripple-effect" do %>
 								<%= t('.see_pro_profile') %>
 								<% end %>
 							</div>
@@ -234,9 +238,13 @@
 				<% end %>
 			<% end %>
 			<% if (@job.worker == current_user || @job.customer == current_user) && !@job.created? %>
-				<% if (current_user.worker? && (!@job.completed_by_worker? &&!@job.completed_by_customer?) )||((current_user.customer? && !@job.completed_by_customer?) &&@job.completed_by_worker?) %>
+				<% if (current_user.worker? && (!@job.completed_by_worker? &&!@job.completed_by_customer?)) %>
 					<%= link_to finished_job_path(slug: @job.slug), class: "apply-now-button" do %>
-						<%= t('.job_finished') %><i class="icon-material-outline-arrow-right-alt"></i>
+						<%= t('.job_finished_by_worker') %><i class="icon-material-outline-arrow-right-alt"></i>
+					<% end %>
+				<% elsif ((current_user.customer? && !@job.completed_by_customer?) &&@job.completed_by_worker?) %>
+					<%= link_to finished_job_path(slug: @job.slug), class: "apply-now-button" do %>
+						<%= t('.job_finished_by_customer') %><i class="icon-material-outline-arrow-right-alt"></i>
 					<% end %>
 				<% else %>
 					<span class="apply-now-button"> <%= t(".mission_finished") %></span>
