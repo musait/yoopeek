@@ -82,7 +82,7 @@ fr:
   summary: Résumé
   message_for_worker: "Bienvenue sur Yoopeek. Chaque message vous coûtera 6 points. Si le client ne vous répond pas, vous serez remboursé intégralement. Si le client vous répond, mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points ."
   message_for_customer: "Bienvenue sur Yoopeek. Ceci est votre messagerie. Elle vous servira à communiquer avec les professionnels qui vous intéressent ."
-  ubscriptions:
+  subscriptions:
     index:
       your_subscription: "Votre abonnement"
       limit_portfolio: Portfolio limité à %{picture_limitation} contenus
@@ -509,10 +509,11 @@ fr:
     quote_list:
       no_quotes_find: "Vous n'avez pas encore de devis"
       status: "Statut du devis"
-      quote_total: "Montant du devis"
+      quote_total: "Montant du devis TTC"
       quote_job_name: "Mission concernée"
       quote_number: "Numéro du devis"
       quote_vat: "TVA"
+      quote_without_vat: "Total hors taxes"
       quote: "Devis n° %{number}"
     new:
       quote_creation: "Créer un devis"
