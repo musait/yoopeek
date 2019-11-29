@@ -44,9 +44,9 @@
 										<% @quote.quote_elements.each do |qe| %>
 											<tr>
 	            					<td><%= qe.content %></td>
-	            					<td><%= qe.price %></td>
+	            					<td><%= number_to_currency(qe.price) %></td>
 	            					<td><%= qe.quantity %></td>
-	                      <td><%= qe.total %></td>
+	                      <td><%= number_to_currency(qe.total) %></td>
 	            				</tr>
 										<% end %>
 									</tbody>
@@ -155,7 +155,7 @@
 		$(document).ready(function() {
 		  $('#quote_datatable').dataTable({
         "language": {
-          "url": 'http://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
+          "url": 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
         }
       });
 		});
