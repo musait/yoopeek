@@ -347,14 +347,20 @@
                     </div>
                     <% if current_user.company.present? && current_user.company.subject_to_vat? %>
                     <div class="col-xl-6" style="display:block" id="vatRate">
-                    <% else %>
-                    <div class="col-xl-6" style="display:none" id="vatRate">
-                    <% end %>
                       <div class="submit-field">
                         <h5><%= raw I18n.t('.user.company.edit.vat_rate') %></h5>
                         <% vat_rates = [['20%','20'],['7,7%','7.7']] %>
                         <%= c.select :vat_rate,vat_rates,{}, prompt: 'Select One', id:"vat_select", class:"selectpicker" %>
                       </div>
+                    <% else %>
+                    <div class="col-xl-6" style="display:none" id="vatRate">
+                      <div class="submit-field">
+                        <h5><%= raw I18n.t('.user.company.edit.vat_rate') %></h5>
+                        <% vat_rates = [['20%','20'],['7,7%','7.7']] %>
+                        <%= c.select :vat_rate,vat_rates,{}, prompt: 'Select One', id:"vat_select", class:"selectpicker" %>
+                      </div>
+                    <% end %>
+
                     </div>
                   </div>
                 </div>
