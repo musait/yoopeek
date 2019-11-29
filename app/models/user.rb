@@ -39,12 +39,21 @@ class User < ApplicationRecord
             country: "FR",
             type: "custom",
             account_token: account_token,
+            business_profile: {
+              url: self.try("company").try("website").present? ? self.try("company").try("website") : "https://www.yoopeek.com",
+              mcc: 7221
+            },
             requested_capabilities: ['card_payments', 'transfers']
           })
           self.stripe_account_id = account.id
+
         else
           account = Stripe::Account.update(
             self.stripe_account_id,
+            business_profile: {
+              url: self.try("company").try("website").present? ? self.try("company").try("website") : "https://www.yoopeek.com",
+              mcc: 7221
+            },
             account_token: account_token
           )
         end

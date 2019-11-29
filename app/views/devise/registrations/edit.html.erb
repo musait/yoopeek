@@ -109,6 +109,9 @@
                     <%= f.text_field :phone_number, class:"with-border" %>
                   </div>
                 </div>
+                <input type="file" id="id-file" name="id-file" accept=".jpeg,.jpg,.png">
+                <input type="file" id="id-fileVerso" name="id-fileVerso" accept=".jpeg,.jpg,.png">
+                <input type="file" id="id-fileSup" name="id-fileSup" accept=".jpeg,.jpg,.png">
                 <% if current_user.worker? %>
                   <div class="col-xl-6">
                     <div class="submit-field">
@@ -427,10 +430,10 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('#profession_id').selectpicker({
-        title : 'Veuillez sélectionner une profession'
+        title : '<%= t("select_a_profession") %>'
       });
       $('#subcategory_id').selectpicker({
-        title : 'Choisissez votre/vos spécialité(s)',
+        title : '<%= t("select_a_speciality") %>',
         noneSelectedText: ''
       });
       $('#vat_select').selectpicker({
@@ -513,85 +516,120 @@
         myForm.addEventListener('submit', handleForm);
 
         async function handleForm(event) {
-        event.preventDefault();
+          event.preventDefault();
+          var fileData = null
+          if ($('#id-file')[0].files.length != 0) {
+            const data = new FormData();
+            data.append('file', document.querySelector('#id-file').files[0]);
+            data.append('purpose', 'identity_document');
+            const fileResult = await fetch('https://uploads.stripe.com/v1/files', {
+              method: 'POST',
+              headers: {'Authorization': 'Bearer <%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key)  %>'},
+              body: data,
+            });
+            fileData = await fileResult.json();
+          }
+
+          //////back
+          var fileDataBack = null
+          if ($('#id-fileVerso')[0].files.length != 0) {
+            const dataBack = new FormData();
+            dataBack.append('file', document.querySelector('#id-fileVerso').files[0]);
+            dataBack.append('purpose', 'identity_document');
+            const fileResultBack = await fetch('https://uploads.stripe.com/v1/files', {
+              method: 'POST',
+              headers: {'Authorization': 'Bearer <%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key)  %>'},
+              body: dataBack
+            });
+            fileDataBack = await fileResultBack.json();
+          }
+
+
+          ///////// doc supp
+          var fileDataSup = null
+          if ($('#id-fileSup')[0].files.length != 0) {
+            const dataSup = new FormData();
+            dataSup.append('file', document.querySelector('#id-fileSup').files[0]);
+            dataSup.append('purpose', 'identity_document');
+            const fileResultSup = await fetch('https://uploads.stripe.com/v1/files', {
+              method: 'POST',
+              headers: {'Authorization': 'Bearer <%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key)  %>'},
+              body: dataSup,
+            });
+            fileDataSup = await fileResultSup.json();
+          }
+
+        var stripeCompanyAccount = {
+          name: document.querySelector('#user_company_attributes_name').value,
+          phone: document.querySelector('#user_phone_number').value,
+          address: {
+            line1: document.querySelector('#street_id').value,
+            city: document.querySelector('#locality').value,
+            state: document.querySelector('#country').value,
+            postal_code: document.querySelector('#postal_code').value,
+          },
+          directors_provided: true,
+          tax_id: "123456"
+        }
         <% if current_user.stripe_account_id.present? %>
           const accountResult = await stripe.createToken('account', {
             // business_type: 'individual',
             business_type: 'company',
-            company: {
-              name: document.querySelector('#user_company_attributes_name').value,
-              address: {
-                line1: document.querySelector('#street_id').value,
-                city: document.querySelector('#locality').value,
-                state: document.querySelector('#country').value,
-                postal_code: document.querySelector('#postal_code').value,
-              },
-
-            },
+            company: stripeCompanyAccount,
           });
         <% else %>
           const accountResult = await stripe.createToken('account', {
             // business_type: 'individual',
             business_type: 'company',
-            company: {
-              name: document.querySelector('#user_company_attributes_name').value,
-              address: {
-                line1: document.querySelector('#street_id').value,
-                city: document.querySelector('#locality').value,
-                state: document.querySelector('#country').value,
-                postal_code: document.querySelector('#postal_code').value,
-              },
-
-            },
-            tos_shown_and_accepted: true,
-
+            company: stripeCompanyAccount,
+            tos_shown_and_accepted: true
           });
         <% end %>
+        var stripePersonAttribute = {
+          first_name: document.querySelector('#user_firstname').value,
+          last_name: document.querySelector('#user_lastname').value,
+          email: document.querySelector('#user_email').value,
+          phone: document.querySelector('#user_phone_number').value,
+          dob: {
+            day: document.querySelector('#user_birthdate_3i').value,
+            month: document.querySelector('#user_birthdate_2i').value,
+            year: document.querySelector('#user_birthdate_1i').value
+          },
+          address: {
+            line1: document.querySelector('#street_id').value,
+            city: document.querySelector('#locality').value,
+            state: document.querySelector('#country').value,
+            postal_code: document.querySelector('#postal_code').value,
+          },
+          verification: {
+            document: {
+              front: (fileData != null ? fileData.id : null),
+              back: (fileDataBack != null ? fileDataBack.id : null),
+            },
+            additional_document: {
+              front: (fileDataSup != null ? fileDataSup.id : null)
+            }
+          },
+        }
         <% if current_user.stripe_person_id.present? %>
           const personResult = await stripe.createToken('person', {
-            person: {
-              first_name: document.querySelector('#user_firstname').value,
-              last_name: document.querySelector('#user_lastname').value,
-              email: document.querySelector('#user_email').value,
-              dob: {
-                day: document.querySelector('#user_birthdate_3i').value,
-                month: document.querySelector('#user_birthdate_2i').value,
-                year: document.querySelector('#user_birthdate_1i').value
-              },
-              address: {
-                line1: document.querySelector('#street_id').value,
-                city: document.querySelector('#locality').value,
-                state: document.querySelector('#country').value,
-                postal_code: document.querySelector('#postal_code').value,
-              }
-            },
+            person: stripePersonAttribute,
           });
         <% else %>
-          const personResult = await stripe.createToken('person', {
-            person: {
-              first_name: document.querySelector('#user_firstname').value,
-              last_name: document.querySelector('#user_lastname').value,
-              email: document.querySelector('#user_email').value,
-              dob: {
-                day: document.querySelector('#user_birthdate_3i').value,
-                month: document.querySelector('#user_birthdate_2i').value,
-                year: document.querySelector('#user_birthdate_1i').value
-              },
-              address: {
-                line1: document.querySelector('#street_id').value,
-                city: document.querySelector('#locality').value,
-                state: document.querySelector('#country').value,
-                postal_code: document.querySelector('#postal_code').value,
-              },
-              relationship: {
-                representative: true,
-                owner: true,
-                director: true,
-                executive: true,
-                percent_ownership: 100,
-              }
-            },
+
+          $.extend( stripePersonAttribute, {
+            relationship: {
+              representative: true,
+              owner: true,
+              director: true,
+              executive: true,
+              title: "CEO",
+              percent_ownership: 100,
+            }
           });
+          const personResult = await stripe.createToken('person', {
+            person: stripePersonAttribute
+            });
         <% end %>
           var bankResult = null
           if (document.querySelector('#user_company_attributes_iban').value == "" || document.querySelector('#user_company_attributes_iban').value == null) {
