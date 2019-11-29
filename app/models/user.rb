@@ -31,7 +31,6 @@ class User < ApplicationRecord
   validates :lastname, presence: { message: :must_exist }
   after_create :add_approval
   before_save :set_stripe_account
-  after_create_commit :set_conv_with_yoopeek
   def set_stripe_account
     if account_token.present?
       begin
@@ -129,23 +128,22 @@ class User < ApplicationRecord
   def self.types
     %w(Worker Customer)
   end
+  def self.set_conv_with_yoopeek(user)
+    unless user.email == "yoopeek@yoopeek.com"
+      @yoopeek_user = User.find_by(email:"yoopeek@yoopeek.com")
+      @room = Room.create!(author: @yoopeek_user,receiver: user )
+      if user.type.eql?("Worker")
+        RoomMessage.create(room: @room,author:@yoopeek_user,receiver:user, message:I18n.t('.message_for_worker'))
+      else
+        RoomMessage.create(room: @room,author:@yoopeek_user,receiver:user, message:I18n.t('.message_for_customer'))
+      end
+    end
+  end
 
   def have_one_room_with_user(user)
     authored_rooms.with_receiver(user) || received_rooms.with_author(user)
   end
 
-  def set_conv_with_yoopeek
-    unless self.email == "yoopeek@yoopeek.com"
-      @yoopeek_user = User.find_by(email:"yoopeek@yoopeek.com")
-      @room = Room.create!(author: @yoopeek_user,receiver: self )
-      if self.worker?
-        RoomMessage.create(room: @room,author:@yoopeek_user,receiver:self, message:"Bienvenue sur Yoopeek. Chaque message vous coûtera 6 points. Si le client ne vous répond pas, vous serez remboursé intégralement.
-        Si le client vous répond, mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points")
-      else
-        RoomMessage.create(room: @room,author:@yoopeek_user,receiver:self, message:"Bienvenue sur Yoopeek.")
-      end
-    end
-  end
   def send_admin_mail
     AdminMailer.new_user_waiting_for_approval(email).deliver if self.worker?
   end
@@ -208,7 +206,7 @@ class User < ApplicationRecord
   end
 
   def become_a_worker
-    worker? ? becomes!(Worker) : becomes!(Customer)
+    user.worker? ? becomes!(Worker) : becomes!(Customer)
   end
 
   def current_subscription
