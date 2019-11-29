@@ -149,3 +149,4 @@ fr:
      other: "Les champs suivants présentent des erreurs :"
     company:
      iban_not_valid: "n'est pas valide"
+    taken: "est déjà utilisé"
