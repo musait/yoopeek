@@ -25,7 +25,7 @@ class RoomMessagesController < ApplicationController
   def create_message
     @room_message = RoomMessage.create(room_message_params)
 
-    if @room_message.valid?
+    if @room_message.valid? &&@room_message.is_valid
       RoomChannel.broadcast_to @room, @room_message.attributes.merge!(author_avatar: @room_message.author.avatar_url, author_full_name: @room_message.author.full_name, time_ago_in_words: time_ago_in_words(@room_message.created_at))
 
       receiver =  @room.author.eql?(current_user) ? @room.receiver : @room.author
@@ -34,7 +34,11 @@ class RoomMessagesController < ApplicationController
       render json: { status: :true }
     else
       current_user.refund_credits(@credits) if @credits.present?
-      error_message = I18n.t("unvalid_room_message", reason: @room_message.unvalid_reason.to_s)
+      if @room_message.errors.present?
+        error_message = @room_message.errors.full_messages.join(", ")
+      else
+        error_message = I18n.t("unvalid_room_message", reason: @room_message.unvalid_reason.to_s)
+      end
       render js: "toastr['error']('#{error_message}');"
     end
   end
