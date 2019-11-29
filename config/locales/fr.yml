@@ -61,9 +61,9 @@ fr:
   credits_for:
     html: <strong>%{credits} crédits:</strong> %{for}
   buy: Acheter
-  no_stripe_account: Le professionnel n'a pas encore rempli toutes ces informations.
+  no_stripe_account: Le professionnel n'a pas encore rempli toutes ses informations.
   unvalid_room_message: "Le(s) mot(s) %{reason} ne sont pas permis"
-  no_stripe_account: Le professionnel n'a pas encore rempli toutes ces informations .
+  no_stripe_account: Le professionnel n'a pas encore rempli toutes ses informations .
   invoice_credits: "%{credits} crédits"
   your_invoices: Vos factures
   invoice_number: Numéro de la facture
