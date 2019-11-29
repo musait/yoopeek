@@ -44,9 +44,9 @@
 										<% @quote.quote_elements.each do |qe| %>
 											<tr>
 	            					<td><%= qe.content %></td>
-	            					<td><%= number_to_currency(qe.price) %></td>
+	            					<td><%= currency_formated(qe.price) %></td>
 	            					<td><%= qe.quantity %></td>
-	                      <td><%= number_to_currency(qe.total) %></td>
+	                      <td><%= currency_formated(qe.total) %></td>
 	            				</tr>
 										<% end %>
 									</tbody>
