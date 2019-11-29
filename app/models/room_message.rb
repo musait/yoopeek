@@ -13,6 +13,7 @@ class RoomMessage < ApplicationRecord
   scope :catched_messages, -> () {
     valid_messages.where(is_catched: true)
   }
+  validates :message, presence: true
   validate :check_author_credits,unless: -> {User.unscoped.find(self.author_id).email == "yoopeek@yoopeek.com"}
   before_validation :content_valid?
   FILTERS = ["valid_message", "unvalid_message", "catched_message"]

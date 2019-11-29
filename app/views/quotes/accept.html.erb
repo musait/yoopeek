@@ -62,37 +62,6 @@
 	</div>
 </div>
 <%= content_for :body_script do %>
-<script>
-
-  window.addEventListener("DOMContentLoaded", function(e) {
-
-    var myForm = document.getElementById("example4");
-    var checkForm = function(e) {
-      if(!this.terms.checked) {
-        alert("Please indicate that you accept the Terms and Conditions");
-        this.terms.focus();
-        e.preventDefault(); // equivalent to return false
-        return;
-      }
-    };
-
-    // attach the form submit handler
-    myForm.addEventListener("submit", checkForm, false);
-
-    var myCheckbox = document.getElementById("field_terms");
-    var myCheckboxMsg = "Please indicate that you accept the Terms and Conditions";
-
-    // set the starting error message
-    myCheckbox.setCustomValidity(myCheckboxMsg);
-
-    // attach checkbox handler to toggle error message
-    myCheckbox.addEventListener("change", function(e) {
-      this.setCustomValidity(this.validity.valueMissing ? myCheckboxMsg : "");
-    }, false);
-
-  }, false);
-</script>
-
   <script src="https://js.stripe.com/v3/"></script>
 
   <script type="text/javascript">
@@ -126,6 +95,10 @@
       var clientSecret = '<%= @intent.client_secret %>';
 
       cardButton.addEventListener('click', function(ev) {
+        if(!$("#field_terms").prop("checked")) {
+          toastr['error']('<%= t("terms.error.not_accepted") %>');
+          return false;
+        }
         $("#card-button").prop("disabled", true)
         $("#card-button").html("Paiement en cours")
         stripe.handleCardPayment(

@@ -12,7 +12,7 @@ class RoomMessagesController < ApplicationController
           create_message
         else
           # current_user.refund_credits(credits)
-          render js: 'toastr["error"]("' + I18n.t('not_enougth_credits') + '");'
+          render js: 'toastr["error"]("' + I18n.t('not_enougth_credits') + '<br /><br /><a href=\"' + buy_credits_path + '\">En acheté ici</a>");'
         end
       end
     else
@@ -24,12 +24,12 @@ class RoomMessagesController < ApplicationController
   protected
   def create_message
     @room_message = RoomMessage.create(room_message_params)
-    RoomChannel.broadcast_to @room, @room_message.attributes.merge!(author_avatar: @room_message.author.avatar_url, author_full_name: @room_message.author.full_name, time_ago_in_words: time_ago_in_words(@room_message.created_at))
 
+    if @room_message.valid?
+      RoomChannel.broadcast_to @room, @room_message.attributes.merge!(author_avatar: @room_message.author.avatar_url, author_full_name: @room_message.author.full_name, time_ago_in_words: time_ago_in_words(@room_message.created_at))
 
-    receiver =  @room.author.eql?(current_user) ? @room.receiver : @room.author
-    sender =  @room.author.eql?(current_user) ? @room.author : @room.receiver
-    if @room_message.is_valid
+      receiver =  @room.author.eql?(current_user) ? @room.receiver : @room.author
+      sender =  @room.author.eql?(current_user) ? @room.author : @room.receiver
       Notification.create!(message: @room_message.message, room_message: @room_message, created_for: @room_message.class.to_s.underscore, sender: sender, receiver: receiver)
       render json: { status: :true }
     else

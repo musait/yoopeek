@@ -25,7 +25,7 @@
         <div class="col-md-12 mb-2" id="card-element"></div>
       </div>
       <div class="checkbox margin-top-30">
-  			<input type="checkbox" id="two-step">
+  			<input type="checkbox" id="two-step" required>
   			<label for="two-step"><span class="checkbox-icon"></span> <%= t('.terms_agreements') %></label>
   		</div>
 
@@ -62,6 +62,7 @@
 
   <script type="text/javascript">
     $(function () {
+
       var stripe = Stripe('<%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :publishable_key) %>');
 
       var elements = stripe.elements();
@@ -91,6 +92,10 @@
       var clientSecret = '<%= @intent.client_secret %>';
 
       cardButton.addEventListener('click', function(ev) {
+        if(!$("#two-step").prop("checked")) {
+          toastr['error']('<%= t("terms.error.not_accepted") %>');
+          return false;
+        }
         $("#card-button").prop("disabled", true)
         $("#card-button").html("Paiement en cours")
         stripe.handleCardPayment(
