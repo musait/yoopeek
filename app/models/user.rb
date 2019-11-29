@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :authored_rooms, class_name: 'Room', foreign_key: 'author_id'
   has_many :received_rooms, class_name: 'Room', foreign_key: 'receiver_id'
   has_many :room_messages
-  has_many :credits_payments
+  has_many :credits_payments,dependent: :destroy
   has_many :notif_received, class_name: 'Notification', foreign_key: 'receiver_id'
   has_many :notif_send, class_name: 'Notification', foreign_key: 'sender_id'
   has_many :join_user_subcategories
