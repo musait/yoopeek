@@ -19,7 +19,7 @@
             <% when "in_progress" %>
             <mark class="color" style="background-color: orange"><%= t('.job_in_progress') %></mark>
             <% when "completed_by_worker" %>
-            <mark class="color" style="background-color: #2a41e8"><%= t('.job_completed') %></mark>
+            <mark class="color" style="background-color: #28b661"><%= t('.job_completed') %></mark>
             <% else%>
             <mark class="color" style="background-color: #28b661"><%= t('.job_completed') %></mark>
             <% end %>
@@ -65,9 +65,9 @@
                   <% when "created" %>
                     <mark class="color" style="background-color: grey"> <%= t('.quote_in_progress') %></mark>
                   <% when "accepted" %>
-                    <mark class="color" style="background-color: green"><%= t('.quote_accepted') %></mark>
+                    <mark class="color" style="background-color: #28b661"><%= t('.quote_accepted') %></mark>
                   <% when "paid"  %>
-                  <mark class="color" style="background-color: green"><%= t('.quote_paid') %></mark>
+                  <mark class="color" style="background-color: #28b661"><%= t('.quote_paid') %></mark>
                   <% else %>
                     <mark class="color" style="background-color: red "><%= t('.quote_declined') %></mark>
                 <% end %>
