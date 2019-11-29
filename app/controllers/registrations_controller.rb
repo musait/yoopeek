@@ -9,6 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
       @user.update(type: "Customer")
     end
     if @user.persisted?
+      User.set_conv_with_yoopeek(@user)
       sign_in_and_redirect @user, event: :authentification
     end
   end
