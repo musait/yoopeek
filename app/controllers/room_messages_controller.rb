@@ -1,4 +1,5 @@
 class RoomMessagesController < ApplicationController
+  include ActionView::Helpers::DateHelper
   before_action :load_entities
 
   def create
@@ -23,11 +24,13 @@ class RoomMessagesController < ApplicationController
   protected
   def create_message
     @room_message = RoomMessage.create(room_message_params)
-    RoomChannel.broadcast_to @room, @room_message.attributes.merge!(author_avatar: @room_message.author.avatar_url)
+    RoomChannel.broadcast_to @room, @room_message.attributes.merge!(author_avatar: @room_message.author.avatar_url, author_full_name: @room_message.author.full_name, time_ago_in_words: time_ago_in_words(@room_message.created_at))
+
+
     receiver =  @room.author.eql?(current_user) ? @room.receiver : @room.author
     sender =  @room.author.eql?(current_user) ? @room.author : @room.receiver
     if @room_message.is_valid
-      Notification.create!(message: t('.you_have_received_a_message'), room_message: @room_message, created_for: @room_message.class.to_s.underscore, sender: sender, receiver: receiver)
+      Notification.create!(message: @room_message.message, room_message: @room_message, created_for: @room_message.class.to_s.underscore, sender: sender, receiver: receiver)
       render json: { status: :true }
     else
       current_user.refund_credits(@credits) if @credits.present?

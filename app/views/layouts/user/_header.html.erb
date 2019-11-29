@@ -57,23 +57,23 @@
 							<!-- Trigger -->
 							<div class="header-notifications-trigger">
 								<a href="#">
-									<i class="icon-feather-bell"></i><span><%= @notifications.count %></span>
+									<i class="icon-feather-bell"></i><span id="header-notifications-count"><%= @notifications.count %></span>
 								</a>
 							</div>
 
 							<!-- Dropdown -->
 							<div class="header-notifications-dropdown">
 
-								<div class="header-notifications-headline">
+								<!-- <div class="header-notifications-headline">
 									<h4>Notifications</h4>
 									<button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
 										<i class="icon-feather-check-square"></i>
 									</button>
-								</div>
+								</div> -->
 
 								<div class="header-notifications-content">
 									<div class="header-notifications-scroll" data-simplebar>
-										<ul>
+										<ul id="header-ul-notification-container">
 											<!-- Notification -->
 											<%if @notifications.empty?%>
 											<div class="header-notifications-content">
@@ -116,9 +116,9 @@
 							<div class="header-notifications-trigger">
 								<a href="#"><i class="icon-feather-mail"></i>
 									<% if  @notification_messages.count > 0 %>
-									<span style="background-color:red"><%= @notification_messages.count %></span>
+									<span id="notifications-messages-count" style="background-color:red"><%= @notification_messages.count %></span>
 									<% else %>
-									<span><%= @notification_messages.count %></span>
+									<span id="notifications-messages-count"><%= @notification_messages.count %></span>
 									<% end %>
 								</a>
 							</div>
@@ -135,7 +135,7 @@
 								<% if @notification_messages.empty? %>
 									<div class="header-notifications-content">
 										<div class="header-notifications-scroll" data-simplebar>
-											<ul>
+											<ul id="notifications-messages-ul-container">
 												<!-- Notification -->
 												<li class="notifications-not-read">
 													<a href="#">
@@ -152,7 +152,7 @@
 									<% @notification_messages.each do |nm| %>
 										<div class="header-notifications-content">
 											<div class="header-notifications-scroll" data-simplebar>
-												<ul>
+												<ul id="notifications-messages-ul-container">
 													<!-- Notification -->
 													<li class="notifications-not-read">
 														<%= link_to nm.url, method: :get do  %>

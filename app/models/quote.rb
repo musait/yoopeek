@@ -34,7 +34,7 @@ class Quote < ApplicationRecord
         Notification.create!(message: I18n.t('.quotes.accept.your_quote_has_been_paid',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.receiver, receiver: self.sender)
         UserMailer.with(user: self.sender, quote: self).quote_paid.deliver_now
       when "declined"
-        Notification.create!(message: I18n.t('.your_quote_has_been_declined',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.sender, receiver: self.receiver)
+        Notification.create!(message: I18n.t('.your_quote_has_been_declined',job: self.job.name), quote: self, created_for: self.class.to_s.underscore, sender: self.receiver, receiver: self.sender)
         UserMailer.with(user: self.sender, quote: self).quote_declined.deliver_now
       end
     end
