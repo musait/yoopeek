@@ -44,13 +44,11 @@
                   <% when 'created' %>
                   <li><mark class="color" style="background-color: grey"><%= t('jobs.index.created') %></mark></li>
                   <% when "in_progress" %>
-                  <mark class="color" style="background-color: #28b661"><%= t('jobs.index.in_progress') %></mark>
+                  <mark class="color" style="background-color: orange"><%= t('jobs.index.in_progress') %></mark>
 									<% when "completed_by_customer" %>
-			            <mark class="color" style="background-color: #2a41e8"><%= t('jobs.index.finished') %></mark>
+			            <mark class="color" style="background-color: #28b661"><%= t('jobs.index.finished') %></mark>
 									<% when "completed_by_worker" %>
 									<mark class="color" style="background-color: #28b661"><%= t('jobs.index.finished') %></mark>
-                  <% when "cancelled" %>
-                  <mark class="color" style="background-color: #e53038"><%= t('jobs.index.aborted') %></mark>
                 <% end %>
                 <li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.sold_at)%></li>
                 <li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
