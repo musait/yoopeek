@@ -335,11 +335,25 @@
                 				<label for="checkbox1"><span class="checkbox-icon"></span> <%= raw I18n.t('.user.company.edit.is_your_company_subject_to_vat') %></label>
                 			</div>
                     </div>
-
-                    <div class="col-xl-6" style="display:none"id="vatNumber">
+                    <% if current_user.company.present? && current_user.company.subject_to_vat? %>
+                      <div class="col-xl-6" style="display:block" id="vatNumber">
+                    <% else %>
+                    <div class="col-xl-6" style="display:none" id="vatNumber">
+                    <% end %>
                       <div class="submit-field">
                         <h5><%= raw I18n.t('.user.company.edit.vat_number') %></h5>
                         <%= c.text_field :vat_number, class:"with-border" %>
+                      </div>
+                    </div>
+                    <% if current_user.company.present? && current_user.company.subject_to_vat? %>
+                    <div class="col-xl-6" style="display:block" id="vatRate">
+                    <% else %>
+                    <div class="col-xl-6" style="display:none" id="vatRate">
+                    <% end %>
+                      <div class="submit-field">
+                        <h5><%= raw I18n.t('.user.company.edit.vat_rate') %></h5>
+                        <% vat_rates = [['20%','20'],['7,7%','7.7']] %>
+                        <%= c.select :vat_rate,vat_rates,{}, prompt: 'Select One', id:"vat_select", class:"selectpicker" %>
                       </div>
                     </div>
                   </div>
@@ -393,10 +407,13 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $('#checkbox1').change(function () {
-        if (this.checked)
+        if (this.checked){
           document.getElementById('vatNumber').style.display = "block";
-        else
+          document.getElementById('vatRate').style.display = "block";
+        }else{
           document.getElementById('vatNumber').style.display = "none";
+          document.getElementById('vatRate').style.display = "none";
+        }
       });
   });
   </script>
@@ -407,7 +424,11 @@
         title : 'Veuillez sélectionner une profession'
       });
       $('#subcategory_id').selectpicker({
-        title : 'Choisis ta/tes spécialité(s)',
+        title : 'Choisissez votre/vos spécialité(s)',
+        noneSelectedText: ''
+      });
+      $('#vat_select').selectpicker({
+        title : 'Séléctionnez une TVA',
         noneSelectedText: ''
       });
     });
