@@ -270,11 +270,11 @@
 								<% when "created" %>
 									<mark class="color" style="background-color: grey"><%= t('.created') %></mark>
 								<% when "in_progress" %>
-									<mark class="color" style="background-color: #28b661"><%= t('.in_progress') %></mark>
-								<% when "completed_by_worker" || "completed_by_customer" %>
-									<mark class="color" style="background-color: #2a41e8"><%= t('.finished') %></mark>
-								<% when "cancelled" %>
-									<mark class="color" style="background-color: #e53038"><%= t('.aborted') %></mark>
+									<mark class="color" style="background-color: orange"><%= t('.in_progress') %></mark>
+								<% when  "completed_by_customer" %>
+									<mark class="color" style="background-color: #28b661"><%= t('.finished') %></mark>
+								<% when  "completed_by_worker" %>
+									<mark class="color" style="background-color: #28b661"><%= t('.finished') %></mark>
 								<% end %>
 							</li>
 							<li>
