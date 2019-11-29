@@ -17,6 +17,7 @@
       <tr>
           <th><%= t(".quote_number") %></th>
           <th><%= t(".quote_job_name") %></th>
+          <th><%= t(".quote_without_vat") %></th>
           <th><%= t(".quote_vat") %></th>
           <th><%= t(".quote_total") %></th>
           <th><%= t(".status") %></th>
@@ -27,8 +28,9 @@
         <tr>
             <td><%=link_to(t('.quote',number:quote.quote_number), quote_path(quote.id)) %></td>
             <td><%= link_to(quote.job.name,job_path(slug:quote.job.slug)) %></td>
+            <td><%= number_to_currency(quote.total_without_vat) %></td>
             <td><%= number_to_currency(quote.vat) %></td>
-            <td><%= number_to_currency(quote.total) %></td>
+            <td><%= number_to_currency(quote.total_within_vat) %></td>
             <td>
               <% case quote.status %>
               <% when "created" %>
@@ -51,7 +53,7 @@
 		$(document).ready(function() {
 		  $('#quotes_datatable').dataTable({
         "language": {
-          "url": 'http://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
+          "url": 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
         }
       });
 		});
