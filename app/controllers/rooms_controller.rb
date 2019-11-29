@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
-    @rooms = Room.where("receiver_id = ? OR author_id = ?", current_user.id,current_user.id)
+    @rooms = Room.where("receiver_id = ? OR author_id = ?", current_user.id,current_user.id).order(:created_at => :desc)
   end
 
   def new
