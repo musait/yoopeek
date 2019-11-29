@@ -36,6 +36,10 @@ $(function() {
               "</a>" +
             "</li>"
             $("#header-ul-notification-container").prepend(notification)
+            emptyContainer = $("#notification-empty-container")
+            if (emptyContainer.length > 0) {
+              emptyContainer.remove()
+            }
             $notificationCount = $("#header-notifications-count")
             $notificationCount.html(parseInt($notificationCount.html()) + 1)
           }
