@@ -9,6 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in(@user)
         redirect_to edit_user_registration_path, notice: t('.fill_information')
       else
+        User.set_conv_with_yoopeek(@user)
         sign_in_and_redirect @user, event: :authentification
       end
     else
@@ -25,6 +26,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in(@user)
         redirect_to edit_user_registration_path, notice: t('.fill_information')
       else
+        User.set_conv_with_yoopeek(@user)
         sign_in_and_redirect @user, event: :authentification
       end
     else
