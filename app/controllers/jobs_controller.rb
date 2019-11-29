@@ -27,7 +27,7 @@ class JobsController < ApplicationController
           @worker_company = @worker.company
           @total = @invoice.total
           @commission = @invoice.commission_collected
-          @commission_without_taxes = (@commission / 0,077)
+          @commission_without_taxes = (@commission / 0.077)
           @taxes = @commission_without_taxes * 7.7 /100
           render pdf: "worker_invoice",
             encoding: "UTF-8",
