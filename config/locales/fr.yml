@@ -7,7 +7,7 @@ fr:
         room_message:
           attributes:
             message:
-              contain_forbiden_word: "Certain mot ne sont pas permis"
+              contain_forbiden_word: "Certains mots ne sont pas permis"
         user:
           attributes:
             is_worker:
@@ -80,7 +80,9 @@ fr:
   you_doesnt_have_invoice: Vous n'avez pas de facture sur votre compte
   download: Télécharger
   summary: Résumé
-  subscriptions:
+  message_for_worker: "Bienvenue sur Yoopeek. Chaque message vous coûtera 6 points. Si le client ne vous répond pas, vous serez remboursé intégralement. Si le client vous répond, mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points ."
+  message_for_customer: "Bienvenue sur Yoopeek. Ceci est votre messagerie. Elle vous servira à communiquer avec les professionnels qui vous intéressent ."
+  ubscriptions:
     index:
       your_subscription: "Votre abonnement"
       limit_portfolio: Portfolio limité à %{picture_limitation} contenus
@@ -125,7 +127,7 @@ fr:
       new_quote: "Nouveau devis !"
       for_job: "Mission concernée : %{job_title}"
       you_received_new_quote: "Vous avez reçu un devis de la part de %{worker_fullname}. Vous pouvez aller le consulter grâce au lien ci-dessous, puis l'accepter ou le refuser"
-      subject: "%{user}, vous avez reçu un nouveau devis!"
+      subject: "%{user}, vous avez reçu un nouveau devis !"
       link_to_quote: "Lien vers le devis"
     quote_declined:
       subject: "%{user}, votre devis a été refusé!"
@@ -138,7 +140,7 @@ fr:
       your_quote_has_been_paid: "Votre devis a été accepté et payé. Veuillez maintenant prendre contact avec le client afin de déterminer la date exacte de réalisation de la mission ."
       for_job: "Mission concernée : %{job_title}"
       link_to_quote: "Lien vers le devis"
-      subject: "Bonne nouvelle %{user}! Votre devis a été accepté!"
+      subject: "Bonne nouvelle %{user} ! Votre devis a été accepté !"
     new_invoice:
       new_invoice: "Nouvelle facture"
       you_received_new_invoice: "Vous avez reçu une nouvelle facture d'un montant de 20 €. Vous pouvez la télécharger ci-dessus ou la consulter dans votre compte Yoopeek, onglet 'Factures' ."
@@ -148,12 +150,14 @@ fr:
       your_sub_gonna_expire: "Votre abonnement va expirer !"
       extend_your_sub: "Prolongez vite votre abonnement pour pouvoir continuer à utiliser Yoopeek pleinement"
     customer_declare_job_finished:
-      declaration: "Bonne nouvelle! %{customer} a confirmé que la mission est terminée."
+      subject: "Votre mission est terminée !"
+      declaration: "Bonne nouvelle ! %{customer} a confirmé que la mission est terminée."
       get_your_money: "Vous allez bientôt recevoir vos fonds. Cette somme d'argent correspond à votre facture moins les commissions Yoopeek.
       Vous pourrez les retirer en effectuant un virement depuis votre espace client dans la partie 'Mes paiements' en cliquant sur le lien ci dessous."
       in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à contact@yoopeek.com . A bientôt sur Yoopeek !"
       go_to_account: "Aller sur mon compte"
     worker_declare_job_finished:
+      subject: "Votre mission est terminée !"
       declaration: "Bonne nouvelle! %{worker} a annoncé que la mission est terminée."
       confirm_job_finished: "Si la mission s'est déroulée comme prévu, veuillez s'il vous plait confirmer en cliquant sur le lien ci dessous."
       in_case_of_trouble: "En cas de soucis, n'hésitez pas à envoyer un mail à contact@yoopeek.com . A bientôt sur Yoopeek !"
@@ -288,6 +292,7 @@ fr:
       in_progress: "En cours"
       finished: "Terminée"
       aborted: "Annulée"
+      completed: "Terminée"
       hour: "heure(s)"
       time_range: "Entre %{min_time} et %{max_time} heure(s)"
       published_at: "Publiée il y a"
@@ -447,6 +452,7 @@ fr:
         address: "Adresse de votre entreprise"
         is_your_company_subject_to_vat: "Êtes vous soumis à la TVA ?"
         vat_number: "Numéro de TVA intracommunautaire"
+        vat_rate: "Taux de TVA"
   rooms:
     show:
       title: "Message"
@@ -483,6 +489,9 @@ fr:
       job_canceled: "Annulé"
     rooms:
       conversation_list: "Liste de vos conversations"
+    show_conv:
+      your_message: "Votre message"
+      send: "Envoyer"
   room_messages:
     filters:
       valid_message: Messsage validé
@@ -502,7 +511,9 @@ fr:
       status: "Statut du devis"
       quote_total: "Montant du devis"
       quote_job_name: "Mission concernée"
-      quote: "Devis"
+      quote_number: "Numéro du devis"
+      quote_vat: "TVA"
+      quote: "Devis n° %{number}"
     new:
       quote_creation: "Créer un devis"
       creation_form: "Formulaire de création"
