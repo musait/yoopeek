@@ -51,6 +51,10 @@ fr:
             date_delivery:
               cant_be_in_past: "La date ne peut pas être antérieure à aujourd'hui"
   job_without_invoice: "Cette mission n'a pas de facture"
+  terms:
+    error:
+      message: Erreur
+      not_accepted: "Veuillez accepter les conditions générales d'utilisation"
   mission_finished: Mission terminée
   action_not_enable: Action non disponible
   no_quote_created: Aucun devis n'a été créé

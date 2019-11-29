@@ -94,7 +94,7 @@
 								<!-- Details -->
 								<div class="freelancer-details" style="display: flex; align-items: center; justify-content: flex-end;">
 									<% if Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).exists? %>
-										<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id)).first.id),class:"button ripple-effect" do %>
+										<%= link_to room_path(id: Room.where(author_id:current_user.id,receiver_id: @job.customer.id,job_id: @job.id).or(Room.where(receiver_id:current_user.id,author_id: @job.customer.id,job_id: @job.id)).ids), class:"button ripple-effect" do %>
 											<%= t('.your_conversation') %> <i class="icon-material-outline-arrow-right-alt"></i>
 										<% end %>
 									<% else %>

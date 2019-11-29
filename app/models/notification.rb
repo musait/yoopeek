@@ -7,6 +7,7 @@ class Notification < ApplicationRecord
   belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id', counter_cache: true
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::DateHelper
   paginates_per 3
 
   scope :not_seen, -> () {
@@ -15,13 +16,16 @@ class Notification < ApplicationRecord
   scope :seen, -> () {
     where viewed_at: "IS NOT NULL"
   }
-
+  after_create do
+    UserChannel.broadcast_to self.receiver.id, self.attributes.merge!(url: self.url, raw_message: message.to_s.html_safe, author_avatar: sender.avatar_url, author_full_name: sender.full_name, time_ago_in_words: time_ago_in_words(self.created_at))
+  end
   def self.create_for sender,receiver, object, message_action = "created"
     if object.class.superclass.to_s == "ApplicationRecord"
       class_to_s = object.class.to_s.underscore
     else
       class_to_s = object.class.superclass.to_s.underscore
     end
+
     create! sender: sender, receiver: receiver, class_to_s => object, message: "notifications.#{class_to_s}_#{message_action}", created_for: class_to_s
   end
 

@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
-    @rooms = Room.where("receiver_id = ? OR author_id = ?", current_user.id,current_user.id).order(:created_at => :desc)
+    @rooms = Room.joins(:room_messages).where("receiver_id = ? OR author_id = ?", current_user.id,current_user.id).order("room_messages.created_at desc")
   end
 
   def new
@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
   protected
 
   def load_entities
-    @rooms = Room.where("receiver_id = ? OR author_id = ?", current_user.id,current_user.id)
+    @rooms = Room.includes(:room_messages).where("rooms.receiver_id = ? OR rooms.author_id = ?", current_user.id,current_user.id).order("room_messages.created_at desc")
     @room = Room.find(params[:id]) if params[:id]
   end
 
