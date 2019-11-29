@@ -15,8 +15,9 @@
   <table id="quotes_datatable" class="table table-striped" style="width:100%">
     <thead>
       <tr>
-          <th><%= t(".quote") %></th>
+          <th><%= t(".quote_number") %></th>
           <th><%= t(".quote_job_name") %></th>
+          <th><%= t(".quote_vat") %></th>
           <th><%= t(".quote_total") %></th>
           <th><%= t(".status") %></th>
       </tr>
@@ -24,8 +25,9 @@
     <tbody>
       <% @quotes.each do |quote| %>
         <tr>
-            <td><%=link_to("babab", quote_path(quote.id)) %></td>
-            <td><%= quote.job.name %></td>
+            <td><%=link_to(t('.quote',number:quote.quote_number), quote_path(quote.id)) %></td>
+            <td><%= link_to(quote.job.name,job_path(slug:quote.job.slug)) %></td>
+            <td><%= number_to_currency(quote.vat) %></td>
             <td><%= number_to_currency(quote.total) %></td>
             <td>
               <% case quote.status %>
