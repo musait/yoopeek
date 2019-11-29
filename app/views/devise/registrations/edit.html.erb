@@ -587,6 +587,7 @@
                 representative: true,
                 owner: true,
                 director: true,
+                executive: true,
                 percent_ownership: 100,
               }
             },
@@ -594,9 +595,9 @@
         <% end %>
           var bankResult = null
           if (document.querySelector('#user_company_attributes_iban').value == "" || document.querySelector('#user_company_attributes_iban').value == null) {
-            var bankResult = null
+            bankResult = null
           } else {
-            const bankResult = await stripe.createToken('bank_account', {
+            bankResult = await stripe.createToken('bank_account', {
               country: "FR",
               currency: document.querySelector('#user_company_attributes_currency').value.toLowerCase(),
               account_number: document.querySelector('#user_company_attributes_iban').value,
@@ -619,7 +620,6 @@
           }
         }
         if (accountResult.error != null) {
-          console.log(accountResult.error);
           toastr['error'](accountResult.error.message);
         }
         if (accountResult.token && personResult.token) {
@@ -627,7 +627,6 @@
           document.querySelector('#token-person').value = personResult.token.id;
           if (bankResult != null) {
             document.querySelector('#token-bank').value = bankResult.token.id;
-            console.log(document.querySelector('#token-bank').value);
           }
           myForm.submit();
         }

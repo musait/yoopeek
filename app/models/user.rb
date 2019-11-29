@@ -39,7 +39,7 @@ class User < ApplicationRecord
             country: "FR",
             type: "custom",
             account_token: account_token,
-            requested_capabilities: ['card_payments', 'transfers']
+            requested_capabilities: ['transfers']
           })
           self.stripe_account_id = account.id
         else
