@@ -1,0 +1,96 @@
+
+<!-- Invoice -->
+<div id="invoice">
+
+	<%= render "/layouts/pdf_header" %>
+
+	<!-- Client & Supplier -->
+	<div class="row">
+		<div class="col-12">
+			<h2>Facture n° <%= @invoice.invoice_number %></h2>
+		</div>
+	</div>
+	<div class="row ">
+		<div class="col-6">
+			<strong class="margin-bottom-5">Emetteur</strong>
+			<p>
+				Yoopeek <br>
+				Rue de la Plaine 3<br>
+				1400 Yverdon-les-Bains<br>
+				Suisse
+			</p>
+		</div>
+
+
+		<div class="col-6">
+			<strong class="margin-bottom-5">Destinataire</strong>
+			<p>
+				<%= @worker_company.name %> <br>
+				<%= @worker_company.try("address").try("city") %>, <%= @worker_company.try("address").try("zip") %><br>
+				<%= @worker_company.try("address").try("street") %>, <br>
+			</p>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<table class="margin-top-20">
+				<tr>
+					<th>Commissions HT</th>
+					<th>TVA</th>
+					<th>Commissions TTC</th>
+				</tr>
+
+        <tr>
+          <td><%= currency_formated(@commission / 1,077) %></td>
+          <td><%= currency_formated(@commission *(1-1.077)) %></td>
+          <td><%= currency_formated(@commission) %></td>
+        </tr>
+			</table>
+		</div>
+	</div>
+	<!-- Invoice -->
+	<%# if @user.with_vat? %>
+		<div class="row">
+			<div class="col-5 offset-7">
+				<table id="totalsHT">
+					<tr>
+						<th>Sous total HT</th>
+						<!-- <th><span><%#= currency_formated (@user.with_vat? ? @amount_without_taxes : @order_transaction.amount) %></span></th> -->
+						<!-- <th><span><%= currency_formated (@amount_without_taxes) %></span></th> -->
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-5 offset-7">
+				<table id="totalsHT">
+					<tr>
+						<!-- <th>TVA 20% de <%= currency_formated @amount_without_taxes %></th>
+						<th><span><%= currency_formated @taxes %></span></th> -->
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+	<%# end %>
+	<div class="row">
+		<div class="col-7 offset-5">
+			<table id="totals">
+				<tr>
+					<!-- <th>Total TTC</th>
+					<th><span><%= currency_formated @total - @commission  %></span></th> -->
+				</tr>
+			</table>
+		</div>
+	</div>
+	<!-- Footer -->
+	<div class="row">
+		<div class="col-12">
+			<ul id="footer">
+				<!-- <li> TVA non applicable, Article 293 du CGI</li> -->
+			</ul>
+		</div>
+	</div>
+</div>

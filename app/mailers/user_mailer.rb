@@ -44,8 +44,14 @@ class UserMailer < Devise::Mailer
       @job = params[:job]
       mail(to:@user.email,subject: default_i18n_subject(user: @user.full_name))
     end
+
+    def new_worker_invoice
+      @user = params[:user]
+      @invoice = params[:invoice]
+      mail(to:@user,subject: default_i18n_subject(user: @user.full_name))
+    end
     
-    def new_invoice
+    def new_customer_invoice
       @user = params[:user]
       @invoice = params[:invoice]
       mail(to:@user,subject: default_i18n_subject(user: @user.full_name))

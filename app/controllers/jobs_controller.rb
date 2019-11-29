@@ -18,20 +18,18 @@ class JobsController < ApplicationController
       end
     end
   end
-  def invoice
+  def worker_invoice
     @invoice = @job.invoice
-    @customer = @job.customer
     if @invoice.present?
       respond_to do |format|
         format.pdf do
-          @invoice_elements = @invoice.invoice_elements
           @worker = @invoice.sender
           @worker_company = @worker.company
           @total = @invoice.total
           @commission = @invoice.commission_collected
-          @amount_without_taxes = (@total / 1.2)
-          @taxes = @amount_without_taxes * 20 / 100
-          render pdf: "invoice",
+          @commission_without_taxes = (@commission / 0,077)
+          @taxes = @commission_without_taxes * 7.7 /100
+          render pdf: "worker_invoice",
             encoding: "UTF-8",
             margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
             layout: 'pdf.html',
@@ -41,7 +39,39 @@ class JobsController < ApplicationController
             disposition: 'attachment'
         end
       end
-      UserMailer.with(user: @customer, invoice: @invoice).new_invoice.deliver_now
+      UserMailer.with(user: @worker, invoice: @invoice).new_worker_invoice.deliver_now
+    else
+      redirect_back fallback_location: root_path, flash:{error: I18n.t('job_without_invoice')}
+    end
+  end
+
+  def customer_invoice
+    @invoice = @job.invoice
+    @customer = @job.customer
+    if @invoice.present?
+      respond_to do |format|
+        format.pdf do
+          @invoice_elements = @invoice.invoice_elements
+          @worker = @invoice.sender
+          @worker_company = @worker.company
+          if @worker_company.subject_to_vat?
+            @total = @invoice.quote.total_within_vat
+            @amount_without_vat = (@total / (1 + @invoice.quote.vat))
+            @vat = @amount_without_taxes * (@invoice.quote.vat / 100)
+          else
+            @total = @invoice.quote.total_within_vat = @amount_without_vat
+          end
+          render pdf: "customer_invoice",
+            encoding: "UTF-8",
+            margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
+            layout: 'pdf.html',
+            # show_as_html: false
+
+            # header: { :content => render_to_string({:template => "/layouts/pdf_header.html.erb", layout: false })},
+            disposition: 'attachment'
+        end
+      end
+      UserMailer.with(user: @customer, invoice: @invoice).new_customer_invoice.deliver_now
     else
       redirect_back fallback_location: root_path, flash:{error: I18n.t('job_without_invoice')}
     end
