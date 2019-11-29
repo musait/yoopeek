@@ -18,16 +18,15 @@
 						<% if user_signed_in?%>
 							<% if current_user.worker? %>
 								<li> <%= link_to t('.worker_jobs'), worker_jobs_path %></li>
-								<!-- <li><a href="/theme/user/hireo/pro-missions-index.html">Pro Missions</a></li> -->
 								<li><%= link_to I18n.t('.header.available_jobs'), jobs_path %></li>
-
+								<li><%= link_to I18n.t('.header.your_quotes'), quotes_path,method: :get %></li>
 								<li><%= link_to I18n.t('.header.rooms'), room_path(id:Room.where(author_id: current_user.id).or(Room.where(receiver_id:current_user.id)).first.id), method: :get %></li>
 								<li> <%= link_to t('.header.portfolio'), portfolios_path, method: :get %></li>
 							<% else %>
 								<li><%= link_to I18n.t('.header.create_job'), new_job_path,method: :get, class:"button ripple-effect", style:"color: white"%></li>
 								<li><%= link_to I18n.t('.header.your_job'), jobs_path,method: :get %></li>
 								<li><%= link_to I18n.t('.header.your_quotes'), quotes_path,method: :get %></li>
-								<li><%= link_to I18n.t('.header.rooms'), room_path((Room.order("created_at").where("receiver_id = ? OR author_id =?",current_user.id,current_user.id)).first.id),method: :get %></li>
+								<li><%= link_to I18n.t('.header.rooms'), room_path((Room.order("created_at").where("receiver_id = ? OR author_id =?",current_user.id,current_user.id)).last.id),method: :get %></li>
 								<!-- <li><a href="/theme/user/hireo/user-bookmarks-index.html">Favoris</a></li> -->
 							<% end %>
 						<% end %>
