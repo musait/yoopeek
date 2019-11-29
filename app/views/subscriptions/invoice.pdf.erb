@@ -43,7 +43,7 @@
 	<!-- Invoice -->
 	<%# if @user.with_vat? %>
 		<div class="row">
-			<div class="col-4 offset-8">
+			<div class="col-5 offset-7">
 				<table id="totalsHT">
 					<tr>
 						<th>Sous total HT</th>
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-4 offset-8">
+			<div class="col-5 offset-7">
 				<table id="totalsHT">
 					<tr>
 						<th>TVA 7,7% de <%= currency_formated @amount_without_taxes %></th>
@@ -64,7 +64,7 @@
 		</div>
 	<%# end %>
 	<div class="row">
-		<div class="col-4 offset-8">
+		<div class="col-5 offset-7">
 			<table id="totals">
 				<tr>
 					<th>Total TTC</th>

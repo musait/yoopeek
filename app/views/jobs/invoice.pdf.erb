@@ -55,7 +55,7 @@
 	<!-- Invoice -->
 	<%# if @user.with_vat? %>
 		<div class="row">
-			<div class="col-4 offset-8">
+			<div class="col-5 offset-7">
 				<table id="totalsHT">
 					<tr>
 						<th>Sous total HT</th>
@@ -66,7 +66,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-7 offset-5">
+			<div class="col-5 offset-7">
 				<table id="totalsHT">
 					<tr>
 						<th>TVA 20% de <%= currency_formated @amount_without_taxes %></th>
@@ -77,7 +77,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-7 offset-5">
+			<div class="col-5 offset-7">
 				<table id="totalsHT">
 					<tr>
 						<th>Commission de service Yoopeek</th>
