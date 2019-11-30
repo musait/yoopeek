@@ -32,6 +32,41 @@
     color: red;
   }
 </style>
+<style media="screen">
+  .inputfile {
+  	width: 0.1px;
+  	height: 0.1px;
+  	opacity: 0;
+  	overflow: hidden;
+  	position: absolute;
+  	z-index: -1;
+  }
+  .inputfile + label {
+      min-width:150px;
+      width:auto;
+      text-align:center;
+      color: white;
+      background-color: #4267b2;
+      display: inline-block;
+      padding-right:20px;
+      padding-left:20px;
+  }
+
+  .inputfile:focus + label,
+  .inputfile + label:hover {
+      background-color: #4267b2;
+  }
+  .inputfile + label {
+  	cursor: pointer; /* "hand" cursor */
+  }
+  .inputfile:focus + label {
+  	outline: 1px dotted #000;
+  	outline: -webkit-focus-ring-color auto 5px;
+  }
+  .inputfile + label * {
+  	pointer-events: none;
+  }
+</style>
 <% end %>
 <!-- Dashboard Headline -->
 <div class="dashboard-headline">
@@ -365,41 +400,50 @@
                     <div class="col-xl-12 row">
                       <div class="col-xl-6">
                         <div class="submit-field">
-                          <h5><%=  I18n.t('identity_card_recto') %></h5>
-                          <input type="file" id="id-file" name="id-file" accept=".jpeg,.jpg,.png">
+                          <h5><%=  I18n.t('.user.company.edit.identity_card_recto') %></h5>
+                          <input type="file" id="id-file" name="id-file" class="inputfile" accept=".jpeg,.jpg,.png">
+                          <label for="id-file"><strong> <%= I18n.t('.user.company.edit.choose_a_file') %></strong></label>
                         </div>
                       </div>
                       <div class="col-xl-6">
                         <div class="submit-field">
-                          <h5><%=  I18n.t('identity_card_verso') %></h5>
-                          <input type="file" id="id-fileVerso" name="id-fileVerso" accept=".jpeg,.jpg,.png">
+                          <h5><%=  I18n.t('.user.company.edit.identity_card_verso') %></h5>
+                          <input type="file" id="id-fileVerso" name="id-fileVerso" class="inputfile" accept=".jpeg,.jpg,.png">
+                          <label for="id-fileVerso"><strong> <%= I18n.t('.user.company.edit.choose_a_file') %></strong></label>
+
                         </div>
                       </div>
                       <div class="col-xl-12">
-                        <span>Chargez une pièce d'identité claire, lisible et en couleur. Si le document ne correspond pas aux informations indiquées ci-dessus, vous pouvez modifier vos détails personnels.</span>
+                        <span><%= I18n.t('.user.company.edit.upload_id_documents') %></span>
                       </div>
 
                       <div class="col-xl-6" style="margin-top: 10px">
                         <div class="submit-field">
-                          <h5><%=  I18n.t('other_stripe_info_image') %></h5>
-                          <input type="file" id="id-fileSup" name="id-fileSup" accept=".jpeg,.jpg,.png">
+                          <h5><%=  I18n.t('.user.company.edit.other_stripe_info_image') %></h5>
+                          <input type="file" id="id-fileSup" name="id-fileSup" class="inputfile" accept=".jpeg,.jpg,.png">
+                          <label for="id-fileSup"><strong> <%= I18n.t('.user.company.edit.choose_a_file') %></strong></label>
                         </div>
                       </div>
                       <br>
                       <br>
                       <div class="col-xl-12">
-                        <div class="Box-root Box-hideIfEmpty Margin-top--16 Margin-left--16"><span class="db-DocumentRequestUploadModal-instructions Text-color--default Text-fontSize--14 Text-fontWeight--regular Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--block"><span><p>Veuillez charger un document où figurent votre nom complet et votre adresse. Si le document ne correspond pas aux informations indiquées ci-dessous, vous pouvez modifier vos informations personnelles.</p>
-                          <strong>Types de justificatifs de domicile acceptés&nbsp;:</strong>
-                          <ul>
-                            <li>Facture d'eau ou d'électricité</li>
-                            <li>Relevé bancaire</li>
-                          </ul>
-                          <strong>Instructions pour charger le document&nbsp;:</strong>
-                          <ul>
-                            <li>Les documents doivent dater de moins de six mois</li>
-                            <li>Un même document ne peut être utilisé comme justificatif de domicile et pièce d'identité</li>
-                            <li>Les documents incomplets ou rognés ne peuvent être acceptés</li>
-                          </ul></span></span>
+                        <div class="Box-root Box-hideIfEmpty Margin-top--16 Margin-left--16">
+                          <span class="db-DocumentRequestUploadModal-instructions Text-color--default Text-fontSize--14 Text-fontWeight--regular Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--block">
+                            <span>
+                              <p> <%= I18n.t('.user.company.edit.upload_more_documents') %></p>
+                              <strong> <%= I18n.t('.user.company.edit.type_of_document_accepted') %></strong>
+                              <ul>
+                                <li><%= I18n.t('.user.company.edit.water_electricity_bill') %></li>
+                                <li><%= I18n.t('.user.company.edit.bank_statement') %></li>
+                              </ul>
+                              <strong><%= I18n.t('.user.company.edit.upload_instruction') %></strong>
+                              <ul>
+                                <li><%= I18n.t('.user.company.edit.documents_must_be_less_six_months') %></li>
+                                <li><%= I18n.t('.user.company.edit.dont_use_the_same_document') %></li>
+                                <li><%= I18n.t('.user.company.edit.incomplete_documents_will_be_rejected') %></li>
+                              </ul>
+                            </span>
+                          </span>
                         </div>
                       </div>
 
@@ -453,6 +497,29 @@
 <% end %>
 <!-- Row / End -->
 <%= content_for :body_script do %>
+  <script type="text/javascript">
+    var inputs = document.querySelectorAll( '.inputfile' );
+    Array.prototype.forEach.call( inputs, function( input )
+    {
+    	var label	 = input.nextElementSibling,
+    		labelVal = label.innerHTML;
+
+    	input.addEventListener( 'change', function( e )
+    	{
+    		var fileName = '';
+        if( this.files && this.files.length > 1 ){
+    			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+    		}else{
+          debugger
+    			fileName = this.value.split('\\').pop()
+        };
+    		if( fileName )
+    			label.querySelector( 'strong' ).innerHTML = fileName;
+    		else
+    			label.innerHTML = labelVal;
+    	});
+    });
+  </script>
   <script type="text/javascript">
     $(document).ready(function () {
       $('#checkbox1').change(function () {
