@@ -49,9 +49,10 @@ class JobsController < ApplicationController
   end
   def customer_invoice
     @invoice = Invoice.find(params[:id])
-    @job = @invoice.job
-    @customer = @job.customer
+
     if @invoice.present?
+      @job = @invoice.job
+      @customer = @job.customer
       respond_to do |format|
         format.pdf do
           @invoice_elements = @invoice.invoice_elements
@@ -76,7 +77,7 @@ class JobsController < ApplicationController
             disposition: 'attachment'
         end
       end
-      UserMailer.with(user: @customer, invoice: @invoice).new_customer_invoice.deliver_now
+      # UserMailer.with(user: @customer, invoice: @invoice).new_customer_invoice.deliver_now
     else
       redirect_back fallback_location: root_path, flash:{error: I18n.t('job_without_invoice')}
     end
