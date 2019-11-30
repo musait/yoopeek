@@ -43,6 +43,13 @@ class User < ApplicationRecord
               url: self.try("company").try("website").present? ? self.try("company").try("website") : "https://www.yoopeek.com",
               mcc: 7221
             },
+            settings: {
+              payouts: {
+                schedule: {
+                  interval: "manual"
+                }
+              }
+            },
             requested_capabilities: ['card_payments', 'transfers']
           })
           self.stripe_account_id = account.id
@@ -53,6 +60,13 @@ class User < ApplicationRecord
             business_profile: {
               url: self.try("company").try("website").present? ? self.try("company").try("website") : "https://www.yoopeek.com",
               mcc: 7221
+            },
+            settings: {
+              payouts: {
+                schedule: {
+                  interval: "manual"
+                }
+              }
             },
             account_token: account_token
           )
