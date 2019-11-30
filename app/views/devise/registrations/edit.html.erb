@@ -109,9 +109,6 @@
                     <%= f.text_field :phone_number, class:"with-border" %>
                   </div>
                 </div>
-                <input type="file" id="id-file" name="id-file" accept=".jpeg,.jpg,.png">
-                <input type="file" id="id-fileVerso" name="id-fileVerso" accept=".jpeg,.jpg,.png">
-                <input type="file" id="id-fileSup" name="id-fileSup" accept=".jpeg,.jpg,.png">
                 <% if current_user.worker? %>
                   <div class="col-xl-6">
                     <div class="submit-field">
@@ -154,6 +151,10 @@
                       <%= f.text_field :twitter_profile, class:"with-border" %>
                     </div>
                   </div>
+
+                  <input type="file" id="id-file" name="id-file" accept=".jpeg,.jpg,.png">
+                  <input type="file" id="id-fileVerso" name="id-fileVerso" accept=".jpeg,.jpg,.png">
+                  <input type="file" id="id-fileSup" name="id-fileSup" accept=".jpeg,.jpg,.png">
                 <% end %>
               </div>
             </div>
