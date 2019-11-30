@@ -50,29 +50,16 @@
 	              <div class="job-listing-description">
 	                <!-- <h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4> -->
 	                <h3 class="job-listing-title"> <%= job.name %></h3>
-	                <p class="job-listing-text"> <%= job.description %></p>
+	                <p class="job-listing-text"> <%= job.description.present? ? job.description[0..185] : "" %></p>
 
 	              </div>
 	            </div>
 	            <div class="job-listing-footer">
 	              <ul>
-	                <% case job.status %>
-	                  <% when 'created' %>
-	                  <li><mark class="color" style="background-color: grey"><%= t('jobs.index.created') %></mark></li>
-	                  <% when "in_progress" %>
-	                  <mark class="color" style="background-color: orange"><%= t('jobs.index.in_progress') %></mark>
-										<% when "completed_by_customer" %>
-				            <mark class="color" style="background-color: #28b661"><%= t('jobs.index.finished') %></mark>
-										<% when "completed_by_worker" %>
-										<mark class="color" style="background-color: #28b661"><%= t('jobs.index.finished') %></mark>
-	                <% end %>
-	                <li><i class="icon-material-outline-account-balance-wallet"></i> <%= number_to_currency(job.sold_at)%></li>
 	                <li><i class="icon-material-outline-business-center"></i> <%= job.category.name %></li>
 	                <li><i class="icon-material-outline-local-atm"></i> <%= job.subcategory.name if job.subcategory %></li>
-	                <li><i class="icon-material-outline-location-on"></i>  <%= job.format_delivery.name if job.format_delivery.present? %></li>
 	                <li><i class="icon-material-outline-location-on"></i> <%=  t('jobs.index.time_range', min_time: job.min_time,max_time: job.max_time) %></li>
 	                <li><i class="icon-material-outline-location-on"></i> <%= job.localisation %></li>
-	                <li><i class="icon-material-outline-access-time"></i> <%= t('jobs.index.published_at') %> <%= time_ago_in_words(job.created_at) %></li>
 	              </ul>
 
 	            </div>

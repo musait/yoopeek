@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show,:get_subcategories,:new_subcategory,:delete_subcategory]
   def show
     @user = User.find(params[:id])
-    @jobs = @user.jobs.page(params[:page])
+    @jobs = @user.jobs.where(status: :completed_by_customer).page(params[:page])
   end
 
   def my_subscription
