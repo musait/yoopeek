@@ -7,7 +7,7 @@
 
   <!-- Message Content Inner -->
   <div class="message-content-inner" style="height: 750px;" >
-    <div class="chat" data-channel-subscribe="room" data-room-id="<%= @room.id %>" style="height:100%;overflow-y:scroll">
+    <div class="chat" data-channel-subscribe="room" data-user-id="<%= current_user.id %>" data-room-id="<%= @room.id %>" style="height:100%;overflow-y:scroll">
       <% @room_messages.each do |room_message| %>
         <!-- Time Sign -->
         <div class="message-time-sign">
@@ -69,7 +69,7 @@
         <%= form.hidden_field :room_id %>
         <%= form.hidden_field :author_id, :value => current_user.id %>
         <%= form.hidden_field :receiver_id, :value => @room.receiver.id = current_user.id ? @room.receiver.id : @room.author.id %>
-        <% if (@room.room_messages.valid_messages.where(author_id: current_user.id).count <= 0) %>
+        <% if (@room.room_messages.valid_messages.where(author_id: current_user.id).count <= 0) &&current_user.worker? %>
           <%= form.submit t('.send'), class: 'button ripple-effect', id:"message_submit", data: { confirm: t("you_will_use_credits", credits: 6) } %>
         <% else %>
           <%= form.submit t('.send'), class: 'button ripple-effect', id:"message_submit" %>
