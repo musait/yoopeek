@@ -17,7 +17,7 @@
 		<div class="col-6">
 			<strong class="margin-bottom-5">Destinataire</strong>
 			<p>
-				<%= @customer.full_name %> <br>
+				<%= @customer.company.name %> <br>
 				<%= @customer.company.try("address").try("street") %><br>
 				<%=	@customer.company.try("address").try("zip") %> <%= @customer.company.try("address").try("city") %> <br>
 				<%= @customer.company.try("address").try("country") %><br>
@@ -29,13 +29,15 @@
 			<table class="margin-top-20">
 				<tr>
 					<th>Description</th>
+					<th>Prix</th>
 					<th>Quantité</th>
-					<th>Total</th>
+					<th>Total (HT)</th>
 				</tr>
 
 
         <tr>
           <td><%= t('invoice_credits', credits: float_formated(@credits_payment.credits_add))  %></td>
+					<td><%= currency_formated(@amount_without_taxes) %></td>
           <td>1</td>
           <td><%= currency_formated(@amount_without_taxes) %></td>
         </tr>
