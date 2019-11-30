@@ -45,10 +45,9 @@
         <% @invoice_elements.each do |invoice_element| %>
           <tr>
             <td><%= invoice_element.content %></td>
-						<td><%= currency_formated(invoice_element.price) %></td>
+						<td><%= currency_formated((invoice_element.total) / (1+@worker.company.vat_rate.to_f)) %></td>
             <td><%= invoice_element.quantity %></td>
-            <td><%= @invoice.worker.company.subject_to_vat? ? currency_formated((invoice_element.total) / (1+@invoice.worker.company.vat_rate) : currency_formated(invoice_element.total) %></td>
-            <td><%= currency_formated(invoice_element.total / 1.2) %></td>
+            <td><%= @worker.company.subject_to_vat? ? currency_formated((invoice_element.total) / (1+@worker.company.vat_rate) * invoice_element.quantity) : currency_formated(invoice_element.total * invoice_element.quantity) %></td>
           </tr>
         <% end %>
 			</table>
@@ -62,7 +61,7 @@
 					<tr>
 						<th>Sous total HT</th>
 						<!-- <th><span><%#= currency_formated((@user.with_vat? ? @amount_without_taxes : @order_transaction.amount) %></span></th> -->
-						<th><span><%= currency_formated(@amount_without_taxes) %></span></th>
+						<th><span><%= currency_formated(@total/ (1+@worker.company.vat_rate.to_f)) %></span></th>
 					</tr>
 				</table>
 			</div>
@@ -71,8 +70,8 @@
 			<div class="col-5 offset-7">
 				<table id="totalsHT">
 					<tr>
-						<% if @invoice.worker.company.subject_to_vat? %>
-							<th>TVA à <%= @invoice.worker.company.vat_rate %>% de <%= currency_formated(@amount_without_taxes) %></th>
+						<% if @worker.company.subject_to_vat? %>
+							<th>TVA à <%= @worker.company.vat_rate %>% de <%= currency_formated(@amount_without_taxes) %></th>
 							<th><span><%= currency_formated(@taxes) %></span></th>
 						<% end %>
 					</tr>
@@ -85,7 +84,7 @@
 			<table id="totals">
 				<tr>
 					<th>Total TTC</th>
-					<th><span><%= currency_formated(@total%></span></th>
+					<th><span><%= currency_formated(@total)%></span></th>
 				</tr>
 			</table>
 		</div>
@@ -94,7 +93,7 @@
 	<div class="row">
 		<div class="col-12">
 			<ul id="footer">
-				<% if !@invoice.worker.company.subject_to_vat? %>
+				<% if !@worker.company.subject_to_vat? %>
 					<li> TVA non applicable, Article 293 du CGI</li>
 				<% end %>
 			</ul>

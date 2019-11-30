@@ -48,7 +48,8 @@ class JobsController < ApplicationController
       @invoices = Invoice.where("sender_id = ? OR receiver_id = ?",current_user.id, current_user.id).where.not(job_id: nil)
   end
   def customer_invoice
-    @invoice = @job.invoice
+    @invoice = Invoice.find(params[:id])
+    @job = @invoice.job
     @customer = @job.customer
     if @invoice.present?
       respond_to do |format|
@@ -59,9 +60,11 @@ class JobsController < ApplicationController
           if @worker_company.subject_to_vat?
             @total = @invoice.quote.total_within_vat
             @amount_without_vat = (@total / (1 + @invoice.quote.vat))
+            @amount_without_taxes = (@total)
             @vat = @amount_without_taxes * (@invoice.quote.vat / 100)
           else
-            @total = @invoice.quote.total_within_vat = @amount_without_vat
+            @amount_without_taxes = (@total)
+            @total = @invoice.quote.total_within_vat
           end
           render pdf: "customer_invoice",
             encoding: "UTF-8",

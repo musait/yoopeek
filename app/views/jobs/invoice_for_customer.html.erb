@@ -26,7 +26,7 @@
                     <td><%= currency_formated invoice.total_without_vat %></td>
                     <td><%= currency_formated invoice.vat %></td>
                     <td><%= currency_formated invoice.total_within_vat %></td>
-                    <td> <%= link_to I18n.t("download"), invoice_credits_payment_path(locale: I18n.locale, id: invoice.id, format: :pdf) %></td>
+                    <td> <%= link_to I18n.t("download"), customer_invoice_path(locale: I18n.locale, id: invoice.id, format: :pdf) %></td>
                 </tr>
               <% end %>
             </tbody>
