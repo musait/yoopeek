@@ -102,6 +102,10 @@
       var clientSecret = '<%= @intent.client_secret %>';
 
       cardButton.addEventListener('click', function(ev) {
+        if(!$("#two-step").prop("checked")) {
+          toastr['error']('<%= t("terms.error.not_accepted") %>');
+          return false;
+        }
         $("#card-button").prop("disabled", true)
         $("#card-button").html("Paiement en cours")
         stripe.handleCardSetup(

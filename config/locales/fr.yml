@@ -52,6 +52,7 @@ fr:
               cant_be_in_past: "La date ne peut pas être antérieure à aujourd'hui"
   job_without_invoice: "Cette mission n'a pas de facture"
   select_a_profession: Veuillez sélectionner une profession
+  you_will_use_credits: Vous allez utiliser %{credits} crédits
   select_a_speciality: Choisissez votre/vos spécialité(s)
   terms:
     error:

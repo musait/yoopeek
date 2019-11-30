@@ -14,6 +14,7 @@ $(function() {
           if(data.created_for == "room_message") {
             $notifications_count = $("#notifications-messages-count")
             $notifications_count.html(parseInt($notifications_count.html()) + 1)
+            $notifications_count.attr("style","background-color:red")
 
             notification = '<li class="notifications-not-read">' +
             '<a href="' + data.url + '" data-method="get">' +
@@ -42,6 +43,7 @@ $(function() {
             }
             $notificationCount = $("#header-notifications-count")
             $notificationCount.html(parseInt($notificationCount.html()) + 1)
+            $notificationCount.attr("style","background-color:red")
           }
       }
     });

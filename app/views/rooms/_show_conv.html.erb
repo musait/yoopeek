@@ -69,7 +69,11 @@
         <%= form.hidden_field :room_id %>
         <%= form.hidden_field :author_id, :value => current_user.id %>
         <%= form.hidden_field :receiver_id, :value => @room.receiver.id = current_user.id ? @room.receiver.id : @room.author.id %>
-        <%= form.submit t('.send'), class: 'button ripple-effect', id:"message_submit" %>
+        <% if (@room.room_messages.valid_messages.where(author_id: current_user.id).count <= 0) %>
+          <%= form.submit t('.send'), class: 'button ripple-effect', id:"message_submit", data: { confirm: t("you_will_use_credits", credits: 6) } %>
+        <% else %>
+          <%= form.submit t('.send'), class: 'button ripple-effect', id:"message_submit" %>
+        <% end %>
       </div>
     <% end %>
   <% end %>
