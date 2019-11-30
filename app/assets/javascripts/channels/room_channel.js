@@ -3,6 +3,7 @@ $(function() {
     var $element = $(element),
         room_id = $element.data('room-id')
         current_user_id =  $element.data('user-id')
+        receiver_user_id =  $element.data('receiver-id')
         messageTemplate = $('[data-role="message-template"]');
         $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000);
         console.log(room_id);
@@ -16,7 +17,7 @@ $(function() {
         received: function(data) {
           if(data.is_valid) {
             console.log(current_user_id == data.author_id);
-            var message_for = (current_user_id == data.author_id) ? "me" : ""
+            var message_for = ($("#room_message_author_id").val() == data.author_id) ? "me" : ""
             console.log(message_for);
             var message = '<div class="message-time-sign">' +
               '<span>' + data.updated_at + '</span>' +
