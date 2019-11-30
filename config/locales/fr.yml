@@ -575,7 +575,8 @@ fr:
       your_quote_has_been_declined: "Votre devis concernant la mission suivante : %{job} a été refusé"
     accept:
       your_quote_has_been_paid: "Votre devis concernant la mission suivante : %{job} a été acceptée et payée. Vous pouvez contacter votre client pour commencer la mission"
-      paiement_amout: "Montant du paiement"
+      do_not_forget_to_edit_mission: "Lorsque vous avez terminé la mission, n'oubliez pas de la clôturer dans l'onglet 'Vos missions'. "
+      paiement_amout: "Montant du paiemnnt"
       security_message: "Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptées et sécurisées"
       payment_proceed: "Valider le paiement"
       quote: "Devis n° %{number}"
