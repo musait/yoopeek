@@ -601,16 +601,7 @@
             city: document.querySelector('#locality').value,
             state: document.querySelector('#country').value,
             postal_code: document.querySelector('#postal_code').value,
-          },
-          verification: {
-            document: {
-              front: (fileData != null ? fileData.id : null),
-              back: (fileDataBack != null ? fileDataBack.id : null),
-            },
-            additional_document: {
-              front: (fileDataSup != null ? fileDataSup.id : null)
-            }
-          },
+          }
         }
         <% if current_user.stripe_person_id.present? %>
           const personResult = await stripe.createToken('person', {
@@ -626,7 +617,16 @@
               executive: true,
               title: "CEO",
               percent_ownership: 100,
-            }
+            },
+            verification: {
+              document: {
+                front: (fileData != null ? fileData.id : null),
+                back: (fileDataBack != null ? fileDataBack.id : null),
+              },
+              additional_document: {
+                front: (fileDataSup != null ? fileDataSup.id : null)
+              }
+            },
           });
           const personResult = await stripe.createToken('person', {
             person: stripePersonAttribute
