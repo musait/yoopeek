@@ -151,10 +151,6 @@
                       <%= f.text_field :twitter_profile, class:"with-border" %>
                     </div>
                   </div>
-
-                  <input type="file" id="id-file" name="id-file" accept=".jpeg,.jpg,.png">
-                  <input type="file" id="id-fileVerso" name="id-fileVerso" accept=".jpeg,.jpg,.png">
-                  <input type="file" id="id-fileSup" name="id-fileSup" accept=".jpeg,.jpg,.png">
                 <% end %>
               </div>
             </div>
@@ -190,7 +186,7 @@
               <li>
                 <div class="row">
                   <div class="col-xl-12">
-                    <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong><%= current_user.current_credits.to_i %></strong> <%= I18n.t('.user.pro_profile.edit.credits') %></h3>
+                    <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong><%= current_user.current_credits.to_i %></strong> </h3>
                     <%= link_to buy_credits_path, class: "button", style: "margin-top: 20px;" do %>
                       <%= I18n.t('.user.pro_profile.edit.buy_credits') %>
                     <% end %>
@@ -364,6 +360,49 @@
                         <%= c.select :vat_rate,vat_rates,{}, prompt: 'Select One', id:"vat_select", class:"selectpicker" %>
                       </div>
                     <% end %>
+
+                    </div>
+                    <div class="col-xl-12 row">
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <h5><%=  I18n.t('identity_card_recto') %></h5>
+                          <input type="file" id="id-file" name="id-file" accept=".jpeg,.jpg,.png">
+                        </div>
+                      </div>
+                      <div class="col-xl-6">
+                        <div class="submit-field">
+                          <h5><%=  I18n.t('identity_card_verso') %></h5>
+                          <input type="file" id="id-fileVerso" name="id-fileVerso" accept=".jpeg,.jpg,.png">
+                        </div>
+                      </div>
+                      <div class="col-xl-12">
+                        <span>Chargez une pièce d'identité claire, lisible et en couleur. Si le document ne correspond pas aux informations indiquées ci-dessus, vous pouvez modifier vos détails personnels.</span>
+                      </div>
+
+                      <div class="col-xl-6" style="margin-top: 10px">
+                        <div class="submit-field">
+                          <h5><%=  I18n.t('other_stripe_info_image') %></h5>
+                          <input type="file" id="id-fileSup" name="id-fileSup" accept=".jpeg,.jpg,.png">
+                        </div>
+                      </div>
+                      <br>
+                      <br>
+                      <div class="col-xl-12">
+                        <div class="Box-root Box-hideIfEmpty Margin-top--16 Margin-left--16"><span class="db-DocumentRequestUploadModal-instructions Text-color--default Text-fontSize--14 Text-fontWeight--regular Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--block"><span><p>Veuillez charger un document où figurent votre nom complet et votre adresse. Si le document ne correspond pas aux informations indiquées ci-dessous, vous pouvez modifier vos informations personnelles.</p>
+                          <strong>Types de justificatifs de domicile acceptés&nbsp;:</strong>
+                          <ul>
+                            <li>Facture d'eau ou d'électricité</li>
+                            <li>Relevé bancaire</li>
+                          </ul>
+                          <strong>Instructions pour charger le document&nbsp;:</strong>
+                          <ul>
+                            <li>Les documents doivent dater de moins de six mois</li>
+                            <li>Un même document ne peut être utilisé comme justificatif de domicile et pièce d'identité</li>
+                            <li>Les documents incomplets ou rognés ne peuvent être acceptés</li>
+                          </ul></span></span>
+                        </div>
+                      </div>
+
 
                     </div>
                   </div>

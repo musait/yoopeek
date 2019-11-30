@@ -68,6 +68,9 @@ fr:
   credits_for:
     html: <strong>%{credits} crédits:</strong> %{for}
   buy: Acheter
+  other_stripe_info_image: "Justificatif de domicile (Facture d'eau ou d'électricité ou Relevé bancaire"
+  identity_card_recto: "Justificatif d'identité (CNI recto ou Passesport)"
+  identity_card_verso: "CNI verso"
   no_stripe_account: Le professionnel n'a pas encore rempli toutes ses informations.
   unvalid_room_message: "Le(s) mot(s) %{reason} ne sont pas permis"
   no_stripe_account: Le professionnel n'a pas encore rempli toutes ses informations .
@@ -238,7 +241,7 @@ fr:
         message_not_seen: "Vous n'avez pas de messages"
         worker_jobs: "Vos missions"
         my_subscription: "Mon abonnement"
-        customer_invoice: "Vos factures client"
+        customer_invoice: "Vos factures clients"
         buy_credits: "Acheter des crédits"
         my_profile: "Mon profil"
         settings: "Paramètres"

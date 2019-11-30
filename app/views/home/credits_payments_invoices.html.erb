@@ -5,7 +5,7 @@
 <div class="container" style="flex-grow:1">
   <div class="row">
     <div class="col-xl-12">
-      <%if @credits_payments.present? %>
+      <%if @credits_payments.present? || @subscriptions.present? %>
         <table id="credit_payment_invoice_table" class="display">
           <thead>
             <tr>
@@ -27,34 +27,6 @@
                     <td> <%= link_to I18n.t("download"), invoice_credits_payment_path(locale: I18n.locale, id: credits_payment.id, format: :pdf) %></td>
                 </tr>
               <% end %>
-            </tbody>
-        </table>
-      <%else%>
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-12">
-              <section id="not-found" class="center margin-top-50 margin-bottom-25">
-                <p><%= I18n.t("you_doesnt_have_credit_payments_invoice") %><p>
-              </section>
-            </div>
-          </div>
-        </div>
-      <%end%>
-    </div>
-    <div class="col-xl-12">
-      <%if @subscriptions.present? %>
-        <table id="subcriptions_invoice_table" class="display">
-          <thead>
-            <tr>
-                <th><%= I18n.t("invoice_number") %></th>
-                <th><%= I18n.t("invoice_date") %></th>
-                <th><%= I18n.t("type_of_invoice")  %></th>
-                <th><%= I18n.t("invoice_amount") %></th>
-                <th><%= I18n.t("download_link") %></th>
-            </tr>
-          </thead>
-
-            <tbody>
               <% @subscriptions.each do |subscription| %>
                 <tr>
                   <td><%= subscription.invoice_number %></td>
@@ -71,7 +43,7 @@
           <div class="row">
             <div class="col-xl-12">
               <section id="not-found" class="center margin-top-50 margin-bottom-25">
-                <p><%= I18n.t("you_doesnt_have_subscrption_invoice") %><p>
+                <p><%= I18n.t("you_doesnt_have_credit_payments_invoice") %><p>
               </section>
             </div>
           </div>
