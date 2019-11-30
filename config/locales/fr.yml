@@ -63,6 +63,7 @@ fr:
   no_quote_created: Aucun devis n'a été créé
   credit: Crédit
   show_invoices: Voir mes factures
+  invoice: Facture
   not_enougth_credits: Vous n'avez pas assez de crédit. Vous pouvez en acheter #{view_context.link_to('ici', buy_credits_path}.
   here: ici
   credits_for:

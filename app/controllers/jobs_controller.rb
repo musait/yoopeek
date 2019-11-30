@@ -29,7 +29,7 @@ class JobsController < ApplicationController
           @commission = @invoice.commission_collected
           @commission_without_taxes = (@commission / 0.077)
           @taxes = @commission_without_taxes * 7.7 /100
-          render pdf: "worker_invoice",
+          render pdf: "#{I18n.t("invoice")}-#{@invoice.receiver.full_name}-#{Time.current.strftime("%d/%m/%Y ")}",
             encoding: "UTF-8",
             margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
             layout: 'pdf.html',
@@ -66,7 +66,7 @@ class JobsController < ApplicationController
             @amount_without_taxes = (@total)
             @total = @invoice.quote.total_within_vat
           end
-          render pdf: "customer_invoice",
+          render pdf: "#{I18n.t("invoice")}-#{@customer.full_name}-#{Time.current.strftime("%d/%m/%Y ")}",
             encoding: "UTF-8",
             margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
             layout: 'pdf.html',

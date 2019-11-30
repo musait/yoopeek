@@ -57,7 +57,7 @@ class HomeController < ApplicationController
         @total = @credits_payment.amount
         @amount_without_taxes = @total / 1.077
         @taxes = @amount_without_taxes * 7.7 / 100
-        render pdf: "invoice",
+        render pdf: "#{I18n.t("invoice")}-#{@customer.full_name}-#{Time.current.strftime("%d/%m/%Y ")}",
           encoding: "UTF-8",
           margin: {left: "15px", right: "15px", bottom: "15px", top: "15px"},
           layout: 'pdf.html',
