@@ -549,10 +549,10 @@ fr:
     show:
       quote_recap: "Récapitulatif du devis n°%{quote_number}"
       description: "Description"
-      price: "Prix"
+      price: "Prix (HT)"
       vat: "TVA"
       quantity: Quantité
-      total_with_vat: "Total"
+      total_with_vat: "Total (HT)"
       global_total_without_vat: "Total hors taxes"
       decline: "Décliner"
       accept_quote: "Accepter le devis"
