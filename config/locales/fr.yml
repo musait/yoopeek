@@ -388,8 +388,8 @@ fr:
     finished:
       worker_declare_job_finished: "%{pro} a déclaré avoir achevé la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
       correctement déroulée. Si ce n'est pas le cas, contactez le service client ."
-      customer_declare_job_finished: "%{customer} a déclarer avoir achevé la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
-      correctement déroulée. Si ce n'est pas le cas, contactez le service client ."
+      customer_declare_job_finished: "%{customer} a déclarer avoir achevé la mission suivante : %{job_name}. Vous pouvez dorénavant demander le retrait de vos fonds dans votre espace
+      personnel, onglet 'Montant disponible' "
   users:
     omniauth_callbacks:
       facebook:
