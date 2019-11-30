@@ -75,6 +75,10 @@ fr:
   your_invoices: Vos factures
   invoice_number: Numéro de la facture
   invoice_date: Date de la facture
+  type_of_invoice: "Type de la facture"
+  commission: "Commission"
+  credits: "Achat de crédits"
+  subscription: "Abonnement"
   invoice_amount: Montant de la facture
   download_link: Lien de téléchargement
   all: Tous
@@ -84,7 +88,9 @@ fr:
   portfolio_content_limit_number: Vous ne pouvez pas avoir plus de %{limit} image dans votre portfolio avec votre abonnement actuel
   portfolio_limit_number: Vous ne pouvez pas avoir plus de %{limit} portfolio avec votre abonnement actuel
   no_portfolio_with_this_plan: Vous n'avez pas accès au portfolio sans abonnement
-  you_doesnt_have_invoice: Vous n'avez pas de facture sur votre compte
+  you_doesnt_have_subscrption_invoice: Vous n'avez pas de facture conçernant les abonnements sur votre compte
+  you_doesnt_have_credit_payments_invoice: Vous n'avez pas de facture conçernant les crédits sur votre compte
+  you_doesnt_have_customer_invoice: Vous n'avez pas de facture clients
   download: Télécharger
   summary: Résumé
   message_for_worker: "Bienvenue sur Yoopeek. Chaque message vous coûtera 6 points. Si le client ne vous répond pas, vous serez remboursé intégralement. Si le client vous répond, mais qu'il n'y a pas de devis accepté, vous serez remboursé de 3 points ."
@@ -232,6 +238,8 @@ fr:
         message_not_seen: "Vous n'avez pas de messages"
         worker_jobs: "Vos missions"
         my_subscription: "Mon abonnement"
+        customer_invoice: "Vos factures client"
+        buy_credits: "Acheter des crédits"
         my_profile: "Mon profil"
         settings: "Paramètres"
         logout: "Déconnexion"
@@ -388,8 +396,13 @@ fr:
     finished:
       worker_declare_job_finished: "%{pro} a déclaré avoir achevé la mission suivante : %{job_name}. Si vous êtes d'accord, veuillez confirmer à votre tour que la mission s'est
       correctement déroulée. Si ce n'est pas le cas, contactez le service client ."
-      customer_declare_job_finished: "%{customer} a déclarer avoir achevé la mission suivante : %{job_name}. Vous pouvez dorénavant demander le retrait de vos fonds dans votre espace
+      customer_declare_job_finished: "%{customer} a validé la fin de la mission suivante : %{job_name}. Vous pouvez dorénavant demander le retrait de vos fonds dans votre espace
       personnel, onglet 'Montant disponible' "
+    invoice_for_customer:
+      vat: "TVA"
+      total_within_vat: "Total TTC"
+      total_without_vat: "Total HT"
+      your_customer_invoices: "Vos factures client"
   users:
     omniauth_callbacks:
       facebook:
@@ -576,7 +589,7 @@ fr:
     accept:
       your_quote_has_been_paid: "Votre devis concernant la mission suivante : %{job} a été acceptée et payée. Vous pouvez contacter votre client pour commencer la mission"
       do_not_forget_to_edit_mission: "Lorsque vous avez terminé la mission, n'oubliez pas de la clôturer dans l'onglet 'Vos missions'. "
-      paiement_amout: "Montant du paiemnnt"
+      paiement_amout: "Montant du paiement"
       security_message: "Vous êtes sur une page respectant les normes de sécurité bancaire. Toutes vos données personnelles sont cryptées et sécurisées"
       payment_proceed: "Valider le paiement"
       quote: "Devis n° %{number}"

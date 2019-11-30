@@ -44,7 +44,9 @@ class JobsController < ApplicationController
       redirect_back fallback_location: root_path, flash:{error: I18n.t('job_without_invoice')}
     end
   end
-
+  def invoice_for_customer
+      @invoices = Invoice.where("sender_id = ? OR receiver_id = ?",current_user.id, current_user.id).where.not(job_id: nil)
+  end
   def customer_invoice
     @invoice = @job.invoice
     @customer = @job.customer

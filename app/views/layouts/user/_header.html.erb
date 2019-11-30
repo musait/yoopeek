@@ -221,6 +221,11 @@
 											<% end %>
 										</li>
 										<li>
+											<%= link_to buy_credits_path do %>
+												<i class="icon-feather-shopping-cart"></i> <%= t('.buy_credits') %>
+											<% end %>
+										</li>
+										<li>
 											<%= link_to user_path(id:current_user.id) do %>
 												<i class="icon-material-outline-account-circle"></i> <%= t('.my_profile') %>
 											<% end %>
@@ -228,8 +233,20 @@
 									<% end %>
 									<li><%= link_to edit_user_registration_path, method: :get  do %>
 									<i class="icon-material-outline-settings"></i> <%= t('.settings') %>
-									<% end %></li>
-
+									<% end %>
+									</li>
+									<li>
+										<%# mes factures liée au commission, achat de crédits et abonnement %>
+										<%= link_to credits_payments_invoices_path do %>
+											<i class="icon-material-outline-library-books"></i> <%= I18n.t('show_invoices') %>
+										<% end %>
+									</li>
+									<li>
+										<%# mes factures clients %>
+										<%= link_to invoice_customer_path do %>
+											<i class="icon-material-outline-library-books"></i> <%= t('.customer_invoice') %>
+										<% end %>
+									</li>
 									<li>
 										<%= link_to destroy_user_session_path, method: :delete do %>
 											<i class="icon-material-outline-power-settings-new"></i> <%= t('.logout') %>

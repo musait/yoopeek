@@ -1,0 +1,58 @@
+<!-- Post Content -->
+<div class="welcome-text">
+  <h3><%= t(".your_customer_invoices") %></h3>
+</div>
+<div class="container" style="flex-grow:1">
+  <div class="row">
+    <div class="col-xl-12">
+      <%if @invoices.present? %>
+        <table id="customer_invoice_table" class="display">
+          <thead>
+            <tr>
+                <th><%= I18n.t("invoice_number") %></th>
+                <th><%= I18n.t("invoice_date") %></th>
+                <th><%= t(".total_without_vat") %></th>
+                <th><%= t(".vat") %></th>
+                <th><%= t(".total_within_vat") %></th>
+                <th><%= I18n.t("download_link") %></th>
+            </tr>
+          </thead>
+
+            <tbody>
+              <% @invoices.each do |invoice| %>
+                <tr>
+                    <td><%= invoice.invoice_number %></td>
+                    <td><%= l(invoice.created_at, format: :short_date) %></td>
+                    <td><%= currency_formated invoice.total_without_vat %></td>
+                    <td><%= currency_formated invoice.vat %></td>
+                    <td><%= currency_formated invoice.total_within_vat %></td>
+                    <td> <%= link_to I18n.t("download"), invoice_credits_payment_path(locale: I18n.locale, id: invoice.id, format: :pdf) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      <%else%>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <section id="not-found" class="center margin-top-50 margin-bottom-25">
+                <p><%= I18n.t("you_doesnt_have_customer_invoice") %><p>
+              </section>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+<!-- Wrapper / End -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#customer_invoice_table').dataTable({
+      "order": [],
+      "language": {
+        "url": 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
+      }
+    });
+  });
+</script>

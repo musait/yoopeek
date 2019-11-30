@@ -47,6 +47,7 @@ class HomeController < ApplicationController
   end
   def credits_payments_invoices
     @credits_payments = current_user.credits_payments
+    @subscriptions = current_user.subscriptions
   end
   def invoice_credits_payment
     @credits_payment = CreditsPayment.find(params[:id])

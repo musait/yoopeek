@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     get "buy_credits" => 'home#buy_credits'
     get "credits_payments_invoices" => 'home#credits_payments_invoices'
     get "invoice_credits_payment" => 'home#invoice_credits_payment'
+    get "invoice_customer" => 'jobs#invoice_for_customer'
     get "checkout_credit" => 'home#checkout_credit'
     post "add_credits" => 'home#add_credits'
     post "stripe_subscription_webhook" => 'home#stripe_subscription_webhook'

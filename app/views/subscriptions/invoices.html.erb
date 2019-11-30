@@ -6,37 +6,37 @@
     	<div class="row">
         <div class="col-xl-12">
           <%if @subscriptions.present? %>
-          <table id="invoice_table" class="display">
-            <thead>
-              <tr>
-                  <th><%= I18n.t("invoice_number") %></th>
-                  <th><%= I18n.t("invoice_date") %></th>
-                  <th><%= I18n.t("invoice_amount") %></th>
-                  <th><%= I18n.t("download_link") %></th>
-              </tr>
-            </thead>
+            <table id="invoice_table" class="display">
+              <thead>
+                <tr>
+                    <th><%= I18n.t("invoice_number") %></th>
+                    <th><%= I18n.t("invoice_date") %></th>
+                    <th><%= I18n.t("invoice_amount") %></th>
+                    <th><%= I18n.t("download_link") %></th>
+                </tr>
+              </thead>
 
-              <tbody>
-                <% @subscriptions.each do |subscription| %>
-                  <tr>
-                    <td><%= subscription.invoice_number %></td>
-                    <td><%= l(subscription.created_at, format: :short_date) %></td>
-                    <td><%= currency_formated subscription.plan_amount %></td>
-                    <td> <%= link_to I18n.t("download"), invoice_subscription_path(locale: I18n.locale, id: subscription.id, format: :pdf) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-          </table>
+                <tbody>
+                  <% @subscriptions.each do |subscription| %>
+                    <tr>
+                      <td><%= subscription.invoice_number %></td>
+                      <td><%= l(subscription.created_at, format: :short_date) %></td>
+                      <td><%= currency_formated subscription.plan_amount %></td>
+                      <td> <%= link_to I18n.t("download"), invoice_subscription_path(locale: I18n.locale, id: subscription.id, format: :pdf) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
           <%else%>
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-12">
-                <section id="not-found" class="center margin-top-50 margin-bottom-25">
-                  <p><%= I18n.t("you_doesnt_have_invoice") %><p>
-                </section>
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-12">
+                  <section id="not-found" class="center margin-top-50 margin-bottom-25">
+                    <p><%= I18n.t("you_doesnt_have_invoice") %><p>
+                  </section>
+                </div>
               </div>
             </div>
-          </div>
           <%end%>
         </div>
     	</div>
