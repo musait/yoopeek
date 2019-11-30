@@ -47,7 +47,7 @@
             <td><%= invoice_element.content %></td>
 						<td><%= currency_formated((invoice_element.total) / (1+@worker.company.vat_rate.to_f)) %></td>
             <td><%= invoice_element.quantity %></td>
-            <td><%= @worker.company.subject_to_vat? ? currency_formated((invoice_element.total) / (1+@worker.company.vat_rate) * invoice_element.quantity) : currency_formated(invoice_element.total * invoice_element.quantity) %></td>
+            <td><%= @worker.company.subject_to_vat? ? currency_formated((invoice_element.total) / (1+@worker.company.vat_rate.to_f) * invoice_element.quantity) : currency_formated(invoice_element.total.to_f * invoice_element.quantity) %></td>
           </tr>
         <% end %>
 			</table>
