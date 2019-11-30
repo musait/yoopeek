@@ -69,9 +69,6 @@ fr:
   credits_for:
     html: <strong>%{credits} crédits:</strong> %{for}
   buy: Acheter
-  other_stripe_info_image: "Justificatif de domicile (Facture d'eau ou d'électricité ou Relevé bancaire"
-  identity_card_recto: "Justificatif d'identité (CNI recto ou Passesport)"
-  identity_card_verso: "CNI verso"
   no_stripe_account: Le professionnel n'a pas encore rempli toutes ses informations.
   unvalid_room_message: "Le(s) mot(s) %{reason} ne sont pas permis"
   no_stripe_account: Le professionnel n'a pas encore rempli toutes ses informations .
@@ -482,6 +479,19 @@ fr:
         is_your_company_subject_to_vat: "Êtes vous soumis à la TVA ?"
         vat_number: "Numéro de TVA intracommunautaire"
         vat_rate: "Taux de TVA"
+        other_stripe_info_image: "Justificatif de domicile (facture d'eau ou d'électricité ou relevé bancaire)"
+        upload_more_documents: "Veuillez charger un document où figurent votre nom complet et votre adresse. Si le document ne correspond pas aux informations indiquées ci-dessous, vous pouvez modifier vos informations personnelles."
+        identity_card_recto: "Justificatif d'identité (CNI recto ou passeport)"
+        identity_card_verso: "CNI verso"
+        upload_id_documents: "Chargez une pièce d'identité claire, lisible et en couleur. Si le document ne correspond pas aux informations indiquées ci-dessus, vous pouvez modifier vos détails personnels."
+        type_of_document_accepted: "Types de justificatifs de domicile acceptés :"
+        water_electricity_bill: "Facture d'eau ou d'électricité"
+        bank_statement: "Relevé bancaire"
+        upload_instruction: "Instructions pour charger le document :"
+        documents_must_be_less_six_months: "Les documents doivent dater de moins de six mois"
+        dont_use_the_same_document: "Un même document ne peut être utilisé comme justificatif de domicile et pièce d'identité"
+        incomplete_documents_will_be_rejected: "Les documents incomplets ou rognés ne peuvent être acceptés"
+        choose_a_file: "Sélectionnez un fichier"
   rooms:
     show:
       title: "Message"
