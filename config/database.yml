@@ -83,3 +83,8 @@ production:
   database: yoopeek_production
   username: yoopeek
   password: <%= ENV['YOOPEEK_DATABASE_PASSWORD'] %>
+staging:
+  <<: *default
+  database: yoopeek_production
+  username: yoopeek
+  password: <%= ENV['YOOPEEK_DATABASE_PASSWORD'] %>
