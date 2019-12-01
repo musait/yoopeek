@@ -510,7 +510,7 @@
         if( this.files && this.files.length > 1 ){
     			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
     		}else{
-          
+
     			fileName = this.value.split('\\').pop()
         };
     		if( fileName )
@@ -623,6 +623,7 @@
         myForm.addEventListener('submit', handleForm);
 
         async function handleForm(event) {
+          $("#submit-form-button").val("<%= t('update_in_progress') %>")
           event.preventDefault();
           var fileData = null
           if ($('#id-file')[0].files.length != 0) {
@@ -719,7 +720,7 @@
           },
         }
         console.log(stripePersonAttribute);
-        
+
         if (stripePersonAttribute["verification"]["document"]["front"] == null &&stripePersonAttribute["verification"]["document"]["back"] == null) {
           delete stripePersonAttribute["verification"]["document"]
         } else {
@@ -793,7 +794,8 @@
           if (bankResult != null) {
             document.querySelector('#token-bank').value = bankResult.token.id;
           }
-          myForm.submit();
+          // myForm.submit();
+          $("#submit-form-button").val("<%= t('user.all.edit.save_modification') %>")
         }
         $("#submit-form-button").prop("disabled", false);
         }

@@ -59,6 +59,7 @@ fr:
       message: Erreur
       not_accepted: "Veuillez accepter les conditions générales d'utilisation"
   mission_finished: Mission terminée
+  update_in_progress: Modification en cours...
   action_not_enable: Action non disponible
   no_quote_created: Aucun devis n'a été créé
   credit: Crédit
