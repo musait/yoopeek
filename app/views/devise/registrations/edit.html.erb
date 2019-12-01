@@ -510,7 +510,7 @@
         if( this.files && this.files.length > 1 ){
     			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
     		}else{
-          debugger
+          
     			fileName = this.value.split('\\').pop()
         };
     		if( fileName )
@@ -718,13 +718,15 @@
             }
           },
         }
+        console.log(stripePersonAttribute);
+        
         if (stripePersonAttribute["verification"]["document"]["front"] == null &&stripePersonAttribute["verification"]["document"]["back"] == null) {
           delete stripePersonAttribute["verification"]["document"]
         } else {
-          if (["verification"]["document"]["front"] == null) {
+          if (stripePersonAttribute["verification"]["document"]["front"] == null) {
             delete stripePersonAttribute["verification"]["document"]["front"]
           }
-          if (["verification"]["document"]["back"] == null) {
+          if (stripePersonAttribute["verification"]["document"]["back"] == null) {
             delete stripePersonAttribute["verification"]["document"]["back"]
           }
         }
@@ -734,6 +736,7 @@
         if (jQuery.isEmptyObject(stripePersonAttribute["verification"])) {
           delete stripePersonAttribute["verification"]
         }
+        console.log(stripePersonAttribute);
         <% if current_user.stripe_person_id.present? %>
           const personResult = await stripe.createToken('person', {
             person: stripePersonAttribute,
@@ -750,7 +753,7 @@
               percent_ownership: 100,
             },
           });
-        
+
           const personResult = await stripe.createToken('person', {
             person: stripePersonAttribute
             });
