@@ -176,7 +176,7 @@ class User < ApplicationRecord
   end
 
   def self.from_facebook(auth,params)
-    @user = where(facebook_id: auth.uid).first_or_initialize do |user|
+    @user = where(email: auth.info.email).first_or_initialize do |user|
       user.email = auth.info.email
       user.firstname = auth.info.name.partition(" ").first
       user.lastname = auth.info.name.partition(" ").last
@@ -196,12 +196,13 @@ class User < ApplicationRecord
       end
       user.skip_confirmation!
     end
+    @user.facebook_id = auth.uid
     @user.save!
     @user
   end
 
   def self.from_google(auth,params)
-    @user = where(google_id: auth.uid).first_or_initialize do |user|
+    @user = where(email: auth.info.email).first_or_initialize do |user|
       user.email = auth.info.email
       user.firstname = auth.info.first_name
       user.lastname = auth.info.last_name
@@ -220,6 +221,7 @@ class User < ApplicationRecord
       end
       user.skip_confirmation!
     end
+    @user.google_id = auth.uid
     @user.save!
     @user
   end
