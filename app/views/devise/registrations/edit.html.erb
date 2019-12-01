@@ -491,7 +491,7 @@
 
     <!-- Button -->
     <div class="col-xl-12">
-      <%= f.submit I18n.t('.user.all.edit.save_modification'),class:"button ripple-effect big margin-top-30", id: "submit-form-button" %>
+      <%= f.submit I18n.t('.user.all.edit.save_modification'),class:"button ripple-effect big margin-top-30", id: "submit-form-button", data: {disable_with: t('update_in_progress') } %>
     </div>
   </div>
 <% end %>
@@ -623,7 +623,6 @@
         myForm.addEventListener('submit', handleForm);
 
         async function handleForm(event) {
-          $("#submit-form-button").val("<%= t('update_in_progress') %>")
           event.preventDefault();
           var fileData = null
           if ($('#id-file')[0].files.length != 0) {
@@ -795,9 +794,9 @@
             document.querySelector('#token-bank').value = bankResult.token.id;
           }
           myForm.submit();
-          $("#submit-form-button").val("<%= t('user.all.edit.save_modification') %>")
         }
-        $("#submit-form-button").prop("disabled", false);
+        $("#submit-form-button").prop("disabled", false)
+
         }
       </script>
     <% end %>
