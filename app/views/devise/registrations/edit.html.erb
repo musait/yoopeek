@@ -794,7 +794,7 @@
           if (bankResult != null) {
             document.querySelector('#token-bank').value = bankResult.token.id;
           }
-          // myForm.submit();
+          myForm.submit();
           $("#submit-form-button").val("<%= t('user.all.edit.save_modification') %>")
         }
         $("#submit-form-button").prop("disabled", false);
