@@ -707,7 +707,32 @@
             city: document.querySelector('#locality').value,
             state: document.querySelector('#country').value,
             postal_code: document.querySelector('#postal_code').value,
+          },
+          verification: {
+            document: {
+              front: (fileData != null ? fileData.id : null),
+              back: (fileDataBack != null ? fileDataBack.id : null),
+            },
+            additional_document: {
+              front: (fileDataSup != null ? fileDataSup.id : null)
+            }
+          },
+        }
+        if (stripePersonAttribute["verification"]["document"]["front"] == null &&stripePersonAttribute["verification"]["document"]["back"] == null) {
+          delete stripePersonAttribute["verification"]["document"]
+        } else {
+          if (["verification"]["document"]["front"] == null) {
+            delete stripePersonAttribute["verification"]["document"]["front"]
           }
+          if (["verification"]["document"]["back"] == null) {
+            delete stripePersonAttribute["verification"]["document"]["back"]
+          }
+        }
+        if (stripePersonAttribute["verification"]["additional_document"]["front"] == null) {
+          delete stripePersonAttribute["verification"]["additional_document"]
+        }
+        if (jQuery.isEmptyObject(stripePersonAttribute["verification"])) {
+          delete stripePersonAttribute["verification"]
         }
         <% if current_user.stripe_person_id.present? %>
           const personResult = await stripe.createToken('person', {
@@ -724,16 +749,8 @@
               title: "CEO",
               percent_ownership: 100,
             },
-            verification: {
-              document: {
-                front: (fileData != null ? fileData.id : null),
-                back: (fileDataBack != null ? fileDataBack.id : null),
-              },
-              additional_document: {
-                front: (fileDataSup != null ? fileDataSup.id : null)
-              }
-            },
           });
+        
           const personResult = await stripe.createToken('person', {
             person: stripePersonAttribute
             });
