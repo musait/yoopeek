@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     devise_for :users, skip: :omniauth_callbacks,controllers: {:registrations => 'registrations'}
     root 'home#index'
     post "/home/get_subcategories" => "home#get_subcategories"
-    get "/pages/:page" => "pages#show"
+    get "/:page" => "pages#show"
     get 'send_mail_contact' => "pages#send_mail_contact"
     devise_scope :user do
       match '/users' => "registrations#new", via: :get
