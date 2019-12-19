@@ -637,6 +637,8 @@ fr:
       update_your_portfolio: "Mettre à jour le portfolio"
       update_with_success: "Votre portfolio a été mis à jour avec succès"
   pages:
+    send_mail_contact:
+      the_email_has_been_sent: "Votre email a bien été envoyé. Nous vous répondrons dès que possible."
     contact:
       our_office: "Où nous trouver"
       any_questions: "<b>Vous avez une question, besoin d’aide, ou une remarque à nous faire ? </b> <br> "
