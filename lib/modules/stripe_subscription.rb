@@ -1,25 +1,39 @@
 module StripeSubscription
   class << self
-    def create user, plan_id, plan_limitation = nil
+    def create user, plan_id, plan_limitation = nil, trial_period = nil
       plan_limitation ||= PlanLimitation.find_by stripe_plan_id: plan_id
       plan = Stripe::Plan.retrieve(plan_id)
       cancel_subscription(user) if user.stripe_subscription_id.present?
       amount = plan['amount'] / 100.0
+      if trial_period.present?
+        subscription = Stripe::Subscription.create({
+          customer: user.stripe_customer_id,
+          default_payment_method: user.last_stripe_payment_method_id,
+          items: [
+            {
+              plan: plan_id,
+            },
+          ],
+          trial_end: trial_period.to_i,
+          cancel_at_period_end: true,
+        })
+      else
+        subscription = Stripe::Subscription.create({
+          customer: user.stripe_customer_id,
+          default_payment_method: user.last_stripe_payment_method_id,
+          items: [
+            {
+              plan: plan_id,
+            },
+          ]
+        })
+      end
 
-      subscription = Stripe::Subscription.create({
-        customer: user.stripe_customer_id,
-        default_payment_method: user.last_stripe_payment_method_id,
-        items: [
-          {
-            plan: plan_id,
-          },
-        ]
-      })
       # user.update stripe_subscription_id: subscription.id, current_plan_amount: amount, stripe_plan_id: plan_id, subscription_end_at: Time.at(subscription['current_period_end'])
       # Subscription.create user: user, plan_limitation: plan_limitation, plan_amount: amount, stripe_plan_id: plan_id, end_at: Time.at(subscription['current_period_end']), stripe_subscription_id: subscription.id
     end
 
-    def switch_plan user, plan_id, plan_limitation = nil
+    def switch_plan user, plan_id, plan_limitation = nil, trial_period = nil
       subscription_items = [{ plan: plan_id}]
       if user.stripe_subscription_id.present?
         if user.current_subscription.present? &&user.current_subscription.stripe_plan_id.present?
@@ -28,18 +42,18 @@ module StripeSubscription
 
           if user_plan.amount > plan.amount
             cancel_subscription user, true
-            subscription = create user, plan_id, plan_limitation = nil
+            subscription = create user, plan_id, plan_limitation, trial_period
           else
             cancel_subscription user
-            subscription = create user, plan_id, plan_limitation = nil
+            subscription = create user, plan_id, plan_limitation, trial_period
           end
         else
           cancel_subscription user
-          subscription = create user, plan_id, plan_limitation = nil
+          subscription = create user, plan_id, plan_limitation, trial_period
         end
       else
         cancel_subscription user
-        subscription = create user, plan_id, plan_limitation = nil
+        subscription = create user, plan_id, plan_limitation, trial_period
       end
       subscription
     end

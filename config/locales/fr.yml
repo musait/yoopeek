@@ -1,4 +1,8 @@
 fr:
+  give_trial_period: Donner un periode d'essai
+  trial_period: Periode d'essai
+  period_time_in_day: Durée de la periode en jours
+  you_doesnt_have_invoice: Vous n'avez pas de facture
   activerecord:
     errors:
       template:

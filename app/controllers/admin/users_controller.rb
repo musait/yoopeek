@@ -1,5 +1,5 @@
 class Admin::UsersController <  AdminController
-  before_action :set_user, only: [:edit, :update, :destroy, :show]
+  before_action :set_user, only: [:edit, :update, :destroy, :show, :trial_period]
   def index
     if params[:filter].present?
       if params[:filter] == "approved"
@@ -56,9 +56,20 @@ class Admin::UsersController <  AdminController
       end
     end
   end
+  def trial_period
+    premium_plan = PlanLimitation.premium_limitation
+    trial_period = params[:trial_period].to_i
+    if trial_period.present? &&trial_period > 0
+      days = trial_period.days.from_now.to_i
+      StripeSubscription.switch_plan @user, premium_plan.stripe_plan_id, premium_plan, days
+      redirect_to admin_users_path, notice: "La periode d'essai a été créée"
+    else
+      redirect_back fallback_location: admin_users_path, notice: "Vérifiez la periode"
+    end
+  end
   def destroy
     if @user.id != current_user.id
-      @user.soft_delete!
+      @user.soft_deleted? ? @user.update(deleted_at: nil) : @user.soft_delete!
     end
     redirect_to admin_users_path
   end

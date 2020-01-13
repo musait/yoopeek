@@ -9,6 +9,40 @@
                 <%= form_with model: @user.becomes(User), url: {action: "update"}, local: true do |f| %>
 				            <%= render 'layouts/user/edit/form.html.erb', user: @user, f: f %>
                 <%end%>
+                <% if @user.current_subscription.blank? %>
+
+                  <%= form_with url: trial_period_admin_user_path(@user), local: true do |f| %>
+                    <div class="row">
+                      <!-- Dashboard Box -->
+                      <div class="col-xl-12">
+                        <div class="dashboard-box margin-top-0">
+
+                          <!-- Headline -->
+                          <div class="headline">
+                            <h3><i class="icon-material-outline-account-circle"></i> <%= I18n.t('trial_period') %></h3>
+                          </div>
+
+                          <div class="content with-padding padding-bottom-0">
+
+                            <div class="row">
+
+                                <div class="col-xl-12 row">
+                                  <div class="submit-field col-md-6">
+                                    <h5><%= I18n.t('period_time_in_day') %></h5>
+                                    <%= f.number_field :trial_period, class:"with-border" %>
+                                  </div>
+                                  <%= f.submit I18n.t('give_trial_period'),class:"button ripple-effect big margin-top-30", id: "submit-form-button", data: {disable_with: t('update_in_progress') } %>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <%end%>
+                <% end %>
               </div>
 
     <!-- End Page -->

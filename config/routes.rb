@@ -78,7 +78,11 @@ Rails.application.routes.draw do
       resources :credits_offers
       resources :quotes
       resources :format_deliveries
-      resources :users
+      resources :users do
+        member do
+          post :trial_period
+        end
+      end
       resources :professions
       resources :forbiden_words
       resources :room_messages
