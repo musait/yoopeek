@@ -18,8 +18,8 @@
         <td> <%= user.worker? ? "Oui" : "Non" %></td>
         <td> <% if user.worker? %><%= user.profession.name if user.profession.present?%> <% end %></td>
         <td> <% if user.worker? %><%= check_box_tag 'approved', user.id, user.approved, :class => "user-approved-check"%> <% end %></td>
-        <td> <%= link_to "Voir les informations", admin_user_path(user), remote: true %> </td>
-        <td> <%= link_to "Supprimer", admin_user_path(id: user.id), method: :delete %></td>
+        <td> <%= link_to "Voir les informations", edit_admin_user_path(user), method: :get %> </td>
+        <td> <%= link_to (user.soft_deleted? ? "Activer" : "Supprimer"), admin_user_path(id: user.id), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

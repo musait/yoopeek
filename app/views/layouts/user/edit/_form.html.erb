@@ -1,0 +1,425 @@
+<input type="hidden" name="user[account_token]" id="token-account">
+<input type="hidden" name="user[bank_token]" id="token-bank">
+<input type="hidden" name="user[person_token]" id="token-person">
+<%= render "devise/shared/error_messages", resource: user %>
+<!-- Row -->
+<div class="row">
+  <!-- Dashboard Box -->
+  <div class="col-xl-12">
+    <div class="dashboard-box margin-top-0">
+
+      <!-- Headline -->
+      <div class="headline">
+        <h3><i class="icon-material-outline-account-circle"></i> <%= I18n.t('.user.all.edit.my_account') %></h3>
+      </div>
+
+      <div class="content with-padding padding-bottom-0">
+
+        <div class="row">
+
+          <div class="col-auto">
+            <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+              <% if user.avatar_url.present? %>
+                <img class="profile-pic" src= <%= user.avatar_url %> alt="" />
+              <% else %>
+                <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+              <% end %>
+                <div class="upload-button"></div>
+              <%= f.file_field :avatar, class:"file-upload" %>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="row">
+
+              <div class="col-xl-6">
+                <div class="submit-field">
+                  <h5><%= I18n.t('.user.all.edit.firstname') %></h5>
+                  <%= f.text_field :firstname, class:"with-border" %>
+                </div>
+              </div>
+
+              <div class="col-xl-6">
+                <div class="submit-field">
+                  <h5><%= I18n.t('.user.all.edit.lastname') %></h5>
+                  <%= f.text_field :lastname, class:"with-border" %>
+                </div>
+              </div>
+
+              <div class="col-xl-6">
+                <div class="submit-field">
+                  <h5><%= I18n.t('.user.all.edit.email') %></h5>
+                  <%= f.text_field :email, class:"with-border" %>
+                </div>
+              </div>
+
+              <div class="col-xl-6">
+                <div class="submit-field">
+                  <h5><%= I18n.t('.user.all.edit.birthdate') %></h5>
+                  <div class="" style="display:flex">
+                    <%= f.date_select :birthdate,order: [:day, :month, :year], class:"date-time",start_year: 100.year.ago.year, required: true%>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-6">
+                <div class="submit-field">
+                  <h5><%= I18n.t('.user.all.edit.phone_number') %></h5>
+                  <%= f.text_field :phone_number, class:"with-border" %>
+                </div>
+              </div>
+              <% if user.worker? %>
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><%= I18n.t('.user.all.edit.profession') %></h5>
+                    <%= f.collection_select :profession_id, @professions,:id,:name,{}, {class:"selectpicker",id:"profession_id"}%>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><%= I18n.t('.user.all.edit.subcategory') %></h5>
+                    <div id="subcategory_select">
+                      <%= f.collection_select :subcategory_ids, @subcategories,:id,:name,{},{class:"selectpicker",multiple: true,id:"subcategory_id"}%>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><i class="icon-feather-facebook"></i><%= I18n.t('.user.all.edit.facebook') %></h5>
+                    <%= f.text_field :facebook_profile, class:"with-border" %>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><i class="icon-feather-instagram"></i><%= I18n.t('.user.all.edit.instagram') %></h5>
+                    <%= f.text_field :instagram_profile, class:"with-border" %>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><i class="icon-line-awesome-pinterest"></i><%= I18n.t('.user.all.edit.pinterest') %></h5>
+                    <%= f.text_field :pinterest_profile, class:"with-border" %>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><i class="icon-feather-twitter"></i><%= I18n.t('.user.all.edit.twitter') %></h5>
+                    <%= f.text_field :twitter_profile, class:"with-border" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if user.worker? %>
+    <div class="col-xl-12">
+      <div class="dashboard-box">
+        <div class="headline">
+          <h3><%= I18n.t('.user.pro_profile.edit.your_banner') %></h3>
+        </div>
+        <div class="content banner_place">
+          <img class="banner-pic" height="300px" src= <%= user.banner_url %> alt=""  />
+        </div>
+        <label id="banner_upload"class=" banner margin-top-10 margin-left-10">
+          <%= I18n.t('.user.pro_profile.edit.change_banner') %>
+          <span style="display:none">
+            <%= f.file_field :banner, class:"banner-upload" %>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="col-xl-12">
+      <div class="dashboard-box">
+        <div class="headline">
+          <h3>  <%= I18n.t('.user.pro_profile.edit.your_credits') %></h3>
+        </div>
+        <div class="content">
+          <ul class="fields-ul">
+            <li>
+              <div class="row">
+                <div class="col-xl-12">
+                  <h3><%= I18n.t('.user.pro_profile.edit.credits_balance') %> <strong><%= user.current_credits.to_i %></strong> </h3>
+                  <% unless current_user.admin? %>
+                    <%= link_to buy_credits_path, class: "button", style: "margin-top: 20px;" do %>
+                      <%= I18n.t('.user.pro_profile.edit.buy_credits') %>
+                    <% end %>
+                    <%= link_to credits_payments_invoices_path, class: "button", style: "margin-top: 20px;" do %>
+                      <%= I18n.t('show_invoices') %>
+                    <% end %>
+                  <% end %>
+                  <!-- <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"></a> -->
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-12">
+      <div class="dashboard-box">
+        <div class="headline">
+          <h3><i class="icon-material-outline-money"></i>  <%= I18n.t('.user.pro_profile.edit.available_payout_amount') %></h3>
+        </div>
+        <div class="content">
+          <ul class="fields-ul">
+            <li>
+              <div class="row">
+                <div class="col-xl-12">
+                  <h3><%= I18n.t('.user.pro_profile.edit.payout') %> <strong><%= currency_formated user.available_payout_amount.to_f %></strong> </h3>
+                  <% unless current_user.admin? %>
+
+                    <%= link_to stripe_payouts_path, class: "button", style: "margin-top: 20px;", method: :post do %>
+                      <%= I18n.t('.user.pro_profile.edit.transfer_available_payout_amount') %>
+                    <% end %>
+                  <% end %>
+                  <!-- <a class="button" href="/theme/user/hireo/pro-points-buy.html" style="margin-top: 20px;"></a> -->
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+      <div class="dashboard-box">
+
+        <!-- Headline -->
+        <div class="headline">
+          <h3><i class="icon-material-outline-face"></i>  <%= I18n.t('.user.pro_profile.edit.your_profile') %></h3>
+        </div>
+
+        <div class="content">
+          <ul class="fields-ul">
+            <li>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <div class="bidding-widget">
+                      <!-- Headline -->
+                      <span class="bidding-detail"><%= raw I18n.t('.user.pro_profile.edit.fix_your_hour_rate') %></span>
+                      <!-- Slider -->
+                      <div class="bidding-value margin-bottom-10"><span id="biddingVal"></span>€</div>
+                      <input id="slider"class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="€" data-slider-min="0" data-slider-max="1000" data-slider-value=" <%=user.price_rate%>" data-slider-step="1" data-slider-tooltip="hide" />
+                      <%= f.hidden_field :price_rate, id:"price_rate" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5><%= raw I18n.t('.user.pro_profile.edit.your_skills') %></h5>
+                    <div id="skills">
+                      <%= f.select :skills, user.skills, {include_hidden: false }, {multiple: true,id:"tag_select"} %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <div class="col-xl-12">
+                  <div class="submit-field">
+                    <h5><%= raw I18n.t('.user.pro_profile.edit.description') %></h5>
+                    <%= f.text_area :description, col:'5', rows:'5', class:"with-border" %>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+      <div class="dashboard-box">
+
+        <!-- Headline -->
+        <div class="headline">
+          <h3><i class="icon-material-outline-business"></i> <%= I18n.t('.user.company.edit.your_company_infos') %></h3>
+        </div>
+
+        <div class="content with-padding padding-bottom-0">
+          <%= f.fields_for :company, user.get_or_build_company do |c| %>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.company.edit.name') %></h5>
+                      <%= c.text_field :name, class:"with-border" %>
+                    </div>
+                  </div>
+                  <%= c.fields_for :address, c.object.get_or_build_address do |a| %>
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5><%= raw I18n.t('.user.company.edit.address') %></h5>
+                        <%= a.text_field :complete_address, class:"with-border",id: :autocomplete_address %>
+                        <%= a.hidden_field :street, id: :street_id %>
+                        <%= a.hidden_field :city, id: :locality %>
+                        <%= a.hidden_field :zip, id: :postal_code %>
+                        <%= a.hidden_field :country, id: :country %>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.company.edit.website') %></h5>
+                      <%= c.text_field :website, class:"with-border" %>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.company.edit.iban') %></h5>
+                      <%= c.text_field :iban, class:"with-border"%>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.company.edit.currency') %></h5>
+                      <%= c.currency_select(:currency, ["EUR", "CHF"], {}, {prompt: true,class: "form-control"}) -%>
+
+                    </div>
+                  </div>
+
+                  <div class="col-xl-12">
+                    <div class="checkbox">
+                      <%= c.check_box :subject_to_vat,id:"checkbox1" %>
+                      <label for="checkbox1"><span class="checkbox-icon"></span> <%= raw I18n.t('.user.company.edit.is_your_company_subject_to_vat') %></label>
+                    </div>
+                  </div>
+                  <% if user.company.present? && user.company.subject_to_vat? %>
+                    <div class="col-xl-6" style="display:block" id="vatNumber">
+                  <% else %>
+                  <div class="col-xl-6" style="display:none" id="vatNumber">
+                  <% end %>
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.company.edit.vat_number') %></h5>
+                      <%= c.text_field :vat_number, class:"with-border" %>
+                    </div>
+                  </div>
+                  <% if user.company.present? && user.company.subject_to_vat? %>
+                  <div class="col-xl-6" style="display:block" id="vatRate">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.company.edit.vat_rate') %></h5>
+                      <% vat_rates = [['20%','20'],['7,7%','7.7']] %>
+                      <%= c.select :vat_rate,vat_rates,{}, prompt: 'Select One', id:"vat_select", class:"selectpicker" %>
+                    </div>
+                  <% else %>
+                  <div class="col-xl-6" style="display:none" id="vatRate">
+                    <div class="submit-field">
+                      <h5><%= raw I18n.t('.user.company.edit.vat_rate') %></h5>
+                      <% vat_rates = [['20%','20'],['7,7%','7.7']] %>
+                      <%= c.select :vat_rate,vat_rates,{}, prompt: 'Select One', id:"vat_select", class:"selectpicker" %>
+                    </div>
+                  <% end %>
+
+                  </div>
+                  <div class="col-xl-12 row">
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5><%=  I18n.t('.user.company.edit.identity_card_recto') %></h5>
+                        <input type="file" id="id-file" name="id-file" class="inputfile" accept=".jpeg,.jpg,.png">
+                        <label for="id-file"><strong> <%= I18n.t('.user.company.edit.choose_a_file') %></strong></label>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5><%=  I18n.t('.user.company.edit.identity_card_verso') %></h5>
+                        <input type="file" id="id-fileVerso" name="id-fileVerso" class="inputfile" accept=".jpeg,.jpg,.png">
+                        <label for="id-fileVerso"><strong> <%= I18n.t('.user.company.edit.choose_a_file') %></strong></label>
+
+                      </div>
+                    </div>
+                    <div class="col-xl-12">
+                      <span><%= I18n.t('.user.company.edit.upload_id_documents') %></span>
+                    </div>
+
+                    <div class="col-xl-6" style="margin-top: 10px">
+                      <div class="submit-field">
+                        <h5><%=  I18n.t('.user.company.edit.other_stripe_info_image') %></h5>
+                        <input type="file" id="id-fileSup" name="id-fileSup" class="inputfile" accept=".jpeg,.jpg,.png">
+                        <label for="id-fileSup"><strong> <%= I18n.t('.user.company.edit.choose_a_file') %></strong></label>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-xl-12">
+                      <div class="Box-root Box-hideIfEmpty Margin-top--16 Margin-left--16">
+                        <span class="db-DocumentRequestUploadModal-instructions Text-color--default Text-fontSize--14 Text-fontWeight--regular Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--block">
+                          <span>
+                            <p> <%= I18n.t('.user.company.edit.upload_more_documents') %></p>
+                            <strong> <%= I18n.t('.user.company.edit.type_of_document_accepted') %></strong>
+                            <ul>
+                              <li><%= I18n.t('.user.company.edit.water_electricity_bill') %></li>
+                              <li><%= I18n.t('.user.company.edit.bank_statement') %></li>
+                            </ul>
+                            <strong><%= I18n.t('.user.company.edit.upload_instruction') %></strong>
+                            <ul>
+                              <li><%= I18n.t('.user.company.edit.documents_must_be_less_six_months') %></li>
+                              <li><%= I18n.t('.user.company.edit.dont_use_the_same_document') %></li>
+                              <li><%= I18n.t('.user.company.edit.incomplete_documents_will_be_rejected') %></li>
+                            </ul>
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <!-- Dashboard Box -->
+  <div class="col-xl-12">
+    <div id="test1" class="dashboard-box">
+
+      <!-- Headline -->
+      <div class="headline">
+        <h3><i class="icon-material-outline-lock"></i>  <%= I18n.t('.user.all.edit.password') %></h3>
+      </div>
+
+      <div class="content with-padding">
+        <div class="row justify-content-end">
+          <div class="col-xl-6">
+            <div class="submit-field">
+              <h5><%= raw I18n.t('.user.all.edit.new_password') %>
+              <% if @minimum_password_length %>
+                <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+              <% end %></h5>
+              <%= f.password_field :password,autocomplete: "new-password",class:"with-border" %>
+            </div>
+          </div>
+
+          <div class="col-xl-6">
+            <div class="submit-field">
+              <h5><%= raw I18n.t('.user.all.edit.repeat_new_password') %></h5>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"with-border" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="col-xl-12">
+    <%= f.submit I18n.t('.user.all.edit.save_modification'),class:"button ripple-effect big margin-top-30", id: "submit-form-button", data: {disable_with: t('update_in_progress') } %>
+  </div>
+</div>

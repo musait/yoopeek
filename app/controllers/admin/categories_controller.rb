@@ -1,5 +1,5 @@
 class Admin::CategoriesController <  AdminController
-
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :show]
   # GET /categories
   # GET /categories.json
   def index

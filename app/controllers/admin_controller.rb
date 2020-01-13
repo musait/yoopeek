@@ -9,8 +9,11 @@ class AdminController < ApplicationController
 
   def set_database
     @jobs = Job.all
+    @jobs_count = Job.count
     @categories = Category.all
+    @categories_count = Category.count
     @users = User.all
+    @users_count = User.count
     @forbiden_words_count = ForbidenWord.count
     @credits_offers_count = CreditsOffer.count
     @plan_limitations_count = PlanLimitation.count

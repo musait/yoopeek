@@ -9,7 +9,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les Missions</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill"> <%= @jobs.count %></span>
+                      <span class="badge badge-pill"> <%= @jobs_count %></span>
                   </div>
             <% end %>
           </li>
@@ -18,7 +18,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les Catégories</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill"> <%= @categories.count %></span>
+                      <span class="badge badge-pill"> <%= @categories_count %></span>
                   </div>
             <% end %>
           </li>
@@ -27,7 +27,7 @@
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Les Utilisateurs</span>
                   <div class="site-menu-badge">
-                      <span class="badge badge-pill "> <%= @users.count %></span>
+                      <span class="badge badge-pill "> <%= @users_count %></span>
                   </div>
             <% end %>
           </li>
@@ -85,12 +85,12 @@
               </div>
             <% end %>
           </li>
-          <li class="site-menu-item has-sub">
-            <%= link_to edit_user_registration_path(id:current_user.id) do %>
+          <!-- <li class="site-menu-item has-sub">
+            <%#= link_to edit_user_registration_path(id:current_user.id) do %>
               <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
               <span class="site-menu-title">Paramètres Admin</span>
-            <% end %>
-          </li>
+            <%# end %>
+          </li> -->
         </ul>
 
       </div>
