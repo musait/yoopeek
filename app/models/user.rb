@@ -281,4 +281,33 @@ class User < ApplicationRecord
   def from_omniauth?
     facebook_id || google_id
   end
+
+  ################ soft_delete ####################
+  scope :not_deleted, -> () {
+    where(deleted_at: nil)
+  }
+  scope :deleted, -> () {
+    where.not(deleted_at: nil)
+  }
+
+  def soft_delete!
+    # update_attribute(:deleted_at, Time.current)
+    update(:deleted_at => Time.current)
+  end
+
+  def soft_deleted?
+    deleted_at.present?
+  end
+
+  # ensure user account is active
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    soft_deleted? ? :deleted_account : super
+  end
+  ################ /soft_delete ####################
+
 end

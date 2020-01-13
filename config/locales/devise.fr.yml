@@ -16,6 +16,7 @@ fr:
       unconfirmed: "Vous devez valider votre compte pour continuer."
       social_login_failure: "Il y a eu un problème lors de votre connexion. Veuillez vous inscrire ou essayer plus tard."
       not_approved: "Votre compte n'a pas encore été confirmé par un administrateur"
+      deleted_account: "Ce compte a été supprimé"
     mailer:
       confirmation_instructions:
         you_can_confirm_your_account_through_the_link_below: " Vous pouvez confirmer votre mail grâce au lien ci-dessous :"

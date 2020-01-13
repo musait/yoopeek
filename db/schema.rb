@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_003839) do
+ActiveRecord::Schema.define(version: 2020_01_13_120307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -452,8 +452,8 @@ ActiveRecord::Schema.define(version: 2019_11_29_003839) do
     t.string "stripe_subscription_id"
     t.string "stripe_plan_id"
     t.float "current_plan_amount"
-    t.datetime "subscription_end_at"
     t.uuid "portfolio_id"
+    t.datetime "subscription_end_at"
     t.uuid "category_id"
     t.string "facebook_profile"
     t.string "instagram_profile"
@@ -465,6 +465,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_003839) do
     t.string "stripe_person_id"
     t.string "stripe_connect_bank_id"
     t.float "available_payout_amount", default: 0.0
+    t.datetime "deleted_at"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["category_id"], name: "index_users_on_category_id"
